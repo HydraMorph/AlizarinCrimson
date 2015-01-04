@@ -1,0 +1,39 @@
+<md-toolbar layout="column" layout-align="center center" ng-controller="PlaylistCtrl">
+  <md-content class="playlist">
+    <md-list layout="column" class="playlist__list">
+<!--     <div class="current" ng-include="'components/current/current.html'"></div>-->
+      <md-item ng-repeat="track in playlist | orderBy:'r':true" class="playlist__track">
+        <div class="track__img-cont">
+          <img ng-src="{{track.src}}" class="track__img" alt="">
+        </div>
+        <div class="track__content">
+          <h3 class="track__artist">{{track.t}}</h3>
+          <h4 class="track__title">{{track.a}}</h4>
+        </div>
+        <div class="track__tags">
+          <span class="track__tag" ng-repeat="tag in track.tg">
+            {{tag}}
+          </span>
+        </div>
+        <div class="track__time">
+          <span>+{{track.tt | readableTime}}</span>
+        </div>
+        <div class="track__votes-block">
+          <md-button class="md-fab track__vote--up" ng-click="voteUp(track.id)">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+              <path d="M16.59 8.59l-4.59 4.58-4.59-4.58-1.41 1.41 6 6 6-6z"/>
+              <path d="M0 0h24v24h-24z" fill="none"/>
+            </svg>
+          </md-button>
+          <span class="track__rating">{{track.r}}</span>
+          <md-button class="md-fab track__vote--down" ng-click="voteDown(track.id)">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+              <path d="M12 8l-6 6 1.41 1.41 4.59-4.58 4.59 4.58 1.41-1.41z"/>
+              <path d="M0 0h24v24h-24z" fill="none"/>
+            </svg>
+          </md-button>
+        </div>
+      </md-item>
+    </md-list>
+  </md-content>
+</md-toolbar>
