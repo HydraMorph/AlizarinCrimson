@@ -1,0 +1,33 @@
+<div ng-controller="InfoCtrl" class="tabsdemoStaticTabs">
+
+    <md-tabs class="md-accent" selected="data.selectedIndex">
+      <md-tab id="tabChat" aria-controls="tabChat-content">
+        Чат
+      </md-tab>
+      <md-tab id="tabHistory" aria-controls="tabHistory-content">
+        История
+      </md-tab>
+      <md-tab id="tabDemocracy" aria-controls="tabDemocracy-content">
+        Демократия
+      </md-tab>
+      <md-tab id="tabProfile" aria-controls="tabProfile-content">
+        Профиль
+      </md-tab>
+    </md-tabs>
+
+    <ng-switch on="data.selectedIndex" class="tabpanel-container">
+      <div role="tabpanel" id="tabChat-content" aria-labelledby="tabChat" ng-switch-when="0" md-swipe-left="next()" md-swipe-right="previous()" >
+        <div class="chat" ng-include="'components/chat/chat.html'"></div>
+      </div>
+      <div role="tabpanel" id="tabHistory-content" aria-labelledby="tabHistory" ng-switch-when="1" md-swipe-left="next()" md-swipe-right="previous()" >
+        <div class="history" ng-include="'components/history/history.html'"></div>
+      </div>
+      <div role="tabpanel" id="tabDemocracy-content" aria-labelledby="tabDemocracy" ng-switch-when="2" md-swipe-left="next()" md-swipe-right="previous()" >
+        <div class="democracy" ng-include="'components/democracy/democracy.html'"></div>
+      </div>
+      <div role="tabpanel" id="tabProfile-content" aria-labelledby="tabProfile" ng-switch-when="3" md-swipe-left="next()" md-swipe-right="previous()" >
+        <div class="profile" ng-include="'components/profile/profile.html'"></div>
+      </div>
+    </ng-switch>
+
+</div>

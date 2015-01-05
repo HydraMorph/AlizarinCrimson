@@ -47,6 +47,11 @@ section
 // injector
 // endinjector
 
+.md-sidenav-left
+  width 150px
+  min-width 150px
+.md-sidenav-right
+  width 120%
 
 .console
   & md-slider
@@ -68,6 +73,17 @@ section
     & .md-focus-ring
       background-color #fff
       top 2px
+.console__buttton--upload
+  background-color #FFCD00
+  width 100%
+  color #fff
+  border-radius 0 !important
+  font-size 32px
+
+.uploadbar
+  height 300px
+  z-index 999
+
 
 .switcher
   height 100px
@@ -171,3 +187,154 @@ md-button.md-default-theme.md-fab
   font-size 23px
   color #bbb
   padding 0 2px
+
+
+
+
+
+
+
+
+
+
+.tabsdemoStaticTabs
+  opacity 1
+//  & #tabChat-content
+//    background-color #3F51B5
+  & #tabHistory-content
+    background-color #673AB7
+  & #tabDemocracy-content
+    background-color #00796B
+  & #tabProfile-content
+    background-color #f0f
+.tabsdemoStaticTabs .tabpanel-container
+  display block
+  position relative
+  background white
+  border 0px solid black
+  height calc(100vh - 48px)
+  overflow hidden
+
+.tabsdemoStaticTabs [role="tabpanel"]
+  color white
+  width 100%
+  height 100%
+  transition all cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.5s
+  position absolute
+.tabsdemoStaticTabs [role="tabpanel"].ng-leave.ng-leave-active
+.tabsdemoStaticTabs [role="tabpanel"].ng-enter
+  top -300px
+.tabsdemoStaticTabs [role="tabpanel"].ng-leave
+.tabsdemoStaticTabs [role="tabpanel"].ng-enter.ng-enter-active
+  top 0
+.tabsdemoStaticTabs [role="tabpanel"].ng-leave
+  z-index 100
+.tabsdemoStaticTabs .md-header
+  background-color #fff !important
+.tabsdemoStaticTabs .md-header-items-container .md-header-items
+  border-bottom 3px solid #bbb
+.tabsdemoStaticTabs md-tab
+  color #bbb !important
+  text-transform none
+  border-right 1px solid #eee
+  &:focus
+    border-right 1px solid #eee
+    border-left 1px solid #eee
+    border-top none
+    border-bottom none
+    border-color #eee !important
+  &:first-child
+    border-left 1px solid #eee
+.tabsdemoStaticTabs md-tab.active
+.tabsdemoStaticTabs md-tab:focus
+  color #333 !important
+.tabsdemoStaticTabs md-tab[disabled]
+  opacity 0.5
+.tabsdemoStaticTabs md-tab .md-ripple-container
+  color #FFCD00 !important
+.tabsdemoStaticTabs .md-header .md-ripple
+  border-color #FFCD00 !important
+.tabsdemoStaticTabs md-tabs-ink-bar
+  background-color #FFCD00 !important
+  height 3px
+
+
+.chat
+  height 100%
+  color #000
+  & .chat__module
+    height 100%
+  & .chat__list
+    height 100%
+.chat__input-grp
+  position fixed
+  bottom 0
+  width 100%
+  border-top 3px solid #bbb
+  height 90px
+  margin 0
+  padding 0
+  display flex
+  flex-flow row wrap
+  & md-input-group
+  & .md-input-group
+    margin 0
+    padding 0
+    width 100%
+    & input
+      width 100%
+      height 46px
+    &.md-input-focused
+      & input
+        border-color #FFCD00 !important
+        height 46px
+      & label
+        color #FFCD00 !important
+  & .chat__input-nav
+    height 24px
+    display flex
+    align-self flex-end
+    flex 1 100%
+    justify-content flex-start
+    align-items center
+    & .chat__checkbox--tink
+    & .chat__checkbox--img
+      display inline
+      margin 0
+      font-size 11px
+      padding 0 6px
+      margin-bottom 8px
+      & .md-label
+        vertical-align text-top
+        margin-left 4px
+        border none !important
+        margin-bottom 2px
+    & .chat__button--bold
+    & .chat__button--irony
+      text-decoration none
+      text-transform none
+      font-size 12px
+      margin-bottom 4px
+      & .md-button-inner
+        padding 0 6px
+    & .chat__button--bold
+      font-weight 800
+    & .chat__button--irony
+      font-style italic
+      color red
+.chat__md-content
+  height calc(100% - 90px)
+  overflow-x hidden
+
+
+.history
+  height 100%
+.history__module
+  color #000
+  height 100%
+.history__checkbox-grp
+  height 24px
+  & md-checkbox
+    margin 0 0 0 10px
+.history__content
+  height calc(100% - 24px)

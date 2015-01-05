@@ -1,0 +1,21 @@
+<div ng-controller="HistoryCtrl" class="history__module">
+
+  <div class="history__checkbox-grp">
+    <md-checkbox ng-model="gold" aria-label="Золото" class="history__checkbox--gold">
+      Золото
+    </md-checkbox>
+  </div>
+  <md-content class="history__content">
+    <md-list class="history__list">
+      <md-item ng-repeat="track in tracks" class="history__list-item">
+        <md-item-content>
+          <div class="md-tile-content">
+            <h3>{{track.what}}</h3>
+            <h4>{{track.who}}</h4>
+          </div>
+        </md-item-content>
+      </md-item>
+    </md-list>
+  </md-content>
+
+</div>

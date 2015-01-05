@@ -29,3 +29,4 @@ angular.module('trigger')
     };
   });
 
+
