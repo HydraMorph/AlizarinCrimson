@@ -2,7 +2,7 @@
 
 angular.module('trigger')
   .controller('ConsoleCtrl', function ($scope, $timeout, $mdBottomSheet) {
-    $scope.data = "Console";
+    $scope.data = 'Console';
     $scope.volume = 23;
     $scope.changeVolume = function(volume) {
       $scope.volume = volume;

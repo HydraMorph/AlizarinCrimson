@@ -21,20 +21,26 @@ angular.module('trigger')
           secs = seconds % 60;
       }
       // Output like "1:01" or "4:03:59" or "123:03:59"
-      var ret = "";
+      var ret = '';
       if (hrs > 0) {
-        ret += "" + hrs + ":" + (mins < 10 ? "0" : "");
+        ret += '' + hrs + ':' + (mins < 10 ? '0' : '');
       }
       if (mins > 0) {
-        ret += "" + mins + ":" + (secs < 10 ? "0" : "");
+        ret += '' + mins + ':' + (secs < 10 ? '0' : '');
       } else {
-        ret += "0:";
+        ret += '0:';
       }
-      ret += "" + secs;
+      ret += '' + secs;
       return ret;
     };
   })
-  .controller('PlaylistCtrl', function ($scope) {
+  .controller('PlaylistCtrl', function ($scope, $mdSidenav) {
+    $scope.toggleLeft = function () {
+      $mdSidenav('left').toggle();
+    };
+    $scope.toggleRight = function () {
+      $mdSidenav('right').toggle();
+    };
     $scope.playlist = [
       {
         'a': 'P.O.D.',

@@ -1,0 +1,86 @@
+.playlist
+  color #000
+  height 100vh
+  width 100%
+.playlist__list
+  display block
+  padding 0
+.playlist__track
+  border 1px solid #eee
+  display flex
+  flex-flow row nowrap
+  align-items center
+  margin-top -1px
+  &:first-child
+    margin-top 0
+.track__img-cont
+  display flex
+  padding 5px
+  min-width 60px
+.track__img
+  width 48px
+  height 48px
+.track__content
+  display flex
+  flex-flow column wrap
+.track__artist
+.track__title
+  font-weight 600
+  color rgb(51, 51, 51)
+  font-size 12px
+  font-family 'Open Sans', sans-serif
+  margin 0
+.track__tags
+  display flex
+  flex 1
+.track__tag
+  display flex
+.track__time
+  display flex
+  color rgb(51, 51, 51)
+  font-size 12px
+  font-family 'Open Sans', sans-serif
+.track__votes-block
+  display flex
+  align-items center
+  flex-basis 120px
+  justify-content flex-end
+.track__vote--up.track__vote--up
+.track__vote--down.track__vote--down
+  width 40px
+  height 40px
+  & svg
+    margin-top 2px
+md-button.md-default-theme.md-fab
+  background-color transparent
+  box-shadow none
+  &:not([disabled])
+    &.focus
+    &:hover
+      background-color transparent
+      box-shadow none
+
+.track__rating
+  font-family 'Open Sans', sans-serif
+  font-weight 100
+  font-size 23px
+  color #bbb
+  padding 0 2px
+
+
+.playlist__toolbar
+.playlist__toolbar-tools
+.playlist__leftbar-swither
+.playlist__rightbar-swither
+  opacity .99
+
+.playlist__toolbar-tools
+  justify-content space-between
+
+
+@media screen and (min-width: 960px)
+  .playlist__toolbar
+    color #000
+  .playlist__leftbar-swither
+  .playlist__toolbar
+    opacity .98

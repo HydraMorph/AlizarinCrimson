@@ -1,22 +1,19 @@
 <md-item ng-controller="CurrentCtrl">
-  <md-item-content class="track">
-    <div class="md-tile-left track__img-cont">
+  <md-item-content class="track track--current">
+    <div class="track__img-cont">
       <img ng-src="{{current.src}}" class="track__img" alt="">
     </div>
-    <div class="md-tile-content track__content">
+    <div class="track__content">
       <h3 class="track__artist">{{current.t}}</h3>
       <h4 class="track__title">{{current.a}}</h4>
     </div>
     <div class="track__tags">
-      <ul ng-repeat="plus in current.p">
-        <li>{{plus.vid}}</li>
-      </ul>
-      <ul ng-repeat="minus in current.n">
-        <li>{{minus.vid}}</li>
-      </ul>
+        <span class="track__tag" ng-repeat="tag in current.tg">
+            {{tag}}
+        </span>
     </div>
     <div class="track__time">
-      {{current.tt | readableTime}}
+      <span>+{{current.tt | readableTime}}</span>
     </div>
     <div class="track__votes-block">
       <md-button class="md-button-colored">
@@ -25,7 +22,7 @@
           <path d="M0 0h24v24h-24z" fill="none"/>
         </svg>
       </md-button>
-      {{current.r}}
+      <span class="track__rating">{{current.r}}</span>
       <md-button class="md-button-colored">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
           <path d="M12 8l-6 6 1.41 1.41 4.59-4.58 4.59 4.58 1.41-1.41z"/>

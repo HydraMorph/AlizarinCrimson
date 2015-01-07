@@ -5,7 +5,7 @@ angular.module('trigger')
     $scope.data = {
       selectedIndex : 0,
       secondLocked : true,
-      secondLabel : "Item Two"
+      secondLabel : 'Item Two'
     };
 
     $scope.next = function() {

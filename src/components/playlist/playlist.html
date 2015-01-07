@@ -1,7 +1,27 @@
 <md-toolbar layout="column" layout-align="center center" ng-controller="PlaylistCtrl">
   <md-content class="playlist">
     <md-list layout="column" class="playlist__list">
-<!--     <div class="current" ng-include="'components/current/current.html'"></div>-->
+      <md-toolbar class="playlist__toolbar">
+        <h2 class="md-toolbar-tools playlist__toolbar-tools">
+          <md-button class="playlist__leftbar-swither" ng-click="toggleLeft()">
+            <svg class="switcher" ng-click="togglePlay()" ng-class="{'play' : play == true}" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 56 56" enable-background="new 0 0 56 56" xml:space="preserve">
+              <path class="b3" fill="none" stroke="#B4B4B4" stroke-width="3" stroke-miterlimit="10" d="M14.2,41.8c-7.6-7.6-7.6-20,0-27.6"/>
+              <path class="b2" fill="none" stroke="#9D9D9D" stroke-width="3" stroke-miterlimit="10" d="M18.5,37.5c-5.3-5.3-5.3-13.8,0-19.1"/>
+              <path class="b1" fill="none" stroke="#7F7F7F" stroke-width="3" stroke-miterlimit="10" d="M22.8,33.2c-2.9-2.9-2.9-7.6,0-10.5"/>
+              <circle class="c" fill="#7F7F7F" cx="28" cy="28" r="3"/>
+              <path class="b1" fill="none" stroke="#7F7F7F" stroke-width="3" stroke-miterlimit="10" d="M33.2,22.8c2.9,2.9,2.9,7.6,0,10.5"/>
+              <path class="b2" fill="none" stroke="#9D9D9D" stroke-width="3" stroke-miterlimit="10" d="M37.5,18.5c5.3,5.3,5.3,13.8,0,19.1"/>
+              <path class="b3" fill="none" stroke="#B4B4B4" stroke-width="3" stroke-miterlimit="10" d="M41.8,14.2c7.6,7.6,7.6,20,0,27.6"/>
+            </svg>
+          </md-button>
+          <md-button class="playlist__rightbar-swither" ng-click="toggleRight()">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+              <path d="M7 19h10v-15h-10v15zm-5-2h4v-11h-4v11zm16-11v11h4v-11h-4z"/>
+              <path d="M0 0h24v24h-24z" fill="none"/>
+            </svg>
+          </md-button>
+        </h2>
+      </md-toolbar>
       <md-item ng-repeat="track in playlist | orderBy:'r':true" class="playlist__track">
         <div class="track__img-cont">
           <img ng-src="{{track.src}}" class="track__img" alt="">
@@ -34,6 +54,7 @@
           </md-button>
         </div>
       </md-item>
+     <div class="current" ng-include="'components/current/current.html'"></div>
     </md-list>
   </md-content>
 </md-toolbar>

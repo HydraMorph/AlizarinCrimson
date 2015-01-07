@@ -45,6 +45,12 @@ section
         float right
         width 50px
 // injector
+@import '../components/chat/chat.styl';
+@import '../components/console/console.styl';
+@import '../components/current/current.styl';
+@import '../components/history/history.styl';
+@import '../components/playlist/playlist.styl';
+@import '../components/upload/uploader.styl';
 // endinjector
 
 .md-sidenav-left
@@ -52,6 +58,13 @@ section
   min-width 150px
 .md-sidenav-right
   width 120%
+
+@media screen and (max-width: 960px)
+  .md-sidenav-right
+    width 100%
+    top 60px
+  .md-sidenav-left
+    top 60px
 
 .console
   & md-slider
