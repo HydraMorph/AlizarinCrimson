@@ -1,6 +1,7 @@
 <md-toolbar layout="column" layout-align="center center" ng-controller="ConsoleCtrl">
 
   <md-slider ng-model="volume" ng-change="changeVolume(volume)" min="0" max="100" step="1"></md-slider>
+  <img ng-src="/assets/images/logo.png" class="console__logo"/>
   <md-button href="#"> {{data}}</md-button>
   <md-button class="console__buttton--upload" ng-click="openUploadBar($event)">
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">

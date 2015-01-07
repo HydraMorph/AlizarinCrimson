@@ -1,19 +1,19 @@
 <div ng-controller="AppCtrl" layout="column" layout-fill>
   <section layout="row" flex>
     <md-sidenav class="md-sidenav-left md-whiteframe-z2" component-id="left" is-locked-open="$media('sm')">
-      <md-toolbar class="md-theme-indigo">
-        <svg class="switcher" ng-click="togglePlay()" ng-class="{'play' : play == true}" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 56 56" enable-background="new 0 0 56 56" xml:space="preserve">
-          <path class="b3" fill="none" stroke="#B4B4B4" stroke-width="3" stroke-miterlimit="10" d="M14.2,41.8c-7.6-7.6-7.6-20,0-27.6"/>
-          <path class="b2" fill="none" stroke="#9D9D9D" stroke-width="3" stroke-miterlimit="10" d="M18.5,37.5c-5.3-5.3-5.3-13.8,0-19.1"/>
-          <path class="b1" fill="none" stroke="#7F7F7F" stroke-width="3" stroke-miterlimit="10" d="M22.8,33.2c-2.9-2.9-2.9-7.6,0-10.5"/>
-          <circle class="c" fill="#7F7F7F" cx="28" cy="28" r="3"/>
-          <path class="b1" fill="none" stroke="#7F7F7F" stroke-width="3" stroke-miterlimit="10" d="M33.2,22.8c2.9,2.9,2.9,7.6,0,10.5"/>
-          <path class="b2" fill="none" stroke="#9D9D9D" stroke-width="3" stroke-miterlimit="10" d="M37.5,18.5c5.3,5.3,5.3,13.8,0,19.1"/>
-          <path class="b3" fill="none" stroke="#B4B4B4" stroke-width="3" stroke-miterlimit="10" d="M41.8,14.2c7.6,7.6,7.6,20,0,27.6"/>
+      <md-toolbar class="console__switcher-cont">
+        <svg class="switcher" ng-click="togglePlay()" ng-class="{'play' : play == true}" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 850.4 595.3" enable-background="new 0 0 850.4 595.3" xml:space="preserve">
+          <path class="b3" fill="none" stroke="#B4B4B4" stroke-width="55.3274" stroke-miterlimit="10" d="M154.7,568.2c-149-149-149-392.1,0-541.1"/>
+          <path class="b2" fill="none" stroke="#9D9D9D" stroke-width="55.3274" stroke-miterlimit="10" d="M239,483.9C135.1,380,135.1,213.3,239,109.4"/>
+          <path class="b1" fill="none" stroke="#7F7F7F" stroke-width="55.3274" stroke-miterlimit="10" d="M323.3,399.6c-56.9-56.9-56.9-149,0-205.8"/>
+          <circle class="c" fill="#7F7F7F" cx="425.2" cy="297.6" r="58.8"/>
+          <path class="b1" fill="none" stroke="#7F7F7F" stroke-width="55.3274" stroke-miterlimit="10" d="M527.1,195.7c56.9,56.9,56.9,149,0,205.8"/>
+          <path class="b2" fill="none" stroke="#9D9D9D" stroke-width="55.3274" stroke-miterlimit="10" d="M611.4,111.4c103.9,103.9,103.9,270.5,0,374.4"/>
+          <path class="b3" fill="none" stroke="#B4B4B4" stroke-width="55.3274" stroke-miterlimit="10" d="M695.7,27.1c149,149,149,392.1,0,541.1"/>
         </svg>
       </md-toolbar>
       <md-content ng-controller="LeftCtrl">
-        <md-button ng-click="close()" class="md-primary" hide-md>Close</md-button>
+<!--        <md-button ng-click="close()" class="md-primary" hide-md>Close</md-button>-->
         <div hide-gt-sm show-gt-md class="console" ng-include="'components/console/console.html'"></div>
       </md-content>
     </md-sidenav>
