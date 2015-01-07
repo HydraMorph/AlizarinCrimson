@@ -28,3 +28,34 @@
 .console__logo
   width 85%
   margin 15px
+
+.switcher
+  height 100px
+  &.play
+    & .c
+      fill #FFE780
+    & .b3
+      animation-name dance
+      animation-duration 1s
+      animation-delay 1s
+      animation-fill-mode both
+      animation-iteration-count infinite
+    & .b2
+      animation-name dance
+      animation-duration 1s
+      animation-delay .66s
+      animation-fill-mode both
+      animation-iteration-count infinite
+    & .b1
+      animation-name dance
+      animation-duration 1s
+      animation-delay .33s
+      animation-fill-mode both
+      animation-iteration-count infinite
+@keyframes dance
+  0%
+    stroke #FFE780
+  100%
+    stroke #FFCC00
+
+
