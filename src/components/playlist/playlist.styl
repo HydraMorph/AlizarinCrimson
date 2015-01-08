@@ -6,6 +6,10 @@
   width 100%
 .playlist__content
   height calc(100% - 94px)
+@media screen and (min-width: 960px)
+  .playlist__content
+    height calc(100% - 58px)
+
 .playlist__list
   display block
   padding 0
@@ -79,14 +83,28 @@ md-button.md-default-theme.md-fab
 .playlist__leftbar-swither
 .playlist__rightbar-swither
   opacity .99
+.playlist__leftbar-svg
+  height 24px
+  width 24px
 
 .playlist__toolbar-tools
   justify-content space-between
 
+/* Caution! Buggy thing
+* Please, just ignore this
+*/
+.playlist__leftbar-swither
+  display inline-block
+  opacity 1
+
+@media screen and (min-width: 600px)
+  .playlist__toolbar-tools
+    justify-content flex-end
+  .playlist__leftbar-swither
+    display none !important
+    opacity 0
+    visibility hidden
 
 @media screen and (min-width: 960px)
   .playlist__toolbar
-    color #000
-  .playlist__leftbar-swither
-  .playlist__toolbar
-    opacity .97
+    display none

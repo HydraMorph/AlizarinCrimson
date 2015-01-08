@@ -194,6 +194,36 @@ angular.module('trigger')
         'r': 5,
         'src': 'assets/images/nocover.png',
         'vote': 0
+      },
+      {
+        'a': 'Poppa Doses ',
+        't': 'Ruff Up (The Widdler RMX)',
+        's': 'Fabeltier',
+        'id': 304810,
+        'sid': 1499,
+        'tt': 268,
+        'i': '',
+        'tg': [],
+        'p': [],
+        'n': [],
+        'r': 5,
+        'src': 'assets/images/nocover.png',
+        'vote': 0
+      },
+      {
+        'a': 'Poppa Doses ',
+        't': 'Ruff Up (The Widdler RMX)',
+        's': 'Fabeltier',
+        'id': 304810,
+        'sid': 1499,
+        'tt': 268,
+        'i': '',
+        'tg': [],
+        'p': [],
+        'n': [],
+        'r': 5,
+        'src': 'assets/images/nocover.png',
+        'vote': 0
       }
     ];
     $scope.voteUp = function(id) {

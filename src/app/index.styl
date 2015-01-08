@@ -2,6 +2,9 @@
 
 html
   font-family 'Open Sans', sans-serif !important
+  width 100vw
+  height 100vh
+  overflow hidden
 
 [layout=row]
   flex-direction row
@@ -14,6 +17,7 @@ html
 @import '../components/console/console.styl';
 @import '../components/current/current.styl';
 @import '../components/history/history.styl';
+@import '../components/info/info.styl';
 @import '../components/playlist/playlist.styl';
 @import '../components/upload/uploader.styl';
 // endinjector
@@ -22,16 +26,24 @@ html
   background #333
   width 150px
   min-width 150px
+  & md-content.md-default-theme
+    background-color #333
 .md-sidenav-right
   width 120%
+
 
 
 @media screen and (max-width: 960px)
   .md-sidenav-right
     width 100%
-    top 60px
+    top 36px
+    height calc(100vh - 36px)
+    overflow hidden
+  .console__ctrl
+    height calc(100vh - 72px)
+    overflow hidden
   .md-sidenav-left
-    top 60px
+    top 36px
 
 .viewport--H
   height 100vh
@@ -71,6 +83,8 @@ html
   background-color #fff !important
 .tabsdemoStaticTabs .md-header-items-container .md-header-items
   border-bottom 3px solid #bbb
+  -webkit-transform none !important
+  transform none !important
 .tabsdemoStaticTabs md-tab
   color #bbb !important
   text-transform none
