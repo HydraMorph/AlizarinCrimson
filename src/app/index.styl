@@ -34,8 +34,8 @@ html
 
 // injector
 @import '../components/chat/chat.styl';
-@import '../components/console/console.styl';
 @import '../components/current/current.styl';
+@import '../components/console/console.styl';
 @import '../components/history/history.styl';
 @import '../components/info/info.styl';
 @import '../components/playlist/playlist.styl';
@@ -124,9 +124,13 @@ html
     border-color #eee !important
   &:first-child
     border-left 1px solid #eee
+.tabsdemoStaticTabs md-tab
+  box-sizing content-box
 .tabsdemoStaticTabs md-tab.active
 .tabsdemoStaticTabs md-tab:focus
   color #333 !important
+.tabsdemoStaticTabs md-tab:hover
+  border-bottom 3px solid #333
 .tabsdemoStaticTabs md-tab[disabled]
   opacity 0.5
 .tabsdemoStaticTabs md-tab .md-ripple-container
