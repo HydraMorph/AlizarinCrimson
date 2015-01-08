@@ -6,8 +6,28 @@ html
   height 100vh
   overflow hidden
 
+//body
+//  scrollbar-base-color #C0C0C0
+//  scrollbar-base-color #C0C0C0
+//  scrollbar-3dlight-color #C0C0C0
+//  scrollbar-highlight-color #C0C0C0
+//  scrollbar-track-color #EBEBEB
+//  scrollbar-arrow-colo: black
+//  scrollbar-shadow-color #C0C0C0
+//  scrollbar-dark-shadow-color #C0C0C0
+
+::-webkit-scrollbar-track
+  -webkit-box-shadow none
+  background-color #F5F5F5
+::-webkit-scrollbar
+  width 6px
+  background-color #F5F5F5
+::-webkit-scrollbar-thumb
+  background-color rgba(77,77,77,.25)
+
 [layout=row]
   flex-direction row
+
 
 .viewport
   height 100%
@@ -39,6 +59,7 @@ html
     top 36px
     height calc(100vh - 36px)
     overflow hidden
+    z-index 7
   .console__ctrl
     height calc(100vh - 72px)
     overflow hidden
