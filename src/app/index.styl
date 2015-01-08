@@ -30,7 +30,7 @@ html
     background-color #333
 .md-sidenav-right
   width 120%
-
+  z-index 6
 
 
 @media screen and (max-width: 960px)
@@ -62,7 +62,7 @@ html
   position relative
   background white
   border 0px solid black
-  height calc(100vh - 48px)
+  height calc(100vh - 60px)
   overflow hidden
 
 .tabsdemoStaticTabs [role="tabpanel"]
@@ -81,9 +81,11 @@ html
   z-index 100
 .tabsdemoStaticTabs .md-header
   background-color #fff !important
+  height 60px
 .tabsdemoStaticTabs .md-header-items-container
   left 0 !important
   right 0 !important
+  height 60px
 .tabsdemoStaticTabs .md-header-items-container .md-header-items
   border-bottom 3px solid #bbb
   -webkit-transform none !important

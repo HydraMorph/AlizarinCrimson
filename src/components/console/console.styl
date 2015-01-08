@@ -9,6 +9,19 @@
 .console__include
   background-color #333 !important
 
+
+@media screen and (min-width: 960px)
+  .md-sidenav-left
+    & .console__switcher-cont
+      background-color #333
+      min-height 60px
+      height 60px
+      max-height 60px
+      padding 5px
+  .console__ctrl
+    height calc(100vh - 60px)
+
+
 .console
   & md-slider
     width 85%
