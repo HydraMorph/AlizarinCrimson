@@ -4,17 +4,18 @@
   color #000
   & .chat__module
     height 100%
+    display flex
+    flex-flow row wrap
   & .chat__list
     height 100%
 .chat__input-grp
-  position absolute
-  bottom 0
   width 100%
   border-top 3px solid #bbb
   height 90px
   margin 0
   padding 0
   display flex
+  flex 1 100%
   flex-flow row wrap
   & md-input-group
   & .md-input-group
@@ -65,6 +66,8 @@
 .chat__md-content
   height calc(100% - 90px)
   overflow-x hidden
+  display flex
+  flex 0 0 85%
 .chat__item
   border-bottom 1px solid #eee
   & .md-tile-content

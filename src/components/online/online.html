@@ -1,0 +1,11 @@
+<md-content class="online__md-content" ng-controller="OnlineCtrl">
+  <md-list class="online__list">
+    <p class="online__here">Здесь: <span class="online__counter">17</span></p>
+    <md-item ng-repeat="user in users" class="online__list-item">
+      <md-item-content class="online__item">
+        <md-button href="#" class="user__2profile">i</md-button>
+        <md-button href="#" class="user__2chat">{{user.name}}</md-button>
+      </md-item-content>
+    </md-item>
+  </md-list>
+</md-content>
