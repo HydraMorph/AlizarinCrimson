@@ -6,6 +6,8 @@ html
   height 100vh
   overflow hidden
 
+*
+  -webkit-user-select initial !important
 //body
 //  scrollbar-base-color #C0C0C0
 //  scrollbar-base-color #C0C0C0
@@ -29,17 +31,40 @@ html
   flex-direction row
 
 
+/*
+* t-(a || b)-{type}
+* t == typography
+* b == before
+* a == :after
+* type == space, semicolon or others
+*/
+.t-a-semicolon
+  &:after
+    content ':'
+.t-b-space
+  &:before
+    content ' '
+.t-b-space-hyphen-space
+  &:before
+    content ' - '
+.t-a-space-hyphen-space
+  &:after
+    content ' - '
+
+
 .viewport
   height 100%
 
 // injector
 @import '../components/chat/chat.styl';
-@import '../components/current/current.styl';
 @import '../components/console/console.styl';
+@import '../components/current/current.styl';
+@import '../components/democracy/democracy.styl';
 @import '../components/history/history.styl';
 @import '../components/info/info.styl';
-@import '../components/playlist/playlist.styl';
+@import '../components/online/online.styl';
 @import '../components/upload/uploader.styl';
+@import '../components/playlist/playlist.styl';
 // endinjector
 
 .md-sidenav-left

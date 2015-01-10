@@ -24,7 +24,7 @@
   <md-content class="playlist__content">
     <md-list layout="column" class="playlist__list">
 <!--      <md-item ng-repeat="track in playlist | orderBy:'r':true" class="playlist__track">-->
-      <md-item ng-repeat="track in playlist | orderBy:'r'" class="playlist__track">
+      <md-item ng-repeat="track in playlist | orderBy:'r':reverse" class="playlist__track">
         <div class="track__img-cont">
           <img ng-src="{{track.src}}" class="track__img" alt="">
         </div>

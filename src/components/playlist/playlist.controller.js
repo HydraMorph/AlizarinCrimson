@@ -35,6 +35,11 @@ angular.module('trigger')
     };
   })
   .controller('PlaylistCtrl', function ($scope, $mdSidenav) {
+    $scope.reverse = false;
+    var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
+    if (width >= 960) {
+      $scope.reverse = true;
+    }
     $scope.toggleLeft = function () {
       $mdSidenav('left').toggle();
     };
