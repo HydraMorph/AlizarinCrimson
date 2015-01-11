@@ -232,9 +232,9 @@ angular.module('trigger')
       }
     ];
     $scope.voteUp = function(id) {
-      console.log(id);
+      client.addvote({'id': id, 'v': client.user.w});
     };
     $scope.voteDown = function(id) {
-      console.log(id);
+      client.addvote({'id': id, 'v': client.user.w});
     };
   });

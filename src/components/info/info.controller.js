@@ -3,7 +3,7 @@
 angular.module('trigger')
   .controller('InfoCtrl', function ($scope) {
     $scope.data = {
-      selectedIndex : 0,
+      selectedIndex : 2,
       secondLocked : true,
       secondLabel : 'Item Two'
     };

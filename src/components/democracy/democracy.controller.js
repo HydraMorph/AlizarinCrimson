@@ -7,6 +7,10 @@ angular.module('trigger')
       secondLocked : true,
       secondLabel : 'Item Two'
     };
+    $scope.president = {
+      'name': 'Suok',
+      'description': 'упоротый напрочь'
+    };
     $scope.moderators = [
       {
         'name': 'bird',
@@ -37,6 +41,38 @@ angular.module('trigger')
         'name': 'Suok',
         'id': '2453',
         'description': 'начальник'
+      }
+    ];
+    $scope.banned = [
+      {
+        'name': 'bird',
+        'id': '1',
+        'reason': 'упарывается'
+      },
+      {
+        'name': 'Ucsus',
+        'id': '1912',
+        'reason': 'Rudolph'
+      },
+      {
+        'name': 'Fab',
+        'id': '234',
+        'reason': 'Dasher'
+      },
+      {
+        'name': 'Ololo',
+        'id': '1234',
+        'reason': 'редактор'
+      },
+      {
+        'name': 'Lulz',
+        'id': '624',
+        'reason': 'упрт'
+      },
+      {
+        'name': 'Suok',
+        'id': '2453',
+        'reason': 'начальник'
       }
     ];
 

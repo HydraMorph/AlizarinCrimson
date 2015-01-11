@@ -3,7 +3,6 @@
     <ng-switch on="data.selectedIndex" class="democracy__tabpanel-container">
       <div role="tabpanel" id="tabModerList-content" aria-labelledby="tabModerList" ng-switch-when="0" md-swipe-left="next()" md-swipe-right="previous()" >
 
-<!--
         <md-card class="democracy__elections">
           <h4 class="t-a-semicolon democracy__header">Выборы</h4>
           <md-text-float label="ID кандидата" ng-model="user.lastName" class="democracy__elections-input"> </md-text-float>
@@ -15,32 +14,68 @@
             <md-button class="md-raised democracy__elections-btn">Голосовать</md-button>
           </div>
         </md-card>
--->
 
+<!--
         <md-card class="democracy__list">
-          <div class="democracy__list-row">
-            <h4 class="t-a-semicolon democracy__header">Продюсер</h4>
-            <span class="democracy__president-row">
-              <md-button class="md-raised democracy__president">
-                <img src="/assets/images/crown.svg" alt="" class="democracy__icon">
-                Suok
-              </md-button>
-            </span>
-            <h4 class="t-a-semicolon democracy__header">Редакционная коллегия</h4>
-            <div class="democracy__moderators" ng-repeat="mod in moderators">
-              <span class="democracy__moderator">
-                <md-button class="md-raised democracy__moderator">{{mod.name}}</md-button>
-                <span class="t-b-space-hyphen-space">{{mod.description}}</span>
-              </span>
+
+
+          <div class="democracy__list-column">
+            <div class="democracy__president-cont">
+              <h4 class="t-a-semicolon democracy__header">Продюсер</h4>
+              <div layout="row">
+                <md-button class="md-raised democracy__moderator">
+                  <img src="/assets/images/crown.svg" alt="" class="democracy__icon">
+                  {{president.name}}
+                </md-button>
+                <span class="t-b-space-hyphen-space">{{president.description}}</span>
+              </div>
+            </div>
+
+            <div class="democracy__ban-cont">
+              <h4 class="t-a-semicolon democracy__header">Забанить</h4>
+              <div layout="row">
+                <md-text-float label="ID кандидата" ng-model="user.lastName" class="democracy__elections-input"></md-text-float>
+                <md-text-float label="Причина бана" ng-model="user.lastName" class="democracy__elections-input"></md-text-float>
+                <md-button class="md-raised democracy__president">Yarrr!</md-button>
+              </div>
             </div>
           </div>
+
+
+          <div class="democracy__list-column">
+            <div class="democracy__moders">
+              <h4 class="t-a-semicolon democracy__header">Редакционная коллегия</h4>
+              <div class="democracy__moderators" ng-repeat="mod in moderators">
+                <span class="democracy__moderator">
+                  <md-button class="md-raised democracy__moderator">
+                    <img src="/assets/images/death1.svg" alt="" class="democracy__icon">
+                    {{mod.name}}
+                  </md-button>
+                  <span class="t-b-space-hyphen-space">{{mod.description}}</span>
+                </span>
+              </div>
+            </div>
+            <div class="democracy__banned">
+              <h4 class="t-a-semicolon democracy__header">Жертвы репрессий</h4>
+              <div class="democracy__moderators" ng-repeat="toll in banned">
+                <span class="democracy__moderator">
+                  <md-button class="md-raised democracy__moderator">{{toll.name}}</md-button>
+                  <span class="t-b-space-hyphen-space">{{toll.reason}}</span>
+                </span>
+              </div>
+            </div>
+          </div>
+
         </md-card>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus accusantium consequatur quae est? Similique omnis quod ex quaerat, explicabo harum aspernatur eum cupiditate qui non sequi, possimus rem tenetur, nemo.</p>
+-->
 
 
       </div>
       <div role="tabpanel" id="tabModerText-content" aria-labelledby="tabModerText" ng-switch-when="1" md-swipe-left="next()" md-swipe-right="previous()" >
-        2
+        <md-card>
+          <p>1</p>
+        </md-card>
       </div>
     </ng-switch>
 
