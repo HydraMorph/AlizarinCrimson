@@ -78,10 +78,19 @@ html
   width 120%
   z-index 6
 
-
-@media screen and (max-width: 960px)
+@media screen and (max-width: 600px)
   .md-sidenav-right
+    position fixed !important
     width 100%
+    top 36px
+    height calc(100vh - 36px)
+    overflow hidden
+    z-index 7
+
+@media (min-width: 600px) and (max-width: 960px)
+  .md-sidenav-right
+    position fixed !important
+    width calc(100% - 150px)
     top 36px
     height calc(100vh - 36px)
     overflow hidden
@@ -111,6 +120,9 @@ html
   border 0px solid black
   height calc(100vh - 60px)
   overflow hidden
+@media screen and (max-width: 960px)
+  .tabsdemoStaticTabs .tabpanel-container
+    height calc(100vh - 96px)
 
 .tabsdemoStaticTabs [role="tabpanel"]
   color white
@@ -168,4 +180,5 @@ html
   background-color #FFCD00 !important
   height 3px
 
-
+md-tab
+  min-width initial !important
