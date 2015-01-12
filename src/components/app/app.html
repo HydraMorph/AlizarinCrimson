@@ -1,4 +1,6 @@
 <div ng-controller="AppCtrl" layout="column" layout-fill>
+  <div class="info" ng-include="'components/markdown/markdown.html'"></div>
+<!--
   <section layout="row" flex>
     <md-sidenav class="md-sidenav-left md-whiteframe-z2" component-id="left" is-locked-open="$media('sm')">
       <md-toolbar class="console__switcher-cont">
@@ -13,24 +15,31 @@
         </svg>
       </md-toolbar>
       <md-content class="console__ctrl" ng-controller="LeftCtrl">
+-->
 <!--        <md-button ng-click="close()" class="md-primary" hide-md>Close</md-button>-->
+<!--
         <div hide-gt-sm show-gt-md class="console" ng-include="'components/console/console.html'"></div>
       </md-content>
     </md-sidenav>
     <div class="viewport--H">
       <div class="playlist" ng-include="'components/playlist/playlist.html'"></div>
 
+-->
 <!--
       <md-button ng-click="toggleRight()" class="md-primary">Toggle right</md-button>
       <md-button ng-click="toggleLeft()" class="md-primary" hide-md>Toggle left</md-button>
 -->
+<!--
 
     </div>
     <md-sidenav class="md-sidenav-right md-whiteframe-z2" component-id="right" is-locked-open="$media('md')">
       <md-content ng-controller="RightCtrl">
+-->
 <!--        <md-button ng-click="close()" class="md-primary">Close Sidenav Right</md-button>-->
+<!--
         <div class="info" ng-include="'components/info/info.html'"></div>
       </md-content>
     </md-sidenav>
   </section>
+-->
 </div>

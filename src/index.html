@@ -13,6 +13,7 @@
     <!-- endbower -->
     <!-- endbuild -->
 
+    <link rel="stylesheet" href="../bower_components/angular-pagedown/angular-pagedown.css" />
 
     <!-- build:css({.tmp,src}) styles/app.css -->
     <!-- inject:css -->
@@ -46,22 +47,29 @@
     <!-- endbower -->
     <!-- endbuild -->
 
+    <script src="../bower_components/pagedown/Markdown.Converter.js"></script>
+    <script src="../bower_components/pagedown/Markdown.Sanitizer.js"></script>
+    <script src="../bower_components/pagedown/Markdown.Extra.js"></script>
+    <script src="../bower_components/pagedown/Markdown.Editor.js"></script>
+    <script src="../bower_components/angular-pagedown/angular-pagedown.js"></script>
+
     <!-- build:js({.tmp,src}) scripts/app.js -->
     <!-- inject:js -->
     <script src="app/index.js"></script>
     <script src="components/upload/upload.controller.js"></script>
     <script src="components/profile/profile.controller.js"></script>
     <script src="components/playlist/playlist.controller.js"></script>
-    <script src="components/online/online.controller.js"></script>
     <script src="components/navbar/navbar.controller.js"></script>
+    <script src="components/online/online.controller.js"></script>
+    <script src="components/markdown/markdown.controller.js"></script>
     <script src="components/info/info.controller.js"></script>
-    <script src="components/history/history.controller.js"></script>
-    <script src="components/democracy/democracy.controller.js"></script>
     <script src="components/current/current.controller.js"></script>
+    <script src="components/democracy/democracy.controller.js"></script>
+    <script src="components/history/history.controller.js"></script>
     <script src="components/console/console.controller.js"></script>
     <script src="components/chat/chat.controller.js"></script>
-    <script src="components/app/app.controller.js"></script>
     <script src="app/main/main.controller.js"></script>
+    <script src="components/app/app.controller.js"></script>
     <!-- endinject -->
 
     <!-- inject:partials -->
