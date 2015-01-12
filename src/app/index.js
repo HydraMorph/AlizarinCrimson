@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('trigger', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'ngMaterial', 'ui.pagedown'])
+angular.module('trigger', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'ngMaterial'])
   .filter('markdown', function() {
       return function(text) {
           if (typeof text == "undefined") {
