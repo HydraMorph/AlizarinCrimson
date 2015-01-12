@@ -10,12 +10,24 @@
           </svg>
         </span>
       </md-tab>
+      <md-tab id="tabOnline" aria-controls="tabOnline-content">
+        <span class="tabs__full">Онлайн</span>
+        <span class="tabs__icon">
+          <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+            <path d="M14.69 17.1c-.74.58-1.7.9-2.69.9s-1.95-.32-2.69-.9c-.22-.17-.53-.13-.7.09-.17.22-.13.53.09.7.91.72 2.09 1.11 3.3 1.11s2.39-.39 3.31-1.1c.22-.17.26-.48.09-.7-.17-.23-.49-.26-.71-.1z"/>
+            <circle cx="8.5" cy="12.5" r="1"/>
+            <path d="M12 0c-6.63 0-12 5.37-12 12s5.37 12 12 12 12-5.37 12-12-5.37-12-12-12zm7.96 14.82c-1.09 3.74-4.27 6.46-8.04 6.46-3.78 0-6.96-2.72-8.04-6.47-1.19-.11-2.13-1.18-2.13-2.52 0-1.27.85-2.31 1.97-2.5 2.09-1.46 3.8-3.49 4.09-5.05v-.01c1.35 2.63 6.3 5.19 11.83 5.06l.3-.03c1.28 0 2.31 1.14 2.31 2.54 0 1.38-1.02 2.51-2.29 2.52z"/>
+            <circle cx="15.5" cy="12.5" r="1"/>
+            <path d="M0 0h24v24h-24z" fill="none"/>
+          </svg>
+        </span>
+      </md-tab>
       <md-tab id="tabHistory" aria-controls="tabHistory-content">
         <span class="tabs__full">История</span>
         <span class="tabs__icon">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-            <path d="M18 17h-12v-2h12v2zm0-4h-12v-2h12v2zm0-4h-12v-2h12v2zm-15 13l1.5-1.5 1.5 1.5 1.5-1.5 1.5 1.5 1.5-1.5 1.5 1.5 1.5-1.5 1.5 1.5 1.5-1.5 1.5 1.5 1.5-1.5 1.5 1.5v-20l-1.5 1.5-1.5-1.5-1.5 1.5-1.5-1.5-1.5 1.5-1.5-1.5-1.5 1.5-1.5-1.5-1.5 1.5-1.5-1.5-1.5 1.5-1.5-1.5v20z"/>
             <path d="M0 0h24v24h-24z" fill="none"/>
+            <path opacity=".9" d="M13 3c-4.97 0-9 4.03-9 9h-3l3.89 3.89.07.14 4.04-4.03h-3c0-3.87 3.13-7 7-7s7 3.13 7 7-3.13 7-7 7c-1.93 0-3.68-.79-4.94-2.06l-1.42 1.42c1.63 1.63 3.87 2.64 6.36 2.64 4.97 0 9-4.03 9-9s-4.03-9-9-9zm-1 5v5l4.28 2.54.72-1.21-3.5-2.08v-4.25h-1.5z"/>
           </svg>
         </span>
       </md-tab>
@@ -24,7 +36,7 @@
         <span class="tabs__icon">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
             <path d="M0 0h24v24h-24z" fill="none"/>
-            <path d="M12 2c-5.52 0-10 4.48-10 10s4.48 10 10 10 10-4.48 10-10-4.48-10-10-10zm-4 15.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5zm1.5-9.5c0-1.38 1.12-2.5 2.5-2.5s2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5-2.5-1.12-2.5-2.5zm6.5 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/>
+            <path d="M4 10v7h3v-7h-3zm6 0v7h3v-7h-3zm-8 12h19v-3h-19v3zm14-12v7h3v-7h-3zm-4.5-9l-9.5 5v2h19v-2l-9.5-5z"/>
           </svg>
         </span>
       </md-tab>
@@ -43,13 +55,16 @@
       <div role="tabpanel" id="tabChat-content" aria-labelledby="tabChat" ng-switch-when="0" md-swipe-left="next()" md-swipe-right="previous()" >
         <div class="chat" ng-include="'components/chat/chat.html'"></div>
       </div>
-      <div role="tabpanel" id="tabHistory-content" aria-labelledby="tabHistory" ng-switch-when="1" md-swipe-left="next()" md-swipe-right="previous()" >
+      <div role="tabpanel" id="tabOnline-content" aria-labelledby="tabOnline" ng-switch-when="1" md-swipe-left="next()" md-swipe-right="previous()" >
+        <div class="online" ng-include="'components/online/online.html'"></div>
+      </div>
+      <div role="tabpanel" id="tabHistory-content" aria-labelledby="tabHistory" ng-switch-when="2" md-swipe-left="next()" md-swipe-right="previous()" >
         <div class="history" ng-include="'components/history/history.html'"></div>
       </div>
-      <div role="tabpanel" id="tabDemocracy-content" aria-labelledby="tabDemocracy" ng-switch-when="2" md-swipe-left="next()" md-swipe-right="previous()" >
+      <div role="tabpanel" id="tabDemocracy-content" aria-labelledby="tabDemocracy" ng-switch-when="3" md-swipe-left="next()" md-swipe-right="previous()" >
         <div class="democracy__include" ng-include="'components/democracy/democracy.html'"></div>
       </div>
-      <div role="tabpanel" id="tabProfile-content" aria-labelledby="tabProfile" ng-switch-when="3" md-swipe-left="next()" md-swipe-right="previous()" >
+      <div role="tabpanel" id="tabProfile-content" aria-labelledby="tabProfile" ng-switch-when="4" md-swipe-left="next()" md-swipe-right="previous()" >
         <div class="profile" ng-include="'components/profile/profile.html'"></div>
       </div>
     </ng-switch>

@@ -40,8 +40,18 @@
 .track__tags
   display flex
   flex 1
+  justify-content flex-end
+@media screen and (max-width: 600px)
+  .track__tag
+    display none !important
 .track__tag
   display flex
+  font-size 9px
+  color #fff
+  border-radius 4px
+  background-color #666
+  padding 2px 4px
+  margin 0 2px
 .track__time
   display flex
   color rgb(51, 51, 51)

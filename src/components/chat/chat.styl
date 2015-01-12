@@ -4,6 +4,7 @@
   color #000
   & .chat__module
     height 100%
+    overflow hidden
     display flex
     flex-flow row wrap
   & .chat__list
@@ -84,5 +85,9 @@
 .msg__time
   display flex
   min-width 100px
-
-
+@media screen and (max-width: 600px)
+  .online__include
+  .msg__time
+    display none !important
+  .chat__md-content
+    flex 0 0 100%
