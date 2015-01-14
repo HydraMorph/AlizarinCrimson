@@ -3,7 +3,7 @@
 angular.module('trigger')
   .controller('ProfileCtrl', function ($scope) {
     $scope.data = {
-      selectedIndex : 4,
+      selectedIndex : 0,
       secondLocked : true,
       secondLabel : 'Item Two'
     };
