@@ -67,10 +67,7 @@ function Client(host) {
 
 var lastfm = null;
 
-client = new Client();
-console.log(client);
-client.init(location.host);
-client.login('true', 'azaza123', processLogin);
+
 
 Client.prototype.init = function(host) {
     console.log('init');
@@ -560,3 +557,7 @@ Client.prototype.setprops = function(data, callback) {
 Client.prototype.sendPRVote = function(data, callback) {
     this.socket.emit('prvote', data, callback);
 }
+client = new Client();
+console.log(client);
+client.init(location.host);
+client.login('true', 'azaza123', processLogin);
