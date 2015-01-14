@@ -84,7 +84,9 @@ Client.prototype.init = function(host) {
     });
 
     socket.on('getver', function() {
+      console.log('ver');
         socket.emit('ver', {'v': cl.version, 'init': true});
+      console.log('ver1');
     });
 
     socket.on('addtrack', function(data) {
