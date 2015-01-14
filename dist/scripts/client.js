@@ -557,6 +557,9 @@ Client.prototype.setprops = function(data, callback) {
 Client.prototype.sendPRVote = function(data, callback) {
     this.socket.emit('prvote', data, callback);
 }
+
+
+
 function processLogin(data) {
     console.log('process login', data);
     if (data.user) {
@@ -564,24 +567,8 @@ function processLogin(data) {
         if (rc!='read'){
             readConstitution();
         }
-        newTagline();
-        $('.loginform').hide(400);
-        $('.goin').hide();
-        $('.submit_box').show(400);
-        $('#info .tabs .chat').show();
-        $('#info .tabs .profile').show();
-        $('#console .upfiles').show();
-    } else {
-        if (data.error) {
-            $('.loginform .alert').html(data.error);
-        }
     }
-    var ch = $.Storage.get("channel");
-    if (ch) {
-        client.goChannel(parseInt(ch), onChannel);
-    } else {
-        client.goChannel(1, onChannel);
-    }
+    client.goChannel(1, onChannel);
 }
 client = new Client();
 console.log(client);
