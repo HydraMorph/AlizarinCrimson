@@ -1,0 +1,28 @@
+<div class="minuses__ctrl" ng-controller="MinusesCtrl">
+
+  <md-content class="history__content">
+    <md-list layout="column" class="playlist__list">
+      <md-item ng-repeat="track in tracks | orderBy:'r'" class="playlist__track">
+        <div class="track__img-cont">
+          <img ng-src="{{track.src}}" class="track__img" alt="">
+        </div>
+        <div class="track__content">
+          <h3 class="track__artist">{{track.t}}</h3>
+          <h4 class="track__title">{{track.a}}</h4>
+        </div>
+        <div class="track__tags">
+          <span class="track__tag" ng-repeat="tag in track.tg">
+            {{tag}}
+          </span>
+        </div>
+        <div class="track__time">
+          <span>+{{track.tt | readableTime}}</span>
+        </div>
+        <div class="track__votes-block">
+          <span class="track__rating">{{track.r}}</span>
+        </div>
+      </md-item>
+    </md-list>
+  </md-content>
+
+</div>

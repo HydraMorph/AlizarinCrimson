@@ -5,6 +5,8 @@
 .democracy__tabpanel-container
   display flex
   height calc(100% - 60px)
+  & [role="tabpanel"]
+    height calc(100% - 60px) !important
 .democracy__elections
 .democracy__list
   background-color #eee
@@ -64,3 +66,62 @@
   display flex
   flex-flow row nowrap
   flex 1
+
+
+.democracy__admin
+  display flex
+  flex-flow row wrap
+  background-color #eee
+  color #000
+  padding 12px
+.democracy__president-btn
+  & button
+    display flex
+    align-items center
+
+
+.president
+.ban
+.moder
+.banned
+  //border 1px solid
+  display flex
+  flex 0 0 50%
+  flex-flow column wrap
+@media screen and (max-width: 768px)
+  .president
+  .ban
+  .moder
+  .banned
+    flex 0 0 100%
+
+.content
+  display flex
+  align-items center
+
+.ban .content
+  display flex
+.input--id
+  display inline-block
+  width 15%
+  & input
+    width 100%
+.input--reason
+  display inline-block
+  width 70%
+  & input
+    width 100%
+.ban--btn
+  display inline-block
+  width 15%
+  text-transform none
+  font-size 12px
+  display flex
+  justify-content center
+  align-items center
+  margin 10px 0
+
+.democracy__moderator
+  display flex
+  flex-flow row nowrap
+  align-items center

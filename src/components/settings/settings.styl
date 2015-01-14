@@ -1,0 +1,48 @@
+.settings__include
+  opacity .99
+
+.settings__card
+  display flex
+  flex-flow row wrap !important
+
+.settings__logout
+  display flex
+  flex 1 100%
+.settings__logout-btn
+  width 100%
+  background-color #43A047
+  color #fff
+  text-transform none
+
+
+.settings__chat
+  display flex
+  flex-flow column wrap
+  flex 0 0 50%
+.settings__tink
+.settings__img
+.settings__female
+  width 100%
+  margin 10px
+md-input-group
+  & input
+    width 100% !important
+
+
+
+.settings__password
+  @extend .settings__chat;
+.settings__password--old
+.settings__password--new
+  width 100%
+.settings__password-btn
+  width 100%
+  background-color #43A047
+  color #fff
+  text-transform none
+
+
+@media screen and (max-width: 600px)
+  .settings__chat
+  .settings__password
+    flex 1 100%
