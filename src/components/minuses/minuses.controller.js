@@ -23,7 +23,7 @@ angular.module('trigger')
         'n': [],
         'r': 1,
         'vote': 0,
-        'src': '/assets/images/nocover.png'
+        'src': 'assets/images/nocover.png'
       },
       {
         'a': 'Juaneco Y Su Combo',
@@ -44,7 +44,7 @@ angular.module('trigger')
         'n': [],
         'r': 1,
         'vote': 0,
-        'src': '/assets/images/nocover.png'
+        'src': 'assets/images/nocover.png'
       },
       {
         'a': 'Juaneco Y Su Combo',
@@ -65,7 +65,7 @@ angular.module('trigger')
         'n': [],
         'r': 1,
         'vote': 0,
-        'src': '/assets/images/nocover.png'
+        'src': 'assets/images/nocover.png'
       },
       {
         'a': 'Juaneco Y Su Combo',
@@ -86,7 +86,7 @@ angular.module('trigger')
         'n': [],
         'r': 1,
         'vote': 0,
-        'src': '/assets/images/nocover.png'
+        'src': 'assets/images/nocover.png'
       },
       {
         'a': 'Juaneco Y Su Combo',
@@ -107,7 +107,7 @@ angular.module('trigger')
         'n': [],
         'r': 1,
         'vote': 0,
-        'src': '/assets/images/nocover.png'
+        'src': 'assets/images/nocover.png'
       },
       {
         'a': 'Juaneco Y Su Combo',
@@ -128,7 +128,7 @@ angular.module('trigger')
         'n': [],
         'r': 1,
         'vote': 0,
-        'src': '/assets/images/nocover.png'
+        'src': 'assets/images/nocover.png'
       },
       {
         'a': 'Juaneco Y Su Combo',
@@ -149,7 +149,7 @@ angular.module('trigger')
         'n': [],
         'r': 1,
         'vote': 0,
-        'src': '/assets/images/nocover.png'
+        'src': 'assets/images/nocover.png'
       },
       {
         'a': 'Juaneco Y Su Combo',
@@ -170,7 +170,7 @@ angular.module('trigger')
         'n': [],
         'r': 1,
         'vote': 0,
-        'src': '/assets/images/nocover.png'
+        'src': 'assets/images/nocover.png'
       },
       {
         'a': 'Juaneco Y Su Combo',
@@ -191,7 +191,7 @@ angular.module('trigger')
         'n': [],
         'r': 1,
         'vote': 0,
-        'src': '/assets/images/nocover.png'
+        'src': 'assets/images/nocover.png'
       },
       {
         'a': 'Juaneco Y Su Combo',
@@ -212,7 +212,7 @@ angular.module('trigger')
         'n': [],
         'r': 1,
         'vote': 0,
-        'src': '/assets/images/nocover.png'
+        'src': 'assets/images/nocover.png'
       },
       {
         'a': 'Juaneco Y Su Combo',
@@ -233,7 +233,7 @@ angular.module('trigger')
         'n': [],
         'r': 1,
         'vote': 0,
-        'src': '/assets/images/nocover.png'
+        'src': 'assets/images/nocover.png'
       },
       {
         'a': 'Juaneco Y Su Combo',
@@ -254,7 +254,7 @@ angular.module('trigger')
         'n': [],
         'r': 1,
         'vote': 0,
-        'src': '/assets/images/nocover.png'
+        'src': 'assets/images/nocover.png'
       },
       {
         'a': 'Juaneco Y Su Combo',
@@ -275,7 +275,7 @@ angular.module('trigger')
         'n': [],
         'r': 1,
         'vote': 0,
-        'src': '/assets/images/nocover.png'
+        'src': 'assets/images/nocover.png'
       },
       {
         'a': 'Juaneco Y Su Combo',
@@ -296,7 +296,7 @@ angular.module('trigger')
         'n': [],
         'r': 1,
         'vote': 0,
-        'src': '/assets/images/nocover.png'
+        'src': 'assets/images/nocover.png'
       },
       {
         'a': 'Juaneco Y Su Combo',
@@ -317,7 +317,7 @@ angular.module('trigger')
         'n': [],
         'r': 1,
         'vote': 0,
-        'src': '/assets/images/nocover.png'
+        'src': 'assets/images/nocover.png'
       },
       {
         'a': 'Juaneco Y Su Combo',
@@ -338,7 +338,7 @@ angular.module('trigger')
         'n': [],
         'r': 1,
         'vote': 0,
-        'src': '/assets/images/nocover.png'
+        'src': 'assets/images/nocover.png'
       },
       {
         'a': 'Juaneco Y Su Combo',
@@ -359,7 +359,7 @@ angular.module('trigger')
         'n': [],
         'r': 1,
         'vote': 0,
-        'src': '/assets/images/nocover.png'
+        'src': 'assets/images/nocover.png'
       },
       {
         'a': 'Juaneco Y Su Combo',
@@ -380,7 +380,7 @@ angular.module('trigger')
         'n': [],
         'r': 1,
         'vote': 0,
-        'src': '/assets/images/nocover.png'
+        'src': 'assets/images/nocover.png'
       },
       {
         'a': 'Juaneco Y Su Combo',
@@ -401,7 +401,7 @@ angular.module('trigger')
         'n': [],
         'r': 1,
         'vote': 0,
-        'src': '/assets/images/nocover.png'
+        'src': 'assets/images/nocover.png'
       }
     ];
   });
