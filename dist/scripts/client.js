@@ -67,6 +67,11 @@ function Client(host) {
 
 var lastfm = null;
 
+client = new Client();
+console.log(client);
+client.init(location.host);
+client.login('true', 'azaza123', processLogin);
+
 Client.prototype.init = function(host) {
     console.log('init');
    // this.socket = io.connect(host, {resource: 'socket.io'});
