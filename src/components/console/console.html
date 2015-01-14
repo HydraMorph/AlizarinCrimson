@@ -1,8 +1,11 @@
 <md-toolbar class="console__include" layout="column" layout-align="center center" ng-controller="ConsoleCtrl">
 
+<!--
   <md-slider ng-model="volume" ng-change="changeVolume(volume)" min="0" max="100" step="1"></md-slider>
   <img ng-src="assets/images/logo.png" class="console__logo"/>
+-->
 <!--  <md-button href="#"> {{data}}</md-button>-->
+<!--
   <p class="console__stat">
     Слушают <span class="console__listeners">11</span> из них активно: <span class="console__active-users">9</span>
   </p>
@@ -24,5 +27,10 @@
     <a href="#" class="console__link">Сделать ночь</a>
     <a href="#" class="console__link">RTFM</a>
   </p>
+-->
+{{alert}}
+<md-button class="md-primary" aria-label="login-btn" ng-click="showAdvanced($event)">
+      Custom Dialog
+    </md-button>
 
 </md-toolbar>

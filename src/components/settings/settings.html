@@ -3,7 +3,7 @@
   <md-card class="settings__card">
 
     <div class="settings__logout">
-      <md-button class="settings__logout-btn">Log out</md-button>
+      <md-button class="settings__logout-btn" aria-label="logout">Log out</md-button>
     </div>
 
     <div class="settings__chat">
@@ -13,10 +13,10 @@
     </div>
 
     <div class="settings__password">
-      <md-text-float class="settings__password--old" label="Старый пароль" ng-model="message"></md-text-float>
-      <md-text-float class="settings__password--new" label="Новый пароль" ng-model="message"></md-text-float>
+      <md-text-float class="settings__password--old" aria-label="settings-old-password" label="Старый пароль" ng-model="message"></md-text-float>
+      <md-text-float class="settings__password--new" aria-label="settings-new-password" label="Новый пароль" ng-model="message"></md-text-float>
       <md-text-float class="settings__password--new" label="Еще раз" ng-model="message"></md-text-float>
-      <md-button class="settings__password-btn">Yarrr!</md-button>
+      <md-button class="settings__password-btn" aria-label="change-password">Yarrr!</md-button>
     </div>
 
   </md-card>

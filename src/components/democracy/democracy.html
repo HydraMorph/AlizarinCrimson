@@ -11,7 +11,7 @@
               <span class="t-a-semicolon">Ты проголосовал за</span>
               <span class="t-b-space democracy__elections-username">Suok</span>
             </span>
-            <md-button class="md-raised democracy__elections-btn">Голосовать</md-button>
+            <md-button aria-label="vote" class="md-raised democracy__elections-btn">Голосовать</md-button>
           </div>
         </md-card>
 
@@ -20,7 +20,7 @@
           <div class="president">
             <div class="header">Президент:</div>
             <div class="content">
-              <md-button class="md-raised democracy__president-btn">
+              <md-button aria-label="view-president" class="md-raised democracy__president-btn">
                 <img src="assets/images/crown.svg" alt="" class="democracy__icon">
                 {{president.name}}
               </md-button>
@@ -33,7 +33,7 @@
             <div class="content">
               <md-text-float label="ID" ng-model="user.lastName" class="input--id"></md-text-float>
               <md-text-float label="Причина бана" ng-model="user.lastName" class="input--reason"></md-text-float>
-              <md-button class="md-raised ban--btn">Yarrr!</md-button>
+              <md-button aria-label="ban-user" class="md-raised ban--btn">Yarrr!</md-button>
             </div>
 
           </div>
@@ -41,7 +41,7 @@
             <div class="header">Модеры:</div>
             <div class="content" ng-repeat="mod in moderators">
               <span class="democracy__moderator">
-                <md-button class="md-raised democracy__moderator">
+                <md-button aria-label="view-moderator" class="md-raised democracy__moderator">
                   <img src="assets/images/death1.svg" alt="" class="democracy__icon">
                   {{mod.name}}
                 </md-button>
@@ -54,7 +54,7 @@
             <div class="header">Президент:</div>
             <div class="content" ng-repeat="toll in banned">
               <span class="democracy__moderator">
-                <md-button class="md-raised democracy__moderator">
+                <md-button aria-label="view-banned" class="md-raised democracy__moderator">
                   <img src="assets/images/skull.svg" alt="" class="democracy__icon">
                   {{toll.name}}
                 </md-button>
