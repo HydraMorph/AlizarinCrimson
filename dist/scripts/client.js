@@ -572,5 +572,6 @@ function processLogin(data) {
 }
 client = new Client();
 console.log(client);
-client.init(location.host);
+//client.init(location.host);
+client.init('trigger.fm');
 client.login('true', 'azaza123', processLogin);
