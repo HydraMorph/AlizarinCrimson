@@ -386,7 +386,9 @@ Client.prototype.init = function(host) {
         }
         $(cl).trigger('trackupdate', data);
     });
+console.log('AAA');
 }
+console.log('fff');
 
 Client.prototype.login = function(name, pass, callback) {
     var cl = this;
