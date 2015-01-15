@@ -77,6 +77,7 @@ Client.prototype.init = function(host) {
     var cl = this;
 
     socket.on('welcome', function(data) {
+      console.log('lulz' + data);
         $(cl).trigger('welcome', data);
     });
 
