@@ -554,6 +554,13 @@ Client.prototype.sendPRVote = function(data, callback) {
     this.socket.emit('prvote', data, callback);
 }
 
+
+function processLogin(data) {
+    console.log('process login', data);
+    var ch = 1;
+    client.goChannel(1, onChannel);
+}
+
 client = new Client();
 console.log(client);
 $(client).bind('welcome', function(event, data) {
