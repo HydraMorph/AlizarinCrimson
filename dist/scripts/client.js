@@ -73,10 +73,6 @@ Client.prototype.init = function(host) {
     this.socket=io('http://trigger.fm');
     var socket=this.socket;
     var cl = this;
-    lastfm = new LastFM({
-        apiKey: '4366bdedfe39171be1b5581b52ddee90',
-        apiSecret: '5def31e9198fa02af04873239bcb38f5'
-    });
 
     socket.on('welcome', function(data) {
         $(cl).trigger('welcome', data);
