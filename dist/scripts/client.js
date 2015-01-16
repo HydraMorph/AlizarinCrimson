@@ -554,26 +554,21 @@ Client.prototype.sendPRVote = function(data, callback) {
     this.socket.emit('prvote', data, callback);
 }
 
- client = new Client();
-    console.log(client);
-    $(client).bind('welcome', function(event, data) {
-        if (data) {
-            showChannels(data);
-            var user = $.Storage.get("username"), pass = $.Storage.get("password");
-            if (user) {
-                if (pass) {
-                    client.login(user, pass, processLogin);
-                    console.log('user ' + user);
-                } else {
-                    client.goChannel(1, onChannel);
-                }
-            } else {
-                client.goChannel(1, onChannel);
-            }
-
-        } else {
-
-        }
-
-    });
+client = new Client();
+console.log(client);
+$(client).bind('welcome', function(event, data) {
+  if (data) {
+    var user = 'true', pass = 'azaza123';
+    if (user) {
+      if (pass) {
+        client.login(user, pass, processLogin);
+        console.log('user ' + user);
+      } else {
+        client.goChannel(1, onChannel);
+      }
+    } else {
+      client.goChannel(1, onChannel);
+    }
+  }
+});
 client.init(location.host);
