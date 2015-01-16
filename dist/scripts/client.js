@@ -566,7 +566,7 @@ console.log(client);
 $(client).bind('welcome', function(event, data) {
   console.log('welcome');
   if (data) {
-    var user = 'true', pass = 'azaza123';
+    var user = 'true', pass = '09e7881117ecd5e66723322ef5a6f4e0';
     client.login(user, pass, processLogin);
     console.log('user ' + user);
 //    if (user) {
