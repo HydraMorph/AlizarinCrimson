@@ -68,21 +68,15 @@ function Client(host) {
 var lastfm = null;
 
 Client.prototype.init = function(host) {
-    console.log('init');
    // this.socket = io.connect(host, {resource: 'socket.io'});
-    this.socket=io('http://trigger.fm');
-    var socket=this.socket;
+    this.socket=io();
+    var socket = this.socket;
     var cl = this;
-    lastfm = new LastFM({
-        apiKey: '4366bdedfe39171be1b5581b52ddee90',
-        apiSecret: '5def31e9198fa02af04873239bcb38f5'
-    });
-
     socket.on('welcome', function(data) {
         $(cl).trigger('welcome', data);
     });
-
     socket.on('getver', function() {
+
         socket.emit('ver', {'v': cl.version, 'init': true});
     });
 
@@ -153,31 +147,6 @@ Client.prototype.init = function(host) {
             cl.channel.a = data.a;
         }
         $(cl).trigger('listners', data);
-    });
-    socket.on('usupd', function(data) {
-        if (cl.chat) {
-            for (var us in cl.chat.u) {
-                if (cl.chat.u[us].id == data.uid) {
-                    cl.chat.u[us].a = data.a;
-                }
-            }
-            $(cl).trigger('userupdate', data);
-        }
-    });
-    socket.on('uplim', function(data) {
-        if (data.nt > 0) {
-            cl.user.nt = new Date(Date.parse(new Date()) + data.nt);
-        } else {
-            if (cl.user) {
-                cl.user.nt = 0;
-            }
-        }
-        cl.user.t = data.t;
-        if (cl.user.t < 0) {
-            cl.user.t = 0;
-        }
-        cl.user.w = data.w;
-        $(cl).trigger('updatelimits', data);
     });
     socket.on('channeldata', function(data) {
         var i = 0;
@@ -251,7 +220,6 @@ Client.prototype.init = function(host) {
         cl.chat.m.push(data);
         $(cl).trigger('message', data);
     });
-
     socket.on('history', function(data) {
         cl.callbacks.history(data);
     });
@@ -269,6 +237,9 @@ Client.prototype.init = function(host) {
     });
     socket.on('invitestatus', function(data) {
         cl.callbacks.invitestatus(data);
+    });
+    socket.on('logoutok', function(data) {
+        cl.callbacks.logoutstatus(data);
     });
     socket.on('recoverstatus', function(data) {
         cl.callbacks.recover(data);
@@ -334,9 +305,6 @@ Client.prototype.init = function(host) {
         cl.callbacks = {};
         cl.chat = null;
     });
-    socket.on('tags', function(data) {
-        cl.callbacks.tags(data.t);
-    });
 
     socket.on('uptr', function(data) {
         if (data.t.id == cl.channel.current.id) {
@@ -394,11 +362,9 @@ Client.prototype.login = function(name, pass, callback) {
 }
 Client.prototype.track = function(id, callback) {
     var cl = this;
-    var complete=false;
     if (id == cl.channel.current.id) {
         if (callback) {
             callback(cl.channel.current);
-            complete=true;
         } else {
             return cl.channel.current
         }
@@ -407,17 +373,14 @@ Client.prototype.track = function(id, callback) {
         if (cl.channel.pls[t].id == id) {
             if (callback) {
                 callback(cl.channel.pls[t]);
-                complete=true;
             } else {
                 return cl.channel.pls[t];
             }
         }
     }
-    if (!complete&&callback){
-        this.socket.emit('gettrack', {'id': id}, function(d) {
-            callback(d);
-        });
-    }
+    this.socket.emit('gettrack', {'id': id}, function(d) {
+        callback(d);
+    });
 
 }
 Client.prototype.getPlaylist = function(channel, callback) {
@@ -504,12 +467,10 @@ Client.prototype.sendinvite = function(mail, code, callback) {
     this.socket.emit('sendinvite', {m: mail, c: code});
 }
 
-Client.prototype.sendextinvite = function(data, callback) {
-    this.socket.emit('sendextinvite', data, callback);
-}
-
 Client.prototype.logout = function(callback) {
-    this.socket.emit('logout', {s: true}, callback);
+    cl = this;
+    cl.callbacks.logoutstatus = callback;
+    this.socket.emit('logout', {s: true});
 }
 Client.prototype.recover = function(mail, callback) {
     cl = this;
@@ -523,10 +484,6 @@ Client.prototype.changepass = function(oldpass, newpass, callback) {
 }
 Client.prototype.updateUserData = function(data) {
     this.socket.emit('upduserdata', data);
-
-}
-Client.prototype.updateTrack = function(data) {
-    this.socket.emit('updtrack', data);
 }
 Client.prototype.getchannel = function(id) {
     for (var i in this.channels) {
@@ -538,7 +495,6 @@ Client.prototype.getchannel = function(id) {
 }
 
 Client.prototype.banuser = function(uid, reason, callback) {
-    console.log(reason);
     this.socket.emit('banuser', {id: uid, r: reason}, callback);
 }
 Client.prototype.unbanuser = function(uid, callback) {
@@ -554,30 +510,8 @@ Client.prototype.removeop = function(data, callback) {
 Client.prototype.setprops = function(data, callback) {
     this.socket.emit('setprops', data, callback);
 }
-Client.prototype.sendPRVote = function(data, callback) {
-    this.socket.emit('prvote', data, callback);
-}
-
- client = new Client();
-    console.log(client);
-    $(client).bind('welcome', function(event, data) {
-        if (data) {
-            showChannels(data);
-            var user = $.Storage.get("username"), pass = $.Storage.get("password");
-            if (user) {
-                if (pass) {
-                    client.login(user, pass, processLogin);
-                    console.log('user ' + user);
-                } else {
-                    client.goChannel(1, onChannel);
-                }
-            } else {
-                client.goChannel(1, onChannel);
-            }
-
-        } else {
-
-        }
-
+Client.prototype.getfu = function(data) {
+    this.socket.emit('getfastuser', {id: data}, function(d) {
+        console.log(d);
     });
-client.init(location.host);
+}
