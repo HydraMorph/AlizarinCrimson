@@ -564,18 +564,19 @@ function processLogin(data) {
 client = new Client();
 console.log(client);
 $(client).bind('welcome', function(event, data) {
+  console.log('welcome');
   if (data) {
     var user = 'true', pass = 'azaza123';
-    if (user) {
-      if (pass) {
-        client.login(user, pass, processLogin);
-        console.log('user ' + user);
-      } else {
-        client.goChannel(1, onChannel);
-      }
-    } else {
-      client.goChannel(1, onChannel);
-    }
+    client.login(user, pass, processLogin);
+    console.log('user ' + user);
+//    if (user) {
+//      if (pass) {
+//      } else {
+//        client.goChannel(1, onChannel);
+//      }
+//    } else {
+//      client.goChannel(1, onChannel);
+//    }
   }
 });
 client.init(location.host);
