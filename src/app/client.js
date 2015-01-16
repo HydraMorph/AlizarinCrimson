@@ -65,18 +65,12 @@ function Client(host) {
     this.trackscache = [];
 }
 
-var lastfm = null;
-
 Client.prototype.init = function(host) {
     console.log('init');
    // this.socket = io.connect(host, {resource: 'socket.io'});
     this.socket = io('http://trigger.fm/socket.io/');
     var socket=this.socket;
     var cl = this;
-    lastfm = new LastFM({
-        apiKey: '4366bdedfe39171be1b5581b52ddee90',
-        apiSecret: '5def31e9198fa02af04873239bcb38f5'
-    });
 
     socket.on('welcome', function(data) {
         $(cl).trigger('welcome', data);
@@ -557,3 +551,27 @@ Client.prototype.setprops = function(data, callback) {
 Client.prototype.sendPRVote = function(data, callback) {
     this.socket.emit('prvote', data, callback);
 }
+
+
+client = new Client();
+    console.log(client);
+    $(client).bind('welcome', function(event, data) {
+        if (data) {
+            showChannels(data);
+            var user = $.Storage.get("username"), pass = $.Storage.get("password");
+            if (user) {
+                if (pass) {
+                    client.login(user, pass, processLogin);
+                    console.log('user' + user);
+                } else {
+                    client.goChannel(1, onChannel);
+                }
+            } else {
+                client.goChannel(1, onChannel);
+            }
+
+        } else {
+
+        }
+
+    });
