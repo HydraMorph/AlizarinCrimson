@@ -557,8 +557,8 @@ Client.prototype.sendPRVote = function(data, callback) {
 
 function processLogin(data) {
     console.log('process login', data);
-    var ch = 1;
-    client.goChannel(1, onChannel);
+//    var ch = 1;
+//    client.goChannel(1, onChannel);
 }
 
 client = new Client();
