@@ -1,10 +1,9 @@
 'use strict';
 
 angular.module('trigger')
-  .controller('MainCtrl', function ($scope) {
-    angular.forEach($scope.awesomeThings, function(awesomeThing) {
-      awesomeThing.rank = Math.random();
-    });
+  .controller('MainCtrl', function ($scope, ngSocket) {
+    var ws = ngSocket('http://trigger.fm');
+    ws.send({foo: 'bar'});
   })
   .controller('AppCtrl', function ($scope, $timeout, $mdSidenav, $log) {
     $scope.play = true;
@@ -28,5 +27,6 @@ angular.module('trigger')
       $mdSidenav('right').close();
     };
   });
+
 
 

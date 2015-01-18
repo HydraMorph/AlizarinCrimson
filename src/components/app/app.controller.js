@@ -1,7 +1,17 @@
 'use strict';
 
 angular.module('trigger')
-  .controller('AppCtrl', function ($scope, $timeout, $mdSidenav, $log) {
+  .controller('AppCtrl', function ($scope, $timeout, $mdSidenav, $log, socket) {
+
+    console.log('init');
+    function Client(host) {
+      this.version = 2205;
+      this.user = null;
+      this.channel = {}
+      this.callbacks = {};
+      this.chat = null;
+      this.trackscache = [];
+    };
     $scope.play = true;
     $scope.togglePlay = function() {
       $scope.play = !$scope.play;
