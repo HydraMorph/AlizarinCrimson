@@ -1,11 +1,13 @@
 'use strict';
 
 angular.module('trigger')
-  .controller('MainCtrl', function ($scope, ngSocket) {
-    var ws = ngSocket('http://trigger.fm');
-    ws.send({foo: 'bar'});
-  })
-  .controller('AppCtrl', function ($scope, $timeout, $mdSidenav, $log) {
+  .controller('MainCtrl', function ($scope) {})
+  .controller('AppCtrl', function ($scope, $timeout, $mdSidenav, $log, socket) {
+    socket.on('welcome', function(data) {
+      $scope.name = data.name;
+      $scope.users = data.users;
+      console.log(data);
+    });
     $scope.play = true;
     $scope.togglePlay = function() {
       $scope.play = !$scope.play;
