@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('trigger')
-  .controller('AppCtrl', function ($scope, $timeout, $mdSidenav, $log, ngSocket, mySocket) {
+  .controller('AppCtrl', function ($scope, $timeout, $mdSidenav, $log, ngSocket, socket) {
     var socket = ngSocket('http://trigger.fm');
     socket.send({foo: 'bar'});
     Client.prototype.init = function(host) {
