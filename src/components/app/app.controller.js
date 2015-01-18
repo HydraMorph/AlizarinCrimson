@@ -1,8 +1,9 @@
 'use strict';
 
 angular.module('trigger')
-  .controller('AppCtrl', function ($scope, $timeout, $mdSidenav, $log, socket) {
-
+  .controller('AppCtrl', function ($scope, $timeout, $mdSidenav, $log, ngSocket) {
+    var ws = ngSocket('http://trigger.fm');
+    ws.send({foo: 'bar'});
     console.log('init');
     function Client(host) {
       this.version = 2205;
