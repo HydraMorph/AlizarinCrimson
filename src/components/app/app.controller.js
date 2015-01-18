@@ -2,8 +2,11 @@
 
 angular.module('trigger')
   .controller('AppCtrl', function ($scope, $timeout, $mdSidenav, $log, ngSocket) {
-    var ws = ngSocket('http://trigger.fm');
-    ws.send({foo: 'bar'});
+    var socket = ngSocket('http://trigger.fm');
+    socket.send({foo: 'bar'});
+    socket.on('welcome', function(data) {
+      $(cl).trigger('welcome', data);
+    });
     console.log('init');
     function Client(host) {
       this.version = 2205;
