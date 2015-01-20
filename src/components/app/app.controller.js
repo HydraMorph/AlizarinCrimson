@@ -13,20 +13,10 @@ angular.module('trigger')
       $mdSidenav('right').toggle();
     };
 
-    $scope.messages = [];
-    $scope.postMessage = function(message) {};
-    socket.on('connect', function () {
-      $scope.$on('socket:update', function(event, data) {
-        $scope.messages.push(data);
-      });
-
-      $scope.postMessage = function(message, callback) {
-        socket.emit('post', message, function(commitedMessage) {
-          $scope.messages.push(commitedMessage);
-          callback(commitedMessage);
-        });
-      };
+    socket.on('welcome', function (data) {
+      console.log(data);
     });
+
   })
   .controller('LeftCtrl', function ($scope, $timeout, $mdSidenav, $log) {
     $scope.close = function () {
