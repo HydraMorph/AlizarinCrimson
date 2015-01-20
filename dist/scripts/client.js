@@ -31,11 +31,11 @@ Client.prototype.init = function(host) {
                 data.error = 'Не тот пароль';
             }
         } else {
-            this.user = data.user;
-            if (this.user.t < 0) {
-                this.user.t = 0;
+            cl.user = data.user;
+            if (cl.user.t < 0) {
+                cl.user.t = 0;
             }
-            this.user.nt = new Date(Date.parse(new Date()) + cl.user.nt);
+            cl.user.nt = new Date(Date.parse(new Date()) + cl.user.nt);
 
         }
         cl.callbacks.loginstatus(data);
