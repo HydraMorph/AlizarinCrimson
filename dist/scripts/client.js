@@ -13,7 +13,8 @@ Client.prototype.init = function(host) {
     var cl = this;
 
     socket.on('welcome', function(data) {
-        $(cl).trigger('welcome', data);
+      $(cl).trigger('welcome', data);
+      console.log(data);
     });
 
     socket.on('getver', function() {
