@@ -2,22 +2,28 @@
 
 angular.module('trigger')
   .controller('AppCtrl', function ($scope, $timeout, $mdSidenav, $log, socket) {
-    $scope.init = function () {
-      $scope.version = 2205;
-      $scope.user = null;
-      $scope.channel = {}
-      $scope.callbacks = {};
-      $scope.chat = null;
-      $scope.trackscache = [];
+    function Client(host) {
+        this.version = 2205;
+        this.user = null;
+        this.channel = {}
+        this.callbacks = {};
+        this.chat = null;
+        this.trackscache = [];
     }
-    socket.on('welcome', function(data) {
-      console.log(data);
-      $(cl).trigger('welcome', data);
-    });
+    Client.prototype.init = function() {
+      console.log('init');
+      var cl = this;
+      socket.on('welcome', function(data) {
+          $(cl).trigger('welcome', data);
+      });
+      socket.on('getver', function() {
+          socket.emit('ver', {'v': cl.version, 'init': true});
+      });
+    }
+    client = new Client();
+    console.log(client);
+    client.init(location.host);
 
-    socket.on('getver', function() {
-      socket.emit('ver', {'v': cl.version, 'init': true});
-    });
     $scope.play = true;
     $scope.togglePlay = function() {
       $scope.play = !$scope.play;
