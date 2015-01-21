@@ -36,7 +36,6 @@
 
     <!-- build:js scripts/vendor.js -->
     <!-- bower:js -->
-    <script src="../bower_components/jquery/dist/jquery.js"></script>
     <script src="../bower_components/angular/angular.js"></script>
     <script src="../bower_components/angular-animate/angular-animate.js"></script>
     <script src="../bower_components/angular-cookies/angular-cookies.js"></script>
@@ -49,10 +48,11 @@
     <!-- endbower -->
     <!-- endbuild -->
 
+    <script src="../bower_components/jquery/dist/jquery.js"></script>
+
     <!-- build:js({.tmp,src}) scripts/app.js -->
     <!-- inject:js -->
     <script src="app/index.js"></script>
-    <script src="app/main/main.controller.js"></script>
     <script src="components/user/user.controller.js"></script>
     <script src="components/uploads/uploads.controller.js"></script>
     <script src="components/upload/upload.controller.js"></script>
@@ -72,6 +72,7 @@
     <script src="components/console/console.controller.js"></script>
     <script src="components/chat/chat.controller.js"></script>
     <script src="components/app/app.controller.js"></script>
+    <script src="app/main/main.controller.js"></script>
     <!-- endinject -->
 
     <!-- inject:partials -->
