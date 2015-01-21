@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('trigger')
-  .controller('AppCtrl', function ($scope, $timeout, $mdSidenav, $log, $socket) {
+  .controller('AppCtrl', function ($scope, $timeout, $mdSidenav, $log, mySocket) {
     $scope.init = function () {
       $scope.version = 2205;
       $scope.user = null;
@@ -10,9 +10,9 @@ angular.module('trigger')
       $scope.chat = null;
       $scope.trackscache = [];
     }
-    $socket.on('welcome', function(data) {
-      $(cl).trigger('welcome', data);
+    socket.on('welcome', function(data) {
       console.log(data);
+      $(cl).trigger('welcome', data);
     });
     $scope.play = true;
     $scope.togglePlay = function() {
