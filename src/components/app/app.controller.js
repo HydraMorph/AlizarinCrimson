@@ -14,6 +14,9 @@ angular.module('trigger')
       console.log(data);
       $(cl).trigger('welcome', data);
     });
+    socket.on('getver', function() {
+      socket.emit('ver', {'v': cl.version, 'init': true});
+    });
     $scope.play = true;
     $scope.togglePlay = function() {
       $scope.play = !$scope.play;
