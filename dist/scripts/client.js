@@ -54,13 +54,13 @@ Client.prototype.init = function(host) {
 //
 client = new Client();
 console.log(client);
-//$(client).bind('welcome', function(event, data) {
-//  console.log('welcome');
-//  if (data) {
-//    var user = 'true';
-//    var pass = '09e7881117ecd5e66723322ef5a6f4e0';
+$(client).bind('welcome', function(event, data) {
+  console.log('welcome');
+  if (data) {
+    var user = 'true';
+    var pass = '09e7881117ecd5e66723322ef5a6f4e0';
 //    client.login(user, pass, processLogin);
-//    console.log('user ' + user);
-//  }
-//});
+    console.log('user ' + user);
+  }
+});
 client.init(location.host);
