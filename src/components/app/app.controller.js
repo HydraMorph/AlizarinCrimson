@@ -10,7 +10,7 @@ angular.module('trigger')
       $scope.chat = null;
       $scope.trackscache = [];
     }
-    var ws = ngSocket('ws://trigger.fm');
+    var ws = ngSocket('ws://trigger.fm/socket.io/');
     //Can call before socket has opened
     ws.send({foo: 'bar'});
 //    socket.on('welcome', function(data) {
