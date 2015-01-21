@@ -20,7 +20,7 @@ angular.module('trigger')
           socket.emit('ver', {'v': cl.version, 'init': true});
       });
     }
-    client = new Client();
+    var client = new Client();
     console.log(client);
     client.init(location.host);
 
