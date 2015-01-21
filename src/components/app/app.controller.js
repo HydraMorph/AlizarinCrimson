@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('trigger')
-  .controller('AppCtrl', function ($scope, $timeout, $mdSidenav, $log, ngSocket) {
+  .controller('AppCtrl', function ($scope, $timeout, $mdSidenav, $log, socket) {
     $scope.init = function () {
       $scope.version = 2205;
       $scope.user = null;
@@ -10,13 +10,10 @@ angular.module('trigger')
       $scope.chat = null;
       $scope.trackscache = [];
     }
-    var ws = ngSocket('http://trigger.fm');
-    //Can call before socket has opened
-    ws.send({foo: 'bar'});
-//    socket.on('welcome', function(data) {
-//      console.log(data);
-//      $(cl).trigger('welcome', data);
-//    });
+    socket.on('welcome', function(data) {
+      console.log(data);
+      $(cl).trigger('welcome', data);
+    });
     $scope.play = true;
     $scope.togglePlay = function() {
       $scope.play = !$scope.play;
