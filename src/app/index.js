@@ -5,7 +5,7 @@ angular.module('trigger', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'n
   .value('password', '09e7881117ecd5e66723322ef5a6f4e0')
   .factory('socket', function (socketFactory) {
     var myIoSocket = io.connect('http://trigger.fm');
-    mySocket = socketFactory({
+    var mySocket = socketFactory({
       ioSocket: myIoSocket
     });
     return mySocket;
