@@ -322,6 +322,183 @@ angular.module('trigger')
         $(cl).trigger('trackupdate', data);
       });
     }
+    Client.prototype.login = function(name, pass, callback) {
+      var cl = this;
+      cl.callbacks.loginstatus = callback;
+      this.socket.emit('login', {u: name, p: pass});
+    }
+    Client.prototype.track = function(id, callback) {
+      var cl = this;
+      var complete=false;
+      if (id == cl.channel.current.id) {
+        if (callback) {
+          callback(cl.channel.current);
+          complete=true;
+        } else {
+          return cl.channel.current
+        }
+      }
+      for (var t in cl.channel.pls) {
+        if (cl.channel.pls[t].id == id) {
+          if (callback) {
+            callback(cl.channel.pls[t]);
+            complete=true;
+          } else {
+            return cl.channel.pls[t];
+          }
+        }
+      }
+      if (!complete&&callback){
+        this.socket.emit('gettrack', {'id': id}, function(d) {
+          callback(d);
+        });
+      }
+
+    }
+    Client.prototype.getPlaylist = function(channel, callback) {
+      cl = this;
+      cl.callbacks.playlist = callback;
+      this.socket.emit('getplaylist', {id: channel});
+    }
+    Client.prototype.goChannel = function(channel, callback) {
+      var cl = this;
+      cl.callbacks.channeldata = callback;
+      this.socket.emit('gochannel', {id: channel});
+
+    }
+    Client.prototype.getChannels = function(callback) {
+      var cl = this;
+      cl.callbacks.channelsdata = callback;
+      this.socket.emit('getchannels');
+    }
+    Client.prototype.getChat = function(data, callback) {
+      var cl = this;
+      this.socket.emit('getchat', {'shift': data.shift, 'id': this.channel.chid}, function(data) {
+        if (data.u) {
+          cl.chat = data;
+          cl.chat.id = cl.channel.chid;
+        }
+        callback(data);
+      });
+    }
+    Client.prototype.sendMessage = function(message, callback) {
+      var data = {'m': message};
+      this.socket.emit('sendmessage', data, callback);
+    }
+    Client.prototype.tracksubmit = function(data, callback) {
+      var form = data.form;
+      this.socket.emit('tracksubmit', {'chid': this.channel.chid, 'track': data.track}, function(data) {
+        data.form = form;
+        console.log('data.form: ', data.form);
+        callback(data)
+      });
+    }
+    Client.prototype.addvote = function(data, callback) {
+      if (this.user) {
+        data.chid = this.channel.chid;
+        this.socket.emit('vote', data);
+      }
+    }
+    Client.prototype.adduservote = function(data, callback) {
+      if (this.user) {
+        this.callbacks.uvotedata = callback;
+        this.socket.emit('uvote', data);
+      }
+    }
+    Client.prototype.getUser = function(data, callback) {
+      this.socket.emit('getuser', data, callback);
+    }
+    Client.prototype.getHistory = function(shift, gold, callback) {
+      cl = this;
+      cl.callbacks.history = callback;
+      this.socket.emit('gethistory', {chid: cl.channel.chid, s: shift, g: gold});
+    }
+    Client.prototype.getTags = function(str, callback) {
+      cl = this;
+      cl.callbacks.tags = callback;
+
+      this.socket.emit('gettags', {s: str});
+    }
+    Client.prototype.getTrackTags = function(artist, title, callback) {
+      cl = this;
+      cl.callbacks.tags = callback;
+      this.socket.emit('gettags', {a: artist, t: title});
+    }
+    Client.prototype.addTag = function(str, callback) {
+      cl = this;
+      cl.callbacks.tags = callback;
+      this.socket.emit('addtag', {s: str});
+    }
+    Client.prototype.killtrack = function(track) {
+      cl = this;
+      this.socket.emit('deltrack', {tid: track, chid: cl.channel.chid});
+    }
+    Client.prototype.sendinvite = function(mail, code, callback) {
+      cl = this;
+      cl.callbacks.invitestatus = callback;
+      this.socket.emit('sendinvite', {m: mail, c: code});
+    }
+
+    Client.prototype.sendextinvite = function(data, callback) {
+      this.socket.emit('sendextinvite', data, callback);
+    }
+
+    Client.prototype.logout = function(callback) {
+      this.socket.emit('logout', {s: true}, callback);
+    }
+    Client.prototype.recover = function(mail, callback) {
+      cl = this;
+      cl.callbacks.recover = callback;
+      this.socket.emit('recover', {m: mail});
+    }
+    Client.prototype.changepass = function(oldpass, newpass, callback) {
+      cl = this;
+      cl.callbacks.changepass = callback;
+      this.socket.emit('changepass', {o: oldpass, n: newpass});
+    }
+    Client.prototype.updateUserData = function(data) {
+      this.socket.emit('upduserdata', data);
+
+    }
+    Client.prototype.updateTrack = function(data) {
+      this.socket.emit('updtrack', data);
+    }
+    Client.prototype.getchannel = function(id) {
+      for (var i in this.channels) {
+        if (this.channels[i].id == id) {
+          return this.channels[i];
+        }
+      }
+      return false;
+    }
+
+    Client.prototype.banuser = function(uid, reason, callback) {
+      console.log(reason);
+      this.socket.emit('banuser', {id: uid, r: reason}, callback);
+    }
+    Client.prototype.unbanuser = function(uid, callback) {
+      this.socket.emit('unbanuser', {id: uid}, callback);
+    }
+    Client.prototype.setop = function(d, callback) {
+      this.socket.emit('setop', d, callback);
+    }
+    Client.prototype.removeop = function(data, callback) {
+      this.socket.emit('removeop', data, callback);
+    }
+
+    Client.prototype.setprops = function(data, callback) {
+      this.socket.emit('setprops', data, callback);
+    }
+    Client.prototype.sendPRVote = function(data, callback) {
+      this.socket.emit('prvote', data, callback);
+    }
+
+
+    function processLogin(data) {
+      console.log('process login', data);
+    //  var ch = 1;
+    //  client.goChannel(1, onChannel);
+    }
     var client = new Client();
     console.log(client);
     client.init(location.host);
