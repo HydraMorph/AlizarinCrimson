@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('trigger')
-  .controller('AppCtrl', function ($scope, $timeout, $mdSidenav, $log, socket) {
+  .controller('AppCtrl', function ($scope, $timeout, $mdSidenav, $log) {
     $scope.init = function () {
       $scope.version = 2205;
       $scope.user = null;
@@ -10,10 +10,10 @@ angular.module('trigger')
       $scope.chat = null;
       $scope.trackscache = [];
     }
-    socket.on('welcome', function(data) {
+    /*socket.on('welcome', function(data) {
       $(cl).trigger('welcome', data);
       console.log(data);
-    });
+    });*/
     $scope.play = true;
     $scope.togglePlay = function() {
       $scope.play = !$scope.play;
@@ -24,11 +24,6 @@ angular.module('trigger')
     $scope.toggleRight = function () {
       $mdSidenav('right').toggle();
     };
-
-    socket.on('welcome', function (data) {
-      console.log(data);
-    });
-
   })
   .controller('LeftCtrl', function ($scope, $timeout, $mdSidenav, $log) {
     $scope.close = function () {
