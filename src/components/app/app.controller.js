@@ -48,8 +48,8 @@ angular.module('trigger')
           track.src = src;
           $(cl).trigger('cover', {id: data.track.id, 'src': src});
         });
-
       });
+
       socket.on('removetrack', function(data) {
         for (var t in cl.channel.pls) {
           if (cl.channel.pls[t].id == data.tid) {
@@ -74,10 +74,10 @@ angular.module('trigger')
           cl.channel.current = data.track;
           cl.channel.ct = 0;
         }
-
         $(cl).trigger('newcurrent', data);
         $(cl).trigger('removetrack', data);
       });
+
       socket.on('lst', function(data) {
         for (var i in cl.channels) {
           if (data.chid == cl.channels[i].id) {
@@ -90,6 +90,7 @@ angular.module('trigger')
         }
         $(cl).trigger('listners', data);
       });
+
       socket.on('usupd', function(data) {
         if (cl.chat) {
           for (var us in cl.chat.u) {
@@ -100,6 +101,7 @@ angular.module('trigger')
           $(cl).trigger('userupdate', data);
         }
       });
+
       socket.on('uplim', function(data) {
         if (data.nt > 0) {
           cl.user.nt = new Date(Date.parse(new Date()) + data.nt);
@@ -115,6 +117,7 @@ angular.module('trigger')
         cl.user.w = data.w;
         $(cl).trigger('updatelimits', data);
       });
+
       socket.on('channeldata', function(data) {
         var i = 0;
         var gg = function() {
@@ -132,7 +135,6 @@ angular.module('trigger')
         data.hi = streampath + data.hi;
         data.low = streampath + data.low;
         cl.channel = data;
-
         var track = cl.channel.current;
         if (track) {
           track.vote = 0;
@@ -151,7 +153,6 @@ angular.module('trigger')
             }
           }
         }
-
         for (var t in cl.channel.pls) {
           var track = cl.channel.pls[t];
           if (track) {
@@ -176,7 +177,6 @@ angular.module('trigger')
           data.current.src = src;
           $(cl).trigger('cover', {id: data.current.id, 'src': src});
         });
-
         cl.callbacks.channeldata(cl.channel);
         if (cl.channel.pls.length > 0) {
           gg();
@@ -196,19 +196,24 @@ angular.module('trigger')
         cl.channels = data.channels;
         cl.callbacks.channelsdata(data);
       });
+
       socket.on('userdata', function(data) {
         console.log(data);
         cl.callbacks.userdata(data);
       });
+
       socket.on('uvd', function(data) {
         cl.callbacks.uvotedata(data);
       });
+
       socket.on('invitestatus', function(data) {
         cl.callbacks.invitestatus(data);
       });
+
       socket.on('recoverstatus', function(data) {
         cl.callbacks.recover(data);
       });
+
       socket.on('changepass', function(data) {
         cl.callbacks.changepass(data);
       });
@@ -228,6 +233,7 @@ angular.module('trigger')
           $(cl).trigger('newuser', data);
         }
       });
+
       socket.on('offuser', function(data) {
         if (cl.chat) {
           for (var us in cl.chat.u) {
@@ -258,7 +264,6 @@ angular.module('trigger')
             cl.user.t = 0;
           }
           cl.user.nt = new Date(Date.parse(new Date()) + cl.user.nt);
-
         }
         cl.callbacks.loginstatus(data);
       });
@@ -270,6 +275,7 @@ angular.module('trigger')
         cl.callbacks = {};
         cl.chat = null;
       });
+
       socket.on('tags', function(data) {
         cl.callbacks.tags(data.t);
       });
@@ -293,7 +299,6 @@ angular.module('trigger')
               break;
             }
           }
-
           data.current = true;
         } else {
           for (var t in cl.channel.pls) {
@@ -353,24 +358,26 @@ angular.module('trigger')
           callback(d);
         });
       }
-
     }
+
     Client.prototype.getPlaylist = function(channel, callback) {
       cl = this;
       cl.callbacks.playlist = callback;
       this.socket.emit('getplaylist', {id: channel});
     }
+
     Client.prototype.goChannel = function(channel, callback) {
       var cl = this;
       cl.callbacks.channeldata = callback;
       this.socket.emit('gochannel', {id: channel});
-
     }
+
     Client.prototype.getChannels = function(callback) {
       var cl = this;
       cl.callbacks.channelsdata = callback;
       this.socket.emit('getchannels');
     }
+
     Client.prototype.getChat = function(data, callback) {
       var cl = this;
       this.socket.emit('getchat', {'shift': data.shift, 'id': this.channel.chid}, function(data) {
@@ -381,10 +388,12 @@ angular.module('trigger')
         callback(data);
       });
     }
+
     Client.prototype.sendMessage = function(message, callback) {
       var data = {'m': message};
       this.socket.emit('sendmessage', data, callback);
     }
+
     Client.prototype.tracksubmit = function(data, callback) {
       var form = data.form;
       this.socket.emit('tracksubmit', {'chid': this.channel.chid, 'track': data.track}, function(data) {
@@ -393,46 +402,54 @@ angular.module('trigger')
         callback(data)
       });
     }
+
     Client.prototype.addvote = function(data, callback) {
       if (this.user) {
         data.chid = this.channel.chid;
         this.socket.emit('vote', data);
       }
     }
+
     Client.prototype.adduservote = function(data, callback) {
       if (this.user) {
         this.callbacks.uvotedata = callback;
         this.socket.emit('uvote', data);
       }
     }
+
     Client.prototype.getUser = function(data, callback) {
       this.socket.emit('getuser', data, callback);
     }
+
     Client.prototype.getHistory = function(shift, gold, callback) {
       cl = this;
       cl.callbacks.history = callback;
       this.socket.emit('gethistory', {chid: cl.channel.chid, s: shift, g: gold});
     }
+
     Client.prototype.getTags = function(str, callback) {
       cl = this;
       cl.callbacks.tags = callback;
-
       this.socket.emit('gettags', {s: str});
     }
+
     Client.prototype.getTrackTags = function(artist, title, callback) {
       cl = this;
       cl.callbacks.tags = callback;
       this.socket.emit('gettags', {a: artist, t: title});
     }
+
     Client.prototype.addTag = function(str, callback) {
       cl = this;
       cl.callbacks.tags = callback;
       this.socket.emit('addtag', {s: str});
     }
+
     Client.prototype.killtrack = function(track) {
       cl = this;
       this.socket.emit('deltrack', {tid: track, chid: cl.channel.chid});
     }
+
     Client.prototype.sendinvite = function(mail, code, callback) {
       cl = this;
       cl.callbacks.invitestatus = callback;
@@ -446,23 +463,27 @@ angular.module('trigger')
     Client.prototype.logout = function(callback) {
       this.socket.emit('logout', {s: true}, callback);
     }
+
     Client.prototype.recover = function(mail, callback) {
       cl = this;
       cl.callbacks.recover = callback;
       this.socket.emit('recover', {m: mail});
     }
+
     Client.prototype.changepass = function(oldpass, newpass, callback) {
       cl = this;
       cl.callbacks.changepass = callback;
       this.socket.emit('changepass', {o: oldpass, n: newpass});
     }
+
     Client.prototype.updateUserData = function(data) {
       this.socket.emit('upduserdata', data);
-
     }
+
     Client.prototype.updateTrack = function(data) {
       this.socket.emit('updtrack', data);
     }
+
     Client.prototype.getchannel = function(id) {
       for (var i in this.channels) {
         if (this.channels[i].id == id) {
@@ -476,12 +497,15 @@ angular.module('trigger')
       console.log(reason);
       this.socket.emit('banuser', {id: uid, r: reason}, callback);
     }
+
     Client.prototype.unbanuser = function(uid, callback) {
       this.socket.emit('unbanuser', {id: uid}, callback);
     }
+
     Client.prototype.setop = function(d, callback) {
       this.socket.emit('setop', d, callback);
     }
+
     Client.prototype.removeop = function(data, callback) {
       this.socket.emit('removeop', data, callback);
     }
@@ -489,10 +513,10 @@ angular.module('trigger')
     Client.prototype.setprops = function(data, callback) {
       this.socket.emit('setprops', data, callback);
     }
+
     Client.prototype.sendPRVote = function(data, callback) {
       this.socket.emit('prvote', data, callback);
     }
-
 
     function processLogin(data) {
       console.log('process login', data);
@@ -501,6 +525,15 @@ angular.module('trigger')
     }
     var client = new Client();
     console.log(client);
+    $(client).bind('welcome', function(event, data) {
+      console.log('welcome');
+      if (data) {
+        var user = 'N';
+        var pass = "84715058abd431959d5dc3d6b19f8f97";
+        client.login(user, pass, processLogin);
+        console.log('user ' + user);
+      }
+    });
     client.init(location.host);
 
     $scope.play = true;
