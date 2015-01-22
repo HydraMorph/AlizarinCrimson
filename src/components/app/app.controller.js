@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('trigger')
-  .controller('AppCtrl', function ($scope, $timeout, $mdSidenav, $log, socket) {
+  .controller('AppCtrl', ['$scope', 'socket', function ($scope, $timeout, $mdSidenav, $log, socket) {
     function Client(host) {
         this.version = 2205;
         this.user = null;
@@ -546,7 +546,7 @@ angular.module('trigger')
     $scope.toggleRight = function () {
       $mdSidenav('right').toggle();
     };
-  })
+  }])
   .controller('LeftCtrl', function ($scope, $timeout, $mdSidenav, $log) {
     $scope.close = function () {
       $mdSidenav('left').close();
