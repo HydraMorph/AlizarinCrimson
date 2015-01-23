@@ -8,5 +8,6 @@ angular.module('trigger', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'n
     var mySocket = socketFactory({
       ioSocket: myIoSocket
     });
+    mySocket.forward('welcome');
     return mySocket;
   });
