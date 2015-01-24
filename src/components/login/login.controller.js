@@ -6,7 +6,6 @@ angular.module('trigger')
       'name': '',
       'password': ''
     };
-    console.log($rootScope.client);
     $scope.login = function() {
       console.log(md5.createHash($scope.user.password));
     };
