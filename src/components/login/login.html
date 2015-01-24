@@ -1,7 +1,9 @@
-<md-toolbar layout="row" layout-align="center center" ng-controller="LoginCtrl">
+<md-dialog aria-label="login-modal" class="login__ctrl" ng-controller="LoginCtrl">
+  <md-card layout="column" layout-align="center center" class="login__card">
 
-  <md-text-float class="settings__password--old" label="Старый пароль" ng-model="message"></md-text-float>
-  <md-text-float class="settings__password--new" label="Новый пароль" ng-model="message"></md-text-float>
-  <md-button aria-label="login" class="settings__password-btn">Yarrr!</md-button>
+    <md-text-float class="login__username" label="Username" ng-model="user.name"></md-text-float>
+    <md-text-float class="login__password" label="Password" ng-model="user.password" type="password"></md-text-float>
+    <md-button aria-label="login--btn" class="login__btn" ng-click="login()">Yarrr!</md-button>
 
-</md-toolbar>
+  </md-card>
+</md-dialog>
