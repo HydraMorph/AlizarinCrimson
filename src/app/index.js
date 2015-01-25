@@ -30,7 +30,7 @@ app.factory('socket', function ($rootScope) {
 });
 
 
-app.service('Client', function () {
+app.service('Client', function ($log) {
   this.version = 2205;
   this.user = null;
   this.channel = {};
@@ -69,7 +69,6 @@ app.service('Client', function () {
           }
         }
       }
-
       cl.channel.pls.push(track);
       cl.channel.pls.sort(sortFunction);
       $(cl).trigger('addtrack', data);
@@ -77,8 +76,8 @@ app.service('Client', function () {
         track.src = src;
         $(cl).trigger('cover', {id: data.track.id, 'src': src});
       });
-
     });
+
     socket.on('removetrack', function(data) {
       for (var t in cl.channel.pls) {
         if (cl.channel.pls[t].id === data.tid) {
@@ -103,10 +102,10 @@ app.service('Client', function () {
         cl.channel.current = data.track;
         cl.channel.ct = 0;
       }
-
       $(cl).trigger('newcurrent', data);
       $(cl).trigger('removetrack', data);
     });
+
     socket.on('lst', function(data) {
       for (var i in cl.channels) {
         if (data.chid == cl.channels[i].id) {
@@ -119,6 +118,7 @@ app.service('Client', function () {
       }
       $(cl).trigger('listners', data);
     });
+
     socket.on('usupd', function(data) {
       if (cl.chat) {
         for (var us in cl.chat.u) {
@@ -129,6 +129,7 @@ app.service('Client', function () {
         $(cl).trigger('userupdate', data);
       }
     });
+
     socket.on('uplim', function(data) {
       if (data.nt > 0) {
         cl.user.nt = new Date(Date.parse(new Date()) + data.nt);
@@ -144,6 +145,7 @@ app.service('Client', function () {
       cl.user.w = data.w;
       $(cl).trigger('updatelimits', data);
     });
+
     socket.on('channeldata', function(data) {
       var i = 0;
       var gg = function() {
@@ -161,7 +163,6 @@ app.service('Client', function () {
       data.hi = streampath + data.hi;
       data.low = streampath + data.low;
       cl.channel = data;
-
       var track = cl.channel.current;
       if (track) {
         track.vote = 0;
@@ -180,7 +181,6 @@ app.service('Client', function () {
           }
         }
       }
-
       for (var t in cl.channel.pls) {
         var track = cl.channel.pls[t];
         if (track) {
@@ -205,7 +205,6 @@ app.service('Client', function () {
         data.current.src = src;
         $(cl).trigger('cover', {id: data.current.id, 'src': src});
       });
-
       cl.callbacks.channeldata(cl.channel);
       if (cl.channel.pls.length > 0) {
         gg();
@@ -225,19 +224,24 @@ app.service('Client', function () {
       cl.channels = data.channels;
       cl.callbacks.channelsdata(data);
     });
+
     socket.on('userdata', function(data) {
       console.log(data);
       cl.callbacks.userdata(data);
     });
+
     socket.on('uvd', function(data) {
       cl.callbacks.uvotedata(data);
     });
+
     socket.on('invitestatus', function(data) {
       cl.callbacks.invitestatus(data);
     });
+
     socket.on('recoverstatus', function(data) {
       cl.callbacks.recover(data);
     });
+
     socket.on('changepass', function(data) {
       cl.callbacks.changepass(data);
     });
@@ -257,6 +261,7 @@ app.service('Client', function () {
         $(cl).trigger('newuser', data);
       }
     });
+
     socket.on('offuser', function(data) {
       if (cl.chat) {
         for (var us in cl.chat.u) {
@@ -287,7 +292,6 @@ app.service('Client', function () {
           cl.user.t = 0;
         }
         cl.user.nt = new Date(Date.parse(new Date()) + cl.user.nt);
-
       }
       cl.callbacks.loginstatus(data);
     });
@@ -299,6 +303,7 @@ app.service('Client', function () {
       cl.callbacks = {};
       cl.chat = null;
     });
+
     socket.on('tags', function(data) {
       cl.callbacks.tags(data.t);
     });
@@ -322,7 +327,6 @@ app.service('Client', function () {
             break;
           }
         }
-
         data.current = true;
       } else {
         for (var t in cl.channel.pls) {
@@ -351,11 +355,13 @@ app.service('Client', function () {
       $(cl).trigger('trackupdate', data);
     });
   };
+
   this.login = function(name, pass, callback) {
     var cl = this;
     cl.callbacks.loginstatus = callback;
     this.socket.emit('login', {u: name, p: pass});
   };
+
   this.track = function(id, callback) {
     var cl = this;
     var complete=false;
@@ -383,21 +389,25 @@ app.service('Client', function () {
       });
     }
   };
+
   this.getPlaylist = function(channel, callback) {
     cl = this;
     cl.callbacks.playlist = callback;
     this.socket.emit('getplaylist', {id: channel});
   };
+
   this.goChannel = function(channel, callback) {
     var cl = this;
     cl.callbacks.channeldata = callback;
     this.socket.emit('gochannel', {id: channel});
   };
+
   this.getChannels = function(callback) {
     var cl = this;
     cl.callbacks.channelsdata = callback;
     this.socket.emit('getchannels');
   };
+
   this.getChat = function(data, callback) {
     var cl = this;
     this.socket.emit('getchat', {'shift': data.shift, 'id': this.channel.chid}, function(data) {
@@ -408,10 +418,12 @@ app.service('Client', function () {
       callback(data);
     });
   };
+
   this.sendMessage = function(message, callback) {
     var data = {'m': message};
     this.socket.emit('sendmessage', data, callback);
   };
+
   this.tracksubmit = function(data, callback) {
     var form = data.form;
     this.socket.emit('tracksubmit', {'chid': this.channel.chid, 'track': data.track}, function(data) {
@@ -420,72 +432,88 @@ app.service('Client', function () {
       callback(data);
     });
   };
+
   this.addvote = function(data, callback) {
     if (this.user) {
       data.chid = this.channel.chid;
       this.socket.emit('vote', data);
     }
   };
+
   this.adduservote = function(data, callback) {
     if (this.user) {
       this.callbacks.uvotedata = callback;
       this.socket.emit('uvote', data);
     }
   };
+
   this.getUser = function(data, callback) {
     this.socket.emit('getuser', data, callback);
   };
+
   this.getHistory = function(shift, gold, callback) {
     cl = this;
     cl.callbacks.history = callback;
     this.socket.emit('gethistory', {chid: cl.channel.chid, s: shift, g: gold});
   };
+
   this.getTags = function(str, callback) {
     cl = this;
     cl.callbacks.tags = callback;
     this.socket.emit('gettags', {s: str});
   };
+
   this.getTrackTags = function(artist, title, callback) {
     cl = this;
     cl.callbacks.tags = callback;
     this.socket.emit('gettags', {a: artist, t: title});
   };
+
   this.addTag = function(str, callback) {
     cl = this;
     cl.callbacks.tags = callback;
     this.socket.emit('addtag', {s: str});
   };
+
   this.killtrack = function(track) {
     cl = this;
     this.socket.emit('deltrack', {tid: track, chid: cl.channel.chid});
   };
+
   this.sendinvite = function(mail, code, callback) {
     cl = this;
     cl.callbacks.invitestatus = callback;
     this.socket.emit('sendinvite', {m: mail, c: code});
   };
+
   this.sendextinvite = function(data, callback) {
     this.socket.emit('sendextinvite', data, callback);
   };
+
   this.logout = function(callback) {
     this.socket.emit('logout', {s: true}, callback);
   };
+
   this.recover = function(mail, callback) {
     cl = this;
     cl.callbacks.recover = callback;
     this.socket.emit('recover', {m: mail});
   };
+
   this.changepass = function(oldpass, newpass, callback) {
     cl = this;
     cl.callbacks.changepass = callback;
     this.socket.emit('changepass', {o: oldpass, n: newpass});
   };
+
   this.updateUserData = function(data) {
     this.socket.emit('upduserdata', data);
   };
+
   this.updateTrack = function(data) {
     this.socket.emit('updtrack', data);
   };
+
   this.getchannel = function(id) {
     for (var i in this.channels) {
       if (this.channels[i].id == id) {
@@ -494,22 +522,28 @@ app.service('Client', function () {
     }
     return false;
   };
+
   this.banuser = function(uid, reason, callback) {
     console.log(reason);
     this.socket.emit('banuser', {id: uid, r: reason}, callback);
   };
+
   this.unbanuser = function(uid, callback) {
     this.socket.emit('unbanuser', {id: uid}, callback);
   };
+
   this.setop = function(d, callback) {
     this.socket.emit('setop', d, callback);
   };
+
   this.removeop = function(data, callback) {
     this.socket.emit('removeop', data, callback);
   };
+
   this.setprops = function(data, callback) {
     this.socket.emit('setprops', data, callback);
   };
+
   this.sendPRVote = function(data, callback) {
     this.socket.emit('prvote', data, callback);
   };

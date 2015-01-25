@@ -5,7 +5,6 @@ angular.module('trigger')
 //  .controller('ConsoleCtrl', function($scope, $mdDialog) {
     console.log(Client);
     Client.init(location.host);
-    Client.version = 1;
 
     $scope.showAdvanced = function(ev) {
       $mdDialog.show({

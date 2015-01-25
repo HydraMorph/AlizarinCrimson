@@ -6,26 +6,12 @@ angular.module('trigger')
       'name': '',
       'password': ''
     };
-    $(Client).bind('welcome', function(event, data) {
-      if (data) {
-        showChannels(data);
-        var user = "true";
-        var pass = md5.createHash('azaza123');
-        if (user) {
-          if (pass) {
-            Client.login(user, pass, processLogin);
-          } else {
-            Client.goChannel(1, onChannel);
-          }
-        } else {
-          Client.goChannel(1, onChannel);
-        }
+    $scope.login = function () {
+      function processLogin (data) {
+        console.log('process login', data);
       }
-    });
-    $scope.login = function() {
-      Client.welcome;
+      Client.login($scope.user.name, md5.createHash($scope.user.password), processLogin);
       console.log(Client);
-      console.log(md5.createHash($scope.user.password));
     };
     $scope.hide = function() {
       $mdDialog.hide();
