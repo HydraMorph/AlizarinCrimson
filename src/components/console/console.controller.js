@@ -1,8 +1,12 @@
 'use strict';
 
 angular.module('trigger')
-  .controller('ConsoleCtrl', function ($scope, $timeout, $mdDialog, $mdBottomSheet) {
+  .controller('ConsoleCtrl', function ($scope, $timeout, $mdDialog, $mdBottomSheet, Client) {
 //  .controller('ConsoleCtrl', function($scope, $mdDialog) {
+    console.log(Client);
+    Client.init(location.host);
+    Client.version = 1;
+
     $scope.showAdvanced = function(ev) {
       $mdDialog.show({
         controller: LoginCtrl,
