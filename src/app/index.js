@@ -5,6 +5,11 @@ var app = angular.module('trigger', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSan
 app.value('nickName', 'true');
 app.value('password', '09e7881117ecd5e66723322ef5a6f4e0');
 
+app.run(function ($rootScope) {
+  $rootScope.isSigned = false;
+});
+
+
 app.factory('socket', function ($rootScope) {
   var socket = io.connect('http://trigger.fm');
   return {

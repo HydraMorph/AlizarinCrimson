@@ -1,35 +1,26 @@
 'use strict';
 
 angular.module('trigger')
-  .controller('ConsoleCtrl', function ($scope, $timeout, $mdDialog, $mdBottomSheet, Client) {
-//  .controller('ConsoleCtrl', function($scope, $mdDialog) {
-    console.log(Client);
+  .controller('ConsoleCtrl', function ($scope, $rootScope, $timeout, $mdDialog, $mdBottomSheet, Client) {
     Client.init(location.host);
-
-    $scope.showAdvanced = function(ev) {
+    console.log(Client);
+    $scope.$watch(function() {
+      return $rootScope.isSigned;
+    }, function() {
+      $scope.hideLoginBtn = $rootScope.isSigned;
+    }, true);
+    $scope.showLoginModal = function(ev) {
       $mdDialog.show({
         controller: LoginCtrl,
         templateUrl: 'components/login/login.html',
         targetEvent: ev,
       })
-      .then(function(answer) {
-        $scope.alert = 'You said the information was "' + answer + '".';
-      }, function() {
-        $scope.alert = 'You cancelled the dialog.';
-      });
     };
     function LoginCtrl($scope, $mdDialog) {
       $scope.hide = function() {
         $mdDialog.hide();
       };
-      $scope.cancel = function() {
-        $mdDialog.cancel();
-      };
-      $scope.answer = function(answer) {
-        $mdDialog.hide(answer);
-      };
     };
-    $scope.data = 'Console';
     $scope.volume = 23;
     $scope.changeVolume = function(volume) {
       $scope.volume = volume;

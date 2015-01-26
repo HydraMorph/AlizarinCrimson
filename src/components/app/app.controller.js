@@ -2,7 +2,7 @@
 
 angular.module('trigger')
   .controller('AppCtrl', ['$scope', 'socket', function ($scope, $rootScope, $timeout, $mdSidenav, $log, md5, socket) {
-
+    $rootScope.loginstatus = false;
 //
 //    function Client(host) {
 //      this.version = 2205;
