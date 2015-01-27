@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('trigger')
-  .controller('CurrentCtrl', ['$scope', '$interval', function($scope, $interval) {
+  .controller('CurrentCtrl', ['$scope', '$interval', function($scope, $interval, Client) {
     $scope.mode = 'query';
     $scope.determinateValue = 0;
     $scope.determinateValue2 = 0;
@@ -16,34 +16,16 @@ angular.module('trigger')
     $interval(function() {
       $scope.mode = ($scope.mode == 'query' ? 'determinate' : 'query');
     }, 7200, 0, true);
-    $scope.current = {
-      'a': 'CurrentArtist',
-      't': 'CurrentTitle',
-      's': 'Shepherd',
-      'id': 304818,
-      'sid': 2043,
-      'tt': 262,
-      'i': '',
-      'tg': [
-        {
-          "id": 1165,
-          "n": "1h mix"
-        },
-        {
-          "id": 1162,
-          "n": "lol"
-        }
-      ],
-      'p': [
-        {
-          'v': 1,
-          'vid': 2043,
-          'n': 'Shepherd'
-        }
-      ],
-      'n': [],
-      'r': 18,
-      'src': 'assets/images/nocover.png',
-      'vote': 0
-    };
+
+    console.log('Current', Client);
+    $(Client).bind('newcurrent', function(event, data) {
+      console.log(data);
+    });
+//      if (data.chid == Client.channel.chid) {
+//        setCurrent(data.track);
+//        setcurtime(true);
+//      }
+//      $('#info .content.channels #' + data.chid + ' .current').html('<div class="cap">РЎРµР№С‡Р°СЃ:</div><div class="artist">' + data.track.a + '</div><div class="title">' + data.track.t + '</div><span><a href="http://vk.com/audio?q=' + encodeURIComponent(data.track.a) + ' - ' + encodeURIComponent(data.track.t) + '" target="_blank">>vk</a></span>');
+
+    $scope.current = Client.channel.current;
   }]);

@@ -4,6 +4,7 @@ angular.module('trigger')
   .controller('LoginCtrl', function ($scope, $rootScope, $mdDialog, md5, Client) {
     function processLogin (data) {
       console.log('process login', data);
+      console.log(Client);
       if (data.error) {
         console.log(data.error);
       } else {

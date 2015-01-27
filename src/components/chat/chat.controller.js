@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('trigger')
-  .controller('ChatCtrl', function ($scope) {
+  .controller('ChatCtrl', function ($scope, Client) {
     $scope.date = new Date();
     $scope.messages = [
       {

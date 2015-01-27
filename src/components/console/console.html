@@ -2,9 +2,9 @@
 
   <md-slider ng-model="volume" aria-label="volume-slider" ng-change="changeVolume(volume)" min="0" max="100" step="1"></md-slider>
   <img ng-src="assets/images/logo.png" class="console__logo"/>
-  <md-button class="console__login-btn" aria-label="console-login" ng-show="!hideLoginBtn" ng-click="showLoginModal($event)">Log in</md-button>
+  <md-button class="console__login-btn" aria-label="console-login" ng-show="!isSigned" ng-click="showLoginModal($event)">Log in</md-button>
   <p class="console__stat">
-    Слушают <span class="console__listeners">11</span> из них активно: <span class="console__active-users">9</span>
+    Слушают <span class="console__listeners">{{users.listeners}}</span> из них активно: <span class="console__active-users">{{users.active}}</span>
   </p>
   <md-button class="console__buttton--upload" aria-label="uploader-btn" ng-click="openUploadBar($event)">
     <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
@@ -12,11 +12,11 @@
       <path d="M0 0h24v24h-24z" fill="none"/>
     </svg>
   </md-button>
-  <p class="console__user-limit">
-    Ты можешь залить <time class="console__limit">00:20:21</time>
+  <p class="console__user-limit" ng-show="isSigned">
+    Ты можешь залить <time class="console__limit">{{user.uplim}}</time>
   </p>
-  <p class="console__greating">
-    45 символов это геноцид, <a href="#" class="console__username">{{Client.user.n}}</a>
+  <p class="console__greating" ng-show="isSigned">
+    45 символов это геноцид, <a href="#" class="console__username" ng-model="user.name"></a>
   </p>
   <p class="console__links">
     <a href="#" class="console__link">Жертвенник</a>
