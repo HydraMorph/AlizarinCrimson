@@ -3,23 +3,31 @@
 angular.module('trigger')
   .directive('usersOnline', function(Client) {
     return {
-      scope: true,
       restrict: 'E',
       templateUrl: '../components/online/_template.html',
-      controller:function($scope, socket) {}
+      transclude: true,
+      controller:function($scope, socket) {},
+      link: function($scope, element, Client) {
+//        console.log('uo', Client.channel.users);
+      }
     };
   })
-  .controller('OnlineCtrl', ['$scope', 'Client', function ($scope, Client) {
-    $scope.date = new Date();
-    Client.include('Online');
-    console.log(Client);
-    console.log(Client.channel.users);
-    $scope.users = Client.channel.users;
-    $scope.usersCount = Client.channel.users.length;
-    $(Client).bind('offuser', function(event, data) {
-      console.log(data);
-    });
-    $(Client).bind('newuser', function(event, data) {
-      console.log(data);
-    });
+  .controller('OnlineCtrl', ['$scope', '$rootScope' , 'Client', function ($scope, $rootScope, Client) {
+//    console.log(Client);
+    $scope.users = [];
+    $scope.$watch(function() {
+      return $rootScope.welcome;
+    }, function() {
+      if ($rootScope.welcome == true) {
+        $scope.users = Client.channel.users;
+        $scope.usersCount = Client.channel.users.length;
+      }
+      $scope.welcome = $rootScope.welcome;
+    }, true);
+
+//    $scope.loadUsers = function() {
+//      console.log('loadUsers', Client);
+//      console.log($rootScope.client);
+//      $scope.usersCount = $rootScope.client.channel.users.length;
+//    }
   }]);

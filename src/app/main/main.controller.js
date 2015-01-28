@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('trigger')
-  .controller('MainCtrl', function ($scope) {})
+  .controller('MainCtrl', function ($scope, Client) {})
 
 
 

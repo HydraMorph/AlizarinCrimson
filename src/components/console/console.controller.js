@@ -7,39 +7,37 @@ angular.module('trigger')
       'active': 0
     };
     $scope.user = {
-      'name': '',
+      'name': '%username%',
       'uplim': 0
     };
 
-
-    $scope.data = function() {
-      console.log(Client);
-    }
-
-    Client.init(location.host);
-    $(Client).bind('welcome', function(event, data) {
-      Client.channel = data.channels[0];
-      console.log(data.channels[0]);
-    });
-
-    $(Client).bind('listners', function(event, data) {
-      $scope.users.listeners = data.l;
-      $scope.users.active = data.a;
-    });
-    console.log(Client);
+    $scope.$watch(function() {
+      return $rootScope.welcome;
+    }, function() {
+      if ($rootScope.welcome == true) {
+        $(Client).bind('updatelimits', function(event, data) {
+          $scope.user.uplim = data.t;
+        });
+      }
+      $scope.welcome = $rootScope.welcome;
+    }, true);
 
     $scope.$watch(function() {
       return $rootScope.isSigned;
     }, function() {
+      if ($rootScope.isSigned == true) {
+        $scope.user.name = Client.user.n;
+        $scope.user.uplim = Client.user.t;
+        $(Client).bind('updatelimits', function(event, data) {
+          $scope.user.uplim = data.t;
+        });
+      }
       $scope.isSigned = $rootScope.isSigned;
     }, true);
 
-    $(Client).bind('updatelimits', function(event, data) {
-      $scope.user.name = Client.user.n;
-      $scope.user.uplim = Client.user.t;
-    });
-
-
+    $scope.data = function() {
+      console.log(Client);
+    }
 
     $scope.showLoginModal = function(ev) {
       $mdDialog.show({

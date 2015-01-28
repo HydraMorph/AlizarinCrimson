@@ -11,7 +11,7 @@ angular.module('trigger')
 //      controller:function($scope, socket) {}
 //    };
 //  })
-  .controller('CurrentCtrl', ['$scope', '$interval', 'Client', function($scope, $interval, Client) {
+  .controller('CurrentCtrl', ['$scope', '$rootScope', '$interval', 'Client', function($scope, $rootScope, $interval, Client) {
     $scope.mode = 'query';
     $scope.determinateValue = 0;
     $scope.determinateValue2 = 0;
@@ -27,21 +27,28 @@ angular.module('trigger')
       $scope.mode = ($scope.mode == 'query' ? 'determinate' : 'query');
     }, 7200, 0, true);
 
-    Client.include();
-    console.log('Current', Client);
-    $scope.current = Client.channel.current;
-    $(Client).bind('newcurrent', function(event, data) {
-      Client.channel.current = data.track;
-      $scope.current = data.track;
-      console.log('newcurrent', data);
-    });
-    $(Client).bind('trackupdate', function(event, data) {
-      if (data.current) {
-        data.t.current = true;
+    $scope.$watch(function() {
+      return $rootScope.welcome;
+    }, function() {
+      if ($rootScope.welcome == true) {
+        $scope.current = Client.channel.current;
+        console.log('welcooome');
+        $(Client).bind('newcurrent', function(event, data) {
+          Client.channel.current = data.track;
+          $scope.current = data.track;
+          console.log('newcurrent', data);
+        });
       }
-      $scope.current = data;
-      console.log(data);
-    });
+      $scope.welcome = $rootScope.welcome;
+    }, true);
+//    Client.include();
+//    $(Client).bind('trackupdate', function(event, data) {
+//      if (data.current) {
+//        data.t.current = true;
+//      }
+//      $scope.current = data;
+//      console.log(data);
+//    });
 
 //      if (data.chid == Client.channel.chid) {
 //        setCurrent(data.track);

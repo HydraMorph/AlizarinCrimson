@@ -11,8 +11,18 @@ app.filter('reverse', function() {
   };
 });
 
-app.run(function ($rootScope) {
+app.run(function ($rootScope, Client) {
   $rootScope.isSigned = false;
+  $rootScope.welcome = false;
+  Client.init(location.host);
+  $(Client).bind('welcome', function(event, data) {
+    Client.channel = data.channels[0];
+//    $rootScope.client.channel = data.channels[0];
+    $rootScope.welcome = true;
+    console.log('welcome', data.channels[0]);
+  });
+  $rootScope.client = Client;
+  console.log($rootScope.client);
 });
 
 
@@ -51,6 +61,7 @@ app.service('Client', function ($log) {
   this.include = function(ctrl) {
     console.log('include ' + ctrl);
   }
+  this.welcome = false;
   this.init = function (host) {
     console.log('init');
     this.socket = io('http://trigger.fm');
