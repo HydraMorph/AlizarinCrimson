@@ -5,6 +5,12 @@ var app = angular.module('trigger', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSan
 app.value('nickName', 'true');
 app.value('password', '09e7881117ecd5e66723322ef5a6f4e0');
 
+app.filter('reverse', function() {
+  return function(items) {
+    return items.slice().reverse();
+  };
+});
+
 app.run(function ($rootScope) {
   $rootScope.isSigned = false;
 });
@@ -42,6 +48,9 @@ app.service('Client', function ($log) {
   this.callbacks = {};
   this.chat = null;
   this.trackscache = [];
+  this.include = function(ctrl) {
+    console.log('include ' + ctrl);
+  }
   this.init = function (host) {
     console.log('init');
     this.socket = io('http://trigger.fm');

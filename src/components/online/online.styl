@@ -24,7 +24,7 @@
   margin-left 6px
   text-transform none
   border-radius 50% !important
-  background-color #eba400
+  background-color #aaa
   color #fff
   font-size 9px
   & .md-button-inner
@@ -33,8 +33,8 @@
 .user__2chat
   display inline
   font-size 12px
-  color #aaa !important
-  text-transform capitalize
+  color #aaa
+  text-transform none
   white-space nowrap
   overflow hidden
   text-overflow ellipsis
@@ -43,3 +43,10 @@
   &:hover
     background-color transparent !important
     text-decoration underline
+
+.online__item
+  &.active
+    & .user__2profile
+      background-color #eba400
+    & .user__2chat
+      color #eba400

@@ -12,10 +12,19 @@ angular.module('trigger')
     };
 
 
+    $scope.data = function() {
+      console.log(Client);
+    }
+
     Client.init(location.host);
     $(Client).bind('welcome', function(event, data) {
       Client.channel = data.channels[0];
       console.log(data.channels[0]);
+    });
+
+    $(Client).bind('listners', function(event, data) {
+      $scope.users.listeners = data.l;
+      $scope.users.active = data.a;
     });
     console.log(Client);
 
@@ -25,21 +34,12 @@ angular.module('trigger')
       $scope.isSigned = $rootScope.isSigned;
     }, true);
 
-
-//    $scope.$watch(Client.user, function() {
-//      $scope.user.name = Client.user.n;
-//      $scope.user.uplim = Client.user.t;
-//   });
-
-    if ($rootScope.isSigned == true) {
-    } else {
-      $scope.username = '';
-    }
-
-    $(Client).bind('listners', function(event, data) {
-      $scope.users.listeners = data.l;
-      $scope.users.active = data.a;
+    $(Client).bind('updatelimits', function(event, data) {
+      $scope.user.name = Client.user.n;
+      $scope.user.uplim = Client.user.t;
     });
+
+
 
     $scope.showLoginModal = function(ev) {
       $mdDialog.show({
