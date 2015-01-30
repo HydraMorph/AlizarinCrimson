@@ -12,31 +12,40 @@ angular.module('trigger')
     };
 
     $scope.$watch(function() {
-      return $rootScope.welcome;
+      return $rootScope.load.welcome;
     }, function() {
-      if ($rootScope.welcome == true) {
-        $(Client).bind('updatelimits', function(event, data) {
-          $scope.user.uplim = data.t;
+      if ($rootScope.load.welcome == true) {
+        $scope.users.listeners = Client.channel.lst;
+        $scope.users.active = Client.channel.a;
+        $(Client).bind('listners', function(event, data) {
+          $scope.users.listeners = data.l;
+          $scope.users.active = data.a;
+          console.log('listners', data);
         });
       }
-      $scope.welcome = $rootScope.welcome;
+      $scope.load.welcome = $rootScope.load.welcome;
     }, true);
 
     $scope.$watch(function() {
-      return $rootScope.isSigned;
+      return $rootScope.load.signed;
     }, function() {
-      if ($rootScope.isSigned == true) {
+      if ($rootScope.load.signed == true) {
         $scope.user.name = Client.user.n;
         $scope.user.uplim = Client.user.t;
         $(Client).bind('updatelimits', function(event, data) {
           $scope.user.uplim = data.t;
         });
       }
-      $scope.isSigned = $rootScope.isSigned;
+      $scope.load.signed = $rootScope.load.signed;
     }, true);
 
     $scope.data = function() {
-      console.log(Client);
+      console.log('data', Client);
+//      function fillchannelsdata(d) {
+//        console.log('d', d);
+//      }
+//      Client.getChannels(fillchannelsdata);
+//      console.log('fillchannelsdata', Client.getChannels(fillchannelsdata));
     }
 
     $scope.showLoginModal = function(ev) {

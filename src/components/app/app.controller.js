@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('trigger')
-  .controller('AppCtrl', ['$scope', 'socket', function ($scope, $rootScope, $timeout, $mdSidenav, $log, md5, socketm) {
+  .controller('AppCtrl', function ($scope, $timeout, $mdSidenav) {
     $scope.play = true;
     $scope.togglePlay = function() {
       $scope.play = !$scope.play;
@@ -12,13 +12,13 @@ angular.module('trigger')
     $scope.toggleRight = function () {
       $mdSidenav('right').toggle();
     };
-  }])
-  .controller('LeftCtrl', function ($scope, $timeout, $mdSidenav, $log) {
+  })
+  .controller('LeftCtrl', function ($scope, $timeout, $mdSidenav) {
     $scope.close = function () {
       $mdSidenav('left').close();
     };
   })
-  .controller('RightCtrl', function ($scope, $timeout, $mdSidenav, $log) {
+  .controller('RightCtrl', function ($scope, $timeout, $mdSidenav) {
     $scope.close = function () {
       $mdSidenav('right').close();
     };

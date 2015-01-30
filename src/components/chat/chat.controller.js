@@ -1,8 +1,18 @@
 'use strict';
 
 angular.module('trigger')
-  .controller('ChatCtrl', function ($scope, Client) {
+  .controller('ChatCtrl', function ($scope, $rootScope, Client) {
     $scope.date = new Date();
+    $scope.$watch(function() {
+      return $rootScope.load.signed;
+    }, function() {
+      if ($rootScope.load.signed == true) {
+        $(Client).bind('message', function(event, data) {
+          console.log(data);
+        });
+      }
+      $scope.load.signed = $rootScope.load.signed;
+    }, true);
     $scope.messages = [
       {
         'chid': 1,

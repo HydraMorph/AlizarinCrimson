@@ -34,7 +34,7 @@ angular.module('trigger')
       return ret;
     };
   })
-  .controller('PlaylistCtrl', function ($scope, $mdSidenav) {
+  .controller('PlaylistCtrl', function ($scope, $rootScope, $mdSidenav, Client) {
     $scope.reverse = false;
     var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
     if (width >= 960) {
@@ -46,191 +46,24 @@ angular.module('trigger')
     $scope.toggleRight = function () {
       $mdSidenav('right').toggle();
     };
-    $scope.playlist = [
-      {
-        'a': 'P.O.D.',
-        't': 'Youth of the Nation',
-        's': 'Shepherd',
-        'id': 304818,
-        'sid': 2043,
-        'tt': 23,
-        'i': '',
-        'tg': [],
-        'p': [
-          {
-            'v': 1,
-            'vid': 2043,
-            'n': 'Shepherd'
-          }
-        ],
-        'n': [],
-        'r': 10,
-        'src': 'assets/images/nocover.png',
-        'vote': 0
-      },
-      {
-        'a': 'Syberian Beast meets Mr.Moore',
-        't': 'Wien (Original Mix)',
-        's': 'Shepherd',
-        'id': 304819,
-        'sid': 2043,
-        'tt': 218,
-        'i': '',
-        'tg': [],
-        'p': [
-          {
-            'v': 1,
-            'vid': 2481,
-            'n': 'Renar'
-          }
-        ],
-        'n': [],
-        'r': 7,
-        'src': 'assets/images/nocover.png',
-        'vote': 0
-      },
-      {
-        'a': 'Vitalic',
-        't': ' Poison Lips',
-        's': 'Shepherd',
-        'id': 304820,
-        'sid': 2043,
-        'tt': 236,
-        'i': '',
-        'tg': [],
-        'p': [
-          {
-            'v': 1,
-            'vid': 2043,
-            'n': 'Shepherd'
-          }
-        ],
-        'n': [],
-        'r': 12,
-        'src': 'assets/images/nocover.png',
-        'vote': 0
-      },
-      {
-        'a': 'Arure',
-        't': 'Civili Builders',
-        's': 'Fabeltier',
-        'id': 304805,
-        'sid': 1499,
-        'tt': 186,
-        'i': '',
-        'tg': [],
-        'p': [],
-        'n': [],
-        'r': 0,
-        'src': 'assets/images/nocover.png',
-        'vote': 0
-      },
-      {
-        'a': 'The Captain Flatcap',
-        't': 'In the Summertime (Swing Hop Mix)',
-        's': 'Fabeltier',
-        'id': 304806,
-        'sid': 1499,
-        'tt': 266,
-        'i': '',
-        'tg': [],
-        'p': [],
-        'n': [],
-        'r': -2,
-        'src': 'assets/images/nocover.png',
-        'vote': 0
-      },
-      {
-        'a': 'Martins Garden',
-        't': 'Athos (Sin vocales)',
-        's': 'Fabeltier',
-        'id': 304807,
-        'sid': 1499,
-        'tt': 434,
-        'i': '',
-        'tg': [],
-        'p': [],
-        'n': [],
-        'r': 1,
-        'src': 'assets/images/nocover.png',
-        'vote': 0
-      },
-      {
-        'a': 'Tack',
-        't': 'Junky Bluesy',
-        's': 'Fabeltier',
-        'id': 304808,
-        'sid': 1499,
-        'tt': 330,
-        'i': '',
-        'tg': [],
-        'p': [],
-        'n': [],
-        'r': 7,
-        'src': 'assets/images/nocover.png',
-        'vote': 0
-      },
-      {
-        'a': 'Tribone',
-        't': 'Proper Stomper',
-        's': 'Fabeltier',
-        'id': 304809,
-        'sid': 1499,
-        'tt': 379,
-        'i': '',
-        'tg': [],
-        'p': [],
-        'n': [],
-        'r': 5,
-        'src': 'assets/images/nocover.png',
-        'vote': 0
-      },
-      {
-        'a': 'Poppa Doses ',
-        't': 'Ruff Up (The Widdler RMX)',
-        's': 'Fabeltier',
-        'id': 304810,
-        'sid': 1499,
-        'tt': 268,
-        'i': '',
-        'tg': [],
-        'p': [],
-        'n': [],
-        'r': 5,
-        'src': 'assets/images/nocover.png',
-        'vote': 0
-      },
-      {
-        'a': 'Poppa Doses ',
-        't': 'Ruff Up (The Widdler RMX)',
-        's': 'Fabeltier',
-        'id': 304810,
-        'sid': 1499,
-        'tt': 268,
-        'i': '',
-        'tg': [],
-        'p': [],
-        'n': [],
-        'r': 5,
-        'src': 'assets/images/nocover.png',
-        'vote': 0
-      },
-      {
-        'a': 'Poppa Doses ',
-        't': 'Ruff Up (The Widdler RMX)',
-        's': 'Fabeltier',
-        'id': 304810,
-        'sid': 1499,
-        'tt': 268,
-        'i': '',
-        'tg': [],
-        'p': [],
-        'n': [],
-        'r': 5,
-        'src': 'assets/images/nocover.png',
-        'vote': 0
-      }
-    ];
+
+//    function fillchannelsdata(d) {
+//      console.log('fillchannelsdataPlaylist',d);
+//    }
+//    Client.getChannels(fillchannelsdata);
+//    console.log(Client.getChannels(fillchannelsdata));
+
+    $scope.playlist = [];
+//    $scope.$watch(function() {
+//        return $rootScope.load.playlist;
+//      }, function() {
+//        if ($rootScope.load.playlist == true) {
+//          $scope.playlist = Client.channel.pls;
+//          console.log('playliiist', Client.channel.pls);
+//        }
+//        $scope.load.playlist = $rootScope.load.playlist;
+//      }, true);
+
     $scope.voteUp = function(id) {
       client.addvote({'id': id, 'v': client.user.w});
     };

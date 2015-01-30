@@ -11,7 +11,7 @@ angular.module('trigger')
 //      controller:function($scope, socket) {}
 //    };
 //  })
-  .controller('CurrentCtrl', ['$scope', '$rootScope', '$interval', 'Client', function($scope, $rootScope, $interval, Client) {
+  .controller('CurrentCtrl', function($scope, $rootScope, $interval, Client) {
     $scope.mode = 'query';
     $scope.determinateValue = 0;
     $scope.determinateValue2 = 0;
@@ -28,18 +28,18 @@ angular.module('trigger')
     }, 7200, 0, true);
 
     $scope.$watch(function() {
-      return $rootScope.welcome;
+      return $rootScope.load.welcome;
     }, function() {
-      if ($rootScope.welcome == true) {
+      if ($rootScope.load.welcome == true) {
         $scope.current = Client.channel.current;
-        console.log('welcooome');
+        console.log('welcooome', Client);
         $(Client).bind('newcurrent', function(event, data) {
           Client.channel.current = data.track;
           $scope.current = data.track;
           console.log('newcurrent', data);
         });
       }
-      $scope.welcome = $rootScope.welcome;
+//      $scope.load.welcome = $rootScope.load.welcome;
     }, true);
 //    Client.include();
 //    $(Client).bind('trackupdate', function(event, data) {
@@ -56,4 +56,4 @@ angular.module('trigger')
 //      }
 //      $('#info .content.channels #' + data.chid + ' .current').html('<div class="cap">РЎРµР№С‡Р°СЃ:</div><div class="artist">' + data.track.a + '</div><div class="title">' + data.track.t + '</div><span><a href="http://vk.com/audio?q=' + encodeURIComponent(data.track.a) + ' - ' + encodeURIComponent(data.track.t) + '" target="_blank">>vk</a></span>');
 
-  }]);
+  });

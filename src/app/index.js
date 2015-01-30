@@ -12,17 +12,34 @@ app.filter('reverse', function() {
 });
 
 app.run(function ($rootScope, Client) {
-  $rootScope.isSigned = false;
-  $rootScope.welcome = false;
+  $rootScope.load = {
+    'signed': false,
+    'welcome': false,
+    'playlist': false
+  };
   Client.init(location.host);
   $(Client).bind('welcome', function(event, data) {
     Client.channel = data.channels[0];
 //    $rootScope.client.channel = data.channels[0];
-    $rootScope.welcome = true;
     console.log('welcome', data.channels[0]);
+    Client.goChannel(1, function q (data) {console.log('Q' ,data);});
+    $rootScope.load.welcome = true;
   });
+function q (data) {console.log('Q' ,data);};
+//  $rootScope.$watch(function() {
+//      return $rootScope.load.welcome;
+//    }, function() {
+//      if ($rootScope.load.welcome == true) {
+//        Client.goChannel(1, $rootScope.load.playlist = true);
+//      }
+//    }, true);
+//  function fillchannelsdata(d) {
+//    console.log('d', d);
+//  }
+//  Client.getChannels(fillchannelsdata);
+//  console.log('fillchannelsdata', Client.getChannels(fillchannelsdata));
+
   $rootScope.client = Client;
-  console.log($rootScope.client);
 });
 
 
@@ -61,7 +78,6 @@ app.service('Client', function ($log) {
   this.include = function(ctrl) {
     console.log('include ' + ctrl);
   }
-  this.welcome = false;
   this.init = function (host) {
     console.log('init');
     this.socket = io('http://trigger.fm');
@@ -95,12 +111,12 @@ app.service('Client', function ($log) {
         }
       }
       cl.channel.pls.push(track);
-      cl.channel.pls.sort(sortFunction);
+//      cl.channel.pls.sort(sortFunction);
       $(cl).trigger('addtrack', data);
-      getcover(track.a, track.t, function(src) {
-        track.src = src;
-        $(cl).trigger('cover', {id: data.track.id, 'src': src});
-      });
+//      getcover(track.a, track.t, function(src) {
+//        track.src = src;
+//        $(cl).trigger('cover', {id: data.track.id, 'src': src});
+//      });
     });
 
     socket.on('removetrack', function(data) {
@@ -175,18 +191,20 @@ app.service('Client', function ($log) {
       var i = 0;
       var gg = function() {
         var tr = cl.channel.pls[i];
-        getcover(tr.a, tr.t, function(src) {
-          tr.src = src;
-          $(cl).trigger('cover', {id: tr.id, 'src': src});
-          i += 1;
-          if (i < cl.channel.pls.length) {
-            gg();
-          }
-        });
+//        getcover(tr.a, tr.t, function(src) {
+//          tr.src = src;
+//          $(cl).trigger('cover', {id: tr.id, 'src': src});
+//          i += 1;
+//          if (i < cl.channel.pls.length) {
+//            gg();
+//          }
+//        });
       };
       data.changed = true;
-      data.hi = streampath + data.hi;
-      data.low = streampath + data.low;
+//      data.hi = streampath + data.hi;
+//      data.low = streampath + data.low;
+      data.hi = data.hi;
+      data.low = data.low;
       cl.channel = data;
       var track = cl.channel.current;
       if (track) {
@@ -226,18 +244,18 @@ app.service('Client', function ($log) {
           }
         }
       }
-      getcover(data.current.a, data.current.t, function(src) {
-        data.current.src = src;
-        $(cl).trigger('cover', {id: data.current.id, 'src': src});
-      });
-      cl.callbacks.channeldata(cl.channel);
-      if (cl.channel.pls.length > 0) {
-        gg();
-      }
+//      getcover(data.current.a, data.current.t, function(src) {
+//        data.current.src = src;
+//        $(cl).trigger('cover', {id: data.current.id, 'src': src});
+//      });
+//      cl.callbacks.channeldata(cl.channel);
+//      if (cl.channel.pls.length > 0) {
+//        gg();
+//      }
     });
 
     socket.on('message', function(data) {
-      cl.chat.m.push(data);
+//      cl.chat.m.push(data);
       $(cl).trigger('message', data);
     });
 
@@ -276,26 +294,26 @@ app.service('Client', function ($log) {
     });
 
     socket.on('newuser', function(data) {
-      if (cl.chat) {
-        var user = {
-          id: data.uid,
-          n: data.n,
-          a: data.a
-        };
-        cl.chat.u.push(user);
+//      if (cl.chat) {
+//        var user = {
+//          id: data.uid,
+//          n: data.n,
+//          a: data.a
+//        };
+//        cl.chat.u.push(user);
         $(cl).trigger('newuser', data);
-      }
+//      }
     });
 
     socket.on('offuser', function(data) {
-      if (cl.chat) {
-        for (var us in cl.chat.u) {
-          if (cl.chat.u[us].id == data.uid) {
-            cl.chat.u.splice(us, 1);
-          }
-        }
+//      if (cl.chat) {
+//        for (var us in cl.chat.u) {
+//          if (cl.chat.u[us].id == data.uid) {
+//            cl.chat.u.splice(us, 1);
+//          }
+//        }
         $(cl).trigger('offuser', data);
-      }
+//      }
     });
 
     socket.on('playlist', function(data) {
@@ -334,50 +352,50 @@ app.service('Client', function ($log) {
     });
 
     socket.on('uptr', function(data) {
-      if (data.t.id == cl.channel.current.id) {
-        var src = cl.channel.current.src;
-        cl.channel.current = data.t;
-        cl.channel.current.scr = src;
-        var track = cl.channel.current;
-        track.vote = 0;
-        for (var v in track.n) {
-          if (track.n[v].vid == cl.user.id) {
-            track.vote = track.n[v].v;
-            break;
-          }
-        }
-        for (var v in track.p) {
-          if (track.p[v].vid == cl.user.id) {
-            track.vote = track.p[v].v;
-            break;
-          }
-        }
-        data.current = true;
-      } else {
-        for (var t in cl.channel.pls) {
-          if (cl.channel.pls[t].id == data.t.id) {
-            cl.channel.pls[t] = data.t;
-            var track = cl.channel.pls[t];
-            track.vote = 0;
-            for (var v in track.n) {
-              if (track.n[v].vid == cl.user.id) {
-                track.vote = track.n[v].v;
-                break;
-              }
-            }
-            for (var v in track.p) {
-              if (track.p[v].vid == cl.user.id) {
-                track.vote = track.p[v].v;
-                break;
-              }
-            }
-            cl.channel.pls.sort(sortFunction);
-            data.current = false;
-            break;
-          }
-        }
-      }
-      $(cl).trigger('trackupdate', data);
+//      if (data.t.id == cl.channel.current.id) {
+//        var src = cl.channel.current.src;
+//        cl.channel.current = data.t;
+//        cl.channel.current.scr = src;
+//        var track = cl.channel.current;
+//        track.vote = 0;
+//        for (var v in track.n) {
+//          if (track.n[v].vid == cl.user.id) {
+//            track.vote = track.n[v].v;
+//            break;
+//          }
+//        }
+//        for (var v in track.p) {
+//          if (track.p[v].vid == cl.user.id) {
+//            track.vote = track.p[v].v;
+//            break;
+//          }
+//        }
+//        data.current = true;
+//      } else {
+//        for (var t in cl.channel.pls) {
+//          if (cl.channel.pls[t].id == data.t.id) {
+//            cl.channel.pls[t] = data.t;
+//            var track = cl.channel.pls[t];
+//            track.vote = 0;
+//            for (var v in track.n) {
+//              if (track.n[v].vid == cl.user.id) {
+//                track.vote = track.n[v].v;
+//                break;
+//              }
+//            }
+//            for (var v in track.p) {
+//              if (track.p[v].vid == cl.user.id) {
+//                track.vote = track.p[v].v;
+//                break;
+//              }
+//            }
+////            cl.channel.pls.sort(sortFunction);
+//            data.current = false;
+//            break;
+//          }
+//        }
+//      }
+//      $(cl).trigger('trackupdate', data);
     });
   };
 
