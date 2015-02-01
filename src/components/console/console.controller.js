@@ -30,6 +30,7 @@ angular.module('trigger')
       return $rootScope.load.signed;
     }, function() {
       if ($rootScope.load.signed == true) {
+        console.log('Client.user', Client.user);
         $scope.user.name = Client.user.n;
         $scope.user.uplim = Client.user.t;
         $(Client).bind('updatelimits', function(event, data) {

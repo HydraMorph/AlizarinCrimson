@@ -42,6 +42,14 @@ angular.module('trigger')
           $scope.users.push(user);
           console.log('newuser', data);
         });
+        $(Client).bind('userupdate', function(event, data) {
+          for (var us in $scope.users) {
+            if ($scope.users[us].id == data.uid) {
+              $scope.users[us].a = data.a;
+            }
+          }
+          console.log('userupdate', data);
+        });
       }
       $scope.load.welcome = $rootScope.load.welcome;
     }, true);

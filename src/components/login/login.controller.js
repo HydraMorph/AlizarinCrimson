@@ -9,7 +9,7 @@ angular.module('trigger')
         console.log(data.error);
       } else {
         Client.user = data.user;
-        $rootScope.isSigned = true;
+        $rootScope.load.signed = true;
         $mdDialog.hide();
       }
     };

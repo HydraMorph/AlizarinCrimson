@@ -11,6 +11,19 @@ app.filter('reverse', function() {
   };
 });
 
+app.directive('ngEnter', function() {
+  return function(scope, element, attrs) {
+    element.bind("keydown keypress", function(event) {
+      if(event.which === 13) {
+        scope.$apply(function(){
+          scope.$eval(attrs.ngEnter, {'event': event});
+        });
+        event.preventDefault();
+      }
+    });
+  };
+});
+
 app.run(function ($rootScope, Client) {
   $rootScope.load = {
     'signed': false,
@@ -161,14 +174,14 @@ app.service('Client', function ($log) {
     });
 
     socket.on('usupd', function(data) {
-      if (cl.chat) {
-        for (var us in cl.chat.u) {
-          if (cl.chat.u[us].id == data.uid) {
-            cl.chat.u[us].a = data.a;
-          }
-        }
+//      if (cl.chat) {
+//        for (var us in cl.chat.u) {
+//          if (cl.chat.u[us].id == data.uid) {
+//            cl.chat.u[us].a = data.a;
+//          }
+//        }
         $(cl).trigger('userupdate', data);
-      }
+//      }
     });
 
     socket.on('uplim', function(data) {
