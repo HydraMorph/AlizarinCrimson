@@ -12,7 +12,7 @@ angular.module('trigger')
 //      }
 //    };
 //  })
-  .controller('OnlineCtrl', function ($scope, $rootScope, Client) {
+  .controller('OnlineCtrl', function ($scope, $rootScope, Client, socket) {
 //    console.log(Client);
     $scope.users = [];
     $scope.$watch(function() {
@@ -30,7 +30,7 @@ angular.module('trigger')
               $scope.users.splice(us, 1);
             }
           }
-          console.log('offuser', data);
+//          console.log('offuser', data);
         });
         $(Client).bind('newuser', function(event, data) {
           $scope.usersCount = $scope.usersCount + 1;
@@ -40,7 +40,7 @@ angular.module('trigger')
             a: data.a
           }
           $scope.users.push(user);
-          console.log('newuser', data);
+//          console.log('newuser', data);
         });
         $(Client).bind('userupdate', function(event, data) {
           for (var us in $scope.users) {
@@ -48,7 +48,7 @@ angular.module('trigger')
               $scope.users[us].a = data.a;
             }
           }
-          console.log('userupdate', data);
+//          console.log('userupdate', data);
         });
       }
       $scope.load.welcome = $rootScope.load.welcome;

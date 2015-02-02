@@ -35,23 +35,9 @@ app.run(function ($rootScope, Client) {
     Client.channel = data.channels[0];
 //    $rootScope.client.channel = data.channels[0];
     console.log('welcome', data.channels[0]);
-    Client.goChannel(1, function q (data) {console.log('Q' ,data);});
+    Client.goChannel(1, console.log('Q' ,data));
     $rootScope.load.welcome = true;
   });
-function q (data) {console.log('Q' ,data);};
-//  $rootScope.$watch(function() {
-//      return $rootScope.load.welcome;
-//    }, function() {
-//      if ($rootScope.load.welcome == true) {
-//        Client.goChannel(1, $rootScope.load.playlist = true);
-//      }
-//    }, true);
-//  function fillchannelsdata(d) {
-//    console.log('d', d);
-//  }
-//  Client.getChannels(fillchannelsdata);
-//  console.log('fillchannelsdata', Client.getChannels(fillchannelsdata));
-
   $rootScope.client = Client;
 });
 
@@ -257,6 +243,7 @@ app.service('Client', function ($log) {
           }
         }
       }
+//      cl.callbacks.channeldata(data);
 //      getcover(data.current.a, data.current.t, function(src) {
 //        data.current.src = src;
 //        $(cl).trigger('cover', {id: data.current.id, 'src': src});
@@ -408,7 +395,7 @@ app.service('Client', function ($log) {
 //          }
 //        }
 //      }
-//      $(cl).trigger('trackupdate', data);
+      $(cl).trigger('trackupdate', data);
     });
   };
 

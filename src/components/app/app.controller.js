@@ -1,7 +1,12 @@
 'use strict';
 
 angular.module('trigger')
-  .controller('AppCtrl', function ($scope, $timeout, $mdSidenav) {
+  .controller('AppCtrl', function ($scope, $rootScope, $timeout, $mdSidenav, socket, Client) {
+//    socket.on('channeldata', function (data) {
+//      console.log('playlist', data.pls);
+//      Client.channel.pls = data.pls;
+//      $rootScope.load.playlist = true;
+//    });
     $scope.play = true;
     $scope.togglePlay = function() {
       $scope.play = !$scope.play;

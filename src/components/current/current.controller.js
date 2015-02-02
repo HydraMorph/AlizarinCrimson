@@ -33,6 +33,7 @@ angular.module('trigger')
       if ($rootScope.load.welcome == true) {
         $scope.current = Client.channel.current;
         console.log('welcooome', Client);
+        $rootScope.load.playlist = true;
         $(Client).bind('newcurrent', function(event, data) {
           Client.channel.current = data.track;
           $scope.current = data.track;

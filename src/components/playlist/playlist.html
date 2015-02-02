@@ -29,12 +29,12 @@
           <img ng-src="{{track.src}}" class="track__img" alt="">
         </div>
         <div class="track__content">
-          <h3 class="track__artist">{{track.t}}</h3>
-          <h4 class="track__title">{{track.a}}</h4>
+          <h3 class="track__artist">{{track.a}}</h3>
+          <h4 class="track__title">{{track.t}}</h4>
         </div>
         <div class="track__tags">
           <span class="track__tag" ng-repeat="tag in track.tg">
-            {{tag}}
+            {{tag.n}}
           </span>
         </div>
         <div class="track__time">
