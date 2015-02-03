@@ -103,14 +103,12 @@ angular.module('trigger')
       for (var vr in data.t.p) {
         if (data.t.p[vr].vid == Client.user.id) {
           data.t.vote = Client.user.w;
-          console.log('voted+', data.t.p[vr]);
           break;
         }
       }
       for (var vr in data.t.n) {
         if (data.t.n[vr].vid == Client.user.id) {
           data.t.vote = -1*Client.user.w;
-          console.log('voted-', data.t.n[vr]);
           break;
         }
       }
@@ -150,8 +148,8 @@ angular.module('trigger')
       var plLength = $scope.playlist.length;
       for (var i = 0; i < plLength; i++) {
         if ($scope.playlist[i].id == data.track.id) {
-          console.log('removetrack', data.track.id);
-          $scope.users.splice(i, 1);
+          console.log('removetrack', i, data.track.id);
+          $scope.playlist.splice(i, 1);
           break;
         }
       }
