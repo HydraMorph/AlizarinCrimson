@@ -18,7 +18,8 @@ angular.module('trigger')
       'password': ''
     };
     $scope.login = function () {
-      Client.login($scope.user.name, md5.createHash($scope.user.password), processLogin);
+//      Client.login($scope.user.name, md5.createHash($scope.user.password), processLogin);
+      Client.login('DonSinDRom', md5.createHash('3a12a6'), processLogin);
     };
     $scope.hide = function() {
       $mdDialog.hide();

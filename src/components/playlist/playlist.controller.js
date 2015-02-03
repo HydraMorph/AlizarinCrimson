@@ -47,24 +47,16 @@ angular.module('trigger')
       $mdSidenav('right').toggle();
     };
 
-//    function fillchannelsdata(d) {
-//      console.log('fillchannelsdataPlaylist',d);
-//    }
-//    Client.getChannels(fillchannelsdata);
-//    console.log(Client.getChannels(fillchannelsdata));
-
+    $scope.load.signed = false;
 
     $scope.playlist = [];
     socket.on('channeldata', function (data) {
-//      if ($rootScope.load.playlist == false) {
       console.log('playlist', data.pls);
       $scope.playlist = data.pls;
       var plsL = data.pls.length;
       for (var i = 0; i < plsL; i++) {
         $scope.playlist[i].vote = 0;
       }
-//        $rootScope.load.playlist = true;
-//      }
     });
 
     function checkVotes() {
@@ -83,9 +75,7 @@ angular.module('trigger')
             break;
           }
         }
-
       }
-
     }
 
     $scope.$watch(function() {
@@ -96,63 +86,8 @@ angular.module('trigger')
       }
       $scope.load.signed = $rootScope.load.signed;
     }, true);
-//    $scope.$watch(function() {
-//        return $rootScope.load.playlist;
-//      }, function() {
-//        if ($rootScope.load.playlist == true) {
-//          $scope.playlist = Client.channel.pls;
-//          console.log('Client.channel.pls', Client.channel);
-//          console.log('playliiist', Client.channel.pls);
-//        }
-//        $scope.load.playlist = $rootScope.load.playlist;
-//      }, true);
 
-//    socket.on('uptr', function(data) {
-//      if (data.t.id == cl.channel.current.id) {
-//        var src = cl.channel.current.src;
-//        cl.channel.current = data.t;
-//        cl.channel.current.scr = src;
-//        var track = cl.channel.current;
-//        track.vote = 0;
-//        for (var v in track.n) {
-//          if (track.n[v].vid == cl.user.id) {
-//            track.vote = track.n[v].v;
-//            break;
-//          }
-//        }
-//        for (var v in track.p) {
-//          if (track.p[v].vid == cl.user.id) {
-//            track.vote = track.p[v].v;
-//            break;
-//          }
-//        }
-//        data.current = true;
-//      } else {
-//        for (var t in cl.channel.pls) {
-//          if (cl.channel.pls[t].id == data.t.id) {
-//            cl.channel.pls[t] = data.t;
-//            var track = cl.channel.pls[t];
-//            track.vote = 0;
-//            for (var v in track.n) {
-//              if (track.n[v].vid == cl.user.id) {
-//                track.vote = track.n[v].v;
-//                break;
-//              }
-//            }
-//            for (var v in track.p) {
-//              if (track.p[v].vid == cl.user.id) {
-//                track.vote = track.p[v].v;
-//                break;
-//              }
-//            }
-//            cl.channel.pls.sort(sortFunction);
-//            data.current = false;
-//            break;
-//          }
-//        }
-//      }
-//      $(cl).trigger('trackupdate', data);
-//    });
+
     $(Client).bind('trackupdate', function(event, data) {
       console.log('trackupdate', data.t);
       var plLength = $scope.playlist.length;
@@ -223,11 +158,17 @@ angular.module('trigger')
     });
 //
     $scope.voteUp = function(id) {
-      this.vote = Client.user.w;
-      Client.addvote({'id': id, 'v': Client.user.w});
+      if (this.track.vote == Client.user.w) {
+        Client.addvote({'id': id, 'v': 0});
+      } else {
+        Client.addvote({'id': id, 'v': Client.user.w});
+      }
     };
     $scope.voteDown = function(id) {
-      this.vote = -Client.user.w;
-      Client.addvote({'id': id, 'v': -Client.user.w});
+      if (this.track.vote == -Client.user.w) {
+        Client.addvote({'id': id, 'v': 0});
+      } else {
+        Client.addvote({'id': id, 'v': -Client.user.w});
+      }
     };
   });

@@ -35,6 +35,7 @@ angular.module('trigger')
         $scope.user.uplim = Client.user.t;
         $(Client).bind('updatelimits', function(event, data) {
           $scope.user.uplim = data.t;
+          console.log('updatelimits', data);
         });
       }
       $scope.load.signed = $rootScope.load.signed;
