@@ -57,12 +57,45 @@ angular.module('trigger')
     $scope.playlist = [];
     socket.on('channeldata', function (data) {
 //      if ($rootScope.load.playlist == false) {
-        console.log('playlist', data.pls);
-        $scope.playlist = data.pls;
+      console.log('playlist', data.pls);
+      $scope.playlist = data.pls;
+      var plsL = data.pls.length;
+      for (var i = 0; i < plsL; i++) {
+        $scope.playlist[i].vote = 0;
+      }
 //        $rootScope.load.playlist = true;
 //      }
     });
 
+    function checkVotes() {
+      var plsL = $scope.playlist.length;
+      var pls = [];
+      for (var i = 0; i < plsL; i++) {
+        for (var vr in $scope.playlist[i].p) {
+          if ($scope.playlist[i].p[vr].vid == Client.user.id) {
+            $scope.playlist[i].vote = 1;
+            break;
+          }
+        }
+        for (var vr in $scope.playlist[i].n) {
+          if ($scope.playlist[i].n[vr].vid == Client.user.id) {
+            $scope.playlist[i].vote = -1;
+            break;
+          }
+        }
+
+      }
+
+    }
+
+    $scope.$watch(function() {
+      return $rootScope.load.signed;
+    }, function() {
+      if ($rootScope.load.signed == true) {
+        checkVotes();
+      }
+      $scope.load.signed = $rootScope.load.signed;
+    }, true);
 //    $scope.$watch(function() {
 //        return $rootScope.load.playlist;
 //      }, function() {
@@ -132,6 +165,20 @@ angular.module('trigger')
           break;
         }
       }
+      for (var vr in data.t.p) {
+        if (data.t.p[vr].vid == Client.user.id) {
+          data.t.vote = Client.user.w;
+          console.log('voted+', data.t.p[vr]);
+          break;
+        }
+      }
+      for (var vr in data.t.n) {
+        if (data.t.n[vr].vid == Client.user.id) {
+          data.t.vote = -1*Client.user.w;
+          console.log('voted-', data.t.n[vr]);
+          break;
+        }
+      }
       if (data.current) {
         data.t.current = true;
       }
@@ -146,7 +193,20 @@ angular.module('trigger')
           break;
         }
       }
+
       if (isClone == false) {
+        for (var vr in data.track.p) {
+          if (data.track.p[vr].vid == Client.user.id) {
+            console.log('voted+', data.track.p[vr]);
+            break;
+          }
+        }
+        for (var vr in data.track.n) {
+          if (data.track.n[vr].vid == Client.user.id) {
+            console.log('voted-', data.track.p[vr]);
+            break;
+          }
+        }
         $scope.playlist.push(data.track);
       }
       console.log('addtrack', data.track);
@@ -163,10 +223,11 @@ angular.module('trigger')
     });
 //
     $scope.voteUp = function(id) {
-      console.log(Client);
+      this.vote = Client.user.w;
       Client.addvote({'id': id, 'v': Client.user.w});
     };
     $scope.voteDown = function(id) {
-      Client.addvote({'id': id, 'v': Client.user.w});
+      this.vote = -Client.user.w;
+      Client.addvote({'id': id, 'v': -Client.user.w});
     };
   });

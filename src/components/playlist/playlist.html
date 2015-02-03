@@ -40,15 +40,15 @@
         <div class="track__time">
           <span>+{{track.tt | readableTime}}</span>
         </div>
-        <div class="track__votes-block">
-          <md-button class="md-fab track__vote--up" aria-label="track-up" ng-click="voteUp(track.id)">
+        <div class="track__votes-block" ng-class="{ 'voted--up': track.vote > 0, 'voted--down': track.vote < 0 }">
+          <md-button class="md-fab track__vote--down" aria-label="track-up" ng-click="voteDown(track.id)">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
               <path d="M16.59 8.59l-4.59 4.58-4.59-4.58-1.41 1.41 6 6 6-6z"/>
               <path d="M0 0h24v24h-24z" fill="none"/>
             </svg>
           </md-button>
           <span class="track__rating">{{track.r}}</span>
-          <md-button class="md-fab track__vote--down" aria-label="track-down" ng-click="voteDown(track.id)">
+          <md-button class="md-fab track__vote--up" aria-label="track-down" ng-click="voteUp(track.id)">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
               <path d="M12 8l-6 6 1.41 1.41 4.59-4.58 4.59 4.58 1.41-1.41z"/>
               <path d="M0 0h24v24h-24z" fill="none"/>
