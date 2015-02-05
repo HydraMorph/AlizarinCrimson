@@ -12,36 +12,52 @@ angular.module('trigger')
 //    };
 //  })
   .controller('CurrentCtrl', function($scope, $rootScope, $interval, Client) {
-    $scope.mode = 'query';
-    $scope.determinateValue = 0;
-    $scope.determinateValue2 = 0;
-    $interval(function() {
-      $scope.determinateValue += 1;
-      $scope.determinateValue2 += 1.5;
-      if ($scope.determinateValue > 100) {
-        $scope.determinateValue = 0;
-        $scope.determinateValue2 = 0;
-      }
-    }, 100, 0, true);
-    $interval(function() {
-      $scope.mode = ($scope.mode == 'query' ? 'determinate' : 'query');
-    }, 7200, 0, true);
+//    $scope.mode = 'query';
+//    $scope.determinateValue = 0;
+//    $scope.determinateValue2 = 0;
+//    $interval(function() {
+//      $scope.determinateValue += 1;
+//      $scope.determinateValue2 += 1.5;
+//      if ($scope.determinateValue > 100) {
+//        $scope.determinateValue = 0;
+//        $scope.determinateValue2 = 0;
+//      }
+//    }, 100, 0, true);
+//    $interval(function() {
+//      $scope.mode = ($scope.mode == 'query' ? 'determinate' : 'query');
+//    }, 7200, 0, true);
 
-    $scope.$watch(function() {
-      return $rootScope.load.welcome;
-    }, function() {
-      if ($rootScope.load.welcome == true) {
-        $scope.current = Client.channel.current;
-        console.log('welcooome', Client);
-        $rootScope.load.playlist = true;
-        $(Client).bind('newcurrent', function(event, data) {
-          Client.channel.current = data.track;
-          $scope.current = data.track;
-          console.log('newcurrent', data);
-        });
-      }
-//      $scope.load.welcome = $rootScope.load.welcome;
-    }, true);
+//    $scope.$watch(function() {
+//      return $rootScope.load.welcome;
+//    }, function() {
+//      if ($rootScope.load.welcome == true) {
+//        $scope.current = Client.channel.current;
+//        console.log('welcooome', Client);
+//        $rootScope.load.playlist = true;
+//        $(Client).bind('newcurrent', function(event, data) {
+//          Client.channel.current = data.track;
+//          if ($scope.load.signed == true) {
+//            for (var vr in data.track.p) {
+//              if (data.track.p[vr].vid == Client.user.id) {
+//                data.track.vote = Client.user.w;
+//                break;
+//              }
+//            }
+//            for (var vr in data.track.n) {
+//              if (data.track.n[vr].vid == Client.user.id) {
+//                data.track.vote = -1*Client.user.w;
+//                break;
+//              }
+//            }
+//          } else {
+//            data.track.vote = 0;
+//          }
+//          $scope.current = data.track;
+//          console.log('newcurrent', data);
+//        });
+//      }
+////      $scope.load.welcome = $rootScope.load.welcome;
+//    }, true);
 //    Client.include();
 //    $(Client).bind('trackupdate', function(event, data) {
 //      if (data.current) {
