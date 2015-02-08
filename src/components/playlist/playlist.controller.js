@@ -50,6 +50,7 @@ angular.module('trigger')
     $scope.load.signed = false;
 
     $scope.playlist = [];
+    $scope.current = {};
     socket.on('channeldata', function (data) {
       console.log('playlist', data.pls);
       $scope.playlist = data.pls;
@@ -87,6 +88,19 @@ angular.module('trigger')
       $scope.load.signed = $rootScope.load.signed;
     }, true);
 
+    $scope.$watch(function() {
+      return $rootScope.load.welcome;
+    }, function() {
+      if ($rootScope.load.welcome == true) {
+        $scope.current = Client.channel.current;
+      }
+    }, true);
+
+    $(Client).bind('newcurrent', function(event, data) {
+      Client.channel.current = data.track;
+      $scope.current = data.track;
+      console.log('newcurrent', data);
+    });
 
     $(Client).bind('trackupdate', function(event, data) {
       console.log('trackupdate', data.t);
