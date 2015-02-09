@@ -1,7 +1,7 @@
 <div ng-controller="InfoCtrl" class="tabsdemoStaticTabs">
 
     <md-tabs class="md-accent" selected="data.selectedIndex">
-      <md-tab id="tabChat" aria-controls="tabChat-content">
+      <md-tab id="tabChat" aria-controls="tabChat-content" ng-show="load.signed">
         <span class="tabs__full">Чат</span>
         <span class="tabs__icon">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
@@ -10,7 +10,7 @@
           </svg>
         </span>
       </md-tab>
-      <md-tab id="tabOnline" aria-controls="tabOnline-content">
+      <md-tab id="tabOnline" aria-controls="tabOnline-content" ng-show="load.signed">
         <span class="tabs__full">Онлайн</span>
         <span class="tabs__icon">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
@@ -40,7 +40,7 @@
           </svg>
         </span>
       </md-tab>
-      <md-tab id="tabProfile" aria-controls="tabProfile-content">
+      <md-tab id="tabProfile" aria-controls="tabProfile-content" ng-show="load.signed">
         <span class="tabs__full">Профиль</span>
         <span class="tabs__icon">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
