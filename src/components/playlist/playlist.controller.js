@@ -135,7 +135,7 @@ angular.module('trigger')
       } else {
         data.track.vote = 0;
       }
-      $scope.current = data.track;
+      $scope.track = data.track;
       $scope.$apply();
       console.log('newcurrent', data);
     });
@@ -157,7 +157,7 @@ angular.module('trigger')
             }
           }
         }
-        $scope.current = data.t;
+        $scope.track = data.t;
         console.log('currentUpdate', data.t);
       } else {
         var plLength = $scope.playlist.length;
