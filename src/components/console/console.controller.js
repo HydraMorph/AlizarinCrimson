@@ -43,11 +43,6 @@ angular.module('trigger')
 
     $scope.data = function() {
       console.log('data', Client);
-//      function fillchannelsdata(d) {
-//        console.log('d', d);
-//      }
-//      Client.getChannels(fillchannelsdata);
-//      console.log('fillchannelsdata', Client.getChannels(fillchannelsdata));
     }
 
     $scope.showLoginModal = function(ev) {

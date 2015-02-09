@@ -13,25 +13,25 @@ angular.module('trigger')
 //    };
 //  })
   .controller('OnlineCtrl', function ($scope, $rootScope, Client, socket) {
-//    console.log(Client);
+
     $scope.users = [];
     $scope.$watch(function() {
       return $rootScope.load.welcome;
     }, function() {
-      if ($rootScope.load.welcome == true) {
+      if ($rootScope.load.welcome == true && Client.channel.users != undefined) {
         $scope.users = Client.channel.users;
         $scope.usersCount = Client.channel.users.length;
         console.log('onliiiine', Client);
+
         $(Client).bind('offuser', function(event, data) {
-//          $scope.users = data;
           $scope.usersCount = $scope.usersCount - 1;
           for (var us in $scope.users) {
             if ($scope.users[us].id == data.uid) {
               $scope.users.splice(us, 1);
             }
           }
-//          console.log('offuser', data);
         });
+
         $(Client).bind('newuser', function(event, data) {
           $scope.usersCount = $scope.usersCount + 1;
           var user = {
@@ -40,23 +40,18 @@ angular.module('trigger')
             a: data.a
           }
           $scope.users.push(user);
-//          console.log('newuser', data);
         });
+
         $(Client).bind('userupdate', function(event, data) {
           for (var us in $scope.users) {
             if ($scope.users[us].id == data.uid) {
               $scope.users[us].a = data.a;
             }
           }
-//          console.log('userupdate', data);
         });
       }
+
       $scope.load.welcome = $rootScope.load.welcome;
     }, true);
 
-//    $scope.loadUsers = function() {
-//      console.log('loadUsers', Client);
-//      console.log($rootScope.client);
-//      $scope.usersCount = $rootScope.client.channel.users.length;
-//    }
   });

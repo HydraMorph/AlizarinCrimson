@@ -47,6 +47,10 @@ angular.module('trigger')
       $mdSidenav('right').toggle();
     };
 
+    $scope.data = function(data) {
+      console.log(data);
+    }
+
     $scope.load.signed = false;
 
     $scope.playlist = [];
@@ -70,6 +74,7 @@ angular.module('trigger')
     socket.on('channeldata', function (data) {
       console.log('playlist', data.pls);
       $scope.playlist = data.pls;
+      $scope.current = data.current;
       var plsL = data.pls.length;
       for (var i = 0; i < plsL; i++) {
         $scope.playlist[i].vote = 0;
@@ -104,35 +109,87 @@ angular.module('trigger')
       $scope.load.signed = $rootScope.load.signed;
     }, true);
 
+    $scope.$watch(function() {
+      return $rootScope.load.welcome;
+    }, function() {
+      if ($rootScope.load.welcome == true) {
+        $scope.current = Client.channel.current;
+      }
+    }, true);
+
+    $(Client).bind('newcurrent', function(event, data) {
+      Client.channel.current = data.track;
+      if ($scope.load.signed == true) {
+        for (var vr in data.track.p) {
+          if (data.track.p[vr].vid == Client.user.id) {
+            data.track.vote = Client.user.w;
+            break;
+          }
+        }
+        for (var vr in data.track.n) {
+          if (data.track.n[vr].vid == Client.user.id) {
+            data.track.vote = -1*Client.user.w;
+            break;
+          }
+        }
+      } else {
+        data.track.vote = 0;
+      }
+      $scope.current = data.track;
+      console.log('newcurrent', data);
+    });
 
     $(Client).bind('trackupdate', function(event, data) {
+      console.log('trackupdate', data);
+      if (data.t.id == Client.channel.current.id) {
+        if ($scope.load.signed == true) {
+          for (var vr in data.t.p) {
+            if (data.t.p[vr].vid == Client.user.id) {
+              data.t.vote = Client.user.w;
+              break;
+            }
+          }
+          for (var vr in data.t.n) {
+            if (data.t.n[vr].vid == Client.user.id) {
+              data.t.vote = -1*Client.user.w;
+              break;
+            }
+          }
+        }
+        $scope.current = data.t;
+        console.log('currentUpdate', data.t);
+      } else {
+        var plLength = $scope.playlist.length;
+        var id;
+        for (var i = 0; i < plLength; i++) {
+          if ($scope.playlist[i].id == data.t.id) {
+            id = i;
+            $scope.playlist[i] = data.t;
+            console.log($scope.playlist[i]);
+            break;
+          }
+        }
+        if ($scope.load.signed == true) {
+          for (var vr in data.t.p) {
+            if (data.t.p[vr].vid == Client.user.id) {
+              data.t.vote = Client.user.w;
+              break;
+            }
+          }
+          for (var vr in data.t.n) {
+            if (data.t.n[vr].vid == Client.user.id) {
+              data.t.vote = -1*Client.user.w;
+              break;
+            }
+          }
+        }
+      }
       console.log('trackupdate', data.t);
-      var plLength = $scope.playlist.length;
-      var id;
-      for (var i = 0; i < plLength; i++) {
-        if ($scope.playlist[i].id == data.t.id) {
-          id = i;
-          $scope.playlist[i] = data.t;
-          console.log($scope.playlist[i]);
-          break;
-        }
-      }
-      for (var vr in data.t.p) {
-        if (data.t.p[vr].vid == Client.user.id) {
-          data.t.vote = Client.user.w;
-          break;
-        }
-      }
-      for (var vr in data.t.n) {
-        if (data.t.n[vr].vid == Client.user.id) {
-          data.t.vote = -1*Client.user.w;
-          break;
-        }
-      }
-      if (data.current) {
-        data.t.current = true;
-      }
+//      if (data.current) {
+//        data.t.current = true;
+//      }
     });
+
     $(Client).bind('addtrack', function(event, data) {
       var plLength = $scope.playlist.length;
       var isClone = false;
@@ -143,7 +200,6 @@ angular.module('trigger')
           break;
         }
       }
-
       if (isClone == false) {
         for (var vr in data.track.p) {
           if (data.track.p[vr].vid == Client.user.id) {
@@ -161,6 +217,7 @@ angular.module('trigger')
       }
       console.log('addtrack', data.track);
     });
+
     $(Client).bind('removetrack', function(event, data) {
       var plLength = $scope.playlist.length;
       for (var i = 0; i < plLength; i++) {
@@ -172,13 +229,24 @@ angular.module('trigger')
       }
     });
 //
-    $scope.voteUp = function(id) {
-      if (this.track.vote == Client.user.w) {
-        Client.addvote({'id': id, 'v': 0});
+    $scope.voteUp = function(id, type) {
+      type = (typeof type === "undefined") ? "track" : type;
+      if (type == "current") {
+        console.log('current');
+        if (this.current.vote == Client.user.w) {
+          Client.addvote({'id': id, 'v': 0});
+        } else {
+          Client.addvote({'id': id, 'v': Client.user.w});
+        }
       } else {
-        Client.addvote({'id': id, 'v': Client.user.w});
+        if (this.track.vote == Client.user.w) {
+          Client.addvote({'id': id, 'v': 0});
+        } else {
+          Client.addvote({'id': id, 'v': Client.user.w});
+        }
       }
     };
+
     $scope.voteDown = function(id) {
       if (this.track.vote == -Client.user.w) {
         Client.addvote({'id': id, 'v': 0});
