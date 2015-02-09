@@ -61,15 +61,18 @@ angular.module('trigger')
     }, function() {
       if ($rootScope.load.welcome == true) {
         $scope.track = Client.channel.current;
+        $rootScope.title = Client.channel.current.a + " - " + Client.channel.current.t + " @ Trigger";
         console.log('welcooome', Client);
-        $(Client).bind('newcurrent', function(event, data) {
-          Client.channel.current = data.track;
-          $scope.track = data.track;
-          console.log('newcurrent', data);
-        });
       }
-//      $scope.load.welcome = $rootScope.load.welcome;
     }, true);
+
+    $(Client).bind('newcurrent', function(event, data) {
+      Client.channel.current = data.track;
+      $scope.track = data.track;
+      $rootScope.title = data.track.a + " - " + data.track.t + " @ Trigger";
+      $scope.$apply();
+      console.log('newcurrent', data);
+    });
 
     socket.on('channeldata', function (data) {
       console.log('playlist', data.pls);
