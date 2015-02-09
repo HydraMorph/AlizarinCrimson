@@ -25,17 +25,18 @@
     </div>
 
     <div class="user__main">
-      <img class="user__img" ng-src="assets/images/{{user.img}}" alt="">
+      <img class="user__img" ng-src="assets/images/ear.png" alt="">
+<!--      <img class="user__img" ng-src="assets/images/{{user.pic}}" alt="">-->
       <div class="user__additional">
         <p class="user__descripton">
-          {{user.description}}
+          {{user.i}}
         </p>
         <p class="user__origin">
-          С нами с <span class="user__regdate">{{user.regdate}}</span> по приглашению <button class="user__father" aria-label="user-origin">{{user.father.name}}</button>
+          С нами с <span class="user__regdate">{{user.reg | date:'medium'}}</span> по приглашению <button class="user__father" aria-label="user-origin">{{user.invites.p.name}}</button>
         </p>
-        <p class="user__invited">Понаприглашала:
-          <span class="user__children" ng-repeat="child in user.children">
-            <button class="user__child" aria-label="user-child">{{child.name}}</button>
+        <p class="user__invited">{{user.g ? 'Понаприглашал' : 'Понаприглашала'}}:
+          <span class="user__children" ng-repeat="child in user.invites.u">
+            <button class="user__child" aria-label="user-child">{{child.n}}</button>
           </span>
         </p>
       </div>

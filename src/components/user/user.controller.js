@@ -1,68 +1,30 @@
+/*
+* TODO
+* 1. Caching profile
+* 2. Added vote function
+* 3. User img checking and default picture setting
+* 4. Regdate i18n
+* 5. showProfile(id) function
+*/
+
+
 'use strict';
 
 angular.module('trigger')
-  .controller('UserCtrl', function ($scope) {
-    $scope.date = new Date();
-    $scope.user = {
-      'name': 'boocha',
-      'id': 1155,
-      'img': 'ear.png',
-      'karma': 43,
-      'n': [
-        {
-          'id': 432,
-          'name': 'Lol'
-        },
-        {
-          'id': 422,
-          'name': 'Lol2'
-        },
-        {
-          'id': 442,
-          'name': 'Lol3'
-        }
-      ],
-      'p': [
-        {
-          'id': 432,
-          'name': 'Lol'
-        },
-        {
-          'id': 422,
-          'name': 'Lol2'
-        },
-        {
-          'id': 442,
-          'name': 'Lol3'
-        }
-      ],
-      'regdate': '28.12.2012',
-      'description': 'Ну охуеть теперь',
-      'father': {
-        'id': 333,
-        'name': 'DiconFrost'
-      },
-      'children': [
-        {
-          'id': 1240,
-          'name': 'Morass'
-        },
-        {
-          'id': 1241,
-          'name': 'veterrrr'
-        },
-        {
-          'id': 1242,
-          'name': 'meloch'
-        },
-        {
-          'id': 1243,
-          'name': 'Agbtrgpktrkpen'
-        },
-        {
-          'id': 1244,
-          'name': 'ssk'
-        }
-      ]
-    }
+  .controller('UserCtrl', function ($scope, $rootScope, Client) {
+    $scope.user = {};
+
+    $scope.$watch(function() {
+      return $rootScope.load.signed;
+    }, function() {
+      if ($rootScope.load.signed == true) {
+        Client.getUser({id: Client.user.id},function(data){
+          data.karma = data.p.length - data.n.length;
+          $scope.user = data;
+          console.log(data);
+          $scope.$apply();
+        });
+      }
+      $scope.load.signed = $rootScope.load.signed;
+    }, true);
   });
