@@ -137,7 +137,7 @@ angular.module('trigger')
             }
           }
         }
-        $scope.current = data.t;
+        $scope.track = data.t;
         console.log('currentUpdate', data.t);
       } else {
         var plLength = $scope.playlist.length;
