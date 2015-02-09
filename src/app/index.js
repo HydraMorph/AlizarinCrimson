@@ -495,9 +495,8 @@ app.service('Client', function ($log) {
   };
 
   this.getHistory = function(shift, gold, callback) {
-    cl = this;
-    cl.callbacks.history = callback;
-    this.socket.emit('gethistory', {chid: cl.channel.chid, s: shift, g: gold});
+    this.callbacks.history = callback;
+    this.socket.emit('gethistory', {chid: this.channel.chid, s: shift, g: gold});
   };
 
   this.getTags = function(str, callback) {

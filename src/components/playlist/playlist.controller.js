@@ -50,6 +50,23 @@ angular.module('trigger')
     $scope.load.signed = false;
 
     $scope.playlist = [];
+    $scope.track = {};
+
+    $scope.$watch(function() {
+      return $rootScope.load.welcome;
+    }, function() {
+      if ($rootScope.load.welcome == true) {
+        $scope.track = Client.channel.current;
+        console.log('welcooome', Client);
+        $(Client).bind('newcurrent', function(event, data) {
+          Client.channel.current = data.track;
+          $scope.track = data.track;
+          console.log('newcurrent', data);
+        });
+      }
+//      $scope.load.welcome = $rootScope.load.welcome;
+    }, true);
+
     socket.on('channeldata', function (data) {
       console.log('playlist', data.pls);
       $scope.playlist = data.pls;
