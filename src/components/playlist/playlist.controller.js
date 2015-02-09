@@ -61,15 +61,18 @@ angular.module('trigger')
     }, function() {
       if ($rootScope.load.welcome == true) {
         $scope.track = Client.channel.current;
+        $rootScope.title = Client.channel.current.a + " - " + Client.channel.current.t + " @ Trigger";
         console.log('welcooome', Client);
-        $(Client).bind('newcurrent', function(event, data) {
-          Client.channel.current = data.track;
-          $scope.track = data.track;
-          console.log('newcurrent', data);
-        });
       }
-//      $scope.load.welcome = $rootScope.load.welcome;
     }, true);
+
+    $(Client).bind('newcurrent', function(event, data) {
+      Client.channel.current = data.track;
+      $scope.track = data.track;
+      $rootScope.title = data.track.a + " - " + data.track.t + " @ Trigger";
+      $scope.$apply();
+      console.log('newcurrent', data);
+    });
 
     socket.on('channeldata', function (data) {
       console.log('playlist', data.pls);
@@ -116,29 +119,6 @@ angular.module('trigger')
         $scope.current = Client.channel.current;
       }
     }, true);
-
-    $(Client).bind('newcurrent', function(event, data) {
-      Client.channel.current = data.track;
-      if ($scope.load.signed == true) {
-        for (var vr in data.track.p) {
-          if (data.track.p[vr].vid == Client.user.id) {
-            data.track.vote = Client.user.w;
-            break;
-          }
-        }
-        for (var vr in data.track.n) {
-          if (data.track.n[vr].vid == Client.user.id) {
-            data.track.vote = -1*Client.user.w;
-            break;
-          }
-        }
-      } else {
-        data.track.vote = 0;
-      }
-      $scope.current = data.track;
-      $scope.$apply();
-      console.log('newcurrent', data);
-    });
 
     $(Client).bind('trackupdate', function(event, data) {
       console.log('trackupdate', data);

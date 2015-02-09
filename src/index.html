@@ -2,7 +2,7 @@
 <html class="no-js" ng-app="trigger">
   <head>
     <meta charset="utf-8">
-    <title>trigger</title>
+    <title>{{title}}</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
@@ -54,7 +54,6 @@
 
     <!-- build:js({.tmp,src}) scripts/app.js -->
     <!-- inject:js -->
-    <script src="app/main/main.controller.js"></script>
     <script src="app/index.js"></script>
     <script src="components/user/user.controller.js"></script>
     <script src="components/uploads/uploads.controller.js"></script>
@@ -75,6 +74,7 @@
     <script src="components/console/console.controller.js"></script>
     <script src="components/chat/chat.controller.js"></script>
     <script src="components/app/app.controller.js"></script>
+    <script src="app/main/main.controller.js"></script>
     <script src="app/client.js"></script>
     <!-- endinject -->
 
