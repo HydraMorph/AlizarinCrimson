@@ -18,40 +18,39 @@ angular.module('trigger')
     $scope.$watch(function() {
       return $rootScope.load.welcome;
     }, function() {
-      if ($rootScope.load.welcome == true && Client.channel.users != undefined) {
+      if ($rootScope.load.welcome == true) {
+        console.log('onliiiine', Client);
         $scope.users = Client.channel.users;
         $scope.usersCount = Client.channel.users.length;
-        console.log('onliiiine', Client);
-
-        $(Client).bind('offuser', function(event, data) {
-          $scope.usersCount = $scope.usersCount - 1;
-          for (var us in $scope.users) {
-            if ($scope.users[us].id == data.uid) {
-              $scope.users.splice(us, 1);
-            }
-          }
-        });
-
-        $(Client).bind('newuser', function(event, data) {
-          $scope.usersCount = $scope.usersCount + 1;
-          var user = {
-            id: data.uid,
-            n: data.n,
-            a: data.a
-          }
-          $scope.users.push(user);
-        });
-
-        $(Client).bind('userupdate', function(event, data) {
-          for (var us in $scope.users) {
-            if ($scope.users[us].id == data.uid) {
-              $scope.users[us].a = data.a;
-            }
-          }
-        });
       }
-
       $scope.load.welcome = $rootScope.load.welcome;
     }, true);
+
+    $(Client).bind('offuser', function(event, data) {
+      $scope.usersCount = $scope.usersCount - 1;
+      for (var us in $scope.users) {
+        if ($scope.users[us].id == data.uid) {
+          $scope.users.splice(us, 1);
+        }
+      }
+    });
+
+    $(Client).bind('newuser', function(event, data) {
+      $scope.usersCount = $scope.usersCount + 1;
+      var user = {
+        id: data.uid,
+        n: data.n,
+        a: data.a
+      }
+      $scope.users.push(user);
+    });
+
+    $(Client).bind('userupdate', function(event, data) {
+      for (var us in $scope.users) {
+        if ($scope.users[us].id == data.uid) {
+          $scope.users[us].a = data.a;
+        }
+      }
+    });
 
   });
