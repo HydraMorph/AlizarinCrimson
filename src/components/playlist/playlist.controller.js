@@ -87,13 +87,13 @@ angular.module('trigger')
       for (var i = 0; i < plsL; i++) {
         for (var vr in $scope.playlist[i].p) {
           if ($scope.playlist[i].p[vr].vid == Client.user.id) {
-            $scope.playlist[i].vote = 1;
+            $scope.playlist[i].vote = Client.user.w;
             break;
           }
         }
         for (var vr in $scope.playlist[i].n) {
           if ($scope.playlist[i].n[vr].vid == Client.user.id) {
-            $scope.playlist[i].vote = -1;
+            $scope.playlist[i].vote = -Client.user.w;
             break;
           }
         }
@@ -136,6 +136,7 @@ angular.module('trigger')
         data.track.vote = 0;
       }
       $scope.current = data.track;
+      $scope.$apply();
       console.log('newcurrent', data);
     });
 
@@ -184,10 +185,8 @@ angular.module('trigger')
           }
         }
       }
+      $scope.$apply();
       console.log('trackupdate', data.t);
-//      if (data.current) {
-//        data.t.current = true;
-//      }
     });
 
     $(Client).bind('addtrack', function(event, data) {
@@ -230,20 +229,10 @@ angular.module('trigger')
     });
 //
     $scope.voteUp = function(id, type) {
-      type = (typeof type === "undefined") ? "track" : type;
-      if (type == "current") {
-        console.log('current');
-        if (this.current.vote == Client.user.w) {
-          Client.addvote({'id': id, 'v': 0});
-        } else {
-          Client.addvote({'id': id, 'v': Client.user.w});
-        }
+      if (this.track.vote == Client.user.w) {
+        Client.addvote({'id': id, 'v': 0});
       } else {
-        if (this.track.vote == Client.user.w) {
-          Client.addvote({'id': id, 'v': 0});
-        } else {
-          Client.addvote({'id': id, 'v': Client.user.w});
-        }
+        Client.addvote({'id': id, 'v': Client.user.w});
       }
     };
 
