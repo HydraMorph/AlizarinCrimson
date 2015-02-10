@@ -11,8 +11,15 @@
 angular.module('trigger')
   .controller('HistoryCtrl', function ($scope, Client) {
     $scope.tracks = [];
-    Client.getHistory(0, false, function(data) {
+    $scope.gold = false;
+    Client.getHistory(0, $scope.gold, function(data) {
       $scope.tracks = data;
       $scope.$apply();
     });
+    $scope.showHistory = function() {
+      Client.getHistory(0, $scope.gold, function(data) {
+        $scope.tracks = data;
+        $scope.$apply();
+      });
+    };
   });

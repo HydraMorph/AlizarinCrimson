@@ -1,17 +1,14 @@
 <div ng-controller="HistoryCtrl" class="history__module">
 
   <div class="history__checkbox-grp">
-    <md-checkbox ng-model="gold" aria-label="Золото" class="history__checkbox--gold">
+    <md-checkbox ng-model="gold" ng-change="showHistory()" aria-label="Золото" class="history__checkbox--gold">
       Золото
     </md-checkbox>
   </div>
 
   <md-content class="history__content">
     <md-list layout="column" class="playlist__list">
-      <md-item
-        ng-repeat="track in tracks | orderBy:'tt':true"
-        bn-item
-        class="playlist__track">
+      <md-item ng-repeat="track in tracks | orderBy:'tt':true" class="playlist__track">
         <div class="track__img-cont">
           <img ng-src="{{track.src}}" class="track__img" alt="">
         </div>
