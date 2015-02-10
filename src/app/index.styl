@@ -67,20 +67,20 @@ md-input-group
 @import '../components/chat/chat.styl';
 @import '../components/console/console.styl';
 @import '../components/current/current.styl';
-@import '../components/democracy/democracy.styl';
 @import '../components/history/history.styl';
-@import '../components/info/info.styl';
+@import '../components/democracy/democracy.styl';
 @import '../components/login/login.styl';
-@import '../components/markdown/markdown.styl';
+@import '../components/info/info.styl';
 @import '../components/minuses/minuses.styl';
-@import '../components/online/online.styl';
+@import '../components/markdown/markdown.styl';
 @import '../components/playlist/playlist.styl';
+@import '../components/online/online.styl';
+@import '../components/profile/profile.styl';
 @import '../components/pluses/pluses.styl';
 @import '../components/settings/settings.styl';
 @import '../components/upload/uploader.styl';
-@import '../components/user/user.styl';
 @import '../components/uploads/uploads.styl';
-@import '../components/profile/profile.styl';
+@import '../components/user/user.styl';
 // endinjector
 
 .md-sidenav-left
@@ -125,9 +125,9 @@ md-input-group
   & #tabHistory-content
     background-color #eee
   & #tabDemocracy-content
-    background-color #00796B
+    background-color #eee
   & #tabProfile-content
-    background-color #069E2D
+    background-color #eee
 .tabsdemoStaticTabs .tabpanel-container
   display block
   position relative
@@ -197,3 +197,10 @@ md-input-group
 
 md-tab
   min-width initial !important
+md-checkbox.md-default-theme.md-checked
+  & .md-icon
+    background-color #ffcd00 !important
+md-checkbox.md-default-theme .md-ripple
+  background-color #ffcd00 !important
+md-checkbox .md-label
+  border none !important

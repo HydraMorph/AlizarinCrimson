@@ -11,6 +11,7 @@ angular.module('trigger')
         Client.user = data.user;
         $rootScope.load.signed = true;
         $mdDialog.hide();
+        $scope.apply();
       }
     };
     $scope.user = {
