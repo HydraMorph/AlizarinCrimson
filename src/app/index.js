@@ -34,9 +34,13 @@ app.run(function ($rootScope, Client) {
   Client.init(location.host);
   $(Client).bind('welcome', function(event, data) {
     Client.channel = data.channels[0];
+    Client.getChannels(function(data){
+      Client.channels = data.channels;
+      console.log(data);
+    });
 //    $rootScope.client.channel = data.channels[0];
-    console.log('welcome', data.channels[0]);
     Client.goChannel(1, console.log('Q' ,data));
+    console.log('welcome', Client.channel);
     $rootScope.load.welcome = true;
   });
   $rootScope.client = Client;

@@ -18,9 +18,9 @@ angular.module('trigger')
     $scope.$watch(function() {
       return $rootScope.load.welcome;
     }, function() {
-      if ($rootScope.load.welcome == true && Client.channel.users != undefined) {
-        $scope.users = Client.channel.users;
-        $scope.usersCount = Client.channel.users.length;
+      if ($rootScope.load.welcome == true) {
+        $scope.users = Client.channels[0].users;
+        $scope.usersCount = $scope.users.length;
         console.log('onliiiine', Client);
 
         $(Client).bind('offuser', function(event, data) {

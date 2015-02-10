@@ -120,29 +120,6 @@ angular.module('trigger')
       }
     }, true);
 
-    $(Client).bind('newcurrent', function(event, data) {
-      Client.channel.current = data.track;
-      if ($scope.load.signed == true) {
-        for (var vr in data.track.p) {
-          if (data.track.p[vr].vid == Client.user.id) {
-            data.track.vote = Client.user.w;
-            break;
-          }
-        }
-        for (var vr in data.track.n) {
-          if (data.track.n[vr].vid == Client.user.id) {
-            data.track.vote = -1*Client.user.w;
-            break;
-          }
-        }
-      } else {
-        data.track.vote = 0;
-      }
-      $scope.track = data.track;
-      $scope.$apply();
-      console.log('newcurrent', data);
-    });
-
     $(Client).bind('trackupdate', function(event, data) {
       console.log('trackupdate', data);
       if (data.t.id == Client.channel.current.id) {
