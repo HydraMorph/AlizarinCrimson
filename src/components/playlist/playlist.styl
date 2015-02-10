@@ -23,10 +23,16 @@
   margin-top -1px
   &:first-child
     margin-top 0
+  &.track--gold
+    & .track__img-cont
+      outline 4px solid #FFCD00
+      outline-offset -4px
 .track__img-cont
   display flex
-  padding 5px
-  min-width 60px
+  margin 5px
+  box-sizing border-box
+  padding 0
+//  min-width 60px
 .track__img
   width 48px
   height 48px

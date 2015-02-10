@@ -8,7 +8,7 @@
 
   <md-content class="history__content">
     <md-list layout="column" class="playlist__list">
-      <md-item ng-repeat="track in tracks | orderBy:'tt':true" class="playlist__track">
+      <md-item ng-repeat="track in tracks | orderBy:'tt':true" class="playlist__track" ng-class="{'track--gold': gold == true}">
         <div class="track__img-cont">
           <img ng-src="{{track.src}}" class="track__img" alt="">
         </div>
