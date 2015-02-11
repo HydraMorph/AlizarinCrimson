@@ -1,6 +1,6 @@
 <md-toolbar class="console__include" layout="column" layout-align="center center" ng-controller="ConsoleCtrl">
 
-  <md-slider ng-model="volume" aria-label="volume-slider" ng-change="changeVolume(volume)" min="0" max="100" step="1"></md-slider>
+  <md-slider ng-model="audio.volume" aria-label="volume-slider" ng-change="changeVolume(volume)" min="0" max="100" step="1"></md-slider>
   <img ng-src="assets/images/logo.png" class="console__logo" ng-click="data()"/>
   <md-button class="console__login-btn" aria-label="console-login" ng-show="!load.signed" ng-click="showLoginModal($event)">Log in</md-button>
   <p class="console__stat">

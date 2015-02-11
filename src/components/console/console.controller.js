@@ -11,6 +11,11 @@ angular.module('trigger')
       'uplim': 0
     };
 
+//    $scope.audio.volume = 23;
+    $scope.changeVolume = function(volume) {
+      $scope.audio.volume = volume;
+    };
+
     $scope.$watch(function() {
       return $rootScope.load.welcome;
     }, function() {
@@ -56,10 +61,6 @@ angular.module('trigger')
       $scope.hide = function() {
         $mdDialog.hide();
       };
-    };
-    $scope.volume = 23;
-    $scope.changeVolume = function(volume) {
-      $scope.volume = volume;
     };
     $scope.openUploadBar = function($event) {
       $scope.alert = '';
