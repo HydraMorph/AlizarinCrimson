@@ -8,7 +8,8 @@ angular.module('trigger')
 //      $rootScope.load.playlist = true;
 //    });
     $scope.audio = ngAudio.load('http://trigger.fm/stream/mainmp3');
-
+    console.log($scope.audio);
+    $scope.audio.pause();
     $scope.play = $scope.audio.paused;
     $scope.togglePlay = function() {
       $scope.play = !$scope.play;

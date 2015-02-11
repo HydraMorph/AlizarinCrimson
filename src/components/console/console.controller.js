@@ -10,10 +10,9 @@ angular.module('trigger')
       'name': '%username%',
       'uplim': 0
     };
-
-//    $scope.audio.volume = 23;
+    $scope.volume = 23;
     $scope.changeVolume = function(volume) {
-      $scope.audio.volume = volume;
+      $scope.audio.setVolume(volume/100);
     };
 
     $scope.$watch(function() {
