@@ -12,7 +12,7 @@ angular.module('trigger')
         $rootScope.userId = data.user.id;
         $rootScope.load.signed = true;
         $mdDialog.hide();
-        $scope.apply();
+        $scope.$digest();
       }
     };
     $scope.user = {

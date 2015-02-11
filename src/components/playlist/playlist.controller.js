@@ -70,7 +70,7 @@ angular.module('trigger')
       Client.channel.current = data.track;
       $scope.track = data.track;
       $rootScope.title = data.track.a + " - " + data.track.t + " @ Trigger";
-      $scope.$apply();
+      $scope.$digest();
       console.log('newcurrent', data);
     });
 
@@ -165,7 +165,7 @@ angular.module('trigger')
           }
         }
       }
-      $scope.$apply();
+      $scope.$digest();
       console.log('trackupdate', data.t);
     });
 

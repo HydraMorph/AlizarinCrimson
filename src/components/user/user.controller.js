@@ -20,8 +20,7 @@ angular.module('trigger')
         Client.getUser({id: $rootScope.userId},function(data){
           data.karma = data.p.length - data.n.length;
           $scope.user = data;
-          console.log(data);
-          $scope.$apply();
+          $scope.$digest();
         });
       }
       $scope.load.signed = $rootScope.load.signed;

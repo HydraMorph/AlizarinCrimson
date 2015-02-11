@@ -14,12 +14,12 @@ angular.module('trigger')
     $scope.gold = false;
     Client.getHistory(0, $scope.gold, function(data) {
       $scope.tracks = data;
-      $scope.$apply();
+      $scope.$digest();
     });
     $scope.showHistory = function() {
       Client.getHistory(0, $scope.gold, function(data) {
         $scope.tracks = data;
-        $scope.$apply();
+        $scope.$digest();
       });
     };
   });
