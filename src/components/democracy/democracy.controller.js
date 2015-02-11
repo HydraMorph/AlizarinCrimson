@@ -3,9 +3,7 @@
 angular.module('trigger')
   .controller('DemocracyCtrl', function ($scope) {
     $scope.data = {
-      selectedIndex : 0,
-      secondLocked : true,
-      secondLabel : 'Item Two'
+      selectedIndex : 1
     };
     $scope.president = {
       'name': 'Suok',
