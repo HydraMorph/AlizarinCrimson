@@ -16,9 +16,9 @@ angular.module('trigger')
           prefixAgo: null,
           prefixFromNow: null,
           suffixAgo: "назад",
-          suffixFromNow: "",
+          suffixFromNow: "только что",
           seconds: "меньше минуты",
-          minute: "больше минуты",
+          minute: "только что",
           minutes: "%d минут",
           hour: "около часа",
           hours: "%d часов",
@@ -85,6 +85,7 @@ angular.module('trigger')
     }, true);
     $scope.sendMessage = function () {
       Client.sendMessage($scope.message, function (data) {
+        $scope.messages.push(data);
         if (data.error) {
           //          $('#messageinput').attr("placeholder", data.error);
           console.log(data.error);
@@ -93,5 +94,6 @@ angular.module('trigger')
           //          $('#messageinput').attr("placeholder", "РЅР°С‡РёРЅР°Р№ РІРІРѕРґРёС‚СЊ...");
         }
       });
+      $scope.message = "";
     }
   });
