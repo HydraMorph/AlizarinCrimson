@@ -61,7 +61,7 @@ angular.module('trigger')
     }, function() {
       if ($rootScope.load.welcome == true) {
         $scope.track = Client.channel.current;
-        $rootScope.title = Client.channel.current.a + " - " + Client.channel.current.t + " @ Trigger";
+        $rootScope.title = "+D" + Client.channel.current.a + " - " + Client.channel.current.t + " @ Trigger";
         console.log('welcooome', Client);
       }
     }, true);
