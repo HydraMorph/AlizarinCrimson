@@ -1,6 +1,6 @@
 'use strict';
 
-var app = angular.module('trigger', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'ngMaterial', 'btford.socket-io']);
+var app = angular.module('trigger', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'ngMaterial', 'btford.socket-io', 'ngAudio']);
 
 app.value('nickName', 'true');
 app.value('password', '09e7881117ecd5e66723322ef5a6f4e0');

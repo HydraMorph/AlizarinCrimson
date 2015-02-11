@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('trigger')
-  .controller('ConsoleCtrl', function ($scope, $rootScope, $timeout, $mdDialog, $mdBottomSheet, Client) {
+  .controller('ConsoleCtrl', function ($scope, $rootScope, $timeout, $mdDialog, $mdBottomSheet, Client, ngAudio) {
     $scope.users = {
       'listeners': 0,
       'active': 0
@@ -10,6 +10,9 @@ angular.module('trigger')
       'name': '%username%',
       'uplim': 0
     };
+
+    $scope.sound = ngAudio.load("http://trigger.fm/stream/mainmp3");
+    $scope.sound.play();
 
     $scope.$watch(function() {
       return $rootScope.load.welcome;
