@@ -9,6 +9,7 @@ angular.module('trigger')
         console.log(data.error);
       } else {
         Client.user = data.user;
+        $rootScope.userId = data.user.id;
         $rootScope.load.signed = true;
         $mdDialog.hide();
         $scope.apply();

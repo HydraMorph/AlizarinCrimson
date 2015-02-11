@@ -13,7 +13,7 @@
     <div role="tabpanel" id="tabMinuses-content" aria-labelledby="tabMinuses" ng-switch-when="3" md-swipe-left="next()" md-swipe-right="previous()" >
       <div class="minuses__include" ng-include="'components/minuses/minuses.html'"></div>
     </div>
-    <div role="tabpanel" id="tabSettings-content" aria-labelledby="tabSettings" ng-switch-when="4" md-swipe-left="next()" md-swipe-right="previous()" >
+    <div role="tabpanel" id="tabSettings-content" aria-labelledby="tabSettings" ng-switch-when="4" md-swipe-left="next()" md-swipe-right="previous()" ng-show="isMyProfile">
       <div class="settings__include" ng-include="'components/settings/settings.html'"></div>
     </div>
   </ng-switch>
@@ -55,7 +55,7 @@
         </svg>
       </span>
     </md-tab>
-    <md-tab id="tabSettings" aria-controls="tabSettings-content">
+    <md-tab id="tabSettings" aria-controls="tabSettings-content" ng-show="isMyProfile">
       <span class="tabs__full">Settings</span>
       <span class="tabs__icon">
         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">

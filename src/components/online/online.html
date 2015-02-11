@@ -3,7 +3,7 @@
     <p class="online__here">Здесь: <span class="online__counter">{{usersCount}}</span></p>
     <md-item ng-repeat="user in users | reverse" class="online__list-item">
       <md-item-content class="online__item" ng-class="{active: user.a==true}">
-        <md-button aria-label="open-user-profile" class="user__2profile">i</md-button>
+        <md-button ng-click="openProfile(user.id)" aria-label="open-user-profile" class="user__2profile">i</md-button>
         <md-button aria-label="add-user-to-chat" class="user__2chat">{{user.n}}</md-button>
       </md-item-content>
     </md-item>

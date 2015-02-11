@@ -7,7 +7,7 @@
           <div class="md-tile-content" class="chat__item-content">
             <span class="msg__author">{{msg.uname}}:</span>
             <span class="msg__message">{{msg.m}}</span>
-            <span class="msg__time">{{msg.t}}</span>
+            <span class="msg__time">{{msg.t |timeago }}</span>
           </div>
         </md-item-content>
       </md-item>

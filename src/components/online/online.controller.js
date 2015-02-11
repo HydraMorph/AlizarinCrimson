@@ -53,4 +53,8 @@ angular.module('trigger')
       }
     });
 
+    $scope.openProfile = function(id) {
+      $rootScope.userId = id;
+    };
+
   });

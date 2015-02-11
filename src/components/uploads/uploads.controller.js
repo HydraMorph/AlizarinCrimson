@@ -15,7 +15,7 @@ angular.module('trigger')
       return $rootScope.load.signed;
     }, function() {
       if ($rootScope.load.signed == true) {
-        Client.getUser({'id': 1917, 'uplshift': 0}, function(data) {
+        Client.getUser({'id': $rootScope.userId, 'uplshift': 0}, function(data) {
           $scope.tracks = data;
           console.log(data);
           $scope.$apply();

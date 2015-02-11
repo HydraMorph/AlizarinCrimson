@@ -31,6 +31,7 @@ app.run(function ($rootScope, Client) {
     'playlist': false
   };
   $rootScope.title = "Trigger";
+  $rootScope.userId = 0;
   Client.init(location.host);
   $(Client).bind('welcome', function(event, data) {
     Client.channel = data.channels[0];

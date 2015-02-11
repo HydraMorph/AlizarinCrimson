@@ -8,14 +8,14 @@
         <span class="user__id">#{{user.id}}</span>
       </div>
       <div class="user__votes-block">
-        <md-button class="md-fab user__vote--up" aria-label="user-plus" ng-click="voteUp(track.id)">
+        <md-button class="md-fab user__vote--up" aria-label="user-plus" ng-show="!isMyProfile" ng-click="voteUp(track.id)">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
             <path d="M16.59 8.59l-4.59 4.58-4.59-4.58-1.41 1.41 6 6 6-6z"/>
             <path d="M0 0h24v24h-24z" fill="none"/>
           </svg>
         </md-button>
         <span class="user__karma">{{user.karma}}</span>
-        <md-button class="md-fab user__vote--down" aria-label="user-minus" ng-click="voteDown(track.id)">
+        <md-button class="md-fab user__vote--down" aria-label="user-minus" ng-show="!isMyProfile" ng-click="voteDown(track.id)">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
             <path d="M12 8l-6 6 1.41 1.41 4.59-4.58 4.59 4.58 1.41-1.41z"/>
             <path d="M0 0h24v24h-24z" fill="none"/>
