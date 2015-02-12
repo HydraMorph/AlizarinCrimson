@@ -12,13 +12,13 @@ angular.module('trigger')
 //      }
 //    };
 //  })
-  .controller('OnlineCtrl', function ($scope, $rootScope, Client, socket) {
+  .controller('OnlineCtrl', function ($scope, $rootScope, Client) {
 
     $scope.users = [];
     $scope.$watch(function() {
       return $rootScope.load.welcome;
     }, function() {
-      if ($rootScope.load.welcome == true) {
+      if ($rootScope.load.welcome === true) {
         $scope.users = Client.channels[0].users;
         $scope.usersCount = $scope.users.length;
         console.log('onliiiine', Client);
@@ -29,7 +29,7 @@ angular.module('trigger')
     $(Client).bind('offuser', function(event, data) {
       $scope.usersCount = $scope.usersCount - 1;
       for (var us in $scope.users) {
-        if ($scope.users[us].id == data.uid) {
+        if ($scope.users[us].id === data.uid) {
           $scope.users.splice(us, 1);
         }
       }
@@ -41,13 +41,13 @@ angular.module('trigger')
         id: data.uid,
         n: data.n,
         a: data.a
-      }
+      };
       $scope.users.push(user);
     });
 
     $(Client).bind('userupdate', function(event, data) {
       for (var us in $scope.users) {
-        if ($scope.users[us].id == data.uid) {
+        if ($scope.users[us].id === data.uid) {
           $scope.users[us].a = data.a;
         }
       }

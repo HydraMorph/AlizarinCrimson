@@ -16,7 +16,7 @@ angular.module('trigger')
     $scope.$watch(function() {
       return $rootScope.load.signed;
     }, function() {
-      if ($rootScope.load.signed == true) {
+      if ($rootScope.load.signed === true) {
         Client.getUser({id: $rootScope.userId},function(data){
           data.karma = data.p.length - data.n.length;
           $scope.user = data;

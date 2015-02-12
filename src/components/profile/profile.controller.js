@@ -11,7 +11,7 @@ angular.module('trigger')
     $scope.$watch(function() {
       return $rootScope.userId;
     }, function() {
-      if ($rootScope.userId == Client.user.id) {
+      if ($rootScope.userId === Client.user.id) {
         $scope.isMyProfile = true;
       }
     }, true);
