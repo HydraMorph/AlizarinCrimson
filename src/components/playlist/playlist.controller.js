@@ -1,24 +1,24 @@
 'use strict';
 
 angular.module('trigger')
-  .filter('readableTime', function() {
+  .filter('readableTime', function () {
     return function (seconds) {
       var seconds = parseInt(seconds, 10);
       var hrs, mins, secs;
       switch (false) {
-        case !(seconds < 60):
-          secs = seconds;
-          break;
-        case !(seconds < 3600):
-          // Minutes and seconds
-          mins = ~~(seconds / 60);
-          secs = seconds % 60;
-          break;
-        default:
-          // Hours, minutes and seconds
-          hrs = ~~(seconds / 3600);
-          mins = ~~((seconds % 3600) / 60);
-          secs = seconds % 60;
+      case !(seconds < 60):
+        secs = seconds;
+        break;
+      case !(seconds < 3600):
+        // Minutes and seconds
+        mins = ~~(seconds / 60);
+        secs = seconds % 60;
+        break;
+      default:
+        // Hours, minutes and seconds
+        hrs = ~~(seconds / 3600);
+        mins = ~~((seconds % 3600) / 60);
+        secs = seconds % 60;
       }
       // Output like "1:01" or "4:03:59" or "123:03:59"
       var ret = '';
@@ -47,7 +47,7 @@ angular.module('trigger')
       $mdSidenav('right').toggle();
     };
 
-    $scope.data = function(data) {
+    $scope.data = function (data) {
       console.log(data);
     }
 
@@ -56,9 +56,9 @@ angular.module('trigger')
     $scope.playlist = [];
     $scope.track = {};
 
-    $scope.$watch(function() {
+    $scope.$watch(function () {
       return $rootScope.load.welcome;
-    }, function() {
+    }, function () {
       if ($rootScope.load.welcome == true) {
         $scope.track = Client.channel.current;
         $rootScope.title = "+D" + Client.channel.current.a + " - " + Client.channel.current.t + " @ Trigger";
@@ -66,7 +66,7 @@ angular.module('trigger')
       }
     }, true);
 
-    $(Client).bind('newcurrent', function(event, data) {
+    $(Client).bind('newcurrent', function (event, data) {
       Client.channel.current = data.track;
       $scope.track = data.track;
       $rootScope.title = data.track.a + " - " + data.track.t + " @ Trigger";
@@ -74,15 +74,15 @@ angular.module('trigger')
       console.log('newcurrent', data);
     });
 
-    socket.on('channeldata', function (data) {
-      console.log('playlist', data.pls);
-      $scope.playlist = data.pls;
-      $scope.current = data.current;
-      var plsL = data.pls.length;
-      for (var i = 0; i < plsL; i++) {
-        $scope.playlist[i].vote = 0;
-      }
-    });
+//    socket.on('channeldata', function (data) {
+//      console.log('playlist', data.pls);
+//      $scope.playlist = data.pls;
+//      $scope.current = data.current;
+//      var plsL = data.pls.length;
+//      for (var i = 0; i < plsL; i++) {
+//        $scope.playlist[i].vote = 0;
+//      }
+//    });
 
     function checkVotes() {
       var plsL = $scope.playlist.length;
@@ -103,24 +103,24 @@ angular.module('trigger')
       }
     }
 
-    $scope.$watch(function() {
+    $scope.$watch(function () {
       return $rootScope.load.signed;
-    }, function() {
+    }, function () {
       if ($rootScope.load.signed == true) {
         checkVotes();
       }
       $scope.load.signed = $rootScope.load.signed;
     }, true);
 
-    $scope.$watch(function() {
+    $scope.$watch(function () {
       return $rootScope.load.welcome;
-    }, function() {
+    }, function () {
       if ($rootScope.load.welcome == true) {
         $scope.current = Client.channel.current;
       }
     }, true);
 
-    $(Client).bind('trackupdate', function(event, data) {
+    $(Client).bind('trackupdate', function (event, data) {
       console.log('trackupdate', data);
       if (data.t.id == Client.channel.current.id) {
         if ($scope.load.signed == true) {
@@ -132,7 +132,7 @@ angular.module('trigger')
           }
           for (var vr in data.t.n) {
             if (data.t.n[vr].vid == Client.user.id) {
-              data.t.vote = -1*Client.user.w;
+              data.t.vote = -1 * Client.user.w;
               break;
             }
           }
@@ -159,7 +159,7 @@ angular.module('trigger')
           }
           for (var vr in data.t.n) {
             if (data.t.n[vr].vid == Client.user.id) {
-              data.t.vote = -1*Client.user.w;
+              data.t.vote = -1 * Client.user.w;
               break;
             }
           }
@@ -169,7 +169,7 @@ angular.module('trigger')
       console.log('trackupdate', data.t);
     });
 
-    $(Client).bind('addtrack', function(event, data) {
+    $(Client).bind('addtrack', function (event, data) {
       var plLength = $scope.playlist.length;
       var isClone = false;
       for (var i = 0; i < plLength; i++) {
@@ -197,7 +197,7 @@ angular.module('trigger')
       console.log('addtrack', data.track);
     });
 
-    $(Client).bind('removetrack', function(event, data) {
+    $(Client).bind('removetrack', function (event, data) {
       var plLength = $scope.playlist.length;
       for (var i = 0; i < plLength; i++) {
         if ($scope.playlist[i].id == data.track.id) {
@@ -207,20 +207,75 @@ angular.module('trigger')
         }
       }
     });
-//
-    $scope.voteUp = function(id, type) {
+    //
+    $scope.voteUp = function (id, type) {
       if (this.track.vote == Client.user.w) {
-        Client.addvote({'id': id, 'v': 0});
+        Client.addvote({
+          'id': id,
+          'v': 0
+        });
       } else {
-        Client.addvote({'id': id, 'v': Client.user.w});
+        Client.addvote({
+          'id': id,
+          'v': Client.user.w
+        });
       }
     };
 
-    $scope.voteDown = function(id) {
+    $scope.voteDown = function (id) {
       if (this.track.vote == -Client.user.w) {
-        Client.addvote({'id': id, 'v': 0});
+        Client.addvote({
+          'id': id,
+          'v': 0
+        });
       } else {
-        Client.addvote({'id': id, 'v': -Client.user.w});
+        Client.addvote({
+          'id': id,
+          'v': -Client.user.w
+        });
       }
     };
-  });
+
+    // I hold the data being rendered in the ng-repeat.
+    socket.on('channeldata', function (data) {
+      console.log('playlist', data.pls);
+      $scope.playlist = data.pls;
+      $scope.items = $scope.playlist;
+      $scope.current = data.current;
+      var plsL = data.pls.length;
+      for (var i = 0; i < plsL; i++) {
+        $scope.playlist[i].vote = 0;
+      }
+    });
+    // ---
+    // PUBLIC METHODS.
+    // ---
+
+    // I rebuild the collection, forcing a re-rendering of the ng-repeat.
+    $scope.rebuild = function () {
+      $scope.items = $scope.playlist;
+    };
+
+  })
+  .directive(
+    "bnItem",
+    function () {
+      // I bind the JavaScript events to the local scope.
+      function link($scope, element, attributes) {
+          $scope.x = 0;
+          $scope.y = 0;
+          $scope.$evalAsync(
+            function () {
+              $scope.x = Math.floor(position.left);
+              $scope.y = Math.floor(position.top);
+            }
+          );
+        }
+        // Return the directive configuration.
+      return ({
+        link: link,
+        restrict: "A"
+      });
+    }
+  );
+//  });

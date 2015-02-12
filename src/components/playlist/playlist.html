@@ -58,6 +58,43 @@
   <md-content class="playlist__content">
     <md-list layout="column" class="playlist__list">
 <!--      <md-item ng-repeat="track in playlist | orderBy:'r':true" class="playlist__track">-->
+    <a ng-click="rebuild()">Rebuild</a>
+     <md-item
+        ng-repeat="item in items"
+        bn-item
+        class="playlist__track">
+        <div class="track__img-cont">
+          <img ng-src="{{track.src}}" class="track__img" alt="" ng-click="data(track)">
+        </div>
+        <div class="track__content">
+          <h3 class="track__artist">{{track.a}}</h3>
+          <h4 class="track__title">{{track.t}}</h4>
+        </div>
+        <div class="track__tags">
+          <span class="track__tag" ng-repeat="tag in track.tg">
+            {{tag.n}}
+          </span>
+        </div>
+        <div class="track__time">
+          <span>+{{track.tt | readableTime}}</span>
+        </div>
+        <div class="track__votes-block" ng-class="{ 'voted--up': track.vote > 0, 'voted--down': track.vote < 0 }" ng-show="load.signed">
+          <md-button class="md-fab track__vote--down" aria-label="track-up" ng-click="voteDown(track.id)">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+              <path d="M16.59 8.59l-4.59 4.58-4.59-4.58-1.41 1.41 6 6 6-6z"/>
+              <path d="M0 0h24v24h-24z" fill="none"/>
+            </svg>
+          </md-button>
+          <span class="track__rating">{{track.r}}</span>
+          <md-button class="md-fab track__vote--up" aria-label="track-down" ng-click="voteUp(track.id)">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+              <path d="M12 8l-6 6 1.41 1.41 4.59-4.58 4.59 4.58 1.41-1.41z"/>
+              <path d="M0 0h24v24h-24z" fill="none"/>
+            </svg>
+          </md-button>
+        </div>
+    </md-item>
+<!--
       <md-item ng-repeat="track in playlist | orderBy:'r':reverse" class="playlist__track">
         <div class="track__img-cont">
           <img ng-src="{{track.src}}" class="track__img" alt="" ng-click="data(track)">
@@ -90,6 +127,7 @@
           </md-button>
         </div>
       </md-item>
+-->
     </md-list>
   </md-content>
 <!--  <div class="current current--bottom" ng-include="'components/current/current.html'"></div>-->
