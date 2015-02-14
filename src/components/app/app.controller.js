@@ -5,6 +5,7 @@ angular.module('trigger')
     $scope.audio = ngAudio.load('http://trigger.fm/stream/mainmp3');
     console.log($scope.audio);
     $scope.audio.pause();
+    $scope.audio.unbind();
     $scope.play = $scope.audio.paused;
     $scope.togglePlay = function() {
       $scope.play = !$scope.play;

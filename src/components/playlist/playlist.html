@@ -23,6 +23,9 @@
 <!--  <div class="current current--top" ng-include="'components/current/current.html'"></div>-->
   <md-content class="playlist__content--current">
     <md-list layout="column" class="playlist__list">
+
+      <current-track data="track"></current-track>
+<!--
       <md-item class="playlist__track">
         <div class="track__img-cont">
           <img ng-src="{{track.src}}" class="track__img" alt="">
@@ -51,6 +54,7 @@
             </svg>
           </md-button>
         </div>
+-->
       </md-item>
     </md-list>
   </md-content>
@@ -96,6 +100,8 @@
         </div>
     </md-item>
 -->
+      <fast-repeat data="playlist"></fast-repeat>
+<!--
       <md-item ng-repeat="track in playlist | orderBy:'r':reverse" class="playlist__track">
         <div class="track__img-cont">
           <img ng-src="{{track.src}}" class="track__img" alt="" ng-click="data(track)">
@@ -128,6 +134,7 @@
           </md-button>
         </div>
       </md-item>
+-->
     </md-list>
   </md-content>
 <!--  <div class="current current--bottom" ng-include="'components/current/current.html'"></div>-->

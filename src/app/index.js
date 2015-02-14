@@ -1,6 +1,6 @@
 'use strict';
 
-var app = angular.module('trigger', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'ngMaterial', 'btford.socket-io', 'ngAudio']);
+var app = angular.module('trigger', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'ngMaterial', 'btford.socket-io', 'react', 'ngAudio']);
 
 app.directive('ngEnter', function() {
   return function(scope, element, attrs) {
@@ -14,6 +14,89 @@ app.directive('ngEnter', function() {
     });
   };
 });
+
+var CURRENT = React.createClass({displayName: 'CURRENT',
+  render: function() {
+    var tags = this.props.data.tg;
+    var nodes = "";
+    if (tags != undefined) {
+      var nodes = tags.map(function(tag) {
+        return React.createElement("span", {className: "track__tag"}, tag.n);
+      });
+    }
+    return (React.createElement("div", {className: "playlist__track"},
+      React.createElement("div", {className: "track__img-cont"},
+        React.createElement("img", {"ng-src": "", className: "track__img", alt: ""})
+      ),
+      React.createElement("div", {className: "track__content"},
+        React.createElement("h3", {className: "track__artist"}, this.props.data.a),
+        React.createElement("h4", {className: "track__title"}, this.props.data.t)
+      ),
+      React.createElement("div", {className: "track__tags"}, nodes),
+      React.createElement("div", {className: "track__votes-block"},
+        React.createElement("md-button", {className: "md-fab track__vote--down", "aria-label": "track-up", "ng-click": "voteDown()"},
+          React.createElement("svg", {xmlns: "http://www.w3.org/2000/svg", width: "24", height: "24", viewBox: "0 0 24 24"},
+            React.createElement("path", {d: "M16.59 8.59l-4.59 4.58-4.59-4.58-1.41 1.41 6 6 6-6z"}),
+            React.createElement("path", {d: "M0 0h24v24h-24z", fill: "none"})
+          )
+        ),
+        React.createElement("span", {className: "track__rating"}, this.props.data.r),
+        React.createElement("md-button", {className: "md-fab track__vote--up", "aria-label": "track-down", "ng-click": "voteUp()"},
+          React.createElement("svg", {xmlns: "http://www.w3.org/2000/svg", width: "24", height: "24", viewBox: "0 0 24 24"},
+            React.createElement("path", {d: "M12 8l-6 6 1.41 1.41 4.59-4.58 4.59 4.58 1.41-1.41z"}),
+            React.createElement("path", {d: "M0 0h24v24h-24z", fill: "none"})
+          )
+        )
+      )
+    ));
+  }
+});
+app.value('CURRENT', CURRENT);
+
+var TRIGGERPLAYLIST = React.createClass({displayName: 'TRIGGERPLAYLIST',
+  render: function() {
+    var tracks = this.props.data;
+    var nodes = "";
+    if (tracks != undefined) {
+      var nodes = tracks.map(function(track) {
+        var tags = track.tg;
+        var tagsnodes = "";
+        if (tags != undefined) {
+          var tagsnodes = tags.map(function(tag) {
+            return React.createElement("span", {className: "track__tag"}, tag.n);
+          });
+        }
+        return React.createElement("md-item", {className: "playlist__track"},
+          React.createElement("div", {className: "track__img-cont"},
+            React.createElement("img", {"ng-src": "", className: "track__img", alt: ""})
+          ),
+          React.createElement("div", {className: "track__content"},
+            React.createElement("h3", {className: "track__artist"}, track.a),
+            React.createElement("h4", {className: "track__title"}, track.t)
+          ),
+          React.createElement("div", {className: "track__tags"}, tagsnodes),
+          React.createElement("div", {className: "track__votes-block"},
+            React.createElement("md-button", {className: "md-fab track__vote--down", "aria-label": "track-up", "ng-click": "voteDown()"},
+              React.createElement("svg", {xmlns: "http://www.w3.org/2000/svg", width: "24", height: "24", viewBox: "0 0 24 24"},
+                React.createElement("path", {d: "M16.59 8.59l-4.59 4.58-4.59-4.58-1.41 1.41 6 6 6-6z"}),
+                React.createElement("path", {d: "M0 0h24v24h-24z", fill: "none"})
+              )
+            ),
+            React.createElement("span", {className: "track__rating"}, track.r),
+            React.createElement("md-button", {className: "md-fab track__vote--up", "aria-label": "track-down", "ng-click": "voteUp()"},
+              React.createElement("svg", {xmlns: "http://www.w3.org/2000/svg", width: "24", height: "24", viewBox: "0 0 24 24"},
+                React.createElement("path", {d: "M12 8l-6 6 1.41 1.41 4.59-4.58 4.59 4.58 1.41-1.41z"}),
+                React.createElement("path", {d: "M0 0h24v24h-24z", fill: "none"})
+              )
+            )
+          )
+        );
+      });
+    }
+    return (React.createElement("md-list", {className: "playlist__list"}, nodes));
+  }
+});
+app.value('TRIGGERPLAYLIST', TRIGGERPLAYLIST);
 
 app.factory('socket', function ($rootScope) {
   var socket = io.connect('http://trigger.fm');

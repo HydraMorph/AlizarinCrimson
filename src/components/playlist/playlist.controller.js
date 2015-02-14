@@ -14,14 +14,20 @@ angular.module('trigger')
       $mdSidenav('right').toggle();
     };
 
-    $scope.data = function (data) {
-      console.log(data);
-    };
-
     $scope.load.signed = false;
 
     $scope.playlist = [];
     $scope.track = {};
+
+    $scope.framework = 'ReactJs';
+    $scope.data = [];
+    // Fill the data map with random data
+    for(var i = 0; i < 1500; ++i) {
+        $scope.data[i] = {};
+        for(var j = 0; j < 5; ++j) {
+            $scope.data[i][j] = 'll';
+        }
+    }
 
     $scope.$watch(function () {
       return $rootScope.load.welcome;
@@ -203,35 +209,37 @@ angular.module('trigger')
         $scope.playlist[i].vote = 0;
       }
     });
-    // ---
-    // PUBLIC METHODS.
-    // ---
-
-    // I rebuild the collection, forcing a re-rendering of the ng-repeat.
-    $scope.rebuild = function () {
-      $scope.items = $scope.playlist;
-    };
 
   })
-  .directive(
-    'bnItem',
-    function () {
-      // I bind the JavaScript events to the local scope.
-      function link($scope, element, attributes) {
-          $scope.x = 0;
-          $scope.y = 0;
-          $scope.$evalAsync(
-            function () {
-              $scope.x = Math.floor(position.left);
-              $scope.y = Math.floor(position.top);
-            }
+  .directive('currentTrack', function(){
+    return{
+      restrict: 'E',
+      scope:{
+        data: '='
+      },
+      link:function(scope, el, attrs){
+        scope.$watch('data', function(newValue, oldValue){
+          React.renderComponent(
+            CURRENT({data:newValue}),
+            el[0]
           );
-        }
-        // Return the directive configuration.
-      return ({
-        link: link,
-        restrict: 'A'
-      });
+        })
+      }
     }
-  );
-//  });
+  })
+  .directive('fastRepeat', function(){
+    return{
+      restrict: 'E',
+      scope:{
+        data: '='
+      },
+      link:function(scope, el, attrs){
+        scope.$watch('data', function(newValue, oldValue){
+          React.renderComponent(
+            TRIGGERPLAYLIST({data:newValue}),
+            el[0]
+          );
+        })
+      }
+    }
+  });
