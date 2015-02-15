@@ -40,7 +40,8 @@
   margin 5px
   box-sizing border-box
   padding 0
-//  min-width 60px
+  min-height 48px
+  min-width 48px
 .track__img
   width 48px
   height 48px
@@ -53,9 +54,13 @@
   color rgb(51, 51, 51)
   font-size 12px
   margin 0
+  white-space nowrap
+  overflow hidden
+  text-overflow ellipsis
 .track__tags
   display flex
   flex 1
+  min-width 60px
   justify-content flex-end
 @media screen and (max-width: 600px)
   .track__tag
@@ -77,6 +82,7 @@
   display flex
   align-items center
   flex-basis 120px
+  min-width 120px
   justify-content flex-end
   &.voted--up
     & .track__vote--up
@@ -92,7 +98,7 @@
   width 40px
   height 40px
   & svg
-    margin-top 2px
+    margin-top 8px
 md-button.md-default-theme.md-fab
   background-color transparent
   box-shadow none
