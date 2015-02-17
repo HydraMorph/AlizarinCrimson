@@ -14,13 +14,13 @@ angular.module('trigger')
         $mdDialog.hide();
         $scope.$digest();
       }
-    };
+    }
     $scope.user = {
       'name': '',
       'password': ''
     };
     $scope.login = function () {
-      if ($scope.user.name == '') {
+      if ($scope.user.name === '') {
         Client.login('DonSinDRom', md5.createHash('3a12a6'), processLogin);
       } else {
         Client.login($scope.user.name, md5.createHash($scope.user.password), processLogin);

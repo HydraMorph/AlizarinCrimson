@@ -19,7 +19,7 @@ angular.module('trigger')
     $scope.$watch(function() {
       return $rootScope.load.welcome;
     }, function() {
-      if ($rootScope.load.welcome == true) {
+      if ($rootScope.load.welcome === true) {
         $scope.users.listeners = Client.channel.lst;
         $scope.users.active = Client.channel.a;
         $(Client).bind('listners', function(event, data) {
@@ -34,7 +34,7 @@ angular.module('trigger')
     $scope.$watch(function() {
       return $rootScope.load.signed;
     }, function() {
-      if ($rootScope.load.signed == true) {
+      if ($rootScope.load.signed === true) {
         console.log('Client.user', Client.user);
         $scope.user.name = Client.user.n;
         $scope.user.uplim = Client.user.t;
@@ -48,20 +48,20 @@ angular.module('trigger')
 
     $scope.data = function() {
       console.log('data', Client);
-    }
+    };
 
     $scope.showLoginModal = function(ev) {
       $mdDialog.show({
         controller: LoginCtrl,
         templateUrl: 'components/login/login.html',
         targetEvent: ev,
-      })
+      });
     };
     function LoginCtrl($scope, $mdDialog) {
       $scope.hide = function() {
         $mdDialog.hide();
       };
-    };
+    }
     $scope.openUploadBar = function($event) {
       $scope.alert = '';
       $mdBottomSheet.show({

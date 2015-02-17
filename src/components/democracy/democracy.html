@@ -21,7 +21,7 @@
             <div class="header">Президент:</div>
             <div class="content">
               <md-button aria-label="view-president" class="md-raised democracy__president-btn">
-                <img src="assets/images/crown.svg" alt="" class="democracy__icon">
+<!--                <img src="assets/images/crown.svg" alt="" class="democracy__icon">-->
                 {{president.name}}
               </md-button>
               <span class="t-b-space-hyphen-space">{{president.description}}</span>
@@ -42,7 +42,7 @@
             <div class="content" ng-repeat="mod in moderators">
               <span class="democracy__moderator">
                 <md-button aria-label="view-moderator" class="md-raised democracy__moderator">
-                  <img src="assets/images/death1.svg" alt="" class="democracy__icon">
+<!--                  <img src="assets/images/death1.svg" alt="" class="democracy__icon">-->
                   {{mod.name}}
                 </md-button>
                 <span class="t-b-space-hyphen-space">{{mod.description}}</span>
@@ -55,7 +55,7 @@
             <div class="content" ng-repeat="toll in banned">
               <span class="democracy__moderator">
                 <md-button aria-label="view-banned" class="md-raised democracy__moderator">
-                  <img src="assets/images/skull.svg" alt="" class="democracy__icon">
+<!--                  <img src="assets/images/skull.svg" alt="" class="democracy__icon">-->
                   {{toll.name}}
                 </md-button>
                 <span class="t-b-space-hyphen-space">{{toll.reason}}</span>
@@ -124,7 +124,7 @@
       </div>
       <div role="tabpanel" id="tabModerText-content" aria-labelledby="tabModerText" ng-switch-when="1" md-swipe-left="next()" md-swipe-right="previous()" >
         <md-card class="democracy__list">
-          <md-button class="md-raised democracy__moderator">
+          <md-button aria-label="vote" class="md-raised democracy__moderator">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
               <path d="M3 17.25v3.75h3.75l11.06-11.06-3.75-3.75-11.06 11.06zm17.71-10.21c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/>
               <path d="M0 0h24v24h-24z" fill="none"/>
@@ -134,7 +134,10 @@
           <br>
           Может быть я доведу его до удобоваримого состояния.
           <br>Но пока это какой-то неуклюжий ненасытный монстр.
-          <br>Работает логин, плейлист, даже можно кликнуть на ту штуку в левом верхнм углу - она тоже работает.</p>
+          <br>Работает логин, плейлист, даже можно кликнуть на ту штуку в левом верхнм углу - она тоже работает.
+          UPD: Вообще ничего не работает. В данный момент пытаюсь отобрать у ангулара рендер. И надо чем-то заменить ngAudio, уж очень он прожорлив.
+
+          </p>
         </md-card>
       </div>
     </ng-switch>

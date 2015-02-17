@@ -1,4 +1,5 @@
 0 info it worked if it ends with ok
+<<<<<<< HEAD
 1 verbose cli [ 'C:\\Program Files\\nodejs\\\\node.exe',
 1 verbose cli   'C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
 1 verbose cli   'install',
@@ -65,3 +66,283 @@
 36 error If you need help, you may report this error at:
 36 error     <http://github.com/npm/npm/issues>
 37 verbose exit [ 1, true ]
+=======
+1 verbose cli [ 'node',
+1 verbose cli   'C:\\Users\\DonSinDRom\\AppData\\Roaming\\npm\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'i',
+1 verbose cli   'generator-angular-famous-ionic',
+1 verbose cli   '-g' ]
+2 info using npm@2.5.1
+3 info using node@v0.10.36
+4 silly cache add args [ 'generator-angular-famous-ionic', null ]
+5 verbose cache add spec generator-angular-famous-ionic
+6 silly cache add parsed spec { raw: 'generator-angular-famous-ionic',
+6 silly cache add   scope: null,
+6 silly cache add   name: 'generator-angular-famous-ionic',
+6 silly cache add   rawSpec: '',
+6 silly cache add   spec: '*',
+6 silly cache add   type: 'range' }
+7 verbose addNamed generator-angular-famous-ionic@*
+8 silly addNamed semver.valid null
+9 silly addNamed semver.validRange *
+10 silly addNameRange { name: 'generator-angular-famous-ionic',
+10 silly addNameRange   range: '*',
+10 silly addNameRange   hasData: false }
+11 silly mapToRegistry name generator-angular-famous-ionic
+12 silly mapToRegistry using default registry
+13 silly mapToRegistry registry https://registry.npmjs.org/
+14 silly mapToRegistry uri https://registry.npmjs.org/generator-angular-famous-ionic
+15 verbose addNameRange registry:https://registry.npmjs.org/generator-angular-famous-ionic not in flight; fetching
+16 verbose request uri https://registry.npmjs.org/generator-angular-famous-ionic
+17 verbose request no auth needed
+18 info attempt registry request try #1 at 07:01:45
+19 verbose request id b8ef4bf41b4f422a
+20 verbose etag "D2MVJJ0WKRVE5EON49921GTMW"
+21 http request GET https://registry.npmjs.org/generator-angular-famous-ionic
+22 http 200 https://registry.npmjs.org/generator-angular-famous-ionic
+23 silly get cb [ 200,
+23 silly get   { date: 'Thu, 12 Feb 2015 04:02:10 GMT',
+23 silly get     server: 'CouchDB/1.5.0 (Erlang OTP/R16B03)',
+23 silly get     etag: '"INIG3C7OTXEDSV3KL20W3KW"',
+23 silly get     'content-type': 'application/json',
+23 silly get     'cache-control': 'max-age=60',
+23 silly get     'content-length': '153896',
+23 silly get     'accept-ranges': 'bytes',
+23 silly get     via: '1.1 varnish',
+23 silly get     age: '0',
+23 silly get     'x-served-by': 'cache-fra1239-FRA',
+23 silly get     'x-cache': 'MISS',
+23 silly get     'x-cache-hits': '0',
+23 silly get     'x-timer': 'S1423713729.622534,VS0,VE822',
+23 silly get     vary: 'Accept',
+23 silly get     'keep-alive': 'timeout=10, max=50',
+23 silly get     connection: 'Keep-Alive' } ]
+24 verbose get saving generator-angular-famous-ionic to C:\Users\DonSinDRom\AppData\Roaming\npm-cache\registry.npmjs.org\generator-angular-famous-ionic\.cache.json
+25 silly addNameRange number 2 { name: 'generator-angular-famous-ionic',
+25 silly addNameRange   range: '*',
+25 silly addNameRange   hasData: true }
+26 silly addNameRange versions [ 'generator-angular-famous-ionic',
+26 silly addNameRange   [ '0.0.2',
+26 silly addNameRange     '0.0.3',
+26 silly addNameRange     '0.0.4',
+26 silly addNameRange     '0.0.5',
+26 silly addNameRange     '0.0.6',
+26 silly addNameRange     '0.0.7',
+26 silly addNameRange     '0.0.8',
+26 silly addNameRange     '0.0.9',
+26 silly addNameRange     '0.0.10',
+26 silly addNameRange     '0.0.12',
+26 silly addNameRange     '0.0.13',
+26 silly addNameRange     '0.0.14',
+26 silly addNameRange     '0.0.15',
+26 silly addNameRange     '0.0.16',
+26 silly addNameRange     '0.0.17',
+26 silly addNameRange     '0.0.18',
+26 silly addNameRange     '1.0.0',
+26 silly addNameRange     '1.0.1',
+26 silly addNameRange     '1.0.2',
+26 silly addNameRange     '1.0.3',
+26 silly addNameRange     '1.0.4',
+26 silly addNameRange     '1.0.5',
+26 silly addNameRange     '1.0.6',
+26 silly addNameRange     '1.0.7',
+26 silly addNameRange     '1.0.8',
+26 silly addNameRange     '1.0.9',
+26 silly addNameRange     '1.0.10',
+26 silly addNameRange     '1.0.11',
+26 silly addNameRange     '1.0.12',
+26 silly addNameRange     '1.0.13',
+26 silly addNameRange     '1.1.0',
+26 silly addNameRange     '1.1.1',
+26 silly addNameRange     '1.2.0',
+26 silly addNameRange     '1.2.1',
+26 silly addNameRange     '1.2.2',
+26 silly addNameRange     '1.2.3',
+26 silly addNameRange     '1.2.4',
+26 silly addNameRange     '1.2.5',
+26 silly addNameRange     '1.2.6',
+26 silly addNameRange     '1.2.7',
+26 silly addNameRange     '1.2.8',
+26 silly addNameRange     '1.2.9',
+26 silly addNameRange     '1.2.10',
+26 silly addNameRange     '1.2.11',
+26 silly addNameRange     '1.2.12',
+26 silly addNameRange     '1.2.13',
+26 silly addNameRange     '1.2.14',
+26 silly addNameRange     '1.3.0',
+26 silly addNameRange     '1.3.1',
+26 silly addNameRange     '1.3.2',
+26 silly addNameRange     '1.3.3',
+26 silly addNameRange     '1.3.4',
+26 silly addNameRange     '1.3.5',
+26 silly addNameRange     '1.3.6' ] ]
+27 verbose addNamed generator-angular-famous-ionic@1.3.6
+28 silly addNamed semver.valid 1.3.6
+29 silly addNamed semver.validRange 1.3.6
+30 silly mapToRegistry name generator-angular-famous-ionic
+31 silly mapToRegistry using default registry
+32 silly mapToRegistry registry https://registry.npmjs.org/
+33 silly mapToRegistry uri https://registry.npmjs.org/generator-angular-famous-ionic
+34 verbose addRemoteTarball https://registry.npmjs.org/generator-angular-famous-ionic/-/generator-angular-famous-ionic-1.3.6.tgz not in flight; adding
+35 verbose addRemoteTarball [ 'https://registry.npmjs.org/generator-angular-famous-ionic/-/generator-angular-famous-ionic-1.3.6.tgz',
+35 verbose addRemoteTarball   '8e3a3962ceedb6ac7dae2ccb3326a1d37a550462' ]
+36 info retry fetch attempt 1 at 07:01:48
+37 info attempt registry request try #1 at 07:01:48
+38 http fetch GET https://registry.npmjs.org/generator-angular-famous-ionic/-/generator-angular-famous-ionic-1.3.6.tgz
+39 http fetch 200 https://registry.npmjs.org/generator-angular-famous-ionic/-/generator-angular-famous-ionic-1.3.6.tgz
+40 silly fetchAndShaCheck shasum 8e3a3962ceedb6ac7dae2ccb3326a1d37a550462
+41 verbose addTmpTarball C:\Users\DONSIN~1\AppData\Local\Temp\npm-5244-67b1e736\registry.npmjs.org\generator-angular-famous-ionic\-\generator-angular-famous-ionic-1.3.6.tgz not in flight; adding
+42 verbose addTmpTarball already have metadata; skipping unpack for generator-angular-famous-ionic@1.3.6
+43 silly cache afterAdd generator-angular-famous-ionic@1.3.6
+44 verbose afterAdd C:\Users\DonSinDRom\AppData\Roaming\npm-cache\generator-angular-famous-ionic\1.3.6\package\package.json not in flight; writing
+45 verbose afterAdd C:\Users\DonSinDRom\AppData\Roaming\npm-cache\generator-angular-famous-ionic\1.3.6\package\package.json written
+46 silly install resolved [ { name: 'generator-angular-famous-ionic',
+46 silly install resolved     version: '1.3.6',
+46 silly install resolved     description: 'Yeoman generator for scaffolding an app using angularjs browserify and famous',
+46 silly install resolved     license: 'BSD',
+46 silly install resolved     main: 'app/index.js',
+46 silly install resolved     repository:
+46 silly install resolved      { type: 'git',
+46 silly install resolved        url: 'https://github.com/thaiat/generator-angular-famous-ionic' },
+46 silly install resolved     author:
+46 silly install resolved      { name: 'Avi Haiat',
+46 silly install resolved        email: 'thaiat@ipelia.com',
+46 silly install resolved        url: 'https://github.com/thaiat' },
+46 silly install resolved     engines: { node: '>=0.10.0' },
+46 silly install resolved     scripts: { preinstall: 'bash ./bin/prepublish.sh', test: 'gulp test' },
+46 silly install resolved     files:
+46 silly install resolved      [ 'bin/prepublish.sh',
+46 silly install resolved        'app',
+46 silly install resolved        'class',
+46 silly install resolved        'module',
+46 silly install resolved        'service',
+46 silly install resolved        'controller',
+46 silly install resolved        'filter',
+46 silly install resolved        'constant',
+46 silly install resolved        'value',
+46 silly install resolved        'directive',
+46 silly install resolved        'require',
+46 silly install resolved        'remove',
+46 silly install resolved        'target',
+46 silly install resolved        'templates',
+46 silly install resolved        'utils.js' ],
+46 silly install resolved     preferGlobal: true,
+46 silly install resolved     keywords:
+46 silly install resolved      [ 'yeoman-generator',
+46 silly install resolved        'angular',
+46 silly install resolved        'angularjs',
+46 silly install resolved        'browserify',
+46 silly install resolved        'watchify',
+46 silly install resolved        'famous',
+46 silly install resolved        'famo.us',
+46 silly install resolved        'famous-angular',
+46 silly install resolved        'ngCordova',
+46 silly install resolved        'scaffold' ],
+46 silly install resolved     dependencies:
+46 silly install resolved      { chalk: '0.5.1',
+46 silly install resolved        del: '1.1.1',
+46 silly install resolved        'glob-to-regexp': '0.0.2',
+46 silly install resolved        gulp: '3.8.10',
+46 silly install resolved        'gulp-inject': '1.1.1',
+46 silly install resolved        'gulp-mux': 'latest',
+46 silly install resolved        lodash: '2.4.1',
+46 silly install resolved        q: '1.1.2',
+46 silly install resolved        shelljs: '0.3.0',
+46 silly install resolved        'update-notifier': '0.3.0',
+46 silly install resolved        'yeoman-generator': '0.17.7',
+46 silly install resolved        yosay: '1.0.2' },
+46 silly install resolved     devDependencies:
+46 silly install resolved      { chai: '1.10.0',
+46 silly install resolved        'conventional-changelog': '0.0.11',
+46 silly install resolved        github: '0.2.3',
+46 silly install resolved        'github-username': '1.1.1',
+46 silly install resolved        'gulp-bump': '0.1.13',
+46 silly install resolved        'gulp-concat': '2.4.3',
+46 silly install resolved        'gulp-eslint': '0.2.2',
+46 silly install resolved        'gulp-exec': '2.1.1',
+46 silly install resolved        'gulp-git': '0.5.6',
+46 silly install resolved        'gulp-help': '1.3.2',
+46 silly install resolved        'gulp-if': '1.2.5',
+46 silly install resolved        'gulp-istanbul': '0.6.0',
+46 silly install resolved        'gulp-jscs': '1.4.0',
+46 silly install resolved        'gulp-jshint': '1.9.2',
+46 silly install resolved        'gulp-load-plugins': '0.8.0',
+46 silly install resolved        'gulp-mocha': '2.0.0',
+46 silly install resolved        'gulp-plumber': '0.6.6',
+46 silly install resolved        'gulp-tap': '0.1.3',
+46 silly install resolved        'gulp-util': '3.0.3',
+46 silly install resolved        inquirer: '0.8.0',
+46 silly install resolved        'jshint-stylish': '1.0.0',
+46 silly install resolved        'map-stream': '0.1.0',
+46 silly install resolved        mocha: '2.1.0',
+46 silly install resolved        'mocha-lcov-reporter': '0.0.1',
+46 silly install resolved        mockery: '1.4.0',
+46 silly install resolved        'node-jsxml': '0.6.0',
+46 silly install resolved        'require-dir': '0.1.0',
+46 silly install resolved        'run-sequence': '1.0.2',
+46 silly install resolved        sinon: '1.12.2',
+46 silly install resolved        'stream-combiner': '0.2.1',
+46 silly install resolved        streamqueue: '0.1.1',
+46 silly install resolved        'strip-json-comments': '1.0.2',
+46 silly install resolved        yargs: '1.3.3' },
+46 silly install resolved     peerDependencies: { yo: '>=1.2.1', 'generator-sublime': '>=1.5.5' },
+46 silly install resolved     gitHead: '9889b297d7acf1c424d898679d22442b8d19c8a9',
+46 silly install resolved     bugs: { url: 'https://github.com/thaiat/generator-angular-famous-ionic/issues' },
+46 silly install resolved     homepage: 'https://github.com/thaiat/generator-angular-famous-ionic',
+46 silly install resolved     _id: 'generator-angular-famous-ionic@1.3.6',
+46 silly install resolved     _shasum: '8e3a3962ceedb6ac7dae2ccb3326a1d37a550462',
+46 silly install resolved     _from: 'generator-angular-famous-ionic@*',
+46 silly install resolved     _npmVersion: '1.4.28',
+46 silly install resolved     _npmUser: { name: 'thaiat', email: 'thaiat@ipelia.com' },
+46 silly install resolved     maintainers: [ [Object] ],
+46 silly install resolved     dist:
+46 silly install resolved      { shasum: '8e3a3962ceedb6ac7dae2ccb3326a1d37a550462',
+46 silly install resolved        tarball: 'http://registry.npmjs.org/generator-angular-famous-ionic/-/generator-angular-famous-ionic-1.3.6.tgz' },
+46 silly install resolved     directories: {},
+46 silly install resolved     _resolved: 'https://registry.npmjs.org/generator-angular-famous-ionic/-/generator-angular-famous-ionic-1.3.6.tgz' } ]
+47 info install generator-angular-famous-ionic@1.3.6 into C:\Program Files\nodejs
+48 info installOne generator-angular-famous-ionic@1.3.6
+49 verbose installOne of generator-angular-famous-ionic to C:\Program Files\nodejs not in flight; installing
+50 verbose lock using C:\Users\DonSinDRom\AppData\Roaming\npm-cache\_locks\generator-angular-famous-7d950d4722c5e002.lock for C:\Program Files\nodejs\node_modules\generator-angular-famous-ionic
+51 silly install write writing generator-angular-famous-ionic 1.3.6 to C:\Program Files\nodejs\node_modules\generator-angular-famous-ionic
+52 silly cache addNamed cb generator-angular-famous-ionic@1.3.6
+53 verbose unbuild node_modules\generator-angular-famous-ionic
+54 verbose gentlyRm vacuuming C:\Program Files\nodejs\node_modules\generator-angular-famous-ionic
+55 verbose tar unpack C:\Users\DonSinDRom\AppData\Roaming\npm-cache\generator-angular-famous-ionic\1.3.6\package.tgz
+56 verbose tar unpacking to C:\Program Files\nodejs\node_modules\generator-angular-famous-ionic
+57 verbose gentlyRm vacuuming C:\Program Files\nodejs\node_modules\generator-angular-famous-ionic
+58 silly gunzTarPerm modes [ '777', '666' ]
+59 error tar.unpack untar error C:\Users\DonSinDRom\AppData\Roaming\npm-cache\generator-angular-famous-ionic\1.3.6\package.tgz
+60 verbose unlock done using C:\Users\DonSinDRom\AppData\Roaming\npm-cache\_locks\generator-angular-famous-7d950d4722c5e002.lock for C:\Program Files\nodejs\node_modules\generator-angular-famous-ionic
+61 verbose fstream_path C:\Program Files\nodejs\node_modules\generator-angular-famous-ionic
+62 verbose fstream_type Directory
+63 verbose fstream_class DirWriter
+64 verbose stack Error: EPERM, mkdir 'C:\Program Files\nodejs\node_modules\generator-angular-famous-ionic'
+65 verbose fstream_stack C:\Users\DonSinDRom\AppData\Roaming\npm\node_modules\npm\node_modules\fstream\lib\dir-writer.js:36:23
+65 verbose fstream_stack C:\Users\DonSinDRom\AppData\Roaming\npm\node_modules\npm\node_modules\mkdirp\index.js:46:53
+65 verbose fstream_stack Object.oncomplete (fs.js:108:15)
+66 verbose cwd C:\Dev\AlizarinCrimson
+67 error Windows_NT 6.2.9200
+68 error argv "node" "C:\\Users\\DonSinDRom\\AppData\\Roaming\\npm\\node_modules\\npm\\bin\\npm-cli.js" "i" "generator-angular-famous-ionic" "-g"
+69 error node v0.10.36
+70 error npm  v2.5.1
+71 error path C:\Program Files\nodejs\node_modules\generator-angular-famous-ionic
+72 error code EPERM
+73 error errno 50
+74 error Error: EPERM, mkdir 'C:\Program Files\nodejs\node_modules\generator-angular-famous-ionic'
+74 error  { [Error: EPERM, mkdir 'C:\Program Files\nodejs\node_modules\generator-angular-famous-ionic']
+74 error   errno: 50,
+74 error   code: 'EPERM',
+74 error   path: 'C:\\Program Files\\nodejs\\node_modules\\generator-angular-famous-ionic',
+74 error   fstream_type: 'Directory',
+74 error   fstream_path: 'C:\\Program Files\\nodejs\\node_modules\\generator-angular-famous-ionic',
+74 error   fstream_class: 'DirWriter',
+74 error   fstream_stack:
+74 error    [ 'C:\\Users\\DonSinDRom\\AppData\\Roaming\\npm\\node_modules\\npm\\node_modules\\fstream\\lib\\dir-writer.js:36:23',
+74 error      'C:\\Users\\DonSinDRom\\AppData\\Roaming\\npm\\node_modules\\npm\\node_modules\\mkdirp\\index.js:46:53',
+74 error      'Object.oncomplete (fs.js:108:15)' ] }
+75 error Please try running this command again as root/Administrator.
+76 verbose exit [ 50, true ]
+77 verbose unbuild node_modules\generator-angular-famous-ionic
+78 verbose gentlyRm vacuuming C:\Program Files\nodejs\node_modules\generator-angular-famous-ionic
+>>>>>>> origin/gh-pages
