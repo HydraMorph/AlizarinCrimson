@@ -19,7 +19,6 @@ angular.module('trigger')
           $scope.$digest();
         });
         $(Client).bind('message', function (event, data) {
-          console.log(data);
           if (checkPrivate(data)) {
             data.private = true;
           }
@@ -35,28 +34,30 @@ angular.module('trigger')
         return true;
       }
     }
+    function focus() {
+      document.getElementById("006").focus();
+    }
 
     $scope.sendMessage = function () {
-      Client.sendMessage($scope.message, function (data) {
-        console.log(data);
-        $scope.messages.push(data);
-        $scope.$digest();
-        if (data.error) {
-          //          $('#messageinput').attr("placeholder", data.error);
-          console.log(data.error);
-        } else {
-          console.log(data);
-          //          $('#messageinput').attr("placeholder", "РЅР°С‡РёРЅР°Р№ РІРІРѕРґРёС‚СЊ...");
+      if (this.message) {
+        Client.sendMessage($scope.message, function (data) {
+          if (data.m) {
+            $scope.messages.push(data);
+            $scope.$digest();
+          }
+          if (data.error) {
+            console.log(data.error);
+          }
+        });
+        var res = $scope.message.split(" ");
+        var chatters = [];
+        for (var i = 0; i < res.length; i++) {
+          if (res[i].indexOf('>') > -1) {
+            chatters.push(res[i]);
+          }
         }
-      });
-      var res = $scope.message.split(" ");
-      var chatters = [];
-      for (var i = 0; i < res.length; i++) {
-        if (res[i].indexOf('>') > -1) {
-          chatters.push(res[i]);
-        }
+        $scope.message = chatters.join(' ') + ' ';
       }
-      $scope.message = chatters.join(' ') + ' ';
     };
     $scope.addNick = function(nick) {
       var s = $scope.message;
@@ -70,5 +71,6 @@ angular.module('trigger')
         s = '>' + nick + ' ' + $scope.message;
       }
       $scope.message = s;
+      focus();
     }
   });
