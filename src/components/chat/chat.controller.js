@@ -11,7 +11,6 @@ angular.module('trigger')
         Client.getChat({}, function(d) {
           $scope.messages = d.m;
           $scope.$digest();
-          console.log(d);
         });
         $(Client).bind('message', function (event, data) {
           console.log(data.m);

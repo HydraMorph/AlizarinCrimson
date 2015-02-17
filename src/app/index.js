@@ -314,7 +314,8 @@ app.service('Client', function ($log) {
 
   this.getChat = function(data, callback) {
     var cl = this;
-    this.socket.emit('getchat', {'shift': data.shift, 'id': this.channel.chid}, function(data) {
+//    this.socket.emit('getchat', {'shift': data.shift, 'id': this.channel.chid}, function(data) {
+    this.socket.emit('getchat', {'shift': data.shift, 'id': 1}, function(data) {
       if (data.u) {
         cl.chat = data;
         cl.chat.id = cl.channel.chid;
