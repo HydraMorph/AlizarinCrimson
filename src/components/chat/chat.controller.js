@@ -33,6 +33,26 @@ angular.module('trigger')
           //          $('#messageinput').attr("placeholder", "РЅР°С‡РёРЅР°Р№ РІРІРѕРґРёС‚СЊ...");
         }
       });
-      $scope.message = '';
+      var res = $scope.message.split(" ");
+      var chatters = [];
+      for (var i = 0; i < res.length; i++) {
+        if (res[i].indexOf('>') > -1) {
+          chatters.push(res[i]);
+        }
+      }
+      $scope.message = chatters.join(' ') + ' ';
     };
+    $scope.addNick = function(nick) {
+      var s = $scope.message;
+      if (s.indexOf('>' +  nick) > -1) {
+        if (s.indexOf('>>' +  nick) > -1) {
+          s = $scope.message.replace('>>' + nick + ' ', '>' + nick + ' ');
+        } else {
+          s = $scope.message.replace('>' + nick + ' ', '>>' + nick + ' ');
+        }
+      } else {
+        s = '>' + nick + ' ' + $scope.message;
+      }
+      $scope.message = s;
+    }
   });
