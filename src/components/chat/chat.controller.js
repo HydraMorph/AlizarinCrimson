@@ -10,19 +10,35 @@ angular.module('trigger')
       if ($rootScope.load.signed == true) {
         Client.getChat({}, function(d) {
           $scope.messages = d.m;
+          var mL = d.m.length;
+          for (var i = 0; i < mL; i++) {
+            if (checkPrivate(d.m[i])) {
+              d.m[i].private = true;
+            }
+          }
           $scope.$digest();
         });
         $(Client).bind('message', function (event, data) {
-          console.log(data.m);
+          console.log(data);
+          if (checkPrivate(data)) {
+            data.private = true;
+          }
           $scope.messages.push(data);
-//          console.log(data);
           $scope.$digest();
         });
       }
       $scope.load.signed = $rootScope.load.signed;
     }, true);
+
+    function checkPrivate(messages) {
+      if (messages.m.indexOf(Client.user.n) > -1) {
+        return true;
+      }
+    }
+
     $scope.sendMessage = function () {
       Client.sendMessage($scope.message, function (data) {
+        console.log(data);
         $scope.messages.push(data);
         $scope.$digest();
         if (data.error) {
