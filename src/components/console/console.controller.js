@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('trigger')
-  .controller('ConsoleCtrl', function ($scope, $rootScope, $timeout, $mdDialog, $mdBottomSheet, Client, ngAudio) {
+  .controller('ConsoleCtrl', function ($scope, $rootScope, $timeout, $mdDialog, $mdBottomSheet, Client) {
     $scope.users = {
       'listeners': 0,
       'active': 0
@@ -10,6 +10,7 @@ angular.module('trigger')
       'name': '%username%',
       'uplim': 0
     };
+
     $scope.volume = 23;
     $scope.changeVolume = function(volume) {
       $scope.audio.setVolume(volume/100);

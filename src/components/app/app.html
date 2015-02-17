@@ -1,9 +1,30 @@
+<!--
+/* Perf notes:
+* 1. Switcher's animation is overhead. Remove it! ):
+* 2. ngAudio player is bad for cpu - audio is injeted with Vanilla
+*/
+-->
 <div ng-controller="AppCtrl" layout="column" layout-fill>
+<script>
+(function() {
+  var button = document.getElementById('audioBtn');
+  var audio = document.getElementById('audio');
+  var onClick = function() {
+    audio.play();
+//    button.classList.toggle('play');
+  };
+  button.addEventListener('click', onClick, false);
+})();
+</script>
 <!--  <div class="info" ng-include="'components/markdown/markdown.html'"></div>-->
   <section layout="row" flex>
     <md-sidenav class="md-sidenav-left md-whiteframe-z2" component-id="left" is-locked-open="$media('sm')">
       <md-toolbar class="console__switcher-cont">
-        <svg class="switcher" ng-click="togglePlay()" ng-class="{'play' : play == true}" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 850.4 595.3" enable-background="new 0 0 850.4 595.3" xml:space="preserve">
+        <audio id="audio">
+          <source src="http://trigger.fm/stream/mainmp3" type="audio/mpeg" />
+          <source src="http://trigger.fm/stream/main" type="audio/ogg" />
+        </audio>
+        <svg id="audioBtn" class="switcher" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 850.4 595.3" enable-background="new 0 0 850.4 595.3" xml:space="preserve">
           <path class="b3" fill="none" stroke="#B4B4B4" stroke-width="55.3274" stroke-miterlimit="10" d="M154.7,568.2c-149-149-149-392.1,0-541.1"/>
           <path class="b2" fill="none" stroke="#9D9D9D" stroke-width="55.3274" stroke-miterlimit="10" d="M239,483.9C135.1,380,135.1,213.3,239,109.4"/>
           <path class="b1" fill="none" stroke="#7F7F7F" stroke-width="55.3274" stroke-miterlimit="10" d="M323.3,399.6c-56.9-56.9-56.9-149,0-205.8"/>
