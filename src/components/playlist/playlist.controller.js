@@ -19,16 +19,6 @@ angular.module('trigger')
     $scope.playlist = [];
     $scope.track = {};
 
-    $scope.framework = 'ReactJs';
-    $scope.data = [];
-    // Fill the data map with random data
-    for(var i = 0; i < 1500; ++i) {
-        $scope.data[i] = {};
-        for(var j = 0; j < 5; ++j) {
-            $scope.data[i][j] = 'll';
-        }
-    }
-
     $scope.$watch(function () {
       return $rootScope.load.welcome;
     }, function () {
