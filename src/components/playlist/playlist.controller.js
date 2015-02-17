@@ -160,16 +160,18 @@ angular.module('trigger')
       }
     });
     //
-    $scope.voteUp = function (id, type) {
+    $scope.voteUp = function (id) {
       if (this.track.vote === Client.user.w) {
         Client.addvote({
           'id': id,
-          'v': 0
+          'v': 0,
+          'chid': 1
         });
       } else {
         Client.addvote({
           'id': id,
-          'v': Client.user.w
+          'v': Client.user.w,
+          'chid': 1
         });
       }
     };
@@ -178,12 +180,14 @@ angular.module('trigger')
       if (this.track.vote === -Client.user.w) {
         Client.addvote({
           'id': id,
-          'v': 0
+          'v': 0,
+          'chid': 1
         });
       } else {
         Client.addvote({
           'id': id,
-          'v': -Client.user.w
+          'v': -Client.user.w,
+          'chid': 1
         });
       }
     };

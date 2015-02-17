@@ -2,12 +2,6 @@
 
 var app = angular.module('trigger', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'ngMaterial', 'btford.socket-io', 'luegg.directives']);
 
-app.filter('reverse', function() {
-  return function(items) {
-    return items.slice().reverse();
-  };
-});
-
 app.directive('ngEnter', function() {
   return function(scope, element, attrs) {
     element.bind('keydown keypress', function(event) {
@@ -344,10 +338,10 @@ app.service('Client', function ($log) {
   };
 
   this.addvote = function(data, callback) {
-    if (this.user) {
-      data.chid = this.channel.chid;
-      this.socket.emit('vote', data);
-    }
+    this.socket.emit('vote', data);
+//    if (this.user) {
+//      data.chid = this.channel.chid;
+//    }
   };
 
   this.adduservote = function(data, callback) {
