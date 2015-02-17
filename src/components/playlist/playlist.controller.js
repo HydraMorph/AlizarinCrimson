@@ -53,6 +53,18 @@ angular.module('trigger')
           }
         }
       }
+      for (var vr in $scope.track.p) {
+        if ($scope.track.p[vr].vid === Client.user.id) {
+          $scope.track.vote = Client.user.w;
+          break;
+        }
+      }
+      for (var vr in $scope.track.n) {
+        if ($scope.track.n[vr].vid === Client.user.id) {
+          $scope.track.vote = -Client.user.w;
+          break;
+        }
+      }
     }
 
     $scope.$watch(function () {
@@ -164,14 +176,12 @@ angular.module('trigger')
       if (this.track.vote === Client.user.w) {
         Client.addvote({
           'id': id,
-          'v': 0,
-          'chid': 1
+          'v': 0
         });
       } else {
         Client.addvote({
           'id': id,
-          'v': Client.user.w,
-          'chid': 1
+          'v': Client.user.w
         });
       }
     };
@@ -180,14 +190,12 @@ angular.module('trigger')
       if (this.track.vote === -Client.user.w) {
         Client.addvote({
           'id': id,
-          'v': 0,
-          'chid': 1
+          'v': 0
         });
       } else {
         Client.addvote({
           'id': id,
-          'v': -Client.user.w,
-          'chid': 1
+          'v': -Client.user.w
         });
       }
     };

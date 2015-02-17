@@ -130,7 +130,6 @@ app.service('Client', function ($log) {
     });
 
     socket.on('userdata', function(data) {
-      console.log(data);
       cl.callbacks.userdata(data);
     });
 
@@ -314,8 +313,8 @@ app.service('Client', function ($log) {
 
   this.getChat = function(data, callback) {
     var cl = this;
-//    this.socket.emit('getchat', {'shift': data.shift, 'id': this.channel.chid}, function(data) {
-    this.socket.emit('getchat', {'shift': data.shift, 'id': 1}, function(data) {
+    this.socket.emit('getchat', {'shift': data.shift, 'id': this.channel.id}, function(data) {
+//    this.socket.emit('getchat', {'shift': data.shift, 'id': 1}, function(data) {
       if (data.u) {
         cl.chat = data;
         cl.chat.id = cl.channel.chid;
@@ -331,7 +330,7 @@ app.service('Client', function ($log) {
 
   this.tracksubmit = function(data, callback) {
     var form = data.form;
-    this.socket.emit('tracksubmit', {'chid': this.channel.chid, 'track': data.track}, function(data) {
+    this.socket.emit('tracksubmit', {'chid': this.channel.id, 'track': data.track}, function(data) {
       data.form = form;
       console.log('data.form: ', data.form);
       callback(data);
@@ -339,10 +338,10 @@ app.service('Client', function ($log) {
   };
 
   this.addvote = function(data, callback) {
-    this.socket.emit('vote', data);
-//    if (this.user) {
-//      data.chid = this.channel.chid;
-//    }
+    if (this.user) {
+      data.chid = this.channel.id;
+      this.socket.emit('vote', data);
+    }
   };
 
   this.adduservote = function(data, callback) {

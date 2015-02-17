@@ -10,8 +10,12 @@
   var button = document.getElementById('audioBtn');
   var audio = document.getElementById('audio');
   var onClick = function() {
-    audio.play();
-//    button.classList.toggle('play');
+    button.classList.toggle('play');
+    if (audio.paused) {
+      audio.play();
+    } else {
+      audio.pause();
+    }
   };
   button.addEventListener('click', onClick, false);
 })();
