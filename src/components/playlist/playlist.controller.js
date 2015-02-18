@@ -1,13 +1,7 @@
 'use strict';
 
 angular.module('trigger')
-  .controller('PlaylistCtrl', function ($scope, $rootScope, $mdSidenav, Client, socket, trackCoverService) {
-
-    trackCoverService.getArtists('Jon Kennedy', 'Sand People')
-      .success(function(response) {
-        return response.track.album.image[0]['#text'];
-      }
-    );
+  .controller('PlaylistCtrl', function ($scope, $rootScope, $mdSidenav, Client, socket) {
 
     $scope.reverse = false;
     var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
@@ -72,21 +66,6 @@ angular.module('trigger')
           break;
         }
       }
-    }
-
-    function setCovers () {
-      var plsL = $scope.playlist.length;
-      for (var i = 0; i < plsL; i++) {
-        var track = $scope.playlist[i];
-        track.src = 'assets\\images\\nocover.png';
-        trackCoverService.getArtists(track.a, track.t)
-          .success(function(response) {
-            console.log('success', response.track.album.image[0]['#text']);
-            track.src = response.track.album.image[0]['#text'];
-          });
-        $scope.playlist[i] = track;
-      }
-      $scope.$digest();
     }
 
     $scope.$watch(function () {
@@ -178,14 +157,6 @@ angular.module('trigger')
             break;
           }
         }
-        trackCoverService.getArtists(data.track.a, data.track.t)
-          .success(function(response) {
-            data.track.src = response.track.album.image[0]['#text'];
-          })
-          .error(function(response) {
-            data.track.src = '\assets\images]nocover.png';
-          });
-
         $scope.playlist.push(data.track);
       }
       console.log('addtrack', data.track);
@@ -234,8 +205,6 @@ angular.module('trigger')
     socket.on('channeldata', function (data) {
       console.log('playlist', data.pls);
       $scope.playlist = data.pls;
-      setCovers();
-      $scope.$digest();
       $scope.items = $scope.playlist;
       $scope.current = data.current;
       var plsL = data.pls.length;

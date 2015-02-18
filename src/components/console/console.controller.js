@@ -25,7 +25,7 @@ angular.module('trigger')
         $(Client).bind('listners', function(event, data) {
           $scope.users.listeners = data.l;
           $scope.users.active = data.a;
-          console.log('listners', data);
+          $scope.$digest();
         });
       }
       $scope.load.welcome = $rootScope.load.welcome;
