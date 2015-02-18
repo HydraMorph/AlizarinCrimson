@@ -2,6 +2,17 @@
 
 var app = angular.module('trigger', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'ngMaterial', 'btford.socket-io', 'luegg.directives']);
 
+app.factory('trackCoverService', ['$http', function($http) {
+  var trackCover = {};
+  trackCover.getArtists = function(artist, track) {
+    return $http({
+      method: 'GET',
+      url: 'http://ws.audioscrobbler.com/2.0/?method=track.getInfo&autocorrect=1&api_key=66101f9355c9c707b5608bc42c62d860&artist=' + artist + '&track=' + track + '&format=json'
+    });
+  }
+  return trackCover;
+}]);
+
 app.directive('ngEnter', function() {
   return function(scope, element, attrs) {
     element.bind('keydown keypress', function(event) {
