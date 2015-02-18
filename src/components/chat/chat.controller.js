@@ -2,6 +2,17 @@
 
 angular.module('trigger')
   .controller('ChatCtrl', function ($scope, $rootScope, Client) {
+
+    function tink() {
+      var sound = new Audio();
+      if (sound.canPlayType('audio/ogg')) {
+        sound.src = 'http://trigger.fm/sounds/tink.ogg';
+        sound.play();
+      } else {
+        sound.src = 'http://trigger.fm/sounds/tink.mp3';
+        sound.play();
+      }
+    }
     $scope.message = '';
     $scope.messages = [];
     $scope.$watch(function () {
@@ -14,6 +25,7 @@ angular.module('trigger')
           for (var i = 0; i < mL; i++) {
             if (checkPrivate(d.m[i])) {
               d.m[i].private = true;
+              tink();
             }
           }
           $scope.$digest();
@@ -21,6 +33,7 @@ angular.module('trigger')
         $(Client).bind('message', function (event, data) {
           if (checkPrivate(data)) {
             data.private = true;
+            tink();
           }
           $scope.messages.push(data);
           $scope.$digest();
