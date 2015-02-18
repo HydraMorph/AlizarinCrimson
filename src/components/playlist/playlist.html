@@ -26,7 +26,8 @@
     <md-list layout="column" class="playlist__list">
       <md-item class="playlist__track">
         <div class="track__img-cont">
-          <img ng-src="{{track.src}}" class="track__img" alt="" ng-click="data(track)">
+<!--          <img ng-src="{{track.src}}" class="track__img" alt="" ng-click="data(track)">-->
+          <img ng-src="assets\images\nocover.png" class="track__img" alt="" ng-click="data(track)">
         </div>
         <div class="track__content">
           <h3 class="track__artist">{{track.a}}</h3>
@@ -64,7 +65,8 @@
 <!--      <md-item ng-repeat="track in playlist | orderBy:'r':true" class="playlist__track">-->
       <md-item ng-repeat="track in playlist track by track.id" class="playlist__track" style="order: {{track.r}}">
         <div class="track__img-cont">
-          <img ng-src="{{track.src}}" class="track__img" alt="" ng-click="data(track)">
+<!--          <img ng-src="{{track.src}}" class="track__img" alt="" ng-click="data(track)">-->
+          <img ng-src="assets\images\nocover.png" class="track__img" alt="" ng-click="data(track)">
         </div>
         <div class="track__content">
           <h3 class="track__artist">{{track.a}}</h3>
