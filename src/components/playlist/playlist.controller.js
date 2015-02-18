@@ -78,7 +78,7 @@ angular.module('trigger')
       var plsL = $scope.playlist.length;
       for (var i = 0; i < plsL; i++) {
         var track = $scope.playlist[i];
-        track.src = '\\assets\\images\\nocover.png';
+        track.src = 'assets\\images\\nocover.png';
         trackCoverService.getArtists(track.a, track.t)
           .success(function(response) {
             console.log('success', response.track.album.image[0]['#text']);
