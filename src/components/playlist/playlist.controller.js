@@ -31,6 +31,20 @@ angular.module('trigger')
     }, true);
 
     $(Client).bind('newcurrent', function (event, data) {
+      if ($scope.load.signed === true) {
+        for (var vr in data.track.p) {
+          if (data.track.p[vr].vid === Client.user.id) {
+            data.track.vote = Client.user.w;
+            break;
+          }
+        }
+        for (var vr in data.track.n) {
+          if (data.track.n[vr].vid === Client.user.id) {
+            data.track.vote = -Client.user.w;
+            break;
+          }
+        }
+      }
       Client.channel.current = data.track;
       $scope.track = data.track;
       $rootScope.title = '! ' + data.track.a + ' - ' + data.track.t + ' @ Trigger';
