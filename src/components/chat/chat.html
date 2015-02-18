@@ -17,7 +17,7 @@
   <div class="online__include" ng-include="'components/online/online.html'"></div>
 
   <div class="chat__input-grp">
-    <md-text-float class="chat__input" label="начинай вводить..." ng-enter="sendMessage()" ng-model="message"></md-text-float>
+    <md-text-float id="chatInput" class="chat__input" label="начинай вводить..." ng-enter="sendMessage()" ng-model="message"></md-text-float>
     <div class="chat__input-nav">
       <md-button class="chat__button--bold" aria-label="chat-bold">bold</md-button>
       <md-button class="chat__button--irony" aria-label="chat-irony">irony</md-button>
