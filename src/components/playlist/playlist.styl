@@ -18,11 +18,9 @@
     color #fff
   & .track__rating
     color #bbb
-@media screen and (min-width: 960px)
-  .playlist__content
-    height calc(100% - 61px) /* (current) 58 + 3 (progressbar) */
 
 .playlist__list
+  overflow hidden
   display flex
   flex-flow column-reverse wrap
   padding 0
@@ -64,9 +62,6 @@
   display flex
   flex 1
   justify-content flex-end
-@media screen and (max-width: 600px)
-  .track__tag
-    display none !important
 .track__tag
   display flex
   font-size 9px
@@ -152,6 +147,9 @@ md-button.md-default-theme.md-fab
   display inline-block
   opacity 1
 
+@media screen and (max-width: 600px)
+  .track__tag
+    display none !important
 @media screen and (min-width: 600px)
   .playlist__toolbar-tools
     justify-content flex-end
@@ -164,14 +162,16 @@ md-button.md-default-theme.md-fab
   .track__time
     display none !important
 
-@media screen and (min-width: 960px)
+@media screen and (min-width: 961px)
+  .playlist__content
+    height calc(100% - 61px) /* (current) 58 + 3 (progressbar) */
   .playlist__toolbar
     display none !important
+  .track__progress
+    bottom -1px
 //  .track__tags
 //    width 0
 //    display none
-  .track__progress
-    bottom -1px
 @media screen and (max-width: 960px)
   .playlist__content--current
     position absolute
@@ -180,7 +180,9 @@ md-button.md-default-theme.md-fab
     right 0
   .playlist__list
     flex-flow column wrap
-//  .track__tags
-//    min-width 60px
   .track__progress
     top -1px
+//  .track__tags
+//    min-width 60px
+//  .playlist__content--current .playlist__track
+//    bottom -1px
