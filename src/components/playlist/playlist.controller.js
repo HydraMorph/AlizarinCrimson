@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('trigger')
-  .controller('PlaylistCtrl', function ($scope, $rootScope, $mdSidenav, Client, socket) {
+  .controller('PlaylistCtrl', function ($scope, $rootScope, $mdSidenav, Client, socket, $interval) {
 
     $scope.reverse = false;
     var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
@@ -14,6 +14,12 @@ angular.module('trigger')
     $scope.toggleRight = function () {
       $mdSidenav('right').toggle();
     };
+
+    $scope.debug = function() {
+      console.log('Client.channel', Client.channel, Client.channels);
+      console.log('debug', Client.channel.ct, $scope.track.tt);
+    }
+
 
     $scope.load.signed = false;
 
@@ -46,6 +52,8 @@ angular.module('trigger')
         }
       }
       Client.channel.current = data.track;
+      $scope.stopTimer();
+      $scope.starTimer(0, data.track.tt);
       $scope.track = data.track;
       $rootScope.title = '! ' + data.track.a + ' - ' + data.track.t + ' @ Trigger';
       $scope.$digest();
@@ -220,11 +228,32 @@ angular.module('trigger')
       console.log('playlist', data.pls);
       $scope.playlist = data.pls;
       $scope.items = $scope.playlist;
+      Client.channel.ct = data.ct;
+      $scope.starTimer(Client.channel.ct, data.current.tt);
       $scope.current = data.current;
       var plsL = data.pls.length;
       for (var i = 0; i < plsL; i++) {
         $scope.playlist[i].vote = 0;
       }
     });
+
+    var i = 0;
+    var timer;
+    $scope.progress = 0;
+    $scope.starTimer = function(start, duration) {
+      i = start;
+      timer = $interval(function() {
+        $scope.progress = (i/duration*100).toFixed(2);
+        i++;
+      }, 1000)
+    }
+    $scope.stopTimer = function() {
+      if (angular.isDefined(timer)) {
+        $interval.cancel(timer);
+        timer = undefined;
+        $scope.progress = 0;
+      }
+    }
+
 
   });

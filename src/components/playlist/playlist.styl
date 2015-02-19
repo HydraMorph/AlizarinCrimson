@@ -12,6 +12,7 @@
   & .playlist__track
     border 1px solid #333
     background-color #333
+    position relative
   & .track__artist
   & .track__title
     color #fff
@@ -133,6 +134,18 @@ md-button.md-default-theme.md-fab
 
 .playlist__toolbar-tools
   justify-content space-between
+
+.track__progress
+  position absolute
+  bottom -1px
+  right -1px
+  left -1px
+  display block
+  height 3px
+  background #777
+.track__progress-active
+  height 3px
+  background #FFCD00
 
 /* Caution! Buggy thing
 * Please, just ignore this
