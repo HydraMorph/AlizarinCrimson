@@ -3,10 +3,10 @@
 angular.module('trigger')
   .controller('PlaylistCtrl', function ($scope, $rootScope, $mdSidenav, Client, socket, $interval) {
 
-    $scope.reverse = false;
+    $scope.reverse = 0;
     var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
     if (width <= 960) {
-      $scope.reverse = true;
+      $scope.reverse = 1;
     }
     $scope.toggleLeft = function () {
       $mdSidenav('left').toggle();

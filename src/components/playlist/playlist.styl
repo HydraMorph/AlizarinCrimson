@@ -22,7 +22,6 @@
 .playlist__list
   overflow hidden
   display flex
-  flex-flow column-reverse wrap
   padding 0
 .playlist__track
   border 1px solid #eee
@@ -171,7 +170,8 @@ md-button.md-default-theme.md-fab
     bottom -1px
   .track__tags
     min-width 60px
-
+  .playlist__list
+    flex-flow column wrap
 //  .track__tags
 //    width 0
 //    display none
@@ -182,7 +182,7 @@ md-button.md-default-theme.md-fab
     left 0
     right 0
   .playlist__list
-    flex-flow column wrap
+    flex-flow column-reverse wrap
   .track__progress
     top -1px
 //  .track__tags
