@@ -194,32 +194,71 @@ angular.module('trigger')
         }
       }
     });
+
     //
     $scope.voteUp = function (id) {
-      if (this.track.vote === Client.user.w) {
-        Client.addvote({
-          'id': id,
-          'v': 0
-        });
+      var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
+      var reverse = false;
+      if (width <= 960) {
+        reverse = true;
+      }
+      if (reverse === true) {
+        if (this.track.vote === -Client.user.w) {
+          Client.addvote({
+            'id': id,
+            'v': 0
+          });
+        } else {
+          Client.addvote({
+            'id': id,
+            'v': -Client.user.w
+          });
+        }
       } else {
-        Client.addvote({
-          'id': id,
-          'v': Client.user.w
-        });
+        if (this.track.vote === Client.user.w) {
+          Client.addvote({
+            'id': id,
+            'v': 0
+          });
+        } else {
+          Client.addvote({
+            'id': id,
+            'v': Client.user.w
+          });
+        }
       }
     };
 
     $scope.voteDown = function (id) {
-      if (this.track.vote === -Client.user.w) {
-        Client.addvote({
-          'id': id,
-          'v': 0
-        });
+      var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
+      var reverse = false;
+      if (width <= 960) {
+        reverse = true;
+      }
+      if (reverse === true) {
+        if (this.track.vote === Client.user.w) {
+          Client.addvote({
+            'id': id,
+            'v': 0
+          });
+        } else {
+          Client.addvote({
+            'id': id,
+            'v': Client.user.w
+          });
+        }
       } else {
-        Client.addvote({
-          'id': id,
-          'v': -Client.user.w
-        });
+        if (this.track.vote === -Client.user.w) {
+          Client.addvote({
+            'id': id,
+            'v': 0
+          });
+        } else {
+          Client.addvote({
+            'id': id,
+            'v': -Client.user.w
+          });
+        }
       }
     };
 

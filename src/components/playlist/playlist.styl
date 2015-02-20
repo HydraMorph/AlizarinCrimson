@@ -80,14 +80,6 @@
   flex-basis 120px
   min-width 120px
   justify-content flex-end
-  &.voted--up
-    & .track__vote--up
-    & .track__rating
-      color #FFAE00
-  &.voted--down
-    & .track__vote--down
-    & .track__rating
-      color #F8091C
 
 .track__vote--up.track__vote--up
 .track__vote--down.track__vote--down
@@ -166,6 +158,15 @@ md-button.md-default-theme.md-fab
     height calc(100% - 61px) /* (current) 58 + 3 (progressbar) */
   .playlist__toolbar
     display none !important
+  .track__votes-block
+    &.voted--up
+      & .track__vote--up
+      & .track__rating
+        color #FFAE00
+    &.voted--down
+      & .track__vote--down
+      & .track__rating
+        color #F8091C
   .track__progress
     bottom -1px
   .track__tags
@@ -183,6 +184,18 @@ md-button.md-default-theme.md-fab
     right 0
   .playlist__list
     flex-flow column-reverse wrap
+  .track__votes-block
+    flex-flow row-reverse nowrap
+    justify-content flex-start
+  .track__votes-block
+    &.voted--up
+      & .track__vote--down
+      & .track__rating
+        color #FFAE00
+    &.voted--down
+      & .track__vote--up
+      & .track__rating
+        color #F8091C
   .track__progress
     top -1px
 //  .track__tags
