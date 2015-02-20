@@ -4,10 +4,16 @@
   height calc(100% - 90px)
   overflow-x hidden
   color #000
+  flex-flow row wrap
+.online__ctrl
+  height 100%
 
 .online__md-content
   width 100%
+  height calc(100% - 24px)
 
+.online__here
+  width 100%
 .online__here
 .online__counter
   color #000
@@ -40,6 +46,9 @@
   text-overflow ellipsis
   & .md-button-inner
     padding 2px 6px
+    white-space nowrap
+    overflow hidden
+    text-overflow ellipsis
   &:hover
     background-color transparent !important
     text-decoration underline
