@@ -28,9 +28,7 @@
       <img class="user__img" ng-src="assets/images/ear.png" alt="">
 <!--      <img class="user__img" ng-src="assets/images/{{user.pic}}" alt="">-->
       <div class="user__additional">
-        <p class="user__descripton">
-          {{user.i}}
-        </p>
+        <p class="user__descripton" ng-bind-html="user.i"></p>
         <p class="user__origin">
           С нами с <span class="user__regdate">{{user.reg | date:'medium'}}</span> по приглашению <button class="user__father" aria-label="user-origin">{{user.invites.p.name}}</button>
         </p>
