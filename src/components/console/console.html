@@ -15,9 +15,7 @@
   <p class="console__user-limit" ng-show="load.signed">
     Ты можешь залить <time class="console__limit">{{user.uplim | readableTime}}</time>
   </p>
-  <p class="console__greating" ng-show="load.signed">
-    45 символов это геноцид, <a href="#" class="console__username">{{user.name}}</a>
-  </p>
+  <p class="console__greating" ng-bind="greeting"></p>
   <p class="console__links">
     <a href="#" class="console__link">Жертвенник</a>
     <a href="#" class="console__link">Уголок потребителя</a>
