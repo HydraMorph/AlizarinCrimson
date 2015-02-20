@@ -1,6 +1,7 @@
 .playlist__ctrl
   height 100vh
   flex-flow column wrap
+  position relative
 .playlist
   color #000
   width 100%
@@ -11,18 +12,16 @@
   & .playlist__track
     border 1px solid #333
     background-color #333
+    position relative
   & .track__artist
   & .track__title
     color #fff
   & .track__rating
     color #bbb
-@media screen and (min-width: 960px)
-  .playlist__content
-    height calc(100% - 61px) /* (current) 58 + 3 (progressbar) */
 
 .playlist__list
+  overflow hidden
   display flex
-  flex-flow column-reverse wrap
   padding 0
 .playlist__track
   border 1px solid #eee
@@ -61,11 +60,7 @@
 .track__tags
   display flex
   flex 1
-  min-width 60px
   justify-content flex-end
-@media screen and (max-width: 600px)
-  .track__tag
-    display none !important
 .track__tag
   display flex
   font-size 9px
@@ -99,7 +94,7 @@
   width 40px
   height 40px
   & svg
-    margin-top 8px
+    margin-top 2px
 md-button.md-default-theme.md-fab
   background-color transparent
   box-shadow none
@@ -133,6 +128,17 @@ md-button.md-default-theme.md-fab
 .playlist__toolbar-tools
   justify-content space-between
 
+.track__progress
+  position absolute
+  right -1px
+  left -1px
+  display block
+  height 3px
+  background #777
+.track__progress-active
+  height 3px
+  background #FFCD00
+
 /* Caution! Buggy thing
 * Please, just ignore this
 */
@@ -140,6 +146,9 @@ md-button.md-default-theme.md-fab
   display inline-block
   opacity 1
 
+@media screen and (max-width: 600px)
+  .track__tag
+    display none !important
 @media screen and (min-width: 600px)
   .playlist__toolbar-tools
     justify-content flex-end
@@ -152,6 +161,31 @@ md-button.md-default-theme.md-fab
   .track__time
     display none !important
 
-@media screen and (min-width: 960px)
+@media screen and (min-width: 961px)
+  .playlist__content
+    height calc(100% - 61px) /* (current) 58 + 3 (progressbar) */
   .playlist__toolbar
     display none !important
+  .track__progress
+    bottom -1px
+  .track__tags
+    min-width 60px
+  .playlist__list
+    flex-flow column wrap
+//  .track__tags
+//    width 0
+//    display none
+@media screen and (max-width: 960px)
+  .playlist__content--current
+    position absolute
+    bottom 0
+    left 0
+    right 0
+  .playlist__list
+    flex-flow column-reverse wrap
+  .track__progress
+    top -1px
+//  .track__tags
+//    min-width 60px
+//  .playlist__content--current .playlist__track
+//    bottom -1px

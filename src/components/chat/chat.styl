@@ -76,6 +76,10 @@
     padding 6px
     display flex
     flex-flow row nowrap
+    &.private
+      background #F5F5F5
+    &.personal
+      font-weight bold
 .msg__author
   font-weight bold
   display flex
@@ -85,6 +89,9 @@
   flex 1
   word-wrap break-word
 .msg__time
+  color #ddd
+  font-size 10px
+  justify-content flex-end
   display flex
   min-width 100px
 @media screen and (max-width: 600px)
