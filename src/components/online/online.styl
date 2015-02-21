@@ -1,12 +1,15 @@
 .online__include
   display flex
-  flex 0 0 15%
   height calc(100% - 90px)
   overflow-x hidden
   color #000
   flex-flow row wrap
 .online__ctrl
   height 100%
+  width 100%
+
+.online__list-item
+  display block
 
 .online__md-content
   width 100%
@@ -14,12 +17,12 @@
 
 .online__here
   width 100%
+  margin 5px 0 5px 5px
 .online__here
 .online__counter
-  color #000
+  color #aaa
   line-height 1
-  text-align center
-  margin 5px 0
+  text-align left
   font-size 14px
 
 .user__2profile
@@ -59,3 +62,17 @@
       background-color #eba400
     & .user__2chat
       color #eba400
+
+@media screen and (min-width: 961px)
+  .online__md-content
+    column-count 1
+    column-gap 0
+@media screen and (min-width: 401px) and (max-width: 599px)
+  .online__md-content
+    column-count 3
+    column-gap 10px
+@media screen and (max-width: 400px)
+  .online__md-content
+    column-count 2
+    column-gap 20px
+//@media screen and (max-width: 960px)
