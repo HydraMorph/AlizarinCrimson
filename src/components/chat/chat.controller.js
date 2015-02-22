@@ -13,27 +13,36 @@ angular.module('trigger')
         sound.play();
       }
     }
+
     $scope.message = '';
     $scope.messages = [];
+
     $scope.$watch(function () {
       return $rootScope.load.signed;
     }, function () {
       if ($rootScope.load.signed == true) {
         Client.getChat({}, function(d) {
-          $scope.messages = d.m;
           var mL = d.m.length;
-          for (var i = 0; i < mL; i++) {
-            if (checkPrivate(d.m[i])) {
-              d.m[i].private = true;
-              tink();
-            }
-          }
-          $scope.$digest();
+//          for (var i = 0; i < mL; i++) {
+//            if (checkPrivate(d.m[i])) {
+//              d.m[i].private = true;
+//              tink();+
+//            }
+//          }
+          var messages = d.m;
+          var privateMessages = getPrivateMessages();
+          $scope.messages = mixChat(messages, privateMessages);
         });
+//        $scope.$digest();
+
         $(Client).bind('message', function (event, data) {
-          if (checkPrivate(data)) {
-            data.private = true;
+          console.log('checkType(data)', data, checkType(data));
+          if (checkType(data)) {
+            data.type = checkType(data);
             tink();
+            if (checkType(data) === 'private') {
+              sessionStorage.setItem('private' + data.t, JSON.stringify(data));
+            }
           }
           $scope.messages.push(data);
           $scope.$digest();
@@ -42,11 +51,37 @@ angular.module('trigger')
       $scope.load.signed = $rootScope.load.signed;
     }, true);
 
-    function checkPrivate(messages) {
-      if (messages.m.indexOf(Client.user.n) > -1) {
-        return true;
+    function mixChat(messages, privateMessages) {
+      var a = messages.concat(privateMessages);
+      a = a.sort(function(a, b) {
+        return new Date(a.t) - new Date(b.t);
+      });
+      return a;
+    }
+
+    function getPrivateMessages() {
+      var sL = sessionStorage.length;
+      var list = [];
+      for (var i = 0; i < sL; i++) {
+        var key = sessionStorage.key(i);
+        var value = sessionStorage.getItem(key);
+        if (value.indexOf('private') > -1) {
+          list.push(JSON.parse(value));
+        }
+      }
+      return list;
+    }
+
+    function checkType(msg) {
+      if (msg.m.indexOf('&gt;&gt;'+ Client.user.n) > -1) {
+        return 'private';
+      } else if (msg.m.indexOf('&gt;'+ Client.user.n) > -1) {
+        return 'personal';
+      } else {
+        return undefined;
       }
     }
+
     function focus() {
       document.querySelector('#chatInput').focus();
     }
