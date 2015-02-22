@@ -33,6 +33,7 @@ angular.module('trigger')
           $scope.users.splice(us, 1);
         }
       }
+      $scope.$digest();
     });
 
     $(Client).bind('newuser', function(event, data) {
@@ -43,6 +44,7 @@ angular.module('trigger')
         a: data.a
       };
       $scope.users.push(user);
+      $scope.$digest();
     });
 
     $(Client).bind('userupdate', function(event, data) {
@@ -51,6 +53,7 @@ angular.module('trigger')
           $scope.users[us].a = data.a;
         }
       }
+      $scope.$digest();
     });
 
     $scope.openProfile = function(id) {

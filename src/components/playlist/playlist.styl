@@ -83,18 +83,17 @@
 
 .track__vote--up.track__vote--up
 .track__vote--down.track__vote--down
+  background-color transparent !important
+  box-shadow none !important
   width 40px
   height 40px
   & svg
     margin-top 2px
-md-button.md-default-theme.md-fab
-  background-color transparent
-  box-shadow none
   &:not([disabled])
-    &.focus
+    &:focus
     &:hover
-      background-color transparent
-      box-shadow none
+      background-color transparent !important
+      box-shadow none !important
 
 .track__rating
   font-weight 100

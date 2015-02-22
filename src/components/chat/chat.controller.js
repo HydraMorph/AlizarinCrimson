@@ -48,7 +48,7 @@ angular.module('trigger')
       }
     }
     function focus() {
-      document.querySelector('#chatInput input').focus();
+      document.querySelector('#chatInput').focus();
     }
 
     $scope.sendMessage = function () {

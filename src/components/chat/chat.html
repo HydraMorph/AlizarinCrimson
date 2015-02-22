@@ -17,17 +17,21 @@
   <div class="online__include" ng-include="'components/online/online.html'"></div>
 
   <div class="chat__input-grp">
-    <md-text-float id="chatInput" class="chat__input" label="начинай вводить..." ng-enter="sendMessage()" ng-model="message"></md-text-float>
-    <div class="chat__input-nav">
-      <md-button class="chat__button--bold" aria-label="chat-bold">bold</md-button>
-      <md-button class="chat__button--irony" aria-label="chat-irony">irony</md-button>
-      <md-checkbox ng-model="data.tink" aria-label="Тиньк" class="chat__checkbox--tink">
-        Тиньк
-      </md-checkbox>
-      <md-checkbox ng-model="data.img" aria-label="Картинки" class="chat__checkbox--img">
-        Картинки
-      </md-checkbox>
-    </div>
+    <md-input-container flex>
+      <label>начинай вводить...</label>
+      <textarea id="chatInput" class="chat__input" label="начинай вводить..." ng-enter="sendMessage()" ng-model="message" columns="1" md-maxlength="240"></textarea>
+      <div class="chat__input-nav">
+        <md-button class="chat__button--bold" aria-label="chat-bold">bold</md-button>
+        <md-button class="chat__button--irony" aria-label="chat-irony">irony</md-button>
+        <md-checkbox ng-model="data.tink" aria-label="Тиньк" class="chat__checkbox--tink">
+          Тиньк
+        </md-checkbox>
+        <md-checkbox ng-model="data.img" aria-label="Картинки" class="chat__checkbox--img">
+          Картинки
+        </md-checkbox>
+      </div>
+    </md-input-container>
+<!--    <md-text-float id="chatInput" class="chat__input" label="начинай вводить..." ng-enter="sendMessage()" ng-model="message"></md-text-float>-->
   </div>
 
 </div>

@@ -19,21 +19,28 @@
   display flex
   flex 1 100%
   flex-flow row wrap
-  & md-input-group
-  & .md-input-group
+  & md-input-container
+    position relative
     margin 0
     padding 0
     width 100%
-    & input
+    & .md-input
+      line-height 1 !important
       width 100%
-      height 46px
+      //height calc(100% - 24px) !important
+      margin-bottom 24px
+      overflow auto
     &.md-input-focused
-      & input
+      & .md-input
         border-color #FFCD00 !important
         height 46px
       & label
         color #FFCD00 !important
   & .chat__input-nav
+    position absolute
+    bottom 0
+    left 0
+    right 0
     height 24px
     display flex
     align-self flex-end

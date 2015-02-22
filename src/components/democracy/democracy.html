@@ -5,7 +5,10 @@
 
         <md-card class="democracy__elections">
           <h4 class="t-a-semicolon democracy__header">Выборы</h4>
-          <md-text-float label="ID кандидата" ng-model="user.lastName" class="democracy__elections-input"> </md-text-float>
+          <md-input-container class="democracy__elections-input">
+            <label>ID кандидата</label>
+            <input type="text" ng-model="user.lastName">
+          </md-input-container>
           <div class="democracy__elections-row">
             <span class="democracy__elections-choice">
               <span class="t-a-semicolon">Ты проголосовал за</span>
@@ -31,8 +34,14 @@
           <div class="ban">
             <div class="header">Забанить:</div>
             <div class="content">
-              <md-text-float label="ID" ng-model="user.lastName" class="input--id"></md-text-float>
-              <md-text-float label="Причина бана" ng-model="user.lastName" class="input--reason"></md-text-float>
+              <md-input-container class="input--id">
+                <label>ID</label>
+                <input type="text" ng-model="user.lastName">
+              </md-input-container>
+              <md-input-container class="input--reason">
+                <label>Причина бана</label>
+                <input type="text" ng-model="user.lastName">
+              </md-input-container>
               <md-button aria-label="ban-user" class="md-raised ban--btn">Yarrr!</md-button>
             </div>
 
@@ -124,12 +133,14 @@
       </div>
       <div role="tabpanel" id="tabModerText-content" aria-labelledby="tabModerText" ng-switch-when="1" md-swipe-left="next()" md-swipe-right="previous()" >
         <md-card class="democracy__list">
+<!--
           <md-button aria-label="vote" class="md-raised democracy__moderator">
             <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
               <path d="M3 17.25v3.75h3.75l11.06-11.06-3.75-3.75-11.06 11.06zm17.71-10.21c.39-.39.39-1.02 0-1.41l-2.34-2.34c-.39-.39-1.02-.39-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z"/>
               <path d="M0 0h24v24h-24z" fill="none"/>
             </svg>
           </md-button>
+-->
           <p>
            История снова работает.
            <br>
@@ -149,7 +160,7 @@
       </div>
     </ng-switch>
 
-    <md-tabs class="md-accent" selected="data.selectedIndex">
+    <md-tabs class="md-accent" md-selected="data.selectedIndex">
       <md-tab id="ModerList" aria-controls="tabModerList-content">
         <span class="tabs__full">Moder</span>
         <span class="tabs__icon">

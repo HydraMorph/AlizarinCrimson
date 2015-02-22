@@ -2,6 +2,12 @@
 
 var app = angular.module('trigger', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'ngMaterial', 'btford.socket-io', 'luegg.directives']);
 
+app.config(function($mdThemingProvider) {
+  $mdThemingProvider.theme('default')
+    .primaryPalette('teal')
+    .accentPalette('orange');
+});
+
 app.directive('ngEnter', function() {
   return function(scope, element, attrs) {
     element.bind('keydown keypress', function(event) {

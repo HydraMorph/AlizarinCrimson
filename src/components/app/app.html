@@ -22,7 +22,7 @@
 </script>
 <!--  <div class="info" ng-include="'components/markdown/markdown.html'"></div>-->
   <section layout="row" flex>
-    <md-sidenav class="md-sidenav-left md-whiteframe-z2" component-id="left" is-locked-open="$media('sm')">
+    <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$media('min-width: 600px')">
       <md-toolbar class="console__switcher-cont">
         <audio id="audio">
           <source src="http://trigger.fm/stream/mainmp3" type="audio/mpeg" />
@@ -40,7 +40,8 @@
       </md-toolbar>
       <md-content class="console__ctrl" ng-controller="LeftCtrl">
 <!--        <md-button ng-click="close()" class="md-primary" hide-md>Close</md-button>-->
-        <div hide-gt-sm show-gt-md class="console" ng-include="'components/console/console.html'"></div>
+<!--        <div hide-gt-sm show-gt-md class="console" ng-include="'components/console/console.html'"></div>-->
+        <div class="console" ng-include="'components/console/console.html'"></div>
       </md-content>
     </md-sidenav>
     <div class="viewport--H" ng-cloak>
@@ -52,7 +53,7 @@
 -->
 
     </div>
-    <md-sidenav class="md-sidenav-right md-whiteframe-z2" component-id="right" is-locked-open="$media('md')">
+    <md-sidenav class="md-sidenav-right md-whiteframe-z2" md-component-id="right" md-is-locked-open="$media('min-width: 960px')">
       <md-content ng-controller="RightCtrl">
 <!--        <md-button ng-click="close()" class="md-primary">Close Sidenav Right</md-button>-->
         <div class="info" ng-include="'components/info/info.html'"></div>
