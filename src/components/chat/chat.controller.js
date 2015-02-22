@@ -3,6 +3,40 @@
 angular.module('trigger')
   .controller('ChatCtrl', function ($scope, $rootScope, Client) {
 
+    var customCodes = [];
+    customCodes[0] = [];
+    customCodes[0][0] = /(http:\/\/[\w\-\.]+\.[a-zA-Z]{2,3}(?:\/\S*)?(?:[\w])+\.(?:jpg|png|gif|jpeg|bmp))/gim;
+    customCodes[0][1] = '<a href="$1" target="_blank"><img src="$1" /></a>';
+
+    customCodes[1] = [];
+    customCodes[1][0] = /(https:\/\/[\w\-\.]+\.[a-zA-Z]{2,3}(?:\/\S*)?(?:[\w])+\.(?:jpg|png|gif|jpeg|bmp))/gim;
+    customCodes[1][1] = '<a href="$1" target="_blank"><img src="$1" /></a>';
+
+    customCodes[2] = [];
+    customCodes[2][0] = /(\b(https?|ftp):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/gim;
+    customCodes[2][1] = '<a href="$1" target="_blank">$1</a>';
+
+    customCodes[3] = [];
+    customCodes[3][0] = /(^|[^\/])(www\.[\S]+(\b|$))/gim;
+    customCodes[3][1] = '<a href="http://$1" target="_blank">$1</a>';
+
+    customCodes[4] = [];
+    customCodes[4][0] = /([\w\-\d]+\@[\w\-\d]+\.[\w\-\d]+)/gim;
+    customCodes[4][1] = '<a href="mailto:$1">$1</a>';
+
+    customCodes[5] = [];
+    customCodes[5][0] = '!!!!!!!!!!';
+    customCodes[5][1] = 'я идиот убейте меня кто нибудь! !!!!';
+
+    customCodes[6] = [];
+    customCodes[6][0] = '))))))))))';
+    customCodes[6][1] = '<font color="pink">недавно я познакомился с мальчиком, у него такие голубые глаза и член который еле помещается в мою... кажется я не туда пишу</font> ';
+
+    customCodes[7] = [];
+    customCodes[7][0] = 'NO.';
+    customCodes[7][1] = '&lt;img src="/assets/images/nocover.png" style="object-fit: contain;"/&gt;';
+
+
     function tink() {
       var sound = new Audio();
       if (sound.canPlayType('audio/ogg')) {
@@ -22,7 +56,20 @@ angular.module('trigger')
     }, function () {
       if ($rootScope.load.signed == true) {
         Client.getChat({}, function(d) {
-          var mL = d.m.length;
+//          var mL = d.m.length;
+//          var cL = customCodes.length;
+//          for (var j = 0; j < mL; j++) {
+//            for (var i = 0; i < cL; i++) {
+//              if (d.m[j].replace(customCodes[i][0], '') != d.m[j]) {
+//                if (i < 2) {
+//                  d.m[j] = d.m[j].replace(customCodes[i][0], customCodes[i][1]);
+//                  break;
+//                } else {
+//                  d.m[j] = d.m[j].replace(customCodes[i][0], customCodes[i][1]);
+//                }
+//              }
+//            }
+//          }
 //          for (var i = 0; i < mL; i++) {
 //            if (checkPrivate(d.m[i])) {
 //              d.m[i].private = true;
@@ -46,6 +93,19 @@ angular.module('trigger')
           } else if (data.m.indexOf('&gt;&gt;') > -1) {
             sessionStorage.setItem('private' + data.t, JSON.stringify(data));
           }
+
+          var cL = customCodes.length;
+          for (var i = 0; i < cL; i++) {
+            if (data.m.replace(customCodes[i][0], '') != data.m) {
+              if (i < 2) {
+                data.m = data.m.replace(customCodes[i][0], customCodes[i][1]);
+                break;
+              } else {
+                data.m = data.m.replace(customCodes[i][0], customCodes[i][1]);
+              }
+            }
+          }
+
           $scope.messages.push(data);
           $scope.$digest();
         });

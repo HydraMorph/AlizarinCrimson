@@ -97,7 +97,11 @@
 .msg__message
   display flex
   flex 1
+  flex-wrap wrap
   word-wrap break-word
+  & img
+    object-fit contain
+    width 100%
 .msg__time
   color #ddd
   font-size 10px

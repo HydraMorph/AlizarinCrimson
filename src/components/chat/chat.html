@@ -7,6 +7,7 @@
           <div class="md-tile-content" class="chat__item-content" ng-class="{ 'private': msg.pm, 'personal': msg.type }">
             <span class="msg__author" ng-click="addNick(msg.uname)">{{msg.uname}}:</span>
             <span class="msg__message" ng-bind-html='msg.m'></span>
+<!--            <span class="msg__message">{{msg.m}}</span>-->
             <span class="msg__time">{{msg.t |timeago }}</span>
           </div>
         </md-item-content>
