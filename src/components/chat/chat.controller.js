@@ -43,6 +43,8 @@ angular.module('trigger')
             if (checkType(data) === 'private') {
               sessionStorage.setItem('private' + data.t, JSON.stringify(data));
             }
+          } else if (data.m.indexOf('&gt;&gt;') > -1) {
+            sessionStorage.setItem('private' + data.t, JSON.stringify(data));
           }
           $scope.messages.push(data);
           $scope.$digest();
@@ -65,7 +67,7 @@ angular.module('trigger')
       for (var i = 0; i < sL; i++) {
         var key = sessionStorage.key(i);
         var value = sessionStorage.getItem(key);
-        if (value.indexOf('private') > -1) {
+        if (key.indexOf('private') > -1) {
           list.push(JSON.parse(value));
         }
       }
@@ -107,6 +109,7 @@ angular.module('trigger')
         $scope.message = chatters.join(' ') + ' ';
       }
     };
+
     $scope.addNick = function(nick) {
       var s = $scope.message;
       if (s.indexOf('>' +  nick) > -1) {
