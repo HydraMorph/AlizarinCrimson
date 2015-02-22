@@ -9,14 +9,47 @@ html
 *
   -webkit-user-select initial !important
 
-::-webkit-scrollbar-track
-  -webkit-box-shadow none
-  background-color #F5F5F5
+/* So, transition doesn't work */
 ::-webkit-scrollbar
-  width 6px
-  background-color #F5F5F5
+  width 3px
+  //transition all 1s ease-in
+//*:hover::-webkit-scrollbar
+//  transition all 1s ease-in
+//  opacity 1
+/* Track */
+::-webkit-scrollbar-track
+  box-shadow none
+  border-radius 0
+  background transparent
+  transition all 1s ease-in
+*:hover::-webkit-scrollbar-track
+  background #eee
+  transition all 1s ease-in
+/* Handle */
 ::-webkit-scrollbar-thumb
-  background-color rgba(77,77,77,.25)
+  border-radius 0
+  box-shadow none
+  background transparent
+  transition all 1s ease-in
+*:hover::-webkit-scrollbar-thumb
+  background #bbb
+  transition all 1s ease-in
+
+//::-webkit-scrollbar-thumb:window-inactive
+//  background: #777
+
+
+
+//::-webkit-scrollbar-track
+//  -webkit-box-shadow none
+//  background-color #000
+//  border-radius 0
+//::-webkit-scrollbar
+//  width 20px
+//  background-color #fff
+//::-webkit-scrollbar-thumb
+//  background-color #000
+//  border-radius 0
 
 md-input-group
   & input
