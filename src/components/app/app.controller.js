@@ -7,9 +7,11 @@ angular.module('trigger')
 //      Client.channel.pls = data.pls;
 //      $rootScope.load.playlist = true;
 //    });
+    var button = document.getElementById('audioBtn');
     var audio = document.getElementById('audio');
     $scope.play = false;
     $scope.togglePlay = function() {
+      button.classList.toggle('play');
       $scope.play = !$scope.play;
       if ($scope.play == true) {
         audio.play();
