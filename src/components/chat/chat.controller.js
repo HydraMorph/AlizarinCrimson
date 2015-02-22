@@ -36,11 +36,11 @@ angular.module('trigger')
 //        $scope.$digest();
 
         $(Client).bind('message', function (event, data) {
-          console.log('checkType(data)', data, checkType(data));
-          if (checkType(data)) {
-            data.type = checkType(data);
+          var type = checkType(data);
+          if (type) {
+            data.type = type;
             tink();
-            if (checkType(data) === 'private') {
+            if (data.type === 'private') {
               sessionStorage.setItem('private' + data.t, JSON.stringify(data));
             }
           } else if (data.m.indexOf('&gt;&gt;') > -1) {
