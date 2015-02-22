@@ -72,7 +72,7 @@ app.run(function ($rootScope, Client) {
     Client.channel = data.channels[0];
     Client.getChannels(function(data){
       Client.channels = data.channels;
-      if (u.length > 0 && p.length > 0) {
+      if (u != undefined && p != undefined) {
         Client.login(u, p, processLogin);
       }
 //      console.log(data);
