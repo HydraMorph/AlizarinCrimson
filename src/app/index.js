@@ -59,11 +59,11 @@ app.run(function ($rootScope, Client) {
     Client.channel = data.channels[0];
     Client.getChannels(function(data){
       Client.channels = data.channels;
-      console.log(data);
+//      console.log(data);
     });
 //    $rootScope.client.channel = data.channels[0];
     Client.goChannel(1, console.log('Q' ,data));
-    console.log('welcome', Client.channel);
+//    console.log('welcome', Client.channel);
     $rootScope.load.welcome = true;
   });
   $rootScope.client = Client;
@@ -119,7 +119,7 @@ app.service('Client', function ($log) {
     });
 
     socket.on('channeldata', function(data) {
-      console.log('channeldata', data);
+//      console.log('channeldata', data);
     });
 
     socket.on('message', function(data) {

@@ -1,6 +1,6 @@
 <div ng-controller="InfoCtrl" class="tabsdemoStaticTabs">
 
-    <md-tabs class="md-accent" flex md-selected="data.selectedIndex">
+    <md-tabs class="md-accent" flex md-stretch-tabs="never" md-selected="data.selectedIndex">
       <md-tab id="tabChat" aria-controls="tabChat-content" ng-show="load.signed">
         <span class="tabs__full">Чат</span>
         <span class="tabs__icon">
@@ -51,6 +51,7 @@
       </md-tab>
     </md-tabs>
 
+<!-- removed swipe effect
     <ng-switch on="data.selectedIndex" class="tabpanel-container">
       <div role="tabpanel" id="tabChat-content" aria-labelledby="tabChat" ng-switch-when="0" md-swipe-left="next()" md-swipe-right="previous()" >
         <div class="chat" ng-include="'components/chat/chat.html'"></div>
@@ -65,6 +66,24 @@
         <div class="democracy__include" ng-include="'components/democracy/democracy.html'"></div>
       </div>
       <div role="tabpanel" id="tabProfile-content" aria-labelledby="tabProfile" ng-switch-when="4" md-swipe-left="next()" md-swipe-right="previous()" >
+        <div class="profile__include" ng-include="'components/profile/profile.html'"></div>
+      </div>
+    </ng-switch>
+-->
+    <ng-switch on="data.selectedIndex" class="tabpanel-container">
+      <div role="tabpanel" id="tabChat-content" aria-labelledby="tabChat" ng-switch-when="0">
+        <div class="chat" ng-include="'components/chat/chat.html'"></div>
+      </div>
+      <div role="tabpanel" id="tabOnline-content" aria-labelledby="tabOnline" ng-switch-when="1">
+        <div class="online" ng-include="'components/online/online.html'"></div>
+      </div>
+      <div role="tabpanel" id="tabHistory-content" aria-labelledby="tabHistory" ng-switch-when="2">
+        <div class="history" ng-include="'components/history/history.html'"></div>
+      </div>
+      <div role="tabpanel" id="tabDemocracy-content" aria-labelledby="tabDemocracy" ng-switch-when="3">
+        <div class="democracy__include" ng-include="'components/democracy/democracy.html'"></div>
+      </div>
+      <div role="tabpanel" id="tabProfile-content" aria-labelledby="tabProfile" ng-switch-when="4">
         <div class="profile__include" ng-include="'components/profile/profile.html'"></div>
       </div>
     </ng-switch>

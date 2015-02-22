@@ -16,8 +16,8 @@ angular.module('trigger')
     };
 
     $scope.debug = function() {
-      console.log('Client.channel', Client.channel, Client.channels);
-      console.log('debug', Client.channel.ct, $scope.track.tt);
+//      console.log('Client.channel', Client.channel, Client.channels);
+//      console.log('debug', Client.channel.ct, $scope.track.tt);
     }
 
 
@@ -32,7 +32,7 @@ angular.module('trigger')
       if ($rootScope.load.welcome === true) {
         $scope.track = Client.channel.current;
         $rootScope.title = '+D' + Client.channel.current.a + ' - ' + Client.channel.current.t + ' @ Trigger';
-        console.log('welcooome', Client);
+//        console.log('welcooome', Client);
       }
     }, true);
 
@@ -57,7 +57,7 @@ angular.module('trigger')
       $scope.track = data.track;
       $rootScope.title = '! ' + data.track.a + ' - ' + data.track.t + ' @ Trigger';
       $scope.$digest();
-      console.log('newcurrent', data);
+//      console.log('newcurrent', data);
     });
 
     function checkVotes() {
@@ -108,7 +108,7 @@ angular.module('trigger')
     }, true);
 
     $(Client).bind('trackupdate', function (event, data) {
-      console.log('trackupdate', data);
+//      console.log('trackupdate', data);
       if (data.t.id === Client.channel.current.id) {
         if ($scope.load.signed === true) {
           for (var vr in data.t.p) {
@@ -125,7 +125,7 @@ angular.module('trigger')
           }
         }
         $scope.track = data.t;
-        console.log('currentUpdate', data.t);
+//        console.log('currentUpdate', data.t);
       } else {
         var plLength = $scope.playlist.length;
         var id;
@@ -133,7 +133,7 @@ angular.module('trigger')
           if ($scope.playlist[i].id === data.t.id) {
             id = i;
             $scope.playlist[i] = data.t;
-            console.log($scope.playlist[i]);
+//            console.log($scope.playlist[i]);
             break;
           }
         }
@@ -153,7 +153,7 @@ angular.module('trigger')
         }
       }
       $scope.$digest();
-      console.log('trackupdate', data.t);
+//      console.log('trackupdate', data.t);
     });
 
     $(Client).bind('addtrack', function (event, data) {
@@ -162,26 +162,26 @@ angular.module('trigger')
       for (var i = 0; i < plLength; i++) {
         if ($scope.playlist[i].id === data.track.id) {
           isClone = true;
-          console.log($scope.playlist[i]);
+//          console.log($scope.playlist[i]);
           break;
         }
       }
       if (isClone === false) {
         for (var vr in data.track.p) {
           if (data.track.p[vr].vid === Client.user.id) {
-            console.log('voted+', data.track.p[vr]);
+//            console.log('voted+', data.track.p[vr]);
             break;
           }
         }
         for (var vr in data.track.n) {
           if (data.track.n[vr].vid === Client.user.id) {
-            console.log('voted-', data.track.p[vr]);
+//            console.log('voted-', data.track.p[vr]);
             break;
           }
         }
         $scope.playlist.push(data.track);
       }
-      console.log('addtrack', data.track);
+//      console.log('addtrack', data.track);
     });
 
     $(Client).bind('removetrack', function (event, data) {
@@ -264,7 +264,7 @@ angular.module('trigger')
 
     // I hold the data being rendered in the ng-repeat.
     socket.on('channeldata', function (data) {
-      console.log('playlist', data.pls);
+//      console.log('playlist', data.pls);
       $scope.playlist = data.pls;
       $scope.items = $scope.playlist;
       Client.channel.ct = data.ct;

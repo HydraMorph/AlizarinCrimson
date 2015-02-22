@@ -9,6 +9,7 @@
 (function() {
   var button = document.getElementById('audioBtn');
   var audio = document.getElementById('audio');
+  audio.play();
   var onClick = function() {
     button.classList.toggle('play');
     if (audio.paused) {
