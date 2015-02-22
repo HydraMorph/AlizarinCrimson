@@ -52,6 +52,19 @@ app.run(function ($rootScope, Client) {
     'welcome': false,
     'playlist': false
   };
+
+  function processLogin (data) {
+    if (data.error) {
+      console.log(data.error);
+    } else {
+      Client.user = data.user;
+      $rootScope.userId = data.user.id;
+      $rootScope.load.signed = true;
+    }
+  }
+  var u = localStorage.getItem("username");
+  var p = localStorage.getItem("password");
+
   $rootScope.title = 'Trigger';
   $rootScope.userId = 0;
   Client.init(location.host);
@@ -59,6 +72,9 @@ app.run(function ($rootScope, Client) {
     Client.channel = data.channels[0];
     Client.getChannels(function(data){
       Client.channels = data.channels;
+      if (u.length > 0 && p.length > 0) {
+        Client.login(u, p, processLogin);
+      }
 //      console.log(data);
     });
 //    $rootScope.client.channel = data.channels[0];

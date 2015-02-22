@@ -19,6 +19,7 @@ angular.module('trigger')
         audio.pause();
       };
     };
+
     $scope.toggleLeft = function () {
       $mdSidenav('left').toggle();
     };

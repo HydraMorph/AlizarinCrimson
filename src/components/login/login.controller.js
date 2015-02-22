@@ -2,12 +2,16 @@
 
 angular.module('trigger')
   .controller('LoginCtrl', function ($scope, $rootScope, $mdDialog, md5, Client) {
+    $scope.user = {
+      'name': '',
+      'password': ''
+    };
     function processLogin (data) {
-//      console.log('process login', data);
-//      console.log(Client);
       if (data.error) {
         console.log(data.error);
       } else {
+        localStorage.setItem("username", $scope.user.name);
+        localStorage.setItem("password", md5.createHash($scope.user.password));
         Client.user = data.user;
         $rootScope.userId = data.user.id;
         $rootScope.load.signed = true;
@@ -15,10 +19,6 @@ angular.module('trigger')
         $scope.$digest();
       }
     }
-    $scope.user = {
-      'name': '',
-      'password': ''
-    };
     $scope.login = function () {
       if ($scope.user.name === '') {
         Client.login('DonSinDRom', md5.createHash('3a12a6'), processLogin);
