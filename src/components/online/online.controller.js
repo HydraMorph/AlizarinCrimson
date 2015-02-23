@@ -21,7 +21,8 @@ angular.module('trigger')
       return $rootScope.load.welcome;
     }, function() {
       if ($rootScope.load.welcome === true) {
-        $scope.users = Client.channels[0].users;
+        console.log('Client', Client);
+        $scope.users = Client.channel.users;
         $scope.usersCount = $scope.users.length;
       }
       $scope.load.welcome = $rootScope.load.welcome;

@@ -379,7 +379,7 @@ app.service('Client', function ($log) {
 
   this.getHistory = function(shift, gold, callback) {
     this.callbacks.history = callback;
-    this.socket.emit('gethistory', {chid: this.channel.id, s: shift, g: gold});
+    this.socket.emit('gethistory', {id: this.channel.id, s: shift, g: gold});
   };
 
   this.getTags = function(str, callback) {
