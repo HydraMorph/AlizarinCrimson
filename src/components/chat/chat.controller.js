@@ -56,29 +56,29 @@ angular.module('trigger')
     }, function () {
       if ($rootScope.load.signed == true) {
         Client.getChat({}, function(d) {
-//          var mL = d.m.length;
-//          var cL = customCodes.length;
-//          for (var j = 0; j < mL; j++) {
-//            for (var i = 0; i < cL; i++) {
-//              if (d.m[j].replace(customCodes[i][0], '') != d.m[j]) {
-//                if (i < 2) {
-//                  d.m[j] = d.m[j].replace(customCodes[i][0], customCodes[i][1]);
-//                  break;
-//                } else {
-//                  d.m[j] = d.m[j].replace(customCodes[i][0], customCodes[i][1]);
-//                }
-//              }
-//            }
-//          }
-//          for (var i = 0; i < mL; i++) {
-//            if (checkPrivate(d.m[i])) {
-//              d.m[i].private = true;
-//              tink();+
-//            }
-//          }
           var messages = d.m;
           var privateMessages = getPrivateMessages();
-          $scope.messages = mixChat(messages, privateMessages);
+          var mChat = mixChat(messages, privateMessages);
+          var mL = mChat.length;
+          var cL = customCodes.length;
+          for (var j = 0; j < mL; j++) {
+            for (var i = 0; i < cL; i++) {
+              if (mChat[j].m.replace(customCodes[i][0], '') != mChat[j].m) {
+                if (i < 2) {
+                  mChat[j].m = mChat[j].m.replace(customCodes[i][0], customCodes[i][1]);
+                  break;
+                } else {
+                  mChat[j].m = mChat[j].m.replace(customCodes[i][0], customCodes[i][1]);
+                }
+              }
+            }
+            var type = checkType(mChat[j]);
+            if (type) {
+              mChat[j].type = type;
+              tink();
+            }
+          }
+          $scope.messages = mChat;
         });
 //        $scope.$digest();
 
