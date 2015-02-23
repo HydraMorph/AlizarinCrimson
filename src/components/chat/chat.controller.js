@@ -36,7 +36,6 @@ angular.module('trigger')
     customCodes[7][0] = 'NO.';
     customCodes[7][1] = '&lt;img src="/assets/images/nocover.png" style="object-fit: contain;"/&gt;';
 
-
     function tink() {
       var sound = new Audio();
       if (sound.canPlayType('audio/ogg')) {
@@ -56,6 +55,7 @@ angular.module('trigger')
     }, function () {
       if ($rootScope.load.signed == true) {
         Client.getChat({}, function(d) {
+          var tnk = false;
           var messages = d.m;
           var privateMessages = getPrivateMessages();
           var mChat = mixChat(messages, privateMessages);
@@ -72,11 +72,25 @@ angular.module('trigger')
                 }
               }
             }
+//            if(mChat[j].m.indexOf('/track') > -1) {
+//              var meta = /\/track(\w*)/gim;
+//              var res = meta.exec(mChat[j].m);
+//              var track = {};
+//              Client.track(res[1], function(data, track) {
+//                track = data;
+//                console.log(data);
+//              });
+//              console.log(track);
+////              mChat[j].m = res.input.replace(res[0], data.a + ' - ' + data.t);
+//            }
             var type = checkType(mChat[j]);
             if (type) {
               mChat[j].type = type;
-              tink();
+              tnk = true;
             }
+          }
+          if (tnk) {
+            tink();
           }
           $scope.messages = mChat;
         });

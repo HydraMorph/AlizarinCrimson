@@ -179,12 +179,10 @@ svg
   z-index 100
 .tabsdemoStaticTabs .md-header
   background-color #fff !important
-  height 60px
   overflow-x hidden
 .tabsdemoStaticTabs .md-header-items-container
   left 0 !important
   right 0 !important
-  height 60px
 .tabsdemoStaticTabs .md-header-items-container .md-header-items
   border-bottom 3px solid #bbb
   -webkit-transform none !important
@@ -218,6 +216,17 @@ svg
 .tabsdemoStaticTabs md-tabs-ink-bar
   background-color #FFCD00 !important
   height 3px
+
+@media screen and (min-width: 601px)
+  .tabsdemoStaticTabs .md-header
+    height 60px
+  .tabsdemoStaticTabs .md-header-items-container
+    height 60px
+@media screen and (max-width: 600px)
+  .tabsdemoStaticTabs .md-header
+    height 36px
+  .tabsdemoStaticTabs .md-header-items-container
+    height 36px
 
 md-tab
   min-width initial !important

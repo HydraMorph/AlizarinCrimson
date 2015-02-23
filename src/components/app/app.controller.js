@@ -20,6 +20,14 @@ angular.module('trigger')
       };
     };
 
+    $scope.trackToChat = function(trackId) {
+      var chatInput = document.querySelector('#chatInput');
+      if(chatInput) {
+        chatInput.value += '/track' + trackId + ' ';
+        chatInput.focus();
+      }
+    }
+
     $scope.toggleLeft = function () {
       $mdSidenav('left').toggle();
     };

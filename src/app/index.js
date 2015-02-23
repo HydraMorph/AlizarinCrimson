@@ -289,11 +289,11 @@ app.service('Client', function ($log) {
 
   this.track = function(id, callback) {
     var cl = this;
-    var complete=false;
+    var complete = false;
     if (id === cl.channel.current.id) {
       if (callback) {
         callback(cl.channel.current);
-        complete=true;
+        complete = true;
       } else {
         return cl.channel.current;
       }
@@ -302,13 +302,13 @@ app.service('Client', function ($log) {
       if (cl.channel.pls[t].id === id) {
         if (callback) {
           callback(cl.channel.pls[t]);
-          complete=true;
+          complete = true;
         } else {
           return cl.channel.pls[t];
         }
       }
     }
-    if (!complete&&callback){
+    if (!complete && callback){
       this.socket.emit('gettrack', {'id': id}, function(d) {
         callback(d);
       });

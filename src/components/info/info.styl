@@ -1,5 +1,9 @@
-.md-tabs-content
-  height calc(100vh - 60px)
+@media screen and (min-width: 601px)
+  .md-tabs-content
+    height calc(100vh - 60px) /* 60px(tabsdemoStaticTabs .md-header) */
+@media screen and (max-width: 600px)
+  .md-tabs-content
+    height calc(100vh - 72px) /* 36px(tabsdemoStaticTabs .md-header) + 36px(.playlist__toolbar, .playlist__toolbar-tools)*/
 
 @media screen and (min-width: 1024px)
   .tabs__icon

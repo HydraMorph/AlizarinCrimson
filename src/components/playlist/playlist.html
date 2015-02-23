@@ -48,10 +48,10 @@
             <div class="track__links">
               <a href="#" class="track__link">>vk</a>
               <a href="#" class="track__link">>muzebra</a>
-              <a href="#" class="track__link">>в чат</a>
+              <a href="#" class="track__link" ng-click="trackToChat(track.id)">>в чат</a>
             </div>
             <div class="track__upload-info">
-              прнс <a href="#" {{track.sid}}>{{track.s}}</a>{{track.ut}}
+              прнс <a href="#" {{track.sid}}>{{ track.s }}</a>{{ track.ut |timeago }}
             </div>
           </div>
         </div>
@@ -104,10 +104,10 @@
             <div class="track__links">
               <a href="#" class="track__link">>vk</a>
               <a href="#" class="track__link">>muzebra</a>
-              <a href="#" class="track__link">>в чат</a>
+              <a href="#" class="track__link" ng-click="trackToChat(track.id)">>в чат</a>
             </div>
             <div class="track__upload-info">
-              прнс <a href="#" {{track.sid}}>{{track.s}}</a>{{track.ut}}
+              прнс <a href="#" {{track.sid}}>{{ track.s }}</a>{{ track.ut |timeago }}
             </div>
           </div>
         </div>
