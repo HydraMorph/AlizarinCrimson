@@ -16,8 +16,8 @@ angular.module('trigger')
     };
 
     $scope.debug = function() {
-//      console.log('Client.channel', Client.channel, Client.channels);
-//      console.log('debug', Client.channel.ct, $scope.track.tt);
+      console.log('Client.channel', Client.channel, Client.channels);
+      console.log('debug', Client.channel.ct, $scope.track.tt);
     }
 
 
@@ -32,7 +32,6 @@ angular.module('trigger')
       if ($rootScope.load.welcome === true) {
         $scope.track = Client.channel.current;
         $rootScope.title = '+D' + Client.channel.current.a + ' - ' + Client.channel.current.t + ' @ Trigger';
-//        console.log('welcooome', Client);
       }
     }, true);
 
@@ -57,7 +56,6 @@ angular.module('trigger')
       $scope.track = data.track;
       $rootScope.title = '! ' + data.track.a + ' - ' + data.track.t + ' @ Trigger';
       $scope.$digest();
-//      console.log('newcurrent', data);
     });
 
     function checkVotes() {
@@ -108,7 +106,6 @@ angular.module('trigger')
     }, true);
 
     $(Client).bind('trackupdate', function (event, data) {
-//      console.log('trackupdate', data);
       if (data.t.id === Client.channel.current.id) {
         if ($scope.load.signed === true) {
           for (var vr in data.t.p) {
@@ -125,7 +122,6 @@ angular.module('trigger')
           }
         }
         $scope.track = data.t;
-//        console.log('currentUpdate', data.t);
       } else {
         var plLength = $scope.playlist.length;
         var id;
@@ -133,7 +129,6 @@ angular.module('trigger')
           if ($scope.playlist[i].id === data.t.id) {
             id = i;
             $scope.playlist[i] = data.t;
-//            console.log($scope.playlist[i]);
             break;
           }
         }
@@ -153,49 +148,50 @@ angular.module('trigger')
         }
       }
       $scope.$digest();
-//      console.log('trackupdate', data.t);
     });
 
     $(Client).bind('addtrack', function (event, data) {
       var plLength = $scope.playlist.length;
       var isClone = false;
       for (var i = 0; i < plLength; i++) {
-        if ($scope.playlist[i].id === data.track.id) {
+        if ($scope.playlist[i].id === data.id) {
           isClone = true;
-//          console.log($scope.playlist[i]);
           break;
         }
       }
       if (isClone === false) {
-        for (var vr in data.track.p) {
-          if (data.track.p[vr].vid === Client.user.id) {
-//            console.log('voted+', data.track.p[vr]);
-            break;
+        if ($scope.load.signed === true) {
+          for (var vr in data.p) {
+            if (data.p[vr].vid === Client.user.id) {
+              data.vote = Client.user.w;
+              break;
+            }
+          }
+          for (var vr in data.n) {
+            if (data.n[vr].vid === Client.user.id) {
+              data.vote = -1 * Client.user.w;
+              break;
+            }
           }
         }
-        for (var vr in data.track.n) {
-          if (data.track.n[vr].vid === Client.user.id) {
-//            console.log('voted-', data.track.p[vr]);
-            break;
-          }
-        }
-        $scope.playlist.push(data.track);
+        $scope.playlist.push(data);
+        $scope.$digest();
       }
-//      console.log('addtrack', data.track);
     });
 
     $(Client).bind('removetrack', function (event, data) {
+      console.log('removetrack', data);
       var plLength = $scope.playlist.length;
       for (var i = 0; i < plLength; i++) {
-        if ($scope.playlist[i].id === data.track.id) {
-          console.log('removetrack', i, data.track.id);
+        if ($scope.playlist[i].id === data.tid) {
+          console.log('removetrack', i, data.tid);
           $scope.playlist.splice(i, 1);
+          $scope.$digest();
           break;
         }
       }
     });
 
-    //
     $scope.voteUp = function (id) {
       var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
       var reverse = false;
