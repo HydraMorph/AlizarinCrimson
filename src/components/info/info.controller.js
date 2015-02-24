@@ -3,7 +3,7 @@
 angular.module('trigger')
   .controller('InfoCtrl', function ($scope, $rootScope) {
     $scope.data = {
-      selectedIndex : 3
+      selectedIndex: 3
     };
 
     $scope.$watch(function() {

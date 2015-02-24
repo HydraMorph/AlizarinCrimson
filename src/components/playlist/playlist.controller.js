@@ -15,12 +15,6 @@ angular.module('trigger')
       $mdSidenav('right').toggle();
     };
 
-    $scope.debug = function() {
-      console.log('Client.channel', Client.channel, Client.channels);
-      console.log('debug', Client.channel.ct, $scope.track.tt);
-    }
-
-
     $scope.load.signed = false;
 
     $scope.playlist = [];

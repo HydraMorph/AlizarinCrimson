@@ -97,7 +97,6 @@ angular.module('trigger')
           }
           $scope.messages = mChat;
         });
-//        $scope.$digest();
 
         $(Client).bind('message', function (event, data) {
           var type = checkType(data);

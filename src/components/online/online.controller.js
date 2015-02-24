@@ -1,17 +1,6 @@
 'use strict';
 
 angular.module('trigger')
-//  .directive('usersOnline', function(Client) {
-//    return {
-//      restrict: 'E',
-//      templateUrl: '../components/online/_template.html',
-//      transclude: true,
-//      controller:function($scope, socket) {},
-//      link: function($scope, element, Client) {
-////        console.log('uo', Client.channel.users);
-//      }
-//    };
-//  })
   .controller('OnlineCtrl', function ($scope, $rootScope, Client) {
 
     $scope.users = [];

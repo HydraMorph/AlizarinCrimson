@@ -2,11 +2,6 @@
 
 angular.module('trigger')
   .controller('AppCtrl', function ($scope, $rootScope, $timeout, $mdSidenav, socket, Client) {
-//    socket.on('channeldata', function (data) {
-//      console.log('playlist', data.pls);
-//      Client.channel.pls = data.pls;
-//      $rootScope.load.playlist = true;
-//    });
     var button = document.getElementById('audioBtn');
     var audio = document.getElementById('audio');
     $scope.play = false;
