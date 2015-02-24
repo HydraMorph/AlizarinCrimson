@@ -50,6 +50,10 @@ angular.module('trigger')
     $scope.message = '';
     $scope.messages = [];
 
+    function addTrackToChat(track) {
+      console.log(track);
+    }
+
     $scope.$watch(function () {
       return $rootScope.load.signed;
     }, function () {
@@ -72,17 +76,16 @@ angular.module('trigger')
                 }
               }
             }
-//            if(mChat[j].m.indexOf('/track') > -1) {
-//              var meta = /\/track(\w*)/gim;
-//              var res = meta.exec(mChat[j].m);
-//              var track = {};
-//              Client.track(res[1], function(data, track) {
-//                track = data;
-//                console.log(data);
-//              });
-//              console.log(track);
-////              mChat[j].m = res.input.replace(res[0], data.a + ' - ' + data.t);
-//            }
+
+            if(mChat[j].m.indexOf('/track') > -1) {
+              var meta = /\/track(\w*)/gim;
+              var res = meta.exec(mChat[j].m);
+              Client.track(res[1], function(data) {
+                addTrackToChat(data);
+              });
+//              mChat[j].m = res.input.replace(res[0], data.a + ' - ' + data.t);
+            }
+
             var type = checkType(mChat[j]);
             if (type) {
               mChat[j].type = type;

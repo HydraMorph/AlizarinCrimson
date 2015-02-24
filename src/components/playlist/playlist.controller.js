@@ -182,8 +182,7 @@ angular.module('trigger')
     $(Client).bind('removetrack', function (event, data) {
       var plLength = $scope.playlist.length;
       for (var i = 0; i < plLength; i++) {
-        if ($scope.playlist[i].id === data.tid) {
-          console.log('removetrack', i, data.tid);
+        if ($scope.playlist[i].id === data.tid || $scope.playlist[i].id === data.track.id) {
           $scope.playlist.splice(i, 1);
           $scope.$digest();
           break;
