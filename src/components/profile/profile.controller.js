@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('trigger')
-  .controller('ProfileCtrl', function ($scope, $rootScope, Client) {
+  .controller('ProfileCtrl', function ($scope) {
     $scope.data = {
       selectedIndex : 0,
       secondLocked : true,

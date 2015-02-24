@@ -40,7 +40,7 @@ app.factory('socket', function ($rootScope) {
             callback.apply(socket, args);
           }
         });
-      })
+      });
     }
   };
 });
@@ -62,8 +62,8 @@ app.run(function ($rootScope, Client) {
       $rootScope.load.signed = true;
     }
   }
-  var u = localStorage.getItem("username");
-  var p = localStorage.getItem("password");
+  var u = localStorage.getItem('username');
+  var p = localStorage.getItem('password');
 
   $rootScope.title = 'Trigger';
   $rootScope.userId = 0;
@@ -72,7 +72,7 @@ app.run(function ($rootScope, Client) {
     Client.channel = data.channels[0];
     Client.getChannels(function(data){
       Client.channels = data.channels;
-      if (u != undefined && p != undefined) {
+      if (u !== undefined && p !== undefined) {
         Client.login(u, p, processLogin);
       }
 //      console.log(data);

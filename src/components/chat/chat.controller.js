@@ -57,7 +57,7 @@ angular.module('trigger')
     $scope.$watch(function () {
       return $rootScope.load.signed;
     }, function () {
-      if ($rootScope.load.signed == true) {
+      if ($rootScope.load.signed === true) {
         Client.getChat({}, function(d) {
           var tnk = false;
           var messages = d.m;
@@ -67,7 +67,7 @@ angular.module('trigger')
           var cL = customCodes.length;
           for (var j = 0; j < mL; j++) {
             for (var i = 0; i < cL; i++) {
-              if (mChat[j].m.replace(customCodes[i][0], '') != mChat[j].m) {
+              if (mChat[j].m.replace(customCodes[i][0], '') !== mChat[j].m) {
                 if (i < 2) {
                   mChat[j].m = mChat[j].m.replace(customCodes[i][0], customCodes[i][1]);
                   break;
@@ -112,7 +112,7 @@ angular.module('trigger')
 
           var cL = customCodes.length;
           for (var i = 0; i < cL; i++) {
-            if (data.m.replace(customCodes[i][0], '') != data.m) {
+            if (data.m.replace(customCodes[i][0], '') !== data.m) {
               if (i < 2) {
                 data.m = data.m.replace(customCodes[i][0], customCodes[i][1]);
                 break;
@@ -175,7 +175,7 @@ angular.module('trigger')
             console.log(data.error);
           }
         });
-        var res = $scope.message.split(" ");
+        var res = $scope.message.split(' ');
         var chatters = [];
         for (var i = 0; i < res.length; i++) {
           if (res[i].indexOf('>') > -1) {
@@ -199,5 +199,5 @@ angular.module('trigger')
       }
       $scope.message = s;
       focus();
-    }
+    };
   });

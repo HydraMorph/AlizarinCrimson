@@ -10,8 +10,8 @@ angular.module('trigger')
       if (data.error) {
         console.log(data.error);
       } else {
-        localStorage.setItem("username", $scope.user.name);
-        localStorage.setItem("password", md5.createHash($scope.user.password));
+        localStorage.setItem('username', $scope.user.name);
+        localStorage.setItem('password', md5.createHash($scope.user.password));
         Client.user = data.user;
         $rootScope.userId = data.user.id;
         $rootScope.load.signed = true;

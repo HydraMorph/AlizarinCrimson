@@ -272,15 +272,15 @@ angular.module('trigger')
       timer = $interval(function() {
         $scope.progress = (i/duration*100).toFixed(2);
         i++;
-      }, 1000)
-    }
+      }, 1000);
+    };
     $scope.stopTimer = function() {
       if (angular.isDefined(timer)) {
         $interval.cancel(timer);
         timer = undefined;
         $scope.progress = 0;
       }
-    }
+    };
 
 
   });

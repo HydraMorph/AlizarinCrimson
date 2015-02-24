@@ -1,18 +1,18 @@
 'use strict';
 
 angular.module('trigger')
-  .controller('AppCtrl', function ($scope, $rootScope, $timeout, $mdSidenav, socket, Client) {
+  .controller('AppCtrl', function ($scope, $rootScope, $timeout, $mdSidenav) {
     var button = document.getElementById('audioBtn');
     var audio = document.getElementById('audio');
     $scope.play = false;
     $scope.togglePlay = function() {
       button.classList.toggle('play');
       $scope.play = !$scope.play;
-      if ($scope.play == true) {
+      if ($scope.play === true) {
         audio.play();
       } else {
         audio.pause();
-      };
+      }
     };
 
     $scope.trackToChat = function(trackId) {
@@ -21,7 +21,7 @@ angular.module('trigger')
         chatInput.value += '/track' + trackId + ' ';
         chatInput.focus();
       }
-    }
+    };
 
     $scope.toggleLeft = function () {
       $mdSidenav('left').toggle();
