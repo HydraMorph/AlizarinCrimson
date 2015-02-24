@@ -180,7 +180,6 @@ angular.module('trigger')
     });
 
     $(Client).bind('removetrack', function (event, data) {
-      console.log('removetrack', data);
       var plLength = $scope.playlist.length;
       for (var i = 0; i < plLength; i++) {
         if ($scope.playlist[i].id === data.tid) {

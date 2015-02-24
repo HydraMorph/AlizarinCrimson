@@ -377,10 +377,21 @@ app.service('Client', function ($log) {
     this.socket.emit('getuser', data, callback);
   };
 
-  this.getHistory = function(shift, gold, callback) {
-    this.callbacks.history = callback;
-    this.socket.emit('gethistory', {id: this.channel.id, s: shift, g: gold});
+  this.getHistory = function(data, callback) {
+    console.log(data);
+    this.socket.emit('gethistory', {
+      chid: 1,
+      s: data.shift,
+      a: data.artist,
+      t: data.title,
+      top: data.top,
+      g: data.gold
+    }, callback);
   };
+//  this.getHistory = function(shift, gold, callback) {
+//    this.callbacks.history = callback;
+//    this.socket.emit('gethistory', {id: this.channel.id, s: shift, g: gold});
+//  };
 
   this.getTags = function(str, callback) {
     cl = this;

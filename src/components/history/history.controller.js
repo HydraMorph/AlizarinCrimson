@@ -12,14 +12,31 @@ angular.module('trigger')
   .controller('HistoryCtrl', function ($scope, Client) {
     $scope.tracks = [];
     $scope.gold = false;
-    Client.getHistory(0, $scope.gold, function(data) {
-      $scope.tracks = data;
-      $scope.$digest();
-    });
-    $scope.showHistory = function() {
-      Client.getHistory(0, $scope.gold, function(data) {
-        $scope.tracks = data;
-        $scope.$digest();
-      });
+
+    var data = {
+      shift: 0,
+      artist: 'Pink',
+      title: '',
+      gold: false,
+      top: false
     };
+    function addhistory(track) {
+      console.log(track);
+    }
+    Client.getHistory(data, function(data) {
+      for (var t in data) {
+        addhistory(data[t]);
+      }
+    });
+
+//    Client.getHistory(0, $scope.gold, function(data) {
+//      $scope.tracks = data;
+//      $scope.$digest();
+//    });
+//    $scope.showHistory = function() {
+//      Client.getHistory(0, $scope.gold, function(data) {
+//        $scope.tracks = data;
+//        $scope.$digest();
+//      });
+//    };
   });
