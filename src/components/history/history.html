@@ -27,14 +27,31 @@
 <!--          <img ng-src="{{track.src}}" class="track__img" alt="">-->
           <img ng-src="assets\images\nocover.png" class="track__img" alt="">
         </div>
-        <div class="track__content">
-          <h3 class="track__artist">{{track.a}}</h3>
-          <h4 class="track__title">{{track.t}}</h4>
-        </div>
-        <div class="track__tags">
-          <span class="track__tag" ng-repeat="tag in track.tg">
-            {{tag.n}}
-          </span>
+        <div class="track__row">
+          <div class="track__base">
+            <div class="track__content">
+              <h3 class="track__artist">{{track.a}}</h3>
+              <h4 class="track__title">{{track.t}}</h4>
+            </div>
+            <div class="track__tags">
+              <span class="track__tag" ng-repeat="tag in track.tg">
+                {{tag.n}}
+              </span>
+            </div>
+            <div class="track__time">
+              <span>+{{track.tt | readableTime}}</span>
+            </div>
+          </div>
+          <div class="track__additional">
+            <div class="track__links">
+              <a href="#" class="track__link">>vk</a>
+              <a href="#" class="track__link">>muzebra</a>
+              <a href="#" class="track__link" ng-click="trackToChat(track.id)">>в чат</a>
+            </div>
+            <div class="track__upload-info">
+              прнс <a href="#" {{track.sid}}>{{ track.s }}</a>{{ track.ut |timeago }}
+            </div>
+          </div>
         </div>
         <div class="track__votes-block">
           <span class="track__rating">{{track.r}}</span>

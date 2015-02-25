@@ -2,67 +2,6 @@
 
 @charset "UTF-8";
 
-@font-face
-  font-family "trigger"
-  src:url("fonts/trigger.eot");
-  src:url("fonts/trigger.eot?#iefix") format("embedded-opentype"),
-    url("fonts/trigger.woff") format("woff"),
-    url("fonts/trigger.ttf") format("truetype"),
-    url("fonts/trigger.svg#trigger") format("svg");
-  font-weight norma;
-  font-style normal
-
-[data-icon]:before
-  font-family "trigger" !important
-  content attr(data-icon)
-  font-style normal !important
-  font-weight normal !important
-  font-variant normal !important
-  text-transform none !important
-  speak none
-  line-height 1
-  -webkit-font-smoothing antialiased
-  -moz-osx-font-smoothing grayscale
-
-[class^="icon-"]:before
-[class*=" icon-"]:before
-  font-family "trigger" !important
-  font-style normal !important
-  font-weight normal !important
-  font-variant normal !important
-  text-transform none !important
-  speak none
-  line-height 1
-  -webkit-font-smoothing antialiased
-  -moz-osx-font-smoothing grayscale
-
-.icon-ic-democracy:before
-  content "a"
-.icon-ic-download:before
-  content "c"
-.icon-ic-upload:before
-  content "d"
-.icon-ic-info-outline:before
-  content "e"
-.icon-ic-info:before
-  content "f"
-.icon-ic-home:before
-  content "g"
-.icon-ic-arrow-down:before
-  content "h"
-.icon-ic-arrow-up:before
-  content "i"
-.icon-ic-view:before
-  content "k"
-.icon-ic-send:before
-  content "b"
-.icon-ic-account:before
-  content "m"
-.icon-ic-plus:before
-  content "n"
-.icon-ic-chat:before
-  content "p"
-
 html
   font-family 'Open Sans', sans-serif !important
   width 100vw
@@ -148,8 +87,8 @@ svg
   width 100%
 
 // injector
-@import '../components/console/console.styl';
 @import '../components/chat/chat.styl';
+@import '../components/console/console.styl';
 @import '../components/democracy/democracy.styl';
 @import '../components/history/history.styl';
 @import '../components/info/info.styl';
