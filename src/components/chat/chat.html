@@ -23,10 +23,10 @@
       <div class="chat__input-nav">
         <md-button class="chat__button--bold" aria-label="chat-bold">bold</md-button>
         <md-button class="chat__button--irony" aria-label="chat-irony">irony</md-button>
-        <md-checkbox ng-model="data.tink" aria-label="Тиньк" class="chat__checkbox--tink">
+        <md-checkbox ng-model="data.tink" ng-change="setTink()" aria-label="Тиньк" class="chat__checkbox--tink">
           Тиньк
         </md-checkbox>
-        <md-checkbox ng-model="data.img" aria-label="Картинки" class="chat__checkbox--img">
+        <md-checkbox ng-model="data.img" ng-change="setImg()" aria-label="Картинки" class="chat__checkbox--img">
           Картинки
         </md-checkbox>
       </div>

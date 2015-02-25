@@ -217,6 +217,7 @@ angular.module('trigger')
       }
     };
 
+
     $scope.voteDown = function (id) {
       var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
       var reverse = false;

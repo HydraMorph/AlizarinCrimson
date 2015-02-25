@@ -37,22 +37,46 @@ angular.module('trigger')
     customCodes[7][1] = '&lt;img src="/assets/images/nocover.png" style="object-fit: contain;"/&gt;';
 
     function tink() {
-      var sound = new Audio();
-      if (sound.canPlayType('audio/ogg')) {
-        sound.src = 'http://trigger.fm/sounds/tink.ogg';
-        sound.play();
-      } else {
-        sound.src = 'http://trigger.fm/sounds/tink.mp3';
-        sound.play();
+      if ($scope.data.tink === true) {
+        var sound = new Audio();
+        if (sound.canPlayType('audio/ogg')) {
+          sound.src = 'http://trigger.fm/sounds/tink.ogg';
+          sound.play();
+        } else {
+          sound.src = 'http://trigger.fm/sounds/tink.mp3';
+          sound.play();
+        }
       }
     }
 
     $scope.message = '';
     $scope.messages = [];
 
-    function addTrackToChat(track) {
-      console.log(track);
+    $scope.data = {
+      tink: true,
+      img: true
+    };
+    if (localStorage.getItem('tink') === false) {
+      $scope.data.tink = false;
     }
+    if (localStorage.getItem('img') === false) {
+      $scope.data.img = false;
+    }
+    $scope.setTink = function() {
+      if($scope.data.tink === true) {
+        localStorage.setItem('tink', true);
+      } else {
+        localStorage.setItem('tink', false);
+      }
+    }
+    $scope.setImg = function() {
+      if($scope.data.img === true) {
+        localStorage.setItem('img', true);
+      } else {
+        localStorage.setItem('img', false);
+      }
+    }
+
 
     $scope.$watch(function () {
       return $rootScope.load.signed;
@@ -77,14 +101,15 @@ angular.module('trigger')
               }
             }
 
-            if(mChat[j].m.indexOf('/track') > -1) {
-              var meta = /\/track(\w*)/gim;
-              var res = meta.exec(mChat[j].m);
-              Client.track(res[1], function(data) {
-                addTrackToChat(data);
-              });
+//            if(mChat[j].m.indexOf('/track') > -1) {
+//              var meta = /\/track(\w*)/gim;
+//              var res = meta.exec(mChat[j].m);
+//              console.log('res', res);
+//              Client.track(res[1], function(data) {
+//                addTrackToChat(data, emptyArrays);
+//              });
 //              mChat[j].m = res.input.replace(res[0], data.a + ' - ' + data.t);
-            }
+//            }
 
             var type = checkType(mChat[j]);
             if (type) {
