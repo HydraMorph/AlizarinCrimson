@@ -101,15 +101,6 @@ angular.module('trigger')
               }
             }
 
-//            if(mChat[j].m.indexOf('/track') > -1) {
-//              var meta = /\/track(\w*)/gim;
-//              var res = meta.exec(mChat[j].m);
-//              console.log('res', res);
-//              Client.track(res[1], function(data) {
-//                addTrackToChat(data, emptyArrays);
-//              });
-//              mChat[j].m = res.input.replace(res[0], data.a + ' - ' + data.t);
-//            }
 
             var type = checkType(mChat[j]);
             if (type) {
@@ -121,7 +112,28 @@ angular.module('trigger')
             tink();
           }
           $scope.messages = mChat;
+//          $scope.addTracks();
         });
+
+
+//        $scope.addTracks = function() {
+//          var mL = $scope.messages.length;
+//          for (var i = 0; i < mL; i++) {
+//            if($scope.messages[i].m.indexOf('/track') > -1) {
+//              var meta = /\/track(\w*)/gim;
+//              var res = meta.exec($scope.messages[i].m);
+//              console.log('res', res);
+//              var q = $scope.messages[i].m;
+//              Client.track(res[1], function(data) {
+//                q = res.input.replace(res[0], data.a + ' - ' + data.t);
+//                console.log('q', q);
+//              });
+//              $scope.messages[i].m = q;
+//              console.log('$scope.messages[i].m', $scope.messages[i].m);
+//            }
+//          }
+//        }
+
 
         $(Client).bind('message', function (event, data) {
           var type = checkType(data);
