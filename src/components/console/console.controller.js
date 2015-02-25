@@ -172,7 +172,11 @@ angular.module('trigger')
     };
     var audio = document.getElementById('audio');
     $scope.volume = 50;
+    if (localStorage.getItem('volume') > -1) {
+      $scope.volume = localStorage.getItem('volume');
+    }
     $scope.changeVolume = function(volume) {
+      localStorage.setItem('volume', volume);
       audio.volume = volume/100;
     };
 

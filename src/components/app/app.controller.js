@@ -5,12 +5,23 @@ angular.module('trigger')
     var button = document.getElementById('audioBtn');
     var audio = document.getElementById('audio');
     $scope.play = false;
+    $scope.start = function() {
+      $scope.play = true;
+      button.classList.add('play');
+      audio.play();
+    }
+    if (localStorage.getItem('play') === 'true') {
+      $timeout($scope.start(), 5000);
+    }
+
     $scope.togglePlay = function() {
       button.classList.toggle('play');
       $scope.play = !$scope.play;
       if ($scope.play === true) {
+        localStorage.setItem('play', true);
         audio.play();
       } else {
+        localStorage.setItem('play', false);
         audio.pause();
       }
     };
