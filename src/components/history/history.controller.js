@@ -13,22 +13,32 @@ angular.module('trigger')
     $scope.tracks = [];
     $scope.gold = false;
 
-    var data = {
+    $scope.data = {
       shift: 0,
-      artist: 'Pink',
+      artist: '',
       title: '',
       gold: false,
       top: false
     };
+
     function addhistory(track) {
-      console.log(track);
+      $scope.tracks.push(track);
     }
-    Client.getHistory(data, function(data) {
+
+    Client.getHistory($scope.data, function(data) {
       for (var t in data) {
         addhistory(data[t]);
       }
     });
 
+    $scope.search = function() {
+      $scope.tracks = [];
+      Client.getHistory($scope.data, function(data) {
+        for (var t in data) {
+          addhistory(data[t]);
+        }
+      });
+    }
 //    Client.getHistory(0, $scope.gold, function(data) {
 //      $scope.tracks = data;
 //      $scope.$digest();

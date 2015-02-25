@@ -2,6 +2,7 @@
     "jscodehints.detectedExclusions": [
         "C:/Dev/n1/src/app/index.js",
         "C:/Dev/AlizarinCrimson/src/components/info/info.controller.js",
-        "C:/Dev/AlizarinCrimson/src/app/index.js"
+        "C:/Dev/AlizarinCrimson/src/app/index.js",
+        "C:/Dev/AlizarinCrimson/bower_components/angular-audio/lib/underscore.js"
     ]
 }

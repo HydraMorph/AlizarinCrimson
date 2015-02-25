@@ -3,9 +3,22 @@
 .history__module
   color #000
   height 100%
-.history__checkbox-grp
-  height 24px
-  & md-checkbox
+.history__search-grp
+  height 54px
+  background #eee
+  display flex
+  flex-flow row nowrap
+  align-items center
+  justify-content flex-start
+  & .history__checkbox--gold
     margin 0 0 0 10px
+  & .history--input
+    flex 1
+    padding 2px
+    margin 6px
+  & .history--search-btn
+    background-color transparent !important
+    box-shadow none !important
 .history__content
-  height calc(100% - 24px)
+  height calc(100% - 56px)
+
