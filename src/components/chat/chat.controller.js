@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('trigger')
-  .controller('ChatCtrl', function ($scope, $rootScope, Client) {
+  .controller('ChatCtrl', function ($scope, $rootScope, Client, socket) {
 
     var customCodes = [];
     customCodes[0] = [];
@@ -134,8 +134,7 @@ angular.module('trigger')
 //          }
 //        }
 
-
-        $(Client).bind('message', function (event, data) {
+        socket.on('message', function(data) {
           var type = checkType(data);
           if (type) {
             data.type = type;
@@ -160,8 +159,8 @@ angular.module('trigger')
           }
 
           $scope.messages.push(data);
-          $scope.$digest();
         });
+
       }
       $scope.load.signed = $rootScope.load.signed;
     }, true);

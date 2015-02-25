@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('trigger')
-  .controller('ConsoleCtrl', function ($scope, $rootScope, $interval, $timeout, $mdDialog, $mdBottomSheet, Client) {
+  .controller('ConsoleCtrl', function ($scope, $rootScope, $interval, $timeout, $mdDialog, $mdBottomSheet, Client, socket) {
     var greetings = [
       'Сделай это расслышать, username!',
       'Гуф всё, username.',
@@ -191,10 +191,9 @@ angular.module('trigger')
       if ($rootScope.load.welcome === true) {
         $scope.users.listeners = Client.channel.lst;
         $scope.users.active = Client.channel.a;
-        $(Client).bind('listners', function(event, data) {
+        socket.on('lst', function(data) {
           $scope.users.listeners = data.l;
           $scope.users.active = data.a;
-          $scope.$digest();
         });
       }
       $scope.load.welcome = $rootScope.load.welcome;
@@ -207,9 +206,8 @@ angular.module('trigger')
 //        console.log('Client.user', Client.user);
         $scope.user.name = Client.user.n;
         $scope.user.uplim = Client.user.t;
-        $(Client).bind('updatelimits', function(event, data) {
+        socket.on('uplim', function(data) {
           $scope.user.uplim = data.t;
-//          console.log('updatelimits', data);
         });
       }
       $scope.load.signed = $rootScope.load.signed;

@@ -8,6 +8,7 @@ angular.module('trigger')
     if (width <= 960) {
       $scope.reverse = 1;
     }
+
     $scope.toggleLeft = function () {
       $mdSidenav('left').toggle();
     };
@@ -29,7 +30,7 @@ angular.module('trigger')
       }
     }, true);
 
-    $(Client).bind('newcurrent', function (event, data) {
+    socket.on('newcurrent', function(data) {
       if ($scope.load.signed === true) {
         for (var vr in data.track.p) {
           if (data.track.p[vr].vid === Client.user.id) {
@@ -49,7 +50,13 @@ angular.module('trigger')
       $scope.starTimer(0, data.track.tt);
       $scope.track = data.track;
       $rootScope.title = '! ' + data.track.a + ' - ' + data.track.t + ' @ Trigger';
-      $scope.$digest();
+      var plLength = $scope.playlist.length;
+      for (var i = 0; i < plLength; i++) {
+        if ($scope.playlist[i].id === data.tid || $scope.playlist[i].id === data.track.id) {
+          $scope.playlist.splice(i, 1);
+          break;
+        }
+      }
     });
 
     function checkVotes() {
@@ -99,7 +106,7 @@ angular.module('trigger')
       }
     }, true);
 
-    $(Client).bind('trackupdate', function (event, data) {
+    socket.on('uptr', function(data) {
       if (data.t.id === Client.channel.current.id) {
         if ($scope.load.signed === true) {
           for (var vr in data.t.p) {
@@ -141,10 +148,12 @@ angular.module('trigger')
           }
         }
       }
-      $scope.$digest();
     });
 
-    $(Client).bind('addtrack', function (event, data) {
+    socket.on('addtrack', function(data) {
+      data.track.src = 'img/nocover.png';
+      var track = data.track;
+      track.vote = 0;
       var plLength = $scope.playlist.length;
       var isClone = false;
       for (var i = 0; i < plLength; i++) {
@@ -169,16 +178,14 @@ angular.module('trigger')
           }
         }
         $scope.playlist.push(data);
-        $scope.$digest();
       }
     });
 
-    $(Client).bind('removetrack', function (event, data) {
+    socket.on('removetrack', function(data) {
       var plLength = $scope.playlist.length;
       for (var i = 0; i < plLength; i++) {
         if ($scope.playlist[i].id === data.tid || $scope.playlist[i].id === data.track.id) {
           $scope.playlist.splice(i, 1);
-          $scope.$digest();
           break;
         }
       }

@@ -46,7 +46,7 @@ app.factory('socket', function ($rootScope) {
 });
 
 
-app.run(function ($rootScope, Client) {
+app.run(function ($rootScope, Client, socket) {
   $rootScope.load = {
     'signed': false,
     'welcome': false,
@@ -68,20 +68,19 @@ app.run(function ($rootScope, Client) {
   $rootScope.title = 'Trigger';
   $rootScope.userId = 0;
   Client.init(location.host);
-  $(Client).bind('welcome', function(event, data) {
+
+  socket.on('welcome', function (data) {
     Client.channel = data.channels[0];
     Client.getChannels(function(data){
       Client.channels = data.channels;
       if (u !== undefined && p !== undefined) {
         Client.login(u, p, processLogin);
       }
-//      console.log(data);
     });
-//    $rootScope.client.channel = data.channels[0];
     Client.goChannel(1, console.log('Q' ,data));
-//    console.log('welcome', Client.channel);
     $rootScope.load.welcome = true;
   });
+
   $rootScope.client = Client;
 });
 
@@ -98,48 +97,12 @@ app.service('Client', function ($log) {
     var socket = this.socket;
     var cl = this;
 
-    socket.on('welcome', function (data) {
-      $(cl).trigger('welcome', data);
-    });
-
     socket.on('getver', function () {
       socket.emit('ver', {'v': cl.version, 'init': true});
     });
 
-    socket.on('addtrack', function(data) {
-      data.track.src = 'img/nocover.png';
-      var track = data.track;
-      track.vote = 0;
-      $(cl).trigger('addtrack', track);
-    });
-
-    socket.on('removetrack', function(data) {
-      $(cl).trigger('removetrack', data);
-    });
-
-    socket.on('newcurrent', function(data) {
-      $(cl).trigger('newcurrent', data);
-      $(cl).trigger('removetrack', data);
-    });
-
-    socket.on('lst', function(data) {
-      $(cl).trigger('listners', data);
-    });
-
-    socket.on('usupd', function(data) {
-      $(cl).trigger('userupdate', data);
-    });
-
-    socket.on('uplim', function(data) {
-      $(cl).trigger('updatelimits', data);
-    });
-
     socket.on('channeldata', function(data) {
 //      console.log('channeldata', data);
-    });
-
-    socket.on('message', function(data) {
-      $(cl).trigger('message', data);
     });
 
     socket.on('history', function(data) {
@@ -171,32 +134,9 @@ app.service('Client', function ($log) {
       cl.callbacks.changepass(data);
     });
 
-    socket.on('banned', function(data) {
-      $(cl).trigger('banned', data);
-    });
-
-    socket.on('newuser', function(data) {
-//      if (cl.chat) {
-//        var user = {
-//          id: data.uid,
-//          n: data.n,
-//          a: data.a
-//        };
-//        cl.chat.u.push(user);
-        $(cl).trigger('newuser', data);
-//      }
-    });
-
-    socket.on('offuser', function(data) {
-//      if (cl.chat) {
-//        for (var us in cl.chat.u) {
-//          if (cl.chat.u[us].id == data.uid) {
-//            cl.chat.u.splice(us, 1);
-//          }
-//        }
-        $(cl).trigger('offuser', data);
-//      }
-    });
+//    socket.on('banned', function(data) {
+//      $(cl).trigger('banned', data);
+//    });
 
     socket.on('playlist', function(data) {
       cl.callbacks.playlist(data);
@@ -233,52 +173,6 @@ app.service('Client', function ($log) {
       cl.callbacks.tags(data.t);
     });
 
-    socket.on('uptr', function(data) {
-//      if (data.t.id == cl.channel.current.id) {
-//        var src = cl.channel.current.src;
-//        cl.channel.current = data.t;
-//        cl.channel.current.scr = src;
-//        var track = cl.channel.current;
-//        track.vote = 0;
-//        for (var v in track.n) {
-//          if (track.n[v].vid == cl.user.id) {
-//            track.vote = track.n[v].v;
-//            break;
-//          }
-//        }
-//        for (var v in track.p) {
-//          if (track.p[v].vid == cl.user.id) {
-//            track.vote = track.p[v].v;
-//            break;
-//          }
-//        }
-//        data.current = true;
-//      } else {
-//        for (var t in cl.channel.pls) {
-//          if (cl.channel.pls[t].id == data.t.id) {
-//            cl.channel.pls[t] = data.t;
-//            var track = cl.channel.pls[t];
-//            track.vote = 0;
-//            for (var v in track.n) {
-//              if (track.n[v].vid == cl.user.id) {
-//                track.vote = track.n[v].v;
-//                break;
-//              }
-//            }
-//            for (var v in track.p) {
-//              if (track.p[v].vid == cl.user.id) {
-//                track.vote = track.p[v].v;
-//                break;
-//              }
-//            }
-////            cl.channel.pls.sort(sortFunction);
-//            data.current = false;
-//            break;
-//          }
-//        }
-//      }
-      $(cl).trigger('trackupdate', data);
-    });
   };
 
   this.login = function(name, pass, callback) {
