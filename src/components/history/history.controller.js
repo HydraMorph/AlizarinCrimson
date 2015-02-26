@@ -9,10 +9,9 @@
 'use strict';
 
 angular.module('trigger')
-  .controller('HistoryCtrl', function ($scope, Client) {
-    $scope.tracks = [];
-    $scope.gold = false;
+  .controller('HistoryCtrl', function ($scope, Client, socket) {
 
+    $scope.tracks = [];
     $scope.data = {
       shift: 0,
       artist: '',
@@ -21,32 +20,30 @@ angular.module('trigger')
       top: false
     };
 
-    function addhistory(track) {
+    function addHistory(track) {
       $scope.tracks.push(track);
     }
 
-    Client.getHistory($scope.data, function(data) {
-      for (var t in data) {
-        addhistory(data[t]);
-      }
-    });
-
-    $scope.search = function() {
+    function getHistory(data) {
       $scope.tracks = [];
-      Client.getHistory($scope.data, function(data) {
+      socket.emit('gethistory', {
+        chid: 1,
+        s: data.shift,
+        a: data.artist,
+        t: data.title,
+        top: data.top,
+        g: data.gold
+      }, function(data) {
         for (var t in data) {
-          addhistory(data[t]);
+          addHistory(data[t]);
         }
       });
     }
-//    Client.getHistory(0, $scope.gold, function(data) {
-//      $scope.tracks = data;
-//      $scope.$digest();
-//    });
-//    $scope.showHistory = function() {
-//      Client.getHistory(0, $scope.gold, function(data) {
-//        $scope.tracks = data;
-//        $scope.$digest();
-//      });
-//    };
+
+    getHistory($scope.data);
+
+    $scope.search = function() {
+      getHistory($scope.data);
+    }
+
   });
