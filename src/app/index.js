@@ -236,18 +236,6 @@ app.service('Client', function ($log) {
     this.socket.emit('getchannels');
   };
 
-  this.getChat = function(data, callback) {
-    var cl = this;
-    this.socket.emit('getchat', {'shift': data.shift, 'id': this.channel.id}, function(data) {
-//    this.socket.emit('getchat', {'shift': data.shift, 'id': 1}, function(data) {
-      if (data.u) {
-        cl.chat = data;
-        cl.chat.id = cl.channel.chid;
-      }
-      callback(data);
-    });
-  };
-
   this.tracksubmit = function(data, callback) {
     var form = data.form;
     this.socket.emit('tracksubmit', {'chid': this.channel.id, 'track': data.track}, function(data) {

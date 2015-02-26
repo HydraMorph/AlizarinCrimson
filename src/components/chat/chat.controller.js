@@ -77,14 +77,13 @@ angular.module('trigger')
       }
     }
 
-
-    $scope.$watch(function () {
-      return $rootScope.load.signed;
-    }, function () {
-      if ($rootScope.load.signed === true) {
-        Client.getChat({}, function(d) {
+    function getChat() {
+      socket.emit(
+        'getchat',
+        { 'shift': 0, 'id': 1 },
+        function(data) {
           var tnk = false;
-          var messages = d.m;
+          var messages = data.m;
           var privateMessages = getPrivateMessages();
           var mChat = mixChat(messages, privateMessages);
           var mL = mChat.length;
@@ -100,8 +99,6 @@ angular.module('trigger')
                 }
               }
             }
-
-
             var type = checkType(mChat[j]);
             if (type) {
               mChat[j].type = type;
@@ -112,28 +109,15 @@ angular.module('trigger')
             tink();
           }
           $scope.messages = mChat;
-//          $scope.addTracks();
-        });
+        }
+      );
+    };
 
-
-//        $scope.addTracks = function() {
-//          var mL = $scope.messages.length;
-//          for (var i = 0; i < mL; i++) {
-//            if($scope.messages[i].m.indexOf('/track') > -1) {
-//              var meta = /\/track(\w*)/gim;
-//              var res = meta.exec($scope.messages[i].m);
-//              console.log('res', res);
-//              var q = $scope.messages[i].m;
-//              Client.track(res[1], function(data) {
-//                q = res.input.replace(res[0], data.a + ' - ' + data.t);
-//                console.log('q', q);
-//              });
-//              $scope.messages[i].m = q;
-//              console.log('$scope.messages[i].m', $scope.messages[i].m);
-//            }
-//          }
-//        }
-
+    $scope.$watch(function () {
+      return $rootScope.load.signed;
+    }, function () {
+      if ($rootScope.load.signed === true) {
+        getChat();
         socket.on('message', function(data) {
           var type = checkType(data);
           if (type) {
