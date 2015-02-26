@@ -44,7 +44,7 @@ angular.module('trigger')
     $scope.showHistory = function() {
       getHistory($scope.data);
     }
-    $scope.showHistory()
+    getHistory($scope.data);
 
 
   });
