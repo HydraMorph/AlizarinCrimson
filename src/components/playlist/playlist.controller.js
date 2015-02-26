@@ -194,6 +194,12 @@ angular.module('trigger')
       }
     });
 
+    function addVote (data) {
+      data.chid = Client.channel.id;
+      socket.emit('vote', data);
+    };
+
+
     $scope.voteUp = function (id) {
       var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
       var reverse = false;
@@ -202,31 +208,18 @@ angular.module('trigger')
       }
       if (reverse === true) {
         if (this.track.vote === -Client.user.w) {
-          Client.addvote({
-            'id': id,
-            'v': 0
-          });
+          addVote({ 'id': id, 'v': 0});
         } else {
-          Client.addvote({
-            'id': id,
-            'v': -Client.user.w
-          });
+          addVote({'id': id, 'v': -Client.user.w });
         }
       } else {
         if (this.track.vote === Client.user.w) {
-          Client.addvote({
-            'id': id,
-            'v': 0
-          });
+          addVote({ 'id': id, 'v': 0 });
         } else {
-          Client.addvote({
-            'id': id,
-            'v': Client.user.w
-          });
+          addVote({ 'id': id, 'v': Client.user.w });
         }
       }
     };
-
 
     $scope.voteDown = function (id) {
       var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
@@ -236,27 +229,15 @@ angular.module('trigger')
       }
       if (reverse === true) {
         if (this.track.vote === Client.user.w) {
-          Client.addvote({
-            'id': id,
-            'v': 0
-          });
+          addVote({ 'id': id, 'v': 0 });
         } else {
-          Client.addvote({
-            'id': id,
-            'v': Client.user.w
-          });
+          addVote({ 'id': id, 'v': Client.user.w });
         }
       } else {
         if (this.track.vote === -Client.user.w) {
-          Client.addvote({
-            'id': id,
-            'v': 0
-          });
+          addVote({ 'id': id, 'v': 0 });
         } else {
-          Client.addvote({
-            'id': id,
-            'v': -Client.user.w
-          });
+          addVote({ 'id': id, 'v': -Client.user.w });
         }
       }
     };

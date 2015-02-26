@@ -257,13 +257,6 @@ app.service('Client', function ($log) {
     });
   };
 
-  this.addvote = function(data, callback) {
-    if (this.user) {
-      data.chid = this.channel.id;
-      this.socket.emit('vote', data);
-    }
-  };
-
   this.adduservote = function(data, callback) {
     if (this.user) {
       this.callbacks.uvotedata = callback;
