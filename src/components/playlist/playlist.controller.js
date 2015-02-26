@@ -31,6 +31,7 @@ angular.module('trigger')
     }, true);
 
     socket.on('newcurrent', function(data) {
+      console.log('newcurrent', data);
       if ($scope.load.signed === true) {
         for (var vr in data.track.p) {
           if (data.track.p[vr].vid === Client.user.id) {
@@ -151,6 +152,7 @@ angular.module('trigger')
     });
 
     socket.on('addtrack', function(data) {
+      console.log('addtrack', data);
       data.track.src = 'img/nocover.png';
       var track = data.track;
       track.vote = 0;
@@ -177,14 +179,15 @@ angular.module('trigger')
             }
           }
         }
-        $scope.playlist.push(data);
+        $scope.playlist.push(track);
       }
     });
 
     socket.on('removetrack', function(data) {
+      console.log('removetrack', data);
       var plLength = $scope.playlist.length;
       for (var i = 0; i < plLength; i++) {
-        if ($scope.playlist[i].id === data.tid || $scope.playlist[i].id === data.track.id) {
+        if ($scope.playlist[i].id === data.tid) {
           $scope.playlist.splice(i, 1);
           break;
         }

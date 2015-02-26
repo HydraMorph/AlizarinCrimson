@@ -174,6 +174,8 @@ angular.module('trigger')
     $scope.volume = 50;
     if (localStorage.getItem('volume') > -1) {
       $scope.volume = localStorage.getItem('volume');
+    } else {
+      localStorage.setItem('volume', $scope.volume);
     }
     $scope.changeVolume = function(volume) {
       localStorage.setItem('volume', volume);
