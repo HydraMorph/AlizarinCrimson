@@ -1,12 +1,21 @@
 'use strict';
 
-var app = angular.module('trigger', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'ngMaterial', 'btford.socket-io', 'luegg.directives']);
+var app = angular.module('trigger', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'ngMaterial', 'btford.socket-io', 'luegg.directives', 'angularMoment']);
 
 app.config(function($mdThemingProvider) {
   $mdThemingProvider.theme('default')
     .primaryPalette('teal')
     .accentPalette('orange');
 });
+
+app.run(function(amMoment) {
+  amMoment.changeLocale('ru');
+});
+
+//app.constant('angularMomentConfig', {
+//  preprocess: 'unix', // optional
+//  timezone: 'Europe/London' // optional
+//});
 
 app.directive('ngEnter', function() {
   return function(scope, element, attrs) {

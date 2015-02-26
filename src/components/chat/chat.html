@@ -8,7 +8,7 @@
             <span class="msg__author" ng-click="addNick(msg.uname)">{{msg.uname}}:</span>
             <span class="msg__message" ng-bind-html='msg.m'></span>
 <!--            <span class="msg__time">{{msg.t |timeago }}</span>-->
-            <span class="msg__time">{{msg.t}}</span>
+            <span class="msg__time" am-time-ago="msg.t"></span>
           </div>
         </md-item-content>
       </md-item>
