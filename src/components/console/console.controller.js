@@ -226,6 +226,20 @@ angular.module('trigger')
         targetEvent: ev,
       });
     };
+
+    $scope.logout = function() {
+      Client.logout(
+        function() {
+          if (localStorage.getItem('password') != '') {
+            localStorage.removeItem('password');
+            localStorage.removeItem('username');
+          }
+          $rootScope.load.signed = false;
+          $route.reload();
+        }
+      );
+    }
+
     function LoginCtrl($scope, $mdDialog) {
       $scope.hide = function() {
         $mdDialog.hide();

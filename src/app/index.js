@@ -171,7 +171,7 @@ app.service('Client', function ($log) {
     });
 
     socket.on('disconnect', function(data) {
-      $(cl).trigger('disconnect');
+//      $(cl).trigger('disconnect');
       cl.user = null;
       cl.channel = {};
       cl.callbacks = {};
