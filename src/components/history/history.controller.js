@@ -34,16 +34,17 @@ angular.module('trigger')
         top: data.top,
         g: data.gold
       }, function(data) {
+        console.log('gethistory', data);
         for (var t in data) {
           addHistory(data[t]);
         }
       });
     }
 
-    getHistory($scope.data);
-
-    $scope.search = function() {
+    $scope.showHistory = function() {
       getHistory($scope.data);
     }
+    $scope.showHistory()
+
 
   });
