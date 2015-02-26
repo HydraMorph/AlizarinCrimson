@@ -248,11 +248,6 @@ app.service('Client', function ($log) {
     });
   };
 
-  this.sendMessage = function(message, callback) {
-    var data = {'m': message};
-    this.socket.emit('sendmessage', data, callback);
-  };
-
   this.tracksubmit = function(data, callback) {
     var form = data.form;
     this.socket.emit('tracksubmit', {'chid': this.channel.id, 'track': data.track}, function(data) {

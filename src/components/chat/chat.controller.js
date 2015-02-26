@@ -200,17 +200,9 @@ angular.module('trigger')
       document.querySelector('#chatInput').focus();
     }
 
-    $scope.sendMessage = function () {
-      if (this.message) {
-        Client.sendMessage($scope.message, function (data) {
-          if (data.m) {
-            $scope.messages.push(data);
-            $scope.$digest();
-          }
-          if (data.error) {
-            console.log(data.error);
-          }
-        });
+    function sendMessage (message) {
+      socket.emit('sendmessage', { 'm': message });
+      if (message) {
         var res = $scope.message.split(' ');
         var chatters = [];
         for (var i = 0; i < res.length; i++) {
@@ -219,6 +211,12 @@ angular.module('trigger')
           }
         }
         $scope.message = chatters.join(' ') + ' ';
+      }
+    };
+
+    $scope.sendMessage = function () {
+      if (this.message) {
+        sendMessage($scope.message);
       }
     };
 
