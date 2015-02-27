@@ -1,7 +1,30 @@
 'use strict';
 
 angular.module('trigger')
-  .controller('PlaylistCtrl', function ($scope, $rootScope, $mdSidenav, Client, socket, $interval) {
+  .controller('PlaylistCtrl', function ($scope, $rootScope, $mdSidenav, Client, socket, $interval, hotkeys) {
+
+    // when you bind it to the controller's scope, it will automatically unbind
+    // the hotkey when the scope is destroyed (due to ng-if or something that changes the DOM)
+    hotkeys.bindTo($scope)
+    .add({
+      combo: 'ctrl+up',
+      description: 'Up current track',
+      allowIn: ['INPUT', 'SELECT', 'TEXTAREA'],
+      callback: function() {
+        addVote({ 'id': $scope.track.id, 'v': Client.user.w });
+        console.log('ctrl+up');
+      }
+    })
+    .add({
+      combo: 'ctrl+down',
+      description: 'Down current track',
+      allowIn: ['INPUT', 'SELECT', 'TEXTAREA'],
+      callback: function() {
+        addVote({ 'id': $scope.track.id, 'v': -1*Client.user.w });
+        console.log('ctrl+down');
+      }
+    })
+    ;
 
     $scope.reverse = 0;
     var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;

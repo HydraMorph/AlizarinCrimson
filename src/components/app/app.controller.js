@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('trigger')
-  .controller('AppCtrl', function ($scope, $rootScope, $timeout, $mdSidenav) {
+  .controller('AppCtrl', function ($scope, $rootScope, $timeout, $mdSidenav, hotkeys) {
     var button = document.getElementById('audioBtn');
     var audio = document.getElementById('audio');
     $scope.play = false;
@@ -25,6 +25,26 @@ angular.module('trigger')
         audio.pause();
       }
     };
+
+    hotkeys.bindTo($scope)
+    .add({
+      combo: 'ctrl+space',
+      description: 'Mute current track',
+      allowIn: ['INPUT', 'SELECT', 'TEXTAREA'],
+      callback: function() {
+        $scope.togglePlay();
+      }
+    })
+    .add({
+      combo: 'shift+space',
+      description: 'Mute current track',
+      allowIn: ['INPUT', 'SELECT', 'TEXTAREA'],
+      callback: function() {
+        $scope.togglePlay();
+      }
+    })
+    ;
+
 
     $scope.trackToChat = function(trackId) {
       var chatInput = document.querySelector('#chatInput');

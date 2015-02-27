@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('trigger')
-  .controller('ConsoleCtrl', function ($scope, $rootScope, $interval, $timeout, $mdDialog, $mdBottomSheet, Client, socket) {
+  .controller('ConsoleCtrl', function ($scope, $rootScope, $interval, $timeout, $mdDialog, $mdBottomSheet, Client, socket, hotkeys) {
     var greetings = [
       'Сделай это расслышать, username!',
       'Гуф всё, username.',
@@ -181,6 +181,66 @@ angular.module('trigger')
       localStorage.setItem('volume', volume);
       audio.volume = volume/100;
     };
+
+    hotkeys.bindTo($scope)
+    .add({
+      combo: 'shift+left',
+      description: 'Volume -1',
+      allowIn: ['INPUT', 'SELECT', 'TEXTAREA'],
+      callback: function() {
+        if ($scope.volume <= 1) {
+          $scope.changeVolume(0);
+          $scope.volume = 0;
+        } else {
+          $scope.changeVolume($scope.volume - 1);
+          $scope.volume -= 1;
+        }
+      }
+    })
+    .add({
+      combo: 'shift+right',
+      description: 'Volume +1',
+      allowIn: ['INPUT', 'SELECT', 'TEXTAREA'],
+      callback: function() {
+        if ($scope.volume >= 99) {
+          $scope.changeVolume(100);
+          $scope.volume = 100;
+        } else {
+          $scope.changeVolume($scope.volume + 1);
+          $scope.volume += 1;
+        }
+      }
+    })
+    .add({
+      combo: 'ctrl+left',
+      description: 'Volume -5',
+      allowIn: ['INPUT', 'SELECT', 'TEXTAREA'],
+      callback: function() {
+        if ($scope.volume <= 5) {
+          $scope.changeVolume(0);
+          $scope.volume = 0;
+        } else {
+          $scope.changeVolume($scope.volume - 5);
+          $scope.volume -= 5;
+        }
+      }
+    })
+    .add({
+      combo: 'ctrl+right',
+      description: 'Volume +5',
+      allowIn: ['INPUT', 'SELECT', 'TEXTAREA'],
+      callback: function() {
+        if ($scope.volume >= 95) {
+          $scope.changeVolume(100);
+          $scope.volume = 100;
+        } else {
+          $scope.changeVolume($scope.volume + 5);
+          $scope.volume += 5;
+        }
+      }
+    })
+    ;
+
 
     $scope.greeting = greetings[Math.floor(Math.random() * greetings.length)].replace('username', $scope.user.name);
     $interval(function(){

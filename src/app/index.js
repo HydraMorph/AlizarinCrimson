@@ -1,6 +1,6 @@
 'use strict';
 
-var app = angular.module('trigger', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'ngMaterial', 'btford.socket-io', 'luegg.directives', 'angularMoment', 'ngMdIcons']);
+var app = angular.module('trigger', ['ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'ngMaterial', 'btford.socket-io', 'luegg.directives', 'angularMoment', 'ngMdIcons', 'cfp.hotkeys']);
 
 app.config(function($mdThemingProvider) {
   $mdThemingProvider.theme('default')
