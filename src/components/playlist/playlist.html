@@ -14,10 +14,7 @@
         </svg>
       </md-button>
       <md-button class="playlist__rightbar-swither" aria-label="rightbar-switcher" ng-click="toggleRight()">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-          <path d="M7 19h10v-15h-10v15zm-5-2h4v-11h-4v11zm16-11v11h4v-11h-4z"/>
-          <path d="M0 0h24v24h-24z" fill="none"/>
-        </svg>
+        <ng-md-icon icon="view_carousel" size="24"></ng-md-icon>
       </md-button>
     </h2>
   </md-toolbar>
@@ -57,17 +54,11 @@
         </div>
         <div class="track__votes-block" ng-class="{ 'voted--up': track.vote > 0, 'voted--down': track.vote < 0 }" ng-show="load.signed">
           <md-button class="md-fab track__vote--down" aria-label="track-up" ng-click="voteDown(track.id)">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-              <path d="M16.59 8.59l-4.59 4.58-4.59-4.58-1.41 1.41 6 6 6-6z"/>
-              <path d="M0 0h24v24h-24z" fill="none"/>
-            </svg>
+            <ng-md-icon icon="expand_more" size="24"></ng-md-icon>
           </md-button>
           <span class="track__rating">{{track.r}}</span>
           <md-button class="md-fab track__vote--up" aria-label="track-down" ng-click="voteUp(track.id)">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-              <path d="M12 8l-6 6 1.41 1.41 4.59-4.58 4.59 4.58 1.41-1.41z"/>
-              <path d="M0 0h24v24h-24z" fill="none"/>
-            </svg>
+            <ng-md-icon icon="expand_less" size="24"></ng-md-icon>
           </md-button>
         </div>
         <div class="track__progress">
@@ -112,17 +103,11 @@
         </div>
         <div class="track__votes-block" ng-class="{ 'voted--up': track.vote > 0, 'voted--down': track.vote < 0 }" ng-show="load.signed">
           <md-button class="md-fab track__vote--down" aria-label="track-up" ng-click="voteDown(track.id)">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-              <path d="M16.59 8.59l-4.59 4.58-4.59-4.58-1.41 1.41 6 6 6-6z"/>
-              <path d="M0 0h24v24h-24z" fill="none"/>
-            </svg>
+            <ng-md-icon icon="expand_more" size="24"></ng-md-icon>
           </md-button>
           <span class="track__rating">{{track.r}}</span>
           <md-button class="md-fab track__vote--up" aria-label="track-down" ng-click="voteUp(track.id)">
-            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-              <path d="M12 8l-6 6 1.41 1.41 4.59-4.58 4.59 4.58 1.41-1.41z"/>
-              <path d="M0 0h24v24h-24z" fill="none"/>
-            </svg>
+            <ng-md-icon icon="expand_less" size="24"></ng-md-icon>
           </md-button>
         </div>
       </md-item>

@@ -7,10 +7,7 @@
     Слушают <span class="console__listeners">{{users.listeners}}</span> из них активно: <span class="console__active-users">{{users.active}}</span>
   </p>
   <md-button class="console__buttton--upload" aria-label="uploader-btn" ng-click="openUploadBar($event)">
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
-      <path d="M19 13h-6v6h-2v-6h-6v-2h6v-6h2v6h6v2z"/>
-      <path d="M0 0h24v24h-24z" fill="none"/>
-    </svg>
+    <ng-md-icon icon="file_upload" size="24"></ng-md-icon>
   </md-button>
   <p class="console__user-limit" ng-show="load.signed">
     Ты можешь залить<time class="console__limit"> {{user.uplim | readableTime}}</time>
