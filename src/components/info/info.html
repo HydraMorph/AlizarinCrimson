@@ -12,7 +12,7 @@
           </svg>
         </span>
       </md-tab-label>
-      <div class="chat" ng-include="'components/chat/chat.html'"></div>
+      <div class="chat" ng-include="'components/chat/chat.html'" ng-show="load.signed"></div>
     </md-tab>
 
     <md-tab id="tabHistory" aria-controls="tabHistory-content">
