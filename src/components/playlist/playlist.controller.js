@@ -7,21 +7,21 @@ angular.module('trigger')
     // the hotkey when the scope is destroyed (due to ng-if or something that changes the DOM)
     hotkeys.bindTo($scope)
     .add({
-      combo: 'ctrl+up',
+      combo: 'alt+up',
       description: 'Up current track',
       allowIn: ['INPUT', 'SELECT', 'TEXTAREA'],
       callback: function() {
         addVote({ 'id': $scope.track.id, 'v': Client.user.w });
-        console.log('ctrl+up');
+        console.log('alt+up');
       }
     })
     .add({
-      combo: 'ctrl+down',
+      combo: 'alt+down',
       description: 'Down current track',
       allowIn: ['INPUT', 'SELECT', 'TEXTAREA'],
       callback: function() {
         addVote({ 'id': $scope.track.id, 'v': -1*Client.user.w });
-        console.log('ctrl+down');
+        console.log('alt+down');
       }
     })
     ;

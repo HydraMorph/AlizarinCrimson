@@ -212,7 +212,7 @@ angular.module('trigger')
       }
     })
     .add({
-      combo: 'ctrl+left',
+      combo: 'alt+left',
       description: 'Volume -5',
       allowIn: ['INPUT', 'SELECT', 'TEXTAREA'],
       callback: function() {
@@ -226,7 +226,7 @@ angular.module('trigger')
       }
     })
     .add({
-      combo: 'ctrl+right',
+      combo: 'alt+right',
       description: 'Volume +5',
       allowIn: ['INPUT', 'SELECT', 'TEXTAREA'],
       callback: function() {

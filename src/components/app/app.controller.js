@@ -36,7 +36,7 @@ angular.module('trigger')
       }
     })
     .add({
-      combo: 'shift+space',
+      combo: 'alt+space',
       description: 'Mute current track',
       allowIn: ['INPUT', 'SELECT', 'TEXTAREA'],
       callback: function() {
