@@ -10,6 +10,11 @@ html
 
 *
   -webkit-user-select initial !important
+*
+*:focus
+*:before
+*:after
+  outline none !important
 
 ::-webkit-scrollbar
   width 4px
@@ -104,7 +109,7 @@ svg
 @import '../components/user/user.styl';
 // endinjector
 
-.md-sidenav-left
+.app-md-sidenav-left
   background #333
   width 150px !important
   min-width 150px !important
@@ -112,7 +117,7 @@ svg
     background-color #333
 
 @media screen and (max-width: 600px)
-  .md-sidenav-right
+  .app-md-sidenav-right
     z-index 64
     width 100% !important
     min-width 100% !important
@@ -122,7 +127,7 @@ svg
     position fixed !important
 
 @media (min-width: 600px) and (max-width: 959px)
-  .md-sidenav-right
+  .app-md-sidenav-right
     position fixed !important
     width calc(100% - 150px) !important
     min-width calc(100% - 150px) !important
@@ -136,7 +141,7 @@ svg
   .md-sidenav-left
     top 36px
 @media screen and (min-width: 960px)
-  .md-sidenav-right
+  .app-md-sidenav-right
     width 50% !important
     min-width 50% !important
     z-index 64

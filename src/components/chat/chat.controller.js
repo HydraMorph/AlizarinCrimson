@@ -1,8 +1,7 @@
 'use strict';
 
 angular.module('trigger')
-  .controller('ChatCtrl', function ($scope, $rootScope, Client, socket) {
-
+  .controller('ChatCtrl', function ($scope, $rootScope, Client, socket, $mdSidenav) {
     var customCodes = [];
     customCodes[0] = [];
     customCodes[0][0] = /(http:\/\/[\w\-\.]+\.[a-zA-Z]{2,3}(?:\/\S*)?(?:[\w])+\.(?:jpg|png|gif|jpeg|bmp))/gim;
@@ -218,4 +217,33 @@ angular.module('trigger')
       $scope.message = s;
       focus();
     };
+
+    $scope.swiped = false;
+    $scope.swipeOnline = function() {
+      if($scope.swiped === true) {
+        $scope.swiped = false;
+      } else {
+        $scope.swiped = true;
+      }
+    }
+    $scope.toggleRight = function() {
+      $mdSidenav('r')
+        .toggle()
+        .then(function(){
+          $log.debug("toggle RIGHT is done");
+        }
+      );
+    };
+  })
+  .controller('RCtrl', function($scope, $timeout, $mdSidenav, $log) {
+    $scope.close = function() {
+      $mdSidenav('r')
+        .close()
+        .then(function(){
+          $log.debug("close RIGHT is done");
+        }
+      );
+    };
   });
+//
+//  });

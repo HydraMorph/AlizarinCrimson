@@ -92,6 +92,25 @@
       background #F5F5F5
     &.personal
       font-weight bold
+
+.chat__swipe-online
+  z-index 99
+  position absolute
+  padding 0
+  right 0
+  height 24px
+  transition all .4s ease
+  &--show-online
+    transform scale(1, -1);
+  &--hide-online
+    transform scale(-1, 1);
+.online__include
+  transition all .4s ease
+.online__include--show-online
+  transform translateX(100%)
+.online__include--hide-online
+  color inherit
+
 .msg__author
   font-weight bold
   display flex
@@ -117,5 +136,8 @@
   min-width 48px
 @media screen and (max-width: 599px)
   .online__include
+    position absolute
+    right 0
+    width 50%
   .msg__time
     display none !important
