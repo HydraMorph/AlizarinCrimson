@@ -4,9 +4,6 @@
   overflow-x hidden
 .democracy__tabpanel-container
   display flex
-  height calc(100% - 60px)
-  & [role="tabpanel"]
-    height calc(100% - 60px) !important
 .democracy__elections
 .democracy__list
   background-color #fff
@@ -127,3 +124,14 @@
   display flex
   flex-flow row nowrap
   align-items center
+
+@media screen and (min-width: 601px)
+  .democracy__tabpanel-container
+    height calc(100% - 60px)
+    & [role="tabpanel"]
+      height calc(100% - 60px) !important
+@media screen and (max-width: 600px)
+  .democracy__tabpanel-container
+    height calc(100% - 36px)
+    & [role="tabpanel"]
+      height calc(100% - 36px) !important
