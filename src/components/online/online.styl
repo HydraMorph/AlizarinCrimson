@@ -1,6 +1,6 @@
 .online__include
   display flex
-  height calc(100% - 90px)
+  height calc(100% - 90px) /* depend with chat-input */
   overflow-x hidden
   color #000
   flex-flow row wrap
@@ -18,7 +18,7 @@
 
 .online__md-content
   width 100%
-  height calc(100% - 24px)
+  height calc(100% - 24px) /* depend with .online__here*/
   overflow-x hidden
 
 .online__here
@@ -72,6 +72,7 @@
     & .user__2chat
       color #eba400
 
+/* Ignore it - multicolumn layout is not nedded in this app */
 @media screen and (min-width: 961px)
   .online__md-content
     column-count 1
@@ -84,4 +85,3 @@
   .online__md-content
     column-count 2
     column-gap 20px
-//@media screen and (max-width: 960px)

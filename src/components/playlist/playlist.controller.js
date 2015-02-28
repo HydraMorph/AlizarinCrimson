@@ -3,8 +3,11 @@
 angular.module('trigger')
   .controller('PlaylistCtrl', function ($scope, $rootScope, $mdSidenav, Client, socket, $interval, hotkeys) {
 
-    // when you bind it to the controller's scope, it will automatically unbind
-    // the hotkey when the scope is destroyed (due to ng-if or something that changes the DOM)
+    /* init */
+    $scope.load.signed = false;
+    $scope.playlist = [];
+    $scope.track = {};
+
     hotkeys.bindTo($scope)
     .add({
       combo: 'alt+up',
@@ -28,12 +31,14 @@ angular.module('trigger')
     })
     ;
 
+    /* Used for track sorting in playlist - setted flex-flow: column-reverse */
     $scope.reverse = 0;
     var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
     if (width <= 960) {
       $scope.reverse = 1;
     }
 
+    /* Don't know what is it */
     $scope.toggleLeft = function () {
       $mdSidenav('left').toggle();
     };
@@ -41,11 +46,8 @@ angular.module('trigger')
       $mdSidenav('right').toggle();
     };
 
-    $scope.load.signed = false;
 
-    $scope.playlist = [];
-    $scope.track = {};
-
+    /* Get gisrt data - current track*/
     $scope.$watch(function () {
       return $rootScope.load.welcome;
     }, function () {
@@ -55,6 +57,7 @@ angular.module('trigger')
       }
     }, true);
 
+    /* Socket - new current track - removing it from playlist and and add to current */
     socket.on('newcurrent', function(data) {
 //      console.log('newcurrent', data);
       if ($scope.load.signed === true) {
@@ -85,6 +88,7 @@ angular.module('trigger')
       }
     });
 
+    /* Check votes after signing - for color setting if user voted plus or minus */
     function checkVotes() {
       var plsL = $scope.playlist.length;
       for (var i = 0; i < plsL; i++) {
@@ -115,6 +119,7 @@ angular.module('trigger')
       }
     }
 
+    /* Check votes after signing */
     $scope.$watch(function () {
       return $rootScope.load.signed;
     }, function () {
@@ -124,6 +129,7 @@ angular.module('trigger')
       $scope.load.signed = $rootScope.load.signed;
     }, true);
 
+    /* wtf? i don't know */
     $scope.$watch(function () {
       return $rootScope.load.welcome;
     }, function () {
@@ -132,6 +138,7 @@ angular.module('trigger')
       }
     }, true);
 
+    /* Socket Update track - vote, title or artist */
     socket.on('uptr', function(data) {
       if (data.t.id === Client.channel.current.id) {
         if ($scope.load.signed === true) {
@@ -176,6 +183,7 @@ angular.module('trigger')
       }
     });
 
+    /* Socket - add track in playlist */
     socket.on('addtrack', function(data) {
 //      console.log('addtrack', data);
       data.track.src = 'img/nocover.png';
@@ -208,6 +216,7 @@ angular.module('trigger')
       }
     });
 
+    /* Socket - delete track from playlist */
     socket.on('removetrack', function(data) {
 //      console.log('removetrack', data);
       var plLength = $scope.playlist.length;
@@ -219,12 +228,13 @@ angular.module('trigger')
       }
     });
 
+    /* Vote function */
     function addVote (data) {
       data.chid = Client.channel.id;
       socket.emit('vote', data);
     };
 
-
+    /* VoteUp. Check screen size - on low-res screens buttons are reversed */
     $scope.voteUp = function (id) {
       var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
       var reverse = false;
@@ -246,6 +256,7 @@ angular.module('trigger')
       }
     };
 
+    /* VoteDown. Check screen size - on low-res screens buttons are reversed */
     $scope.voteDown = function (id) {
       var width = (window.innerWidth > 0) ? window.innerWidth : screen.width;
       var reverse = false;
@@ -267,7 +278,7 @@ angular.module('trigger')
       }
     };
 
-    // I hold the data being rendered in the ng-repeat.
+    /* Get data - playlist and current track time postion - for meter */
     socket.on('channeldata', function (data) {
 //      console.log('playlist', data.pls);
       $scope.playlist = data.pls;
@@ -281,6 +292,7 @@ angular.module('trigger')
       }
     });
 
+    /* Meter for current track with timer */
     var i = 0;
     var timer;
     $scope.progress = 0;
@@ -298,6 +310,5 @@ angular.module('trigger')
         $scope.progress = 0;
       }
     };
-
 
   });

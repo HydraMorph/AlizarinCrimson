@@ -2,6 +2,8 @@
 
 angular.module('trigger')
   .controller('ConsoleCtrl', function ($scope, $rootScope, $interval, $timeout, $mdDialog, $mdBottomSheet, Client, socket, hotkeys) {
+
+    /* Random greetings */
     var greetings = [
       'Сделай это расслышать, username!',
       'Гуф всё, username.',
@@ -161,7 +163,7 @@ angular.module('trigger')
       'Это не баян, это ротация, username'
     ];
 
-
+    /* Default values */
     $scope.users = {
       'listeners': 0,
       'active': 0
@@ -177,9 +179,11 @@ angular.module('trigger')
     } else {
       localStorage.setItem('volume', $scope.volume);
     }
+
+    /* ng-change on slider */
     $scope.changeVolume = function(volume) {
       localStorage.setItem('volume', volume);
-      audio.volume = volume/100;
+      audio.volume = volume/100; /* audio volume must be >1 and < 0 */
     };
 
     hotkeys.bindTo($scope)
@@ -245,12 +249,13 @@ angular.module('trigger')
     })
     ;
 
-
+    /* Randomize greetings */
     $scope.greeting = greetings[Math.floor(Math.random() * greetings.length)].replace('username', $scope.user.name);
     $interval(function(){
       $scope.greeting = greetings[Math.floor(Math.random() * greetings.length)].replace('username', $scope.user.name);
     },9000);
 
+    /* Show listeners and active users count */
     $scope.$watch(function() {
       return $rootScope.load.welcome;
     }, function() {
@@ -265,6 +270,7 @@ angular.module('trigger')
       $scope.load.welcome = $rootScope.load.welcome;
     }, true);
 
+    /* Show user's upload limit (after signing)*/
     $scope.$watch(function() {
       return $rootScope.load.signed;
     }, function() {
@@ -279,10 +285,12 @@ angular.module('trigger')
       $scope.load.signed = $rootScope.load.signed;
     }, true);
 
+    /* Just for debug. u can delete it */
     $scope.data = function() {
       console.log('data', Client);
     };
 
+    /* Show login modal */
     $scope.showLoginModal = function(ev) {
       $mdDialog.show({
         controller: LoginCtrl,
@@ -291,6 +299,7 @@ angular.module('trigger')
       });
     };
 
+    /* Log out, delete 'username' and 'password' from localStorage */
     $scope.logout = function() {
       Client.logout(
         function() {
@@ -304,11 +313,14 @@ angular.module('trigger')
       );
     }
 
+    /* Login modal Ctrl */
     function LoginCtrl($scope, $mdDialog) {
       $scope.hide = function() {
         $mdDialog.hide();
       };
     }
+
+    /* Show Upload bar - bottomSheet */
     $scope.openUploadBar = function($event) {
       $scope.alert = '';
       $mdBottomSheet.show({
@@ -319,4 +331,5 @@ angular.module('trigger')
         $scope.alert = clickedItem.name + ' clicked!';
       });
     };
+
   });

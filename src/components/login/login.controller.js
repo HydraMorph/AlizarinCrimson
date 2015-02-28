@@ -2,10 +2,14 @@
 
 angular.module('trigger')
   .controller('LoginCtrl', function ($scope, $rootScope, $mdDialog, md5, Client) {
+
+    /* Default values */
     $scope.user = {
       'name': '',
       'password': ''
     };
+
+    /* Function for callback */
     function processLogin (data) {
       if (data.error) {
         console.log(data.error);
@@ -19,6 +23,8 @@ angular.module('trigger')
         $scope.$digest();
       }
     }
+
+    /* ng-click or ng-enter */
     $scope.login = function () {
       if ($scope.user.name === '') {
         Client.login('DonSinDRom', md5.createHash('3a12a6'), processLogin);
@@ -26,7 +32,10 @@ angular.module('trigger')
         Client.login($scope.user.name, md5.createHash($scope.user.password), processLogin);
       }
     };
+
+    /* Hide modal */
     $scope.hide = function() {
       $mdDialog.hide();
     };
+
   });

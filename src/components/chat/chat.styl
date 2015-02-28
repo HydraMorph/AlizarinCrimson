@@ -13,7 +13,7 @@
 .chat__input-grp
   width 100%
   border-top 3px solid #bbb
-  height 90px
+  height 90px /* depend with .chat__md-content */
   margin 0
   padding 0
   display flex
@@ -30,8 +30,7 @@
       padding 0 6px !important
       line-height 1 !important
       width 100%
-      //height calc(100% - 24px) !important
-      margin-bottom 24px
+      margin-bottom 24px /* 24px = chat__input-nav heigth = used for char's limit meter and chat settings */
       overflow auto
     &.md-input-focused
       & .md-input
@@ -44,7 +43,7 @@
     bottom 0
     left 0
     right 0
-    height 24px
+    height 24px /* depend with .md-input*/
     display flex
     align-self flex-end
     flex 1 100%
@@ -79,7 +78,7 @@
       font-style italic
       color red
 .chat__md-content
-  height calc(100% - 90px)
+  height calc(100% - 90px) /* depend with .chat__input-grp */
   overflow-x hidden
   display flex
 .chat__item
@@ -115,6 +114,8 @@
   justify-content flex-end
   display flex
   min-width 48px
+
+/* Hide time in messages */
 @media screen and (max-width: 599px)
   .online__include
   .msg__time

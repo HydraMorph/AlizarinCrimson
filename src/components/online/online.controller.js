@@ -3,8 +3,10 @@
 angular.module('trigger')
   .controller('OnlineCtrl', function ($scope, $rootScope, socket, Client) {
 
+    /* Init */
     $scope.users = [];
 
+    /* Socket - delete user */
     socket.on('offuser', function(data) {
       $scope.usersCount = $scope.usersCount - 1;
       for (var us in $scope.users) {
@@ -14,6 +16,7 @@ angular.module('trigger')
       }
     });
 
+    /* Socket - add new user */
     socket.on('newuser', function(data) {
       $scope.usersCount = $scope.usersCount + 1;
       var user = {
@@ -24,6 +27,7 @@ angular.module('trigger')
       $scope.users.push(user);
     });
 
+    /* Update user status - online and active (gray or yellow color)*/
     socket.on('usupd', function(data) {
       for (var us in $scope.users) {
         if ($scope.users[us].id === data.uid) {
@@ -32,7 +36,7 @@ angular.module('trigger')
       }
     });
 
-
+    /* Get users list*/
     $scope.$watch(function() {
       return $rootScope.load.welcome;
     }, function() {
@@ -43,6 +47,7 @@ angular.module('trigger')
       $scope.load.welcome = $rootScope.load.welcome;
     }, true);
 
+    /* Under developmant - drafted function for opening user profile */
     $scope.openProfile = function(id) {
       $rootScope.userId = id;
     };

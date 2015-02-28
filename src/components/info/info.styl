@@ -5,6 +5,7 @@
   .md-tabs-content
     height calc(100vh - 72px) /* 36px(tabsdemoStaticTabs .md-header) + 36px(.playlist__toolbar, .playlist__toolbar-tools)*/
 
+/* Use icon fallback instead of text in md-tabs for small screens */
 @media screen and (min-width: 1024px)
   .tabs__icon
     display none
@@ -12,12 +13,7 @@
   .tabs__full
     display none
 
-@media screen and (min-width: 600px)
-  #tabOnline
-  #tabOnline-content
-    display none !important
-
-/* Chat and Online modules media-queries */
+/* Chat and Online modules media-queries (depends with each other (100% in summ)) */
 @media screen and (max-width: 600px)
   .chat__md-content
     flex 0 0 100%

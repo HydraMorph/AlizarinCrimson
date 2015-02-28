@@ -1,3 +1,4 @@
+/* Democracy will be replaced */
 'use strict';
 
 angular.module('trigger')

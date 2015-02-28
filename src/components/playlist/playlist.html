@@ -1,5 +1,6 @@
 <div class="playlist__ctrl" layout="column" ng-controller="PlaylistCtrl">
 
+  <!--Show if playlist and chat are not showed in one viewport-->
   <md-toolbar class="playlist__toolbar">
     <h2 class="md-toolbar-tools playlist__toolbar-tools">
       <md-button class="playlist__leftbar-swither" aria-label="leftbar-switcher" ng-click="toggleLeft()">
@@ -19,6 +20,7 @@
     </h2>
   </md-toolbar>
 
+  <!--Current track-->
   <md-content class="playlist__content--current">
     <md-list layout="column" class="playlist__list">
       <md-item class="playlist__track">
@@ -68,6 +70,7 @@
     </md-list>
   </md-content>
 
+  <!--Playlist-->
   <md-content class="playlist__content" scroll-glue="reverse">
 <!--    <md-list layout="column" class="playlist__list" vs-repeat="60">-->
     <md-list layout="column" class="playlist__list">

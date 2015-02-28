@@ -10,7 +10,10 @@
 angular.module('trigger')
   .controller('MinusesCtrl', function ($scope, $rootScope, Client) {
 
+    /* init */
     $scope.tracks = [];
+
+    /* Get tracks after signing */
     $scope.$watch(function() {
       return $rootScope.load.signed;
     }, function() {
@@ -22,4 +25,5 @@ angular.module('trigger')
       }
       $scope.load.signed = $rootScope.load.signed;
     }, true);
+
   });

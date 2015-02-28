@@ -2,16 +2,19 @@
 
 var app = angular.module('trigger', ['angular-loading-bar', 'ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'ngMaterial', 'btford.socket-io', 'luegg.directives', 'angularMoment', 'ngMdIcons', 'cfp.hotkeys', 'vs-repeat']);
 
+/* Angular material theme */
 app
   .config(function($mdThemingProvider) {
     $mdThemingProvider.theme('default')
       .primaryPalette('teal')
       .accentPalette('orange');
   })
+  /* angular-loading-bar style */
   .config(['cfpLoadingBarProvider', function(cfpLoadingBarProvider) {
     cfpLoadingBarProvider.includeSpinner = false;
   }]);
 
+/* angularMoment locale */
 app.run(function(amMoment) {
   amMoment.changeLocale('ru');
 });
@@ -21,6 +24,7 @@ app.run(function(amMoment) {
 //  timezone: 'Europe/London' // optional
 //});
 
+/* ng-enter */
 app.directive('ngEnter', function() {
   return function(scope, element, attrs) {
     element.bind('keydown keypress', function(event) {
@@ -34,6 +38,7 @@ app.directive('ngEnter', function() {
   };
 });
 
+/* Sockets support */
 app.factory('socket', function ($rootScope) {
   var socket = io.connect('http://trigger.fm');
   return {
@@ -60,12 +65,15 @@ app.factory('socket', function ($rootScope) {
 
 
 app.run(function ($rootScope, Client, socket) {
+
+  /* init */
   $rootScope.load = {
     'signed': false,
     'welcome': false,
     'playlist': false
   };
 
+  /* login callback */
   function processLogin (data) {
     if (data.error) {
       console.log(data.error);
@@ -80,8 +88,9 @@ app.run(function ($rootScope, Client, socket) {
 
   $rootScope.title = 'Trigger';
   $rootScope.userId = 0;
-  Client.init(location.host);
+  Client.init(location.host); /* Init Client */
 
+  /* Get first data - channel, users, playlist*/
   socket.on('welcome', function (data) {
     Client.channel = data.channels[0];
     Client.getChannels(function(data){

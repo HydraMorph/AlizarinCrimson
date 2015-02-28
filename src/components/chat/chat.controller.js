@@ -15,7 +15,14 @@ angular.module('trigger')
     })
     ;
 
+    $scope.message = '';
+    $scope.messages = [];
+    $scope.data = {
+      tink: true,
+      img: true
+    }; /* default settings */
 
+    /* Used in messages: replace value by regexp */
     var customCodes = [];
     customCodes[0] = [];
     customCodes[0][0] = /(http:\/\/[\w\-\.]+\.[a-zA-Z]{2,3}(?:\/\S*)?(?:[\w])+\.(?:jpg|png|gif|jpeg|bmp))/gim;
@@ -49,6 +56,7 @@ angular.module('trigger')
     customCodes[7][0] = 'NO.';
     customCodes[7][1] = '&lt;img src="/assets/images/nocover.png" style="object-fit: contain;"/&gt;';
 
+    /* Incoming message sound */
     function tink() {
       if ($scope.data.tink === true) {
         var sound = new Audio();
@@ -62,13 +70,7 @@ angular.module('trigger')
       }
     }
 
-    $scope.message = '';
-    $scope.messages = [];
-
-    $scope.data = {
-      tink: true,
-      img: true
-    };
+    /* Change default setting if user had some settings in localStorage */
     if (localStorage.getItem('tink') === false) {
       $scope.data.tink = false;
     }
@@ -90,6 +92,7 @@ angular.module('trigger')
       }
     }
 
+    /* Socket */
     function getChat() {
       socket.emit(
         'getchat',
@@ -126,6 +129,7 @@ angular.module('trigger')
       );
     };
 
+    /* Show chat if user signed */
     $scope.$watch(function () {
       return $rootScope.load.signed;
     }, function () {
@@ -162,6 +166,7 @@ angular.module('trigger')
       $scope.load.signed = $rootScope.load.signed;
     }, true);
 
+    /* Mix private messages from sessionStorage with messages from server */
     function mixChat(messages, privateMessages) {
       var a = messages.concat(privateMessages);
       a = a.sort(function(a, b) {
@@ -170,6 +175,7 @@ angular.module('trigger')
       return a;
     }
 
+    /* Read private messages form sessionStorage */
     function getPrivateMessages() {
       var sL = sessionStorage.length;
       var list = [];
@@ -183,6 +189,7 @@ angular.module('trigger')
       return list;
     }
 
+    /* Check if message is private or personal - for tink and cusom style(bold) */
     function checkType(msg) {
       if (msg.m.indexOf('&gt;&gt;'+ Client.user.n) > -1) {
         return 'private';
@@ -193,10 +200,12 @@ angular.module('trigger')
       }
     }
 
+    /* Focus in input */
     function focus() {
       document.querySelector('#chatInput').focus();
     }
 
+    /* Sockets sendMessage */
     function sendMessage (message) {
       socket.emit('sendmessage', { 'm': message });
       if (message) {
@@ -211,12 +220,14 @@ angular.module('trigger')
       }
     };
 
+    /* sendMessage */
     $scope.sendMessage = function () {
       if (this.message) {
         sendMessage($scope.message);
       }
     };
 
+    /* Add nick to input - settink personal or private */
     $scope.addNick = function(nick) {
       var s = $scope.message;
       if (s.indexOf('>' +  nick) > -1) {
@@ -231,4 +242,5 @@ angular.module('trigger')
       $scope.message = s;
       focus();
     };
+
   });

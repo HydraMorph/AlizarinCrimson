@@ -1,3 +1,4 @@
+/* This is template for new modules - just ignore it */
 'use strict';
 
 angular.module('trigger')

@@ -11,6 +11,7 @@
 angular.module('trigger')
   .controller('HistoryCtrl', function ($scope, Client, socket) {
 
+    /* Default values */
     $scope.tracks = [];
     $scope.data = {
       shift: 0,
@@ -20,10 +21,12 @@ angular.module('trigger')
       top: false
     };
 
+    /* Callback function */
     function addHistory(track) {
       $scope.tracks.push(track);
     }
 
+    /* Sockets */
     function getHistory(data) {
       $scope.tracks = [];
       socket.emit('gethistory', {
@@ -41,10 +44,11 @@ angular.module('trigger')
       });
     }
 
+    /* ng-click */
     $scope.showHistory = function() {
       getHistory($scope.data);
     }
+    /* init function */
     getHistory($scope.data);
-
 
   });

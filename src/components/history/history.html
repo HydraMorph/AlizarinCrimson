@@ -1,5 +1,6 @@
 <div ng-controller="HistoryCtrl" class="history__module">
 
+  <!--Search inputs-->
   <div class="history__search-grp">
     <md-checkbox ng-model="data.gold" ng-change="showHistory()" aria-label="Золото" class="history__checkbox--gold">
       Золото
@@ -18,6 +19,7 @@
   </div>
 
   <md-content class="history__content">
+    <!--Search results-->
     <md-list layout="column" class="playlist__list">
       <md-item ng-repeat="track in tracks | orderBy:'tt':true" class="playlist__track" ng-class="{'track--gold': gold == true}">
         <div class="track__img-cont">
@@ -55,12 +57,15 @@
         </div>
       </md-item>
     </md-list>
+
+    <!--Show if search result is empty -->
     <div class="histroy--emtpy" ng-show="tracks.length < 1">
       <p class="history--empty-text">
         <ng-md-icon icon="adb" size="24"></ng-md-icon>
         К сожалению ничего не нашлось
       </p>
     </div>
+
   </md-content>
 
 </div>

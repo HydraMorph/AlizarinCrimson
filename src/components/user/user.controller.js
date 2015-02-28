@@ -12,7 +12,11 @@
 
 angular.module('trigger')
   .controller('UserCtrl', function ($scope, $rootScope, Client) {
+
+    /* init */
     $scope.user = {};
+
+    /* Get data after signing */
     $scope.$watch(function() {
       return $rootScope.load.signed;
     }, function() {
@@ -25,4 +29,5 @@ angular.module('trigger')
       }
       $scope.load.signed = $rootScope.load.signed;
     }, true);
+
   });

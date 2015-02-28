@@ -2,6 +2,7 @@
 
 angular.module('trigger')
   .controller('AppCtrl', function ($scope, $rootScope, $timeout, $mdSidenav, hotkeys) {
+
     var button = document.getElementById('audioBtn');
     var audio = document.getElementById('audio');
     $scope.play = false;
@@ -10,6 +11,7 @@ angular.module('trigger')
       button.classList.add('play');
       audio.play();
     }
+    /* Autoplay if it was defined in localStorage settings */
     if (localStorage.getItem('play') === 'true') {
       $timeout($scope.start(), 5000);
     }
@@ -47,7 +49,7 @@ angular.module('trigger')
     })
     ;
 
-
+    /* Add track to chat */
     $scope.trackToChat = function(trackId) {
       var chatInput = document.querySelector('#chatInput');
       if(chatInput) {
@@ -56,20 +58,25 @@ angular.module('trigger')
       }
     };
 
+    /* Console panel */
     $scope.toggleLeft = function () {
       $mdSidenav('left').toggle();
     };
+    /* Info panel (Democracy, profile, history and chat) */
     $scope.toggleRight = function () {
       $mdSidenav('right').toggle();
     };
   })
+  /* Console panel Ctrl*/
   .controller('LeftCtrl', function ($scope, $timeout, $mdSidenav) {
     $scope.close = function () {
       $mdSidenav('left').close();
     };
   })
+  /* Info panel Ctrl*/
   .controller('RightCtrl', function ($scope, $timeout, $mdSidenav) {
     $scope.close = function () {
       $mdSidenav('right').close();
     };
+
   });

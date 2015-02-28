@@ -10,7 +10,9 @@ html
 
 *
   -webkit-user-select initial !important
+/* material angular is broke user-select */
 
+/* Custom scrollbar - doesn't work in Firefox */
 ::-webkit-scrollbar
   width 4px
 /* Track */
@@ -29,6 +31,7 @@ html
   transform translate3d(0,0,0)
 */
 
+/* Link's default color */
 a
   color #eba400
 
@@ -56,6 +59,7 @@ md-input-group
   flex-direction row
 
 
+/* Typography - will delete it later */
 /*
 * t-(a || b)-{type}
 * t == typography
@@ -108,6 +112,7 @@ svg
 @import '../components/user/user.styl';
 // endinjector
 
+/* Console style */
 .md-sidenav-left
   background #333
   width 150px !important
@@ -149,6 +154,7 @@ svg
   height 100vh
   width 100%
 
+/* Info panels */
 .tabsdemoStaticTabs
   opacity 1
   & #tabHistory-content
