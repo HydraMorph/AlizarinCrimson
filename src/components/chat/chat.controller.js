@@ -1,7 +1,20 @@
 'use strict';
 
 angular.module('trigger')
-  .controller('ChatCtrl', function ($scope, $rootScope, Client, socket) {
+  .controller('ChatCtrl', function ($scope, $rootScope, Client, socket, hotkeys) {
+
+    hotkeys.bindTo($scope)
+    .add({
+      combo: 'shift+f',
+      description: 'Focus to chat input',
+      allowIn: ['INPUT', 'SELECT', 'TEXTAREA'],
+      callback: function() {
+        focus();
+        event.preventDefault();
+      }
+    })
+    ;
+
 
     var customCodes = [];
     customCodes[0] = [];
