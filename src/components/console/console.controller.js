@@ -195,6 +195,7 @@ angular.module('trigger')
           $scope.changeVolume($scope.volume - 1);
           $scope.volume -= 1;
         }
+        event.preventDefault();
       }
     })
     .add({
@@ -209,6 +210,7 @@ angular.module('trigger')
           $scope.changeVolume($scope.volume + 1);
           $scope.volume += 1;
         }
+        event.preventDefault();
       }
     })
     .add({
@@ -223,6 +225,7 @@ angular.module('trigger')
           $scope.changeVolume($scope.volume - 5);
           $scope.volume -= 5;
         }
+        event.preventDefault();
       }
     })
     .add({
@@ -237,6 +240,7 @@ angular.module('trigger')
           $scope.changeVolume($scope.volume + 5);
           $scope.volume += 5;
         }
+        event.preventDefault();
       }
     })
     ;

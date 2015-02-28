@@ -33,14 +33,16 @@ angular.module('trigger')
       allowIn: ['INPUT', 'SELECT', 'TEXTAREA'],
       callback: function() {
         $scope.togglePlay();
+        event.preventDefault();
       }
     })
     .add({
-      combo: 'alt+space',
+      combo: 'shift+space',
       description: 'Mute current track',
       allowIn: ['INPUT', 'SELECT', 'TEXTAREA'],
       callback: function() {
         $scope.togglePlay();
+        event.preventDefault();
       }
     })
     ;

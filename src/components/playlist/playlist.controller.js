@@ -12,6 +12,7 @@ angular.module('trigger')
       allowIn: ['INPUT', 'SELECT', 'TEXTAREA'],
       callback: function() {
         addVote({ 'id': $scope.track.id, 'v': Client.user.w });
+        event.preventDefault();
         console.log('alt+up');
       }
     })
@@ -21,6 +22,7 @@ angular.module('trigger')
       allowIn: ['INPUT', 'SELECT', 'TEXTAREA'],
       callback: function() {
         addVote({ 'id': $scope.track.id, 'v': -1*Client.user.w });
+        event.preventDefault();
         console.log('alt+down');
       }
     })
