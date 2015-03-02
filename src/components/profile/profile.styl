@@ -12,13 +12,17 @@
   display flex
 @media screen and (min-width: 601px)
   .profile__tabpanel-container
+    height -webkit-calc(100% - 60px)
     height calc(100% - 60px)
     & [role="tabpanel"]
+      height -webkit-calc(100% - 60px) !important
       height calc(100% - 60px) !important
 /* 60 - bottom panel heigth */
 @media screen and (max-width: 600px)
   .profile__tabpanel-container
+    height -webkit-calc(100% - 36px)
     height calc(100% - 36px)
     & [role="tabpanel"]
+      height -webkit-calc(100% - 36px) !important
       height calc(100% - 36px) !important
 /* 36 - bottom panel heigth */

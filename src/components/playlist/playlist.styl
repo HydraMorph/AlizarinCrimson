@@ -6,6 +6,7 @@
   color #000
   width 100%
 .playlist__content
+  height -webkit-calc(100% - 97px) /* (current) 58 + 3 (progressbar) + 36 (navbar) */
   height calc(100% - 97px) /* (current) 58 + 3 (progressbar) + 36 (navbar) */
 .playlist__content--current
   height 60px /* (current) 58 + 2 (progressbar) */
@@ -165,6 +166,7 @@
 
 @media screen and (min-width: 961px)
   .playlist__content
+    height -webkit-calc(100% - 60px) /* (current) */
     height calc(100% - 60px) /* (current) */
   .playlist__toolbar
     display none !important

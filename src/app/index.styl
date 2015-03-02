@@ -1,4 +1,6 @@
 @import url("http://fonts.googleapis.com/css?family=Open\+Sans:400,700|Roboto:400,700,700italic,400italic")
+@import '_stylus/_mixins.styl';
+@import '_stylus/_variables.styl';
 
 @charset "UTF-8";
 
@@ -71,7 +73,6 @@ svg
   left 0
   width 100%
 
-@import '_stylus/_mixins.styl';
 // injector
 @import '_stylus/_mixins.styl';
 @import '_stylus/_variables.styl';
@@ -130,6 +131,7 @@ md-slider.md-default-theme .md-track.md-track-fill
     z-index 64
     width 100% !important
     min-width 100% !important
+    height -webkit-calc(100vh - 36px)
     height calc(100vh - 36px)
     top 36px
     overflow hidden
@@ -138,13 +140,17 @@ md-slider.md-default-theme .md-track.md-track-fill
 @media (min-width: 600px) and (max-width: 959px)
   .md-sidenav-right
     position fixed !important
+    width -webkit-calc(100% - 150px) !important
     width calc(100% - 150px) !important
+    min-width -webkit-calc(100% - 150px) !important
     min-width calc(100% - 150px) !important
     top 36px
+    height -webkit-calc(100vh - 36px)
     height calc(100vh - 36px)
     overflow hidden
     z-index 64
   .console__ctrl
+    height -webkit-calc(100vh - 72px)
     height calc(100vh - 72px)
     overflow hidden
   .md-sidenav-left
@@ -164,10 +170,12 @@ md-slider.md-default-theme .md-track.md-track-fill
   display block
   position relative
   border none
+  height -webkit-calc(100vh - 60px)
   height calc(100vh - 60px)
   overflow hidden
 @media screen and (max-width: 960px)
   .tabsdemoStaticTabs .tabpanel-container
+    height -webkit-calc(100vh - 96px)
     height calc(100vh - 96px)
 
 .tabsdemoStaticTabs [role="tabpanel"]
