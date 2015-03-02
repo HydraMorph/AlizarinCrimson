@@ -145,13 +145,13 @@ md-slider.md-default-theme .md-track.md-track-fill
     min-width -webkit-calc(100% - 150px) !important
     min-width calc(100% - 150px) !important
     top 36px
-    height -webkit-calc(100vh - 36px)
-    height calc(100vh - 36px)
+    height -webkit-calc(100% - 36px)
+    height calc(100% - 36px)
     overflow hidden
     z-index 64
   .console__ctrl
-    height -webkit-calc(100vh - 72px)
-    height calc(100vh - 72px)
+    height -webkit-calc(100% - 72px)
+    height calc(100% - 72px)
     overflow hidden
   .md-sidenav-left
     top 36px
@@ -170,13 +170,13 @@ md-slider.md-default-theme .md-track.md-track-fill
   display block
   position relative
   border none
-  height -webkit-calc(100vh - 60px)
-  height calc(100vh - 60px)
+  height -webkit-calc(100% - 60px)
+  height calc(100% - 60px)
   overflow hidden
 @media screen and (max-width: 960px)
   .tabsdemoStaticTabs .tabpanel-container
-    height -webkit-calc(100vh - 96px)
-    height calc(100vh - 96px)
+    height -webkit-calc(100% - 96px)
+    height calc(100% - 96px)
 
 .tabsdemoStaticTabs [role="tabpanel"]
   overflow auto
@@ -220,6 +220,7 @@ md-slider.md-default-theme .md-track.md-track-fill
   box-sizing content-box
 .tabsdemoStaticTabs md-tab.active
 .tabsdemoStaticTabs md-tab:focus
+  border-bottom 3px solid colorTabActiveBorder
   color colorTabActive !important
   background-color colorTabActiveBG !important
 .tabsdemoStaticTabs md-tab:hover

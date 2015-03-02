@@ -55,6 +55,8 @@
     <script src="../bower_components/angular-hotkeys/build/hotkeys.min.js"></script>
     <script src="../bower_components/angular-loading-bar/build/loading-bar.js"></script>
     <script src="../bower_components/angular-vs-repeat/src/angular-vs-repeat.js"></script>
+    <script src="../bower_components/viewport-units-buggyfill/viewport-units-buggyfill.js"></script>
+    <script src="../bower_components/viewport-units-buggyfill/viewport-units-buggyfill.hacks.js"></script>
     <!-- endbower -->
     <!-- endbuild -->
 
@@ -84,6 +86,8 @@
     <script src="app/filters/filters.js"></script>
     <script src="app/factories/factories.js"></script>
     <!-- endinject -->
+
+    <script>window.viewportUnitsBuggyfill.init();</script>
 
     <!-- inject:partials -->
     <!-- angular templates will be automatically converted in js and inserted here -->
