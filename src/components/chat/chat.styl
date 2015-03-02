@@ -1,7 +1,7 @@
 .chat
   font-size 13px
   height 100%
-  color #000
+  color colorChat
   & .chat__module
     height 100%
     overflow hidden
@@ -10,9 +10,11 @@
   & .chat__list
     height 100%
     width 100%
+    padding 0
 .chat__input-grp
   width 100%
-  border-top 3px solid #bbb
+  border-top 3px solid colorChatInputBorder
+  background-color colorChatInputBG
   height 90px /* depend with .chat__md-content */
   margin 0
   padding 0
@@ -34,10 +36,10 @@
       overflow auto
     &.md-input-focused
       & .md-input
-        border-color #009688 !important
+        border-color colorChatInputFocus !important
         height 46px
       & label
-        color #009688 !important
+        color colorChatInputFocus !important
   & .chat__input-nav
     position absolute
     bottom 0
@@ -76,25 +78,27 @@
       font-weight 800
     & .chat__button--irony
       font-style italic
-      color red
+      color colorChatInputIrony
 .chat__md-content
   height calc(100% - 90px) /* depend with .chat__input-grp */
   overflow-x hidden
   display flex
 .chat__item
-  border-bottom 1px solid #eee
+  border-bottom 1px solid colorChatItemBorder
+  background-color colorChatItemBG
   & .md-tile-content
     padding 6px
     display flex
     flex-flow row nowrap
     &.private
-      background #F5F5F5
+      background colorChatItemPrivateBG
     &.personal
       font-weight bold
 .msg__author
   font-weight bold
   display flex
   padding-right 6px
+  color colorChatItemAuthor
 .msg__message
   display flex
   flex 1
@@ -107,9 +111,9 @@
     font-weight bold
   & .irony
     font-style italic
-    color red
+    color colorChatInputIrony
 .msg__time
-  color #ddd
+  color colorChatItemTime
   font-size 10px
   justify-content flex-end
   display flex

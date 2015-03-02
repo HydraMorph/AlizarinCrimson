@@ -31,29 +31,6 @@ html
   transform translate3d(0,0,0)
 */
 
-/* Link's default color */
-a
-  color #eba400
-
-
-//::-webkit-scrollbar-track
-//  -webkit-box-shadow none
-//  background-color #000
-//  border-radius 0
-//::-webkit-scrollbar
-//  width 20px
-//  background-color #fff
-//::-webkit-scrollbar-thumb
-//  background-color #000
-//  border-radius 0
-
-md-input-group
-  & input
-  &.md-input-focused
-    & input
-      border-color #009688 !important
-    & label
-      color #009688 !important
 
 [layout=row]
   flex-direction row
@@ -94,7 +71,10 @@ svg
   left 0
   width 100%
 
+@import '_stylus/_mixins.styl';
 // injector
+@import '_stylus/_mixins.styl';
+@import '_stylus/_variables.styl';
 @import '../components/chat/chat.styl';
 @import '../components/console/console.styl';
 @import '../components/democracy/democracy.styl';
@@ -112,13 +92,38 @@ svg
 @import '../components/user/user.styl';
 // endinjector
 
+body
+  background-color colorBodyBG
+
+md-card.md-default-theme
+  background-color colorMdCardBG
+
+/* Link's default color */
+a
+  color colorSecond2
+
+md-content.md-default-theme
+  background-color colorMdContentBG
+
+md-input-group
+md-input-container
+  & input
+  &.md-input-focused
+    & input
+      border-color colorThird1 !important
+    & label
+      color colorThird1 !important
+
+md-slider.md-default-theme .md-track.md-track-fill
+  background colorThird1 !important
+
 /* Console style */
 .md-sidenav-left
-  background #333
+  background colorGray1
   width 150px !important
   min-width 150px !important
   & md-content.md-default-theme
-    background-color #333
+    background colorGray1
 
 @media screen and (max-width: 600px)
   .md-sidenav-right
@@ -155,19 +160,10 @@ svg
   width 100%
 
 /* Info panels */
-.tabsdemoStaticTabs
-  opacity 1
-  & #tabHistory-content
-    background-color #eee
-  & #tabDemocracy-content
-    background-color #eee
-  & #tabProfile-content
-    background-color #eee
 .tabsdemoStaticTabs .tabpanel-container
   display block
   position relative
-  background white
-  border 0px solid black
+  border none
   height calc(100vh - 60px)
   overflow hidden
 @media screen and (max-width: 960px)
@@ -175,7 +171,6 @@ svg
     height calc(100vh - 96px)
 
 .tabsdemoStaticTabs [role="tabpanel"]
-  color white
   overflow auto
   width 100%
   height 100%
@@ -190,43 +185,45 @@ svg
 .tabsdemoStaticTabs [role="tabpanel"].ng-leave
   z-index 100
 .tabsdemoStaticTabs .md-header
-  background-color #fff !important
+  background-color colorTabBG !important
   overflow-x hidden
 .tabsdemoStaticTabs .md-header-items-container
   left 0 !important
   right 0 !important
 .tabsdemoStaticTabs .md-header-items-container .md-header-items
-  border-bottom 3px solid #bbb
+  border-bottom 3px solid colorTabBorder
   -webkit-transform none !important
   transform none !important
   width 100% !important
 .tabsdemoStaticTabs md-tab
-  color #bbb !important
+  color colorTab !important
   text-transform none
-  border-right 1px solid #eee
+  background-color colorTabBG
+  border-right 1px solid colorTabBorder
   &:focus
-    border-right 1px solid #eee
-    border-left 1px solid #eee
+    border-right 1px solid colorTabFocusBorder
+    border-left 1px solid colorTabFocusBorder
     border-top none
     border-bottom none
-    border-color #eee !important
+    border-color colorTabFocusBorder !important
   &:first-child
-    border-left 1px solid #eee
+    border-left 1px solid colorTabFocusBorder
 .tabsdemoStaticTabs md-tab
   box-sizing content-box
 .tabsdemoStaticTabs md-tab.active
 .tabsdemoStaticTabs md-tab:focus
-  color #333 !important
+  color colorTabActive !important
+  background-color colorTabActiveBG !important
 .tabsdemoStaticTabs md-tab:hover
-  border-bottom 3px solid #333
+  border-bottom 3px solid colorTabHoverBorder
 .tabsdemoStaticTabs md-tab[disabled]
   opacity 0.5
 .tabsdemoStaticTabs md-tab .md-ripple-container
-  color #FFCD00 !important
+  color colorThird1 !important
 .tabsdemoStaticTabs .md-header .md-ripple
-  border-color #FFCD00 !important
+  border-color colorThird1 !important
 .tabsdemoStaticTabs md-tabs-ink-bar
-  background-color #FFCD00 !important
+  background-color colorThird1 !important
   height 3px
 
 @media screen and (min-width: 601px)
@@ -249,9 +246,9 @@ md-tab
   flex 1
 md-checkbox.md-default-theme.md-checked
   & .md-icon
-    background-color #009688 !important
+    background-color colorThird1 !important
 md-checkbox.md-default-theme .md-ripple
-  background-color #009688 !important
+  background-color colorThird1 !important
 md-checkbox .md-label
   border none !important
 

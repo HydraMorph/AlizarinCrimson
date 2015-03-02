@@ -2,7 +2,8 @@
   display flex
   height calc(100% - 90px) /* depend with chat-input */
   overflow-x hidden
-  color #000
+  color colorOnline
+  background-color colorOnlineBG
   flex-flow row wrap
 .online__ctrl
   height 100%
@@ -12,6 +13,7 @@
   padding 0
   display flex
   flex-flow column-reverse
+  background-color colorOnlineBG
 
 .online__list-item
   display block
@@ -26,7 +28,7 @@
   margin 5px 0 5px 5px
 .online__here
 .online__counter
-  color #aaa
+  color colorOnlineText
   line-height 1
   text-align left
   font-size 14px
@@ -40,8 +42,8 @@
   text-transform none
   padding 0
   border-radius 50% !important
-  background-color #aaa
-  color #fff
+  background-color colorOnlineUserBG
+  color colorOnlineUser
   font-size 9px
   & span
     padding 2px 6px
@@ -50,7 +52,7 @@
   display inline
   font-size 12px
   padding 2px 0
-  color #aaa
+  color colorOnlineUser
   text-transform none
   text-align left
   white-space nowrap
@@ -68,9 +70,9 @@
 .online__item
   &.active
     & .user__2profile
-      background-color #eba400
+      background-color colorOnlineUserActive
     & .user__2chat
-      color #eba400
+      color colorOnlineUserActive
 
 /* Ignore it - multicolumn layout is not nedded in this app */
 @media screen and (min-width: 961px)

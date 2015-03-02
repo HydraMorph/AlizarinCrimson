@@ -8,21 +8,21 @@
 .playlist__content
   height calc(100% - 97px) /* (current) 58 + 3 (progressbar) + 36 (navbar) */
 .playlist__content--current
-  height 61px /* (current) 58 + 3 (progressbar) */
+  height 60px /* (current) 58 + 2 (progressbar) */
   & .playlist__track
-    border 1px solid #333
-    background-color #333
+    border 1px solid colorCurrentBorder
+    background-color colorCurrentBG
     position relative
   & .track__artist
   & .track__title
-    color #fff
+    color colorCurrentTitle
   & .track__rating
-    color #bbb
+    color colorCurrentRating
   & .track__base
   & .track__additional
-    background-color #333
+    background-color colorCurrentBG
   & .track__upload-info
-    color #fff
+    color colorCurrentUploadinfo
 
 
 .playlist__list
@@ -30,11 +30,12 @@
   display flex
   padding 0
 .playlist__track
-  border 1px solid #eee
+  border 1px solid colorTrackBorder
   display flex
   flex-flow row nowrap
   align-items center
   margin-top -1px
+  background-color colorTrackBG
   height 60px !important
   min-height 60px !important
   max-height 60px !important
@@ -43,7 +44,7 @@
     margin-top 0
   &.track--gold
     & .track__img-cont
-      outline 4px solid #FFCD00
+      outline 4px solid colorTrackGold
       outline-offset -4px
 .track__img-cont
   display flex
@@ -61,7 +62,7 @@
 .track__artist
 .track__title
   font-weight 600
-  color rgb(51, 51, 51)
+  color colorTrackTitle
   font-size 12px
   margin 0
   white-space nowrap
@@ -74,14 +75,14 @@
 .track__tag
   display flex
   font-size 9px
-  color #fff
+  color colorTrackTag
   border-radius 4px
-  background-color #666
+  background-color colorTrackTagBG
   padding 2px 4px
   margin 0 2px
 .track__time
   display flex
-  color rgb(51, 51, 51)
+  color colorTrackTime
   font-size 12px
 
 .track__votes-block
@@ -108,7 +109,7 @@
 .track__rating
   font-weight 100
   font-size 23px
-  color #bbb
+  color colorTrackRating
   padding 0 2px
 
 
@@ -117,7 +118,7 @@
   height 36px
   min-height 36px
   max-height 36px
-  background-color #333 !important
+  background-color colorPlaylistToolbarBG !important
 
 .playlist__leftbar-swither
 .playlist__rightbar-swither
@@ -135,10 +136,10 @@
   left -1px
   display block
   height 3px
-  background #777
+  background colorProgressBG
 .track__progress-active
   height 3px
-  background #FFCD00
+  background colorProgressActiveBG
 
 /* Caution! Buggy thing
 * Please, just ignore this
@@ -164,18 +165,18 @@
 
 @media screen and (min-width: 961px)
   .playlist__content
-    height calc(100% - 61px) /* (current) 58 + 3 (progressbar) */
+    height calc(100% - 60px) /* (current) */
   .playlist__toolbar
     display none !important
   .track__votes-block
     &.voted--up
       & .track__vote--up
       & .track__rating
-        color #FFAE00
+        color colorTrackVoteUp
     &.voted--down
       & .track__vote--down
       & .track__rating
-        color #F8091C
+        color colorTrackVoteDown
   .track__progress
     bottom -1px
   .track__tags
@@ -200,11 +201,11 @@
     &.voted--up
       & .track__vote--down
       & .track__rating
-        color #FFAE00
+        color colorTrackVoteUp
     &.voted--down
       & .track__vote--up
       & .track__rating
-        color #F8091C
+        color colorTrackVoteDown
   .track__progress
     top -1px
 //  .track__tags
@@ -212,12 +213,12 @@
 //  .playlist__content--current .playlist__track
 //    bottom -1px
 .track__links
-  opacity .9
+  opacity .99
 .track__link
   font-size 12px
 .track__upload-info
-  color rgb(51, 51, 51)
   font-size 10px
+  color colorTrackUploadinfo
 
 .track__row
   display block
@@ -231,7 +232,7 @@
   height 58px !important
   min-height 58px !important
   max-height 58px !important
-  background #fff
+  background colorTrackBG
   display flex
   align-items center
   justify-content center
