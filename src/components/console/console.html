@@ -2,23 +2,23 @@
 
   <md-slider ng-model="volume" aria-label="volume-slider" ng-change="changeVolume(volume)" min="0" max="100" step="1"></md-slider>
   <img ng-src="assets/images/logo.png" class="console__logo" ng-click="data()"/>
-  <md-button class="console__login-btn" aria-label="console-login" ng-show="!load.signed" ng-click="showLoginModal($event)">Log in</md-button>
+  <md-button class="console__login-btn" aria-label="console-login" ng-show="!load.signed" ng-click="showLoginModal($event)">{{ 'consoleLogIn' | translate }}</md-button>
   <p class="console__stat">
-    Слушают <span class="console__listeners">{{users.listeners}}</span> из них активно: <span class="console__active-users">{{users.active}}</span>
+    {{ 'consoleListeners' | translate }}:&nbsp;<span class="console__listeners">{{users.listeners}}</span>
+    {{ 'consoleActiveUsers' | translate }}:&nbsp;<span class="console__active-users">{{users.active}}</span>
   </p>
   <md-button class="console__buttton--upload" aria-label="uploader-btn" ng-click="openUploadBar($event)">
     <ng-md-icon icon="file_upload" size="24"></ng-md-icon>
   </md-button>
   <p class="console__user-limit" ng-show="load.signed">
-    Ты можешь залить<time class="console__limit"> {{user.uplim | readableTime}}</time>
+    {{ 'consoleYouCanUpload' | translate }}&nbsp;<time class="console__limit"> {{user.uplim | readableTime}}</time>
   </p>
   <p class="console__greating" ng-bind="greeting"></p>
   <p class="console__links">
-    <a href="#" class="console__link">Жертвенник</a>
-    <a href="#" class="console__link">Уголок потребителя</a>
-    <a href="#" class="console__link">Сделать ночь</a>
-    <a href="#" class="console__link">RTFM</a>
+    <a href="#" class="console__link">{{ 'consoleDonateMe' | translate }}</a>
+    <a href="#" class="console__link">{{ 'consoleChangeTheme' | translate }}</a>
+    <a href="#" class="console__link">{{ 'consoleRTFM' | translate }}</a>
   </p>
-  <md-button class="console__login-btn" aria-label="console-logout" ng-show="load.signed" ng-click="logout()">Log out</md-button>
+  <md-button class="console__login-btn" aria-label="console-logout" ng-show="load.signed" ng-click="logout()">{{ 'consoleLogOut' | translate }}</md-button>
 
 </md-toolbar>

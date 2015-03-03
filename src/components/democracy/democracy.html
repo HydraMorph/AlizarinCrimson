@@ -7,17 +7,17 @@
       <div role="tabpanel" id="tabModerList-content" aria-labelledby="tabModerList" ng-switch-when="0" md-swipe-left="next()" md-swipe-right="previous()" >
 
         <md-card class="democracy__elections">
-          <h4 class="t-a-semicolon democracy__header">Выборы</h4>
+          <h4 class="t-a-semicolon democracy__header">{{ 'democracyElections' | translate }}</h4>
           <md-input-container class="democracy__elections-input">
-            <label>ID кандидата</label>
+            <label>{{ 'democracyCandidate' | translate }}</label>
             <input type="text" ng-model="user.lastName">
           </md-input-container>
           <div class="democracy__elections-row">
             <span class="democracy__elections-choice">
-              <span class="t-a-semicolon">Ты проголосовал за</span>
+              <span class="t-a-semicolon">{{ 'democracyVoted' | translate }}</span>
               <span class="t-b-space democracy__elections-username">Suok</span>
             </span>
-            <md-button aria-label="vote" class="md-raised democracy__elections-btn">Голосовать</md-button>
+            <md-button aria-label="vote" class="md-raised democracy__elections-btn">{{ 'democracyVote' | translate }}</md-button>
           </div>
         </md-card>
 
@@ -167,13 +167,13 @@
 
     <md-tabs class="md-accent" md-selected="data.selectedIndex">
       <md-tab id="ModerList" aria-controls="tabModerList-content">
-        <span class="tabs__full">Moder</span>
+        <span class="tabs__full">{{ 'democracyTabModer' | translate }}</span>
         <span class="tabs__icon">
           <ng-md-icon icon="account_balance" size="24"></ng-md-icon>
         </span>
       </md-tab>
       <md-tab id="tabModerText" aria-controls="tabModerText-content">
-        <span class="tabs__full">Text</span>
+        <span class="tabs__full">{{ 'democracyTabBlog' | translate }}</span>
         <span class="tabs__icon">
           <ng-md-icon icon="question_answer" size="24"></ng-md-icon>
         </span>

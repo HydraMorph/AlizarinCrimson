@@ -48,10 +48,12 @@
               <div class="track__links">
                 <a href="http://vk.com/audio?q={{track.t}}-{{track.a}}" target="_blank" class="track__link">>vk</a>
                 <a href="http://muzebra.com/search/?q={{track.t}}-{{track.a}}" target="_blank" class="track__link">>muzebra</a>
-                <a href="#" class="track__link" ng-click="trackToChat(track.id)">>в чат</a>
+                <a href="#" class="track__link" ng-click="trackToChat(track.id)">{{ 'trackToChat' | translate }}</a>
               </div>
               <div class="track__upload-info">
-                прнс <a href="#" {{track.sid}}>{{ track.s }}</a><span am-time-ago="track.ut"></span>
+                {{ 'trackUploadedBy' | translate }}&nbsp;
+                <a href="#" {{track.sid}}>{{ track.s }}</a>&nbsp;
+                <span am-time-ago="track.ut"></span>
               </div>
             </div>
             <div class="track__tags">
@@ -110,10 +112,12 @@
               <div class="track__links">
                 <a href="#" class="track__link">>vk</a>
                 <a href="#" class="track__link">>muzebra</a>
-                <a href="#" class="track__link" ng-click="trackToChat(track.id)">>в чат</a>
+                <a href="#" class="track__link" ng-click="trackToChat(track.id)">>{{ 'trackToChat' | translate }}</a>
               </div>
               <div class="track__upload-info">
-                uploaded by <a href="#" {{track.sid}}>{{ track.s }}</a><span am-time-ago="track.ut"></span>
+                {{ 'trackUploadedBy' | translate }}&nbsp;
+                <a href="#" {{track.sid}}>{{ track.s }}</a>&nbsp;
+                <span am-time-ago="track.ut"></span>
               </div>
             </div>
             <div class="track__tags">

@@ -2,15 +2,15 @@
 
   <!--Search inputs-->
   <div class="history__search-grp">
-    <md-checkbox ng-model="data.gold" ng-change="showHistory()" aria-label="Золото" class="history__checkbox--gold">
-      Золото
+    <md-checkbox ng-model="data.gold" ng-change="showHistory()" class="history__checkbox--gold">
+      {{ 'historyGold' | translate }}
     </md-checkbox>
     <md-input-container class="history--input">
-      <label>Артист</label>
+      <label>{{ 'historyArtist' | translate }}</label>
       <input type="text" ng-model="data.artist">
     </md-input-container>
     <md-input-container class="history--input">
-      <label>Название</label>
+      <label>{{ 'historyTitle' | translate }}</label>
       <input type="text" ng-model="data.title" ng-enter="showHistory()">
     </md-input-container>
     <md-button class="md-fab history--search-btn" ng-click="showHistory()" aria-label="Search-button">
@@ -26,7 +26,7 @@
 <!--          <img ng-src="{{track.src}}" class="track__img" alt="">-->
           <img ng-src="assets\images\nocover.png" class="track__img" alt="">
         </div>
-        <div class="track__row">
+<div class="track__row">
           <div class="track__base">
             <div class="track__content">
               <h3 class="track__artist">{{track.a}}</h3>
@@ -42,18 +42,27 @@
             </div>
           </div>
           <div class="track__additional">
-            <div class="track__links">
-              <a href="http://vk.com/audio?q={{track.t}}-{{track.a}}" target="_blank" class="track__link">>vk</a>
-              <a href="http://muzebra.com/search/?q={{track.t}}-{{track.a}}" target="_blank" class="track__link">>muzebra</a>
-              <a href="#" class="track__link" ng-click="trackToChat(track.id)">>в чат</a>
+            <div class="track__content">
+              <div class="track__links">
+                <a href="#" class="track__link">>vk</a>
+                <a href="#" class="track__link">>muzebra</a>
+                <a href="#" class="track__link" ng-click="trackToChat(track.id)">>{{ 'trackToChat' | translate }}</a>
+              </div>
+              <div class="track__upload-info">
+                {{ 'trackUploadedBy' | translate }}&nbsp;
+                <a href="#" {{track.sid}}>{{ track.s }}</a>&nbsp;
+                <span am-time-ago="track.ut"></span>
+              </div>
             </div>
-            <div class="track__upload-info">
-              прнс <a href="#" {{track.sid}}>{{ track.s }}</a><span am-time-ago="track.ut"></span>
+            <div class="track__tags">
+              <span class="track__tag" ng-repeat="tag in track.tg">
+                {{tag.n}}
+              </span>
+            </div>
+            <div class="track__time">
+              <span>+{{track.tt | readableTime}}</span>
             </div>
           </div>
-        </div>
-        <div class="track__votes-block">
-          <span class="track__rating">{{track.r}}</span>
         </div>
       </md-item>
     </md-list>
@@ -62,7 +71,7 @@
     <div class="histroy--emtpy" ng-show="tracks.length < 1">
       <p class="history--empty-text">
         <ng-md-icon icon="adb" size="24"></ng-md-icon>
-        К сожалению ничего не нашлось
+        {{ 'historyNoResults' | translate }}
       </p>
     </div>
 

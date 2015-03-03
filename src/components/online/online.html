@@ -1,6 +1,6 @@
 <div class="online__ctrl" ng-controller="OnlineCtrl">
 
-  <p class="online__here">Здесь: <span class="online__counter">{{usersCount}}</span></p>
+  <p class="online__here">{{ 'onlineHere' | translate }}:&nbsp;<span class="online__counter">{{usersCount}}</span></p>
   <md-content class="online__md-content">
     <md-list class="online__list">
       <md-item ng-repeat="user in users" class="online__list-item">

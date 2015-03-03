@@ -2,14 +2,14 @@
 
   <md-card class="login__card">
     <md-input-container class="login__username">
-      <label>Username</label>
+      <label>{{ 'loginUsername' | translate }}</label>
       <input inputmode="latin" ng-model="user.name" type="text">
     </md-input-container>
     <md-input-container class="login__username">
-      <label>Password</label>
+      <label>{{ 'loginPassword' | translate }}</label>
       <input inputmode="latin" ng-model="user.password" ng-enter="login()" type="password">
     </md-input-container>
-    <md-button aria-label="login--btn" class="login__btn" ng-click="login()">Yarrr!</md-button>
+    <md-button aria-label="login--btn" class="login__btn" ng-click="login()">{{ 'loginSubmit' | translate }}</md-button>
   </md-card>
 
 </md-dialog>

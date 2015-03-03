@@ -11,7 +11,7 @@ angular.module('trigger')
     };
 
     /* Under development */
-    $scope.isMyProfile = false;
+    $scope.isMyProfile = true;
 //    $scope.$watch(function() {
 //      return $rootScope.userId;
 //    }, function() {

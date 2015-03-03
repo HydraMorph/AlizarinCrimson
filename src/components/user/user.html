@@ -24,12 +24,16 @@
       <div class="user__additional">
         <p class="user__descripton" ng-bind-html="user.i"></p>
         <p class="user__origin">
-          С нами с <span class="user__regdate">{{user.reg | date:'d.MM.y'}}</span>
+          {{ 'userRegDate' | translate }}
+          <span class="user__regdate">{{user.reg | date:'d.MM.y'}}</span>
           <span ng-show="user.invites.p.name">
-            по приглашению <button class="user__father" aria-label="user-origin">{{user.invites.p.name}}</button>
+            {{ 'userInvitedBy' | translate }}
+            <button class="user__father" aria-label="user-origin">{{user.invites.p.name}}</button>
           </span>
         </p>
-        <p class="user__invited" ng-show="user.invites.u.length">{{user.g ? 'Понаприглашал' : 'Понаприглашала'}}:
+        <p class="user__invited" ng-show="user.invites.u.length">
+<!--         {{user.g ? 'Понаприглашал' : 'Понаприглашала'}}:-->
+          {{ 'userInvite' | translate }}
           <span class="user__children" ng-repeat="child in user.invites.u">
             <button class="user__child" aria-label="user-child">{{child.n}}</button>
           </span>
@@ -39,9 +43,9 @@
 
     <div class="user__control">
       <md-checkbox ng-model="data.img" aria-label="ОМММ" class="user__ignore">
-        ОМММ
+        {{ 'userIgnore' | translate }}
       </md-checkbox>
-      <md-button class="user__ban" aria-label="user-ban">Забанить</md-button>
+      <md-button class="user__ban" aria-label="user-ban">{{ 'userBan' | translate }}</md-button>
     </div>
 
   </md-card>
