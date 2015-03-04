@@ -23,26 +23,27 @@ angular.module('trigger')
     }; /* default settings */
 
     /* Used in messages: replace value by regexp */
+    /* &nbsp; is used for code minificating */
     var customCodes = [];
     customCodes[0] = [];
     customCodes[0][0] = /(http:\/\/[\w\-\.]+\.[a-zA-Z]{2,3}(?:\/\S*)?(?:[\w])+\.(?:jpg|png|gif|jpeg|bmp))/gim;
-    customCodes[0][1] = '<a href="$1" target="_blank"><img src="$1" /></a>';
+    customCodes[0][1] = '&nbsp;<a href="$1" target="_blank"><img src="$1" /></a>&nbsp;';
 
     customCodes[1] = [];
     customCodes[1][0] = /(https:\/\/[\w\-\.]+\.[a-zA-Z]{2,3}(?:\/\S*)?(?:[\w])+\.(?:jpg|png|gif|jpeg|bmp))/gim;
-    customCodes[1][1] = '<a href="$1" target="_blank"><img src="$1" /></a>';
+    customCodes[1][1] = '&nbsp;<a href="$1" target="_blank"><img src="$1" /></a>&nbsp;';
 
     customCodes[2] = [];
     customCodes[2][0] = /(\b(https?|ftp):\/\/[-A-Z0-9+&@#\/%?=~_|!:,.;]*[-A-Z0-9+&@#\/%=~_|])/gim;
-    customCodes[2][1] = '<a href="$1" target="_blank">$1</a>';
+    customCodes[2][1] = '&nbsp;<a href="$1" target="_blank">$1</a>&nbsp;';
 
     customCodes[3] = [];
     customCodes[3][0] = /(^|[^\/])(www\.[\S]+(\b|$))/gim;
-    customCodes[3][1] = '<a href="http://$1" target="_blank">$1</a>';
+    customCodes[3][1] = '&nbsp;<a href="http://$1" target="_blank">$1</a>&nbsp;';
 
     customCodes[4] = [];
     customCodes[4][0] = /([\w\-\d]+\@[\w\-\d]+\.[\w\-\d]+)/gim;
-    customCodes[4][1] = '<a href="mailto:$1">$1</a>';
+    customCodes[4][1] = '&nbsp;<a href="mailto:$1">$1</a>&nbsp;';
 
     customCodes[5] = [];
     customCodes[5][0] = '!!!!!!!!!!';
@@ -106,9 +107,13 @@ angular.module('trigger')
           var cL = customCodes.length;
           for (var j = 0; j < mL; j++) {
             for (var i = 0; i < cL; i++) {
-              if (mChat[j].m.replace(customCodes[i][0], '') !== mChat[j].m) {
+              if (mChat[j].m.replace(customCodes[i][0], '') != mChat[j].m) {
                 if (i < 2) {
-                  mChat[j].m = mChat[j].m.replace(customCodes[i][0], customCodes[i][1]);
+                  if ($scope.data.img !== true) {
+                    mChat[j].m = mChat[j].m.replace(customCodes[i + 2][0], customCodes[i + 2][1]);
+                  } else {
+                    mChat[j].m = mChat[j].m.replace(customCodes[i][0], customCodes[i][1]);
+                  }
                   break;
                 } else {
                   mChat[j].m = mChat[j].m.replace(customCodes[i][0], customCodes[i][1]);
@@ -146,22 +151,23 @@ angular.module('trigger')
           } else if (data.m.indexOf('&gt;&gt;') > -1) {
             sessionStorage.setItem('private' + data.t, JSON.stringify(data));
           }
-
           var cL = customCodes.length;
           for (var i = 0; i < cL; i++) {
-            if (data.m.replace(customCodes[i][0], '') !== data.m) {
+            if (data.m.replace(customCodes[i][0], '') != data.m) {
               if (i < 2) {
-                data.m = data.m.replace(customCodes[i][0], customCodes[i][1]);
+                if ($scope.data.img !== true) {
+                  data.m = data.m.replace(customCodes[i + 2][0], customCodes[i + 2][1]);
+                } else {
+                  data.m = data.m.replace(customCodes[i][0], customCodes[i][1]);
+                }
                 break;
               } else {
                 data.m = data.m.replace(customCodes[i][0], customCodes[i][1]);
               }
             }
           }
-
           $scope.messages.push(data);
         });
-
       }
       $scope.load.signed = $rootScope.load.signed;
     }, true);
