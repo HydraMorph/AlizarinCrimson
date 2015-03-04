@@ -72,10 +72,10 @@ angular.module('trigger')
     }
 
     /* Change default setting if user had some settings in localStorage */
-    if (localStorage.getItem('tink') === false) {
+    if (localStorage.getItem('tink') === 'false') {
       $scope.data.tink = false;
     }
-    if (localStorage.getItem('img') === false) {
+    if (localStorage.getItem('img') === 'false') {
       $scope.data.img = false;
     }
     $scope.setTink = function() {

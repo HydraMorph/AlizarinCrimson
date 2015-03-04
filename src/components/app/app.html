@@ -1,6 +1,6 @@
-<div ng-controller="AppCtrl" layout="column" layout-fill>
+<div ng-controller="AppCtrl" layout="column" layout-fill class="viewport--H">
 
-  <section layout="row" flex>
+  <section class="viewport--H" layout="row" flex>
 
     <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$media('min-width: 600px')">
       <md-toolbar class="console__switcher-cont">
@@ -23,9 +23,7 @@
       </md-content>
     </md-sidenav>
 
-    <div class="viewport--H" ng-cloak>
-      <div class="playlist" ng-include="'components/playlist/playlist.html'"></div>
-    </div>
+    <div class="playlist" ng-include="'components/playlist/playlist.html'"></div>
 
     <md-sidenav class="md-sidenav-right md-whiteframe-z2" md-component-id="right" md-is-locked-open="$media('min-width: 960px')">
       <md-content ng-controller="RightCtrl">
