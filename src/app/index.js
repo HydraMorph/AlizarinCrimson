@@ -509,5 +509,15 @@ app.config(['$translateProvider', function ($translateProvider) {
     'settingsNewPasswordSumbit': 'Я понимаю что делаю!'
   });
 
+  $translateProvider.registerAvailableLanguageKeys(['en', 'ru'], {
+    'en_US': 'en',
+    'en_UK': 'en',
+    'ru_RU': 'ru'
+  })
+
+// Determining preferred language automatically
+//  $translateProvider.determinePreferredLanguage();
+
   $translateProvider.preferredLanguage('en');
+  $translateProvider.fallbackLanguage('en');
 }]);
