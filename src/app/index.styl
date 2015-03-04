@@ -73,6 +73,9 @@ svg
   left 0
   width 100%
 
+.h
+  height 100%
+
 // injector
 @import '_stylus/_mixins.styl';
 @import '_stylus/_variables.styl';
@@ -87,8 +90,8 @@ svg
 @import '../components/playlist/playlist.styl';
 @import '../components/pluses/pluses.styl';
 @import '../components/profile/profile.styl';
-@import '../components/settings/settings.styl';
 @import '../components/upload/upload.styl';
+@import '../components/settings/settings.styl';
 @import '../components/uploads/uploads.styl';
 @import '../components/user/user.styl';
 // endinjector
@@ -123,16 +126,19 @@ md-slider.md-default-theme .md-track.md-track-fill
   background colorGray1
   width 150px !important
   min-width 150px !important
+  height 100%
   & md-content.md-default-theme
     background colorGray1
+.md-sidenav-right
+  height 100%
 
 @media screen and (max-width: 600px)
   .md-sidenav-right
     z-index 64
     width 100% !important
     min-width 100% !important
-    height -webkit-calc(100vh - 36px)
-    height calc(100vh - 36px)
+    height -webkit-calc(100% - 36px)
+    height calc(100% - 36px)
     top 36px
     overflow hidden
     position fixed !important

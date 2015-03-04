@@ -1,8 +1,8 @@
-<div ng-controller="InfoCtrl" class="tabsdemoStaticTabs" layout="column">
+<div ng-controller="InfoCtrl" class="tabsdemoStaticTabs h" layout="column">
 
-  <md-tabs md-selected="selectedIndex" flex>
+  <md-tabs md-selected="selectedIndex" flex class="h">
 
-    <md-tab id="tabChat" aria-controls="tabChat-content" ng-show="load.signed">
+    <md-tab id="tabChat" class="h" aria-controls="tabChat-content" ng-show="load.signed">
       <md-tab-label>
         <span class="tabs__full">{{ 'infoTabChat' | translate }}</span>
         <span class="tabs__icon">
@@ -12,7 +12,7 @@
       <div class="chat" ng-include="'components/chat/chat.html'" ng-show="load.signed"></div>
     </md-tab>
 
-    <md-tab id="tabHistory" aria-controls="tabHistory-content">
+    <md-tab id="tabHistory" class="h" aria-controls="tabHistory-content">
       <md-tab-label>
         <span class="tabs__full">{{ 'infoTabHistory' | translate }}</span>
         <span class="tabs__icon">
@@ -22,7 +22,7 @@
       <div class="history" ng-include="'components/history/history.html'"></div>
     </md-tab>
 
-    <md-tab id="tabDemocracy" aria-controls="tabDemocracy-content">
+    <md-tab id="tabDemocracy" class="h" aria-controls="tabDemocracy-content">
       <md-tab-label>
         <span class="tabs__full">{{ 'infoTabDemocracy' | translate }}</span>
         <span class="tabs__icon">
@@ -32,7 +32,7 @@
       <div class="democracy__include" ng-include="'components/democracy/democracy.html'"></div>
     </md-tab>
 
-    <md-tab id="tabProfile" aria-controls="tabProfile-content" ng-show="load.signed">
+    <md-tab id="tabProfile" class="h" aria-controls="tabProfile-content" ng-show="load.signed">
       <md-tab-label>
         <span class="tabs__full">{{ 'infoTabProfile' | translate }}</span>
         <span class="tabs__icon">
