@@ -50,7 +50,7 @@
               </div>
               <div class="track__upload-info">
                 {{ 'trackUploadedBy' | translate }}&nbsp;
-                <a href="#" {{track.sid}}>{{ track.s }}</a>&nbsp;
+                <a ng-click="openProfile(track.sid)">{{ track.s }}</a>&nbsp;
                 <span am-time-ago="track.ut"></span>
               </div>
             </div>

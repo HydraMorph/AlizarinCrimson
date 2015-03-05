@@ -4,11 +4,7 @@ angular.module('trigger')
   .controller('ProfileCtrl', function ($scope) {
 
     /* init */
-    $scope.data = {
-      selectedIndex : 0,
-      secondLocked : true,
-      secondLabel : 'Item Two'
-    };
+    $scope.info = { selectedIndex : 0 };
 
     /* Under development */
     $scope.isMyProfile = true;
@@ -19,13 +15,18 @@ angular.module('trigger')
 //        $scope.isMyProfile = true;
 //      }
 //    }, true);
+    $scope.$watch(function() {
+      return $scope.info.selectedIndex;
+    }, function() {
+      console.log('$scope.info.selectedIndex', $scope.info.selectedIndex);
+    }, true);
 
     /* md-tabs switcher */
     $scope.next = function() {
-      $scope.data.selectedIndex = Math.min($scope.data.selectedIndex + 1, 2) ;
+      $scope.info.selectedIndex = Math.min($scope.info.selectedIndex + 1, 2) ;
     };
     $scope.previous = function() {
-      $scope.data.selectedIndex = Math.max($scope.data.selectedIndex - 1, 0);
+      $scope.info.selectedIndex = Math.max($scope.info.selectedIndex - 1, 0);
     };
 
   });

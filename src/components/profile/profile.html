@@ -1,6 +1,6 @@
 <div class="profile__ctrl" ng-controller="ProfileCtrl">
 
-  <ng-switch on="data.selectedIndex" class="profile__tabpanel-container">
+  <ng-switch on="info.selectedIndex" class="profile__tabpanel-container">
     <div role="tabpanel" id="tabUser-content" aria-labelledby="tabUser" ng-switch-when="0" md-swipe-left="next()" md-swipe-right="previous()" >
       <div class="user__include" ng-include="'components/user/user.html'"></div>
     </div>

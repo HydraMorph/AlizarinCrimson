@@ -30,4 +30,18 @@ angular.module('trigger')
       $scope.load.signed = $rootScope.load.signed;
     }, true);
 
+    $scope.$watch(function() {
+      return $rootScope.userId;
+    }, function() {
+      var id = $rootScope.userId;
+      if (id === 0) {
+        id = '0';
+      }
+      Client.getUser({id: id},function(data){
+        data.karma = data.p.length - data.n.length;
+        $scope.user = data;
+        $scope.$digest();
+      });
+    }, true);
+
   });

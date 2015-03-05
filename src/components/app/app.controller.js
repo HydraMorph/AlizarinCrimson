@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('trigger')
-  .controller('AppCtrl', function ($scope, $rootScope, $timeout, $mdSidenav, hotkeys) {
+  .controller('AppCtrl', function ($scope, $rootScope, $timeout, $mdSidenav, hotkeys, Client) {
 
     var button = document.getElementById('audioBtn');
     var audio = document.getElementById('audio');
@@ -58,6 +58,37 @@ angular.module('trigger')
       }
     };
 
+
+    /* Show Democracy tab on default */
+    $scope.infoTab = 2;
+
+    $scope.$watch(function() {
+      return $rootScope.load.signed;
+    }, function() {
+      if ($rootScope.load.signed === true) {
+        $scope.infoTab = 0;
+      }
+      $scope.load.signed = $rootScope.load.signed;
+    }, true);
+
+    $scope.$watchCollection('infoTab', function(newValue, oldValue){
+      console.log('being watched oldValue:', oldValue, 'newValue:', newValue);
+      if (oldValue === 3 && newValue != 3) {
+        $rootScope.userId = Client.user.id;
+      }
+    });
+
+    /* Under developmant - drafted function for opening user profile */
+    $scope.openProfile = function(id) {
+      console.log('$scope.infoTab', $scope.infoTab);
+      console.log('openProfile', id);
+      $rootScope.userId = id;
+      $scope.infoTab = 3;
+    };
+
+    $scope.setInfoTab = function(id) {
+      $scope.infoTab = id;
+    };
     /* Console panel */
     $scope.toggleLeft = function () {
       $mdSidenav('left').toggle();

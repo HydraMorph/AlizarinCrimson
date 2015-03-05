@@ -47,9 +47,4 @@ angular.module('trigger')
       $scope.load.welcome = $rootScope.load.welcome;
     }, true);
 
-    /* Under developmant - drafted function for opening user profile */
-    $scope.openProfile = function(id) {
-      $rootScope.userId = id;
-    };
-
   });

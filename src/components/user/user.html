@@ -28,14 +28,14 @@
           <span class="user__regdate">{{user.reg | date:'d.MM.y'}}</span>
           <span ng-show="user.invites.p.name">
             {{ 'userInvitedBy' | translate }}
-            <button class="user__father" aria-label="user-origin">{{user.invites.p.name}}</button>
+            <button class="user__father" ng-click="openProfile(user.invites.p.id)" aria-label="user-origin">{{user.invites.p.name}}</button>
           </span>
         </p>
         <p class="user__invited" ng-show="user.invites.u.length">
 <!--         {{user.g ? 'Понаприглашал' : 'Понаприглашала'}}:-->
           {{ 'userInvite' | translate }}
           <span class="user__children" ng-repeat="child in user.invites.u">
-            <button class="user__child" aria-label="user-child">{{child.n}}</button>
+            <button class="user__child" ng-click="openProfile(child.id)" aria-label="user-child">{{child.n}}</button>
           </span>
         </p>
       </div>
