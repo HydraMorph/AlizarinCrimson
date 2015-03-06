@@ -7,20 +7,20 @@
         <span class="user__name">{{user.name}}</span>
         <span class="user__id">#{{user.id}}</span>
       </div>
-      <div class="user__votes-block">
-        <md-button class="md-fab user__vote--up" aria-label="user-plus" ng-show="!isMyProfile" ng-click="voteUp(track.id)">
+      <div class="user__votes-block" ng-class="{ 'voted--up': user.vote == 'plus', 'voted--down': user.vote == 'minus' }" >
+        <md-button ng-click="userVoteDown(user.id)" class="md-fab user__vote--down" aria-label="user-minus" ng-show="!isMe" ng-click="voteDown(track.id)">
           <ng-md-icon icon="expand_more" size="24"></ng-md-icon>
         </md-button>
         <span class="user__karma">{{user.karma}}</span>
-        <md-button class="md-fab user__vote--down" aria-label="user-minus" ng-show="!isMyProfile" ng-click="voteDown(track.id)">
+        <md-button ng-click="userVoteUp(user.id)" class="md-fab user__vote--up" aria-label="user-plus" ng-show="!isMe" ng-click="voteUp(track.id)">
           <ng-md-icon icon="expand_less" size="24"></ng-md-icon>
         </md-button>
       </div>
     </div>
 
     <div class="user__main">
-      <img class="user__img" ng-src="assets/images/ear.png" alt="">
-<!--      <img class="user__img" ng-src="assets/images/{{user.pic}}" alt="">-->
+<!--      <img class="user__img" ng-src="assets/images/ear.png" alt="">-->
+      <img class="user__img" ng-src="{{user.pic}}" alt="">
       <div class="user__additional">
         <p class="user__descripton" ng-bind-html="user.i"></p>
         <p class="user__origin">

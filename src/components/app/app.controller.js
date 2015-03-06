@@ -72,23 +72,45 @@ angular.module('trigger')
     }, true);
 
     $scope.$watchCollection('infoTab', function(newValue, oldValue){
-      console.log('being watched oldValue:', oldValue, 'newValue:', newValue);
       if (oldValue === 3 && newValue != 3) {
         $rootScope.userId = Client.user.id;
+        $scope.isMe = true;
+        $scope.profileTab = 0;
       }
     });
 
+
+    $scope.isMe = true;
     /* Under developmant - drafted function for opening user profile */
     $scope.openProfile = function(id) {
-      console.log('$scope.infoTab', $scope.infoTab);
-      console.log('openProfile', id);
       $rootScope.userId = id;
+      if (id === Client.user.id) {
+        $scope.isMe = true;
+      } else {
+        $scope.isMe = false;
+      }
       $scope.infoTab = 3;
+      $scope.profileTab = 0;
     };
 
     $scope.setInfoTab = function(id) {
       $scope.infoTab = id;
     };
+
+      /* initProfile */
+    $scope.profileTab = 0;
+    /* md-tabs switcher */
+    $scope.setProfileTab = function(id) {
+      $scope.profileTab = id;
+    };
+    $scope.next = function() {
+      $scope.profileTab = Math.min($scope.profileTab + 1, 2) ;
+    };
+    $scope.previous = function() {
+      $scope.profileTab = Math.max($scope.profileTab - 1, 0);
+    };
+
+
     /* Console panel */
     $scope.toggleLeft = function () {
       $mdSidenav('left').toggle();

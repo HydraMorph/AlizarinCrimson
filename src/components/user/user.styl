@@ -19,6 +19,21 @@
   display flex
   flex-flow row nowrap
   align-items center
+  &.voted--up
+    .user__vote--up
+      color colorSecond1
+    .user__vote--down
+      color colorGray4
+    .user__karma
+      color colorSecond1
+  &.voted--down
+    .user__vote--up
+      color colorGray4
+    .user__vote--down
+      color colorNegative
+    .user__karma
+      color colorNegative
+
 .user__vote--up
 .user__vote--down
   color inherit

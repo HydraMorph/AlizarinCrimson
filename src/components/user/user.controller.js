@@ -22,7 +22,25 @@ angular.module('trigger')
     }, function() {
       if ($rootScope.load.signed === true) {
         Client.getUser({id: $rootScope.userId},function(data){
+          if (Client.user.g === undefined) {
+            if ($rootScope.userId === Client.user.id) {
+              Client.user.g = data.g;
+            }
+          }
           data.karma = data.p.length - data.n.length;
+          data.vote = undefined;
+          for (var vr in data.p) {
+            if (data.p[vr].vid == Client.user.id) {
+              data.vote = 'plus';
+              break;
+            }
+          }
+          for (var vr in data.n) {
+            if (data.n[vr].vid == Client.user.id) {
+              data.vote = 'minus';
+              break;
+            }
+          }
           $scope.user = data;
           $scope.$digest();
         });
@@ -33,15 +51,61 @@ angular.module('trigger')
     $scope.$watch(function() {
       return $rootScope.userId;
     }, function() {
+      /* Hack for user with non-numeric id - trigger */
       var id = $rootScope.userId;
       if (id === 0) {
         id = '0';
       }
       Client.getUser({id: id},function(data){
         data.karma = data.p.length - data.n.length;
+        data.vote = undefined;
+        for (var vr in data.p) {
+          if (data.p[vr].vid == Client.user.id) {
+            data.vote = 'plus';
+            break;
+          }
+        }
+        for (var vr in data.n) {
+          if (data.n[vr].vid == Client.user.id) {
+            data.vote = 'minus';
+            break;
+          }
+        }
         $scope.user = data;
         $scope.$digest();
       });
     }, true);
+
+    function callback() {
+    }
+    $scope.userVoteDown = function (id) {
+      var vote = -1;
+      if ($scope.user.vote === 'minus') {
+        vote = 0;
+      }
+      Client.adduservote({ 'v': vote, 'id': id }, callback);
+      if (vote === 0) {
+        $scope.user.vote = '';
+        $scope.user.karma++;
+      } else {
+        $scope.user.vote = 'minus';
+        $scope.user.karma--;
+      }
+    }
+
+    $scope.userVoteUp = function (id) {
+      var vote = 1;
+      if ($scope.user.vote === 'plus') {
+        vote = 0;
+      }
+      Client.adduservote({ 'v': vote, 'id': id }, callback);
+      if (vote === 0) {
+        $scope.user.vote = '';
+        $scope.user.karma--;
+      } else {
+        $scope.user.vote = 'plus';
+        $scope.user.karma ++;
+      }
+    }
 
   });

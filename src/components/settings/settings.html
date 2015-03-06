@@ -7,13 +7,15 @@
     </div>
 
     <div class="settings__chat">
+<!--
       <md-checkbox ng-model="data.tink" ng-change="setImg()" class="settings__tink">
         {{ 'settingsTink' | translate }}
       </md-checkbox>
       <md-checkbox ng-model="data.img" ng-change="setImg()" class="settings__img">
         {{ 'settingsImg' | translate }}
       </md-checkbox>
-      <md-checkbox ng-model="data.female" ng-change="setImg()" class="settings__female">
+-->
+      <md-checkbox ng-model="gender" ng-change="changeGender()" class="settings__female">
         {{ 'settingsFemale' | translate }}
       </md-checkbox>
     </div>
