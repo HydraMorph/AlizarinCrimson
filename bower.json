@@ -17,7 +17,6 @@
     "angular-hotkeys": "chieffancypants/angular-hotkeys#~1.4.5",
     "angular-loading-bar": "~0.7.1",
     "angular-vs-repeat": "~1.0.0-rc5",
-    "viewport-units-buggyfill": "~0.5.0",
     "angular-translate": "~2.6.1"
   },
   "devDependencies": {

@@ -23,17 +23,17 @@
     <div class="settings__password">
       <md-input-container class="settings__password--old">
         <label>{{ 'settingsOldPassword' | translate }}</label>
-        <input inputmode="latin" aria-label="settings-old-password" ng-model="message">
+        <input inputmode="latin" aria-label="settings-old-password" ng-model="oldPassword">
       </md-input-container>
       <md-input-container class="settings__password--new">
         <label>{{ 'settingsNewPassword' | translate }}</label>
-        <input inputmode="latin" aria-label="settings-new-password" ng-model="message">
+        <input type="password" inputmode="latin" aria-label="settings-new-password" ng-model="newPassword">
       </md-input-container>
       <md-input-container class="settings__password--new">
         <label>{{ 'settingsNewPasswordAgain' | translate }}</label>
-        <input inputmode="latin" aria-label="settings-new-password" ng-model="message">
+        <input type="password" inputmode="latin" aria-label="settings-new-password" ng-model="newPasswordFix" ng-enter="changePassword">
       </md-input-container>
-      <md-button class="settings__password-btn" aria-label="change-password">{{ 'settingsNewPasswordSumbit' | translate }}</md-button>
+      <md-button ng-click="changePassword()" class="settings__password-btn" aria-label="change-password">{{ 'settingsNewPasswordSumbit' | translate }}</md-button>
     </div>
 
   </md-card>

@@ -330,7 +330,7 @@ app.service('Client', function ($log) {
   };
 
   this.changepass = function(oldpass, newpass, callback) {
-    cl = this;
+    var cl = this;
     cl.callbacks.changepass = callback;
     this.socket.emit('changepass', {o: oldpass, n: newpass});
   };
