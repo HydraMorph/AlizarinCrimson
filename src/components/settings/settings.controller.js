@@ -5,11 +5,10 @@ angular.module('trigger')
 
     $scope.gender = !Client.user.g;
     $scope.changeGender = function() {
-      console.log('$scope.gender', $scope.gender);
       if ($scope.gender == true) {
-        Client.user.g = true;
-      } else {
         Client.user.g = false;
+      } else {
+        Client.user.g = true;
       }
       Client.updateUserData({ g: !$scope.gender });
     }
