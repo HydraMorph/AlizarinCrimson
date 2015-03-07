@@ -9,7 +9,13 @@ html
   width 100vw
   height 100%
   overflow hidden
-
+  font-size 16px
+@media screen and (max-width: 599px)
+  html
+    font-size 14px
+@media (min-width: 600px) and (max-width: 959px)
+  html
+    font-size 15px
 *
   -webkit-user-select initial !important
 /* material angular is broke user-select */
@@ -86,8 +92,8 @@ svg
 @import '../components/info/info.styl';
 @import '../components/login/login.styl';
 @import '../components/minuses/minuses.styl';
-@import '../components/online/online.styl';
 @import '../components/playlist/playlist.styl';
+@import '../components/online/online.styl';
 @import '../components/pluses/pluses.styl';
 @import '../components/profile/profile.styl';
 @import '../components/settings/settings.styl';
@@ -163,8 +169,8 @@ md-slider.md-default-theme .md-track.md-track-fill
     top 36px
 @media screen and (min-width: 960px)
   .md-sidenav-right
-    width 50% !important
-    min-width 50% !important
+    display flex !important
+    flex 1 !important
     z-index 64
 
 .viewport--H

@@ -5,6 +5,9 @@
 .playlist
   color #000
   height 100%
+@media screen and (max-width: 600px)
+  .playlist
+    width 100%
 .playlist__content
   height -webkit-calc(100% - 97px) /* (current) 58 + 3 (progressbar) + 36 (navbar) */
   height calc(100% - 97px) /* (current) 58 + 3 (progressbar) + 36 (navbar) */
@@ -214,12 +217,24 @@
 //  .playlist__content--current .playlist__track
 //    bottom -1px
 .track__links
-  opacity .99
+  white-space nowrap
+  overflow hidden
+  text-overflow ellipsis
 .track__link
   font-size 12px
 .track__upload-info
   font-size 10px
   color colorTrackUploadinfo
+  white-space nowrap
+  overflow hidden
+  text-overflow ellipsis
+
+@media screen and (max-width: 600px)
+  .track__artist
+  .track__title
+  .track__link
+  .track__upload-info
+    font-size 10px
 
 .track__row
   display block

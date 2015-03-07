@@ -1,6 +1,6 @@
 'use strict';
 
-var app = angular.module('trigger', ['angular-loading-bar', 'ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'ngMaterial', 'btford.socket-io', 'luegg.directives', 'angularMoment', 'ngMdIcons', 'cfp.hotkeys', 'vs-repeat', 'pascalprecht.translate']);
+var app = angular.module('trigger', ['angular-loading-bar', 'ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'ngMaterial', 'btford.socket-io', 'luegg.directives', 'angularMoment', 'ngMdIcons', 'cfp.hotkeys', 'vs-repeat', 'pascalprecht.translate', 'react']);
 
 /* Angular material theme */
 app
@@ -18,7 +18,6 @@ app
 app.run(function(amMoment) {
   amMoment.changeLocale('ru');
 });
-
 
 //app.constant('angularMomentConfig', {
 //  preprocess: 'unix', // optional

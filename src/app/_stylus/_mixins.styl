@@ -1,0 +1,5 @@
+font-size(_size)
+  font-size _size
+  if typeof(_size) == 'unit'
+    if unit(_size) == 'px'
+      font-size (_size/16)rem
