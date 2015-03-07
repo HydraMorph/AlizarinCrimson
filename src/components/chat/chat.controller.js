@@ -168,6 +168,9 @@ angular.module('trigger')
           }
           $scope.messages.push(data);
         });
+      } else {
+        $scope.message = '';
+        $scope.messages = '';
       }
       $scope.load.signed = $rootScope.load.signed;
     }, true);

@@ -110,6 +110,19 @@ angular.module('trigger')
       $scope.profileTab = Math.max($scope.profileTab - 1, 0);
     };
 
+    /* Log out, delete 'username' and 'password' from localStorage */
+    $scope.logout = function() {
+      Client.logout(
+        function() {
+          if (localStorage.getItem('password') != '') {
+            localStorage.removeItem('password');
+            localStorage.removeItem('username');
+          }
+        }
+      );
+      $rootScope.load.signed = false;
+      $scope.infoTab = 2;
+    }
 
     /* Console panel */
     $scope.toggleLeft = function () {

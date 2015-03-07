@@ -160,20 +160,6 @@ angular.module('trigger')
       });
     };
 
-    /* Log out, delete 'username' and 'password' from localStorage */
-    $scope.logout = function() {
-      Client.logout(
-        function() {
-          if (localStorage.getItem('password') != '') {
-            localStorage.removeItem('password');
-            localStorage.removeItem('username');
-          }
-          $rootScope.load.signed = false;
-          $route.reload();
-        }
-      );
-    }
-
     /* Login modal Ctrl */
     function LoginCtrl($scope, $mdDialog) {
       $scope.hide = function() {
