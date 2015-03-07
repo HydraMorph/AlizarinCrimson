@@ -33,6 +33,8 @@
   overflow hidden
   display flex
   padding 0
+  height 100%
+  overflow-y auto
 .playlist__track
   border 1px solid colorTrackBorder
   display flex
@@ -197,7 +199,7 @@
     left 0
     right 0
   .playlist__list
-    flex-flow column-reverse wrap
+    flex-flow column-reverse nowrap
   .track__votes-block
     flex-flow row-reverse nowrap
     justify-content flex-start

@@ -7,6 +7,7 @@ angular.module('trigger')
     $scope.load.signed = false;
     $scope.playlist = [];
     $scope.track = {};
+    $scope.channel = 'Channel';
 
     hotkeys.bindTo($scope)
     .add({
@@ -280,7 +281,8 @@ angular.module('trigger')
 
     /* Get data - playlist and current track time postion - for meter */
     socket.on('channeldata', function (data) {
-//      console.log('playlist', data.pls);
+//      console.log('playlist', data);
+      $scope.channel = data.name;
       $scope.playlist = data.pls;
       $scope.items = $scope.playlist;
       Client.channel.ct = data.ct;
