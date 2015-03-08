@@ -18,7 +18,8 @@ angular.module('trigger')
       artist: '',
       title: '',
       gold: false,
-      top: false
+      top: false,
+      topType: false
     };
 
     /* Callback function */
@@ -35,7 +36,8 @@ angular.module('trigger')
         a: data.artist,
         t: data.title,
         top: data.top,
-        g: data.gold
+        g: data.gold,
+        v: data.topType
       }, function(data) {
         console.log('gethistory', data);
         for (var t in data) {

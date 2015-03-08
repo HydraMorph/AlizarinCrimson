@@ -4,12 +4,9 @@
   color #000
   height 100%
 .history__search-grp
-  height 56px /* depend with .history__content */
+  height 64px /* depend with .history__content */
+  width 100%
   background colorHistoryGrpBG
-  display flex
-  flex-flow row nowrap
-  align-items center
-  justify-content flex-start
   & .history__checkbox--gold
     margin 0 0 0 10px
   & .history--input
@@ -19,9 +16,19 @@
   & .history--search-btn
     background-color transparent !important
     box-shadow none !important
+.history__search-row
+  display flex
+  flex-flow row nowrap
+  align-items center
+  justify-content flex-start
+.history__search-row--filters
+  height 20px
+.history__search-row--input
+  height 44px
+
 .history__content
-  height -webkit-calc(100% - 56px) /* depend with .history__search-grp */
-  height calc(100% - 56px) /* depend with .history__search-grp */
+  height -webkit-calc(100% - 64px) /* depend with .history__search-grp */
+  height calc(100% - 64px) /* depend with .history__search-grp */
 
 .histroy--emtpy
   padding 0

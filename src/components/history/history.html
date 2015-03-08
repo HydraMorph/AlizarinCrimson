@@ -2,20 +2,32 @@
 
   <!--Search inputs-->
   <div class="history__search-grp">
-    <md-checkbox ng-model="data.gold" ng-change="showHistory()" class="history__checkbox--gold">
-      {{ 'historyGold' | translate }}
-    </md-checkbox>
-    <md-input-container class="history--input">
-      <label>{{ 'historyArtist' | translate }}</label>
-      <input type="text" ng-model="data.artist">
-    </md-input-container>
-    <md-input-container class="history--input">
-      <label>{{ 'historyTitle' | translate }}</label>
-      <input type="text" ng-model="data.title" ng-enter="showHistory()">
-    </md-input-container>
-    <md-button class="md-fab history--search-btn" ng-click="showHistory()" aria-label="Search-button">
-      <ng-md-icon icon="search" size="24"></ng-md-icon>
-    </md-button>
+    <div class="history__search-row history__search-row--filters">
+      <md-checkbox ng-model="data.gold" ng-change="showHistory()" class="history__checkbox--gold">
+        {{ 'historyGold' | translate }}
+      </md-checkbox>
+      <md-checkbox ng-model="data.top" ng-change="showHistory()" class="history__checkbox--gold">
+  <!--      {{ 'historyGold' | translate }}-->
+        Top
+      </md-checkbox>
+      <md-select ng-model="data.topType" ng-change="showHistory()" >
+        <md-option value="true">Votes</md-option>
+        <md-option value="false" ng-selected="selected">Rating</md-option>
+      </md-select>
+      <md-button class="md-fab history--search-btn" ng-click="showHistory()" aria-label="Search-button">
+        <ng-md-icon icon="search" size="24"></ng-md-icon>
+      </md-button>
+    </div>
+    <div class="history__search-row history__search-row--input">
+      <md-input-container class="history--input">
+        <label>{{ 'historyArtist' | translate }}</label>
+        <input type="text" ng-model="data.artist">
+      </md-input-container>
+      <md-input-container class="history--input">
+        <label>{{ 'historyTitle' | translate }}</label>
+        <input type="text" ng-model="data.title" ng-enter="showHistory()">
+      </md-input-container>
+    </div>
   </div>
 
   <md-content class="history__content">

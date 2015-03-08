@@ -2,7 +2,7 @@
 
   <section class="viewport--H">
 
-    <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$media('min-width: 600px')">
+    <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('min-width: 600px')">
       <md-toolbar class="console__switcher-cont">
         <audio id="audio">
           <source src="http://trigger.fm/stream/mainmp3" type="audio/mpeg" />
@@ -25,7 +25,7 @@
 
     <div class="playlist" ng-include="'components/playlist/playlist.html'"></div>
 
-    <md-sidenav class="md-sidenav-right md-whiteframe-z2" md-component-id="right" md-is-locked-open="$media('min-width: 960px')">
+    <md-sidenav class="md-sidenav-right md-whiteframe-z2" md-component-id="right" md-is-locked-open="$mdMedia('min-width: 960px')">
       <md-content ng-controller="RightCtrl" class="h">
         <div class="h info" ng-include="'components/info/info.html'"></div>
       </md-content>
