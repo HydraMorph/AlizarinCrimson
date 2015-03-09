@@ -1,0 +1,78 @@
+darkPrimaryColor = #333;
+primaryColor = #777;
+lightPrimaryColor = #aaa;
+textPrimaryColor = #fff;
+accentColor = #FFCD00;
+accentTextColor = #eba400;
+thirdPartColor = #009688;
+primaryTextColor = #bbb;
+secondaryTextColor = #666;
+mdPrimaryColor = #eee;
+dividerColor = #bbb;
+
+md-card.md-default-theme
+  background-color textPrimaryColor
+
+/* Link's default color */
+a
+  color accentTextColor
+
+//md-content.md-default-theme
+//  background-color colorMdContentBG
+
+md-input-group
+md-input-container
+  & input
+  &.md-input-focused
+    & input
+      border-color thirdPartColor !important
+    & label
+      color thirdPartColor !important
+
+md-slider.md-default-theme .md-track.md-track-fill
+  background thirdPartColor !important
+
+/* Console style */
+.md-sidenav-left
+  background darkPrimaryColor
+  & md-content
+    background darkPrimaryColor
+
+.infoTab--container .md-header
+  background-color textPrimaryColor !important
+.infoTab--container .md-header-items-container .md-header-items
+  border-bottom 3px solid dividerColor
+.infoTab--container md-tab
+  color colorTab !important
+  background-color colorTabBG
+  border-right 1px solid dividerColor
+  &:focus
+    border-right 1px solid dividerColor
+    border-left 1px solid dividerColor
+    border-color dividerColor !important
+  &:first-child
+    border-left 1px solid dividerColor
+.infoTab--container md-tab.active
+.infoTab--container md-tab:focus
+  border-bottom 3px solid dividerColor
+  color colorTabActive !important
+  background-color colorTabActiveBG !important
+.infoTab--container md-tab:hover
+  border-bottom 3px solid dividerColor
+.infoTab--container md-tab .md-ripple-container
+  color colorThird1 !important
+.infoTab--container .md-header .md-ripple
+  border-color dividerColor !important
+.infoTab--container md-tabs-ink-bar
+  background-color thirdPartColor !important
+
+md-checkbox.md-default-theme.md-checked
+  & .md-icon
+    background-color thirdPartColor !important
+md-checkbox.md-default-theme .md-ripple
+  background-color thirdPartColor !important
+
+
+/* angular-loading-bar v0.7.1 */
+#loading-bar .bar
+  background thirdPartColor !important

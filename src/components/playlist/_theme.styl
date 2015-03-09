@@ -1,0 +1,81 @@
+.playlist
+  color #000
+.playlist__content--current
+  & .playlist__track
+    border 1px solid darkPrimaryColor
+    background-color darkPrimaryColor
+    position relative
+  & .track__artist
+  & .track__title
+    color colorCurrentTitle
+  & .track__rating
+    color colorCurrentRating
+  & .track__base
+  & .track__additional
+    background-color colorCurrentBG
+  & .track__upload-info
+    color colorCurrentUploadinfo
+
+.playlist__track
+  border 1px solid colorTrackBorder
+  background-color colorTrackBG
+  &.track--gold
+    & .track__img-cont
+      outline 4px solid colorTrackGold
+      outline-offset -4px
+.track__artist
+.track__title
+  color colorTrackTitle
+.track__tag
+  color colorTrackTag
+  background-color colorTrackTagBG
+.track__time
+  color colorTrackTime
+
+.track__vote--up.track__vote--up
+.track__vote--down.track__vote--down
+  background-color transparent !important
+  box-shadow none !important
+  &:not([disabled])
+    &:focus
+    &:hover
+      background-color transparent !important
+      box-shadow none !important
+
+.track__rating
+  color colorTrackRating
+
+.playlist__toolbar
+.playlist__toolbar-tools
+  background-color colorPlaylistToolbarBG !important
+
+.track__progress
+  background primaryColor
+.track__progress-active
+  background accentColor
+
+@media screen and (min-width: 961px)
+  .track__votes-block
+    &.voted--up
+      & .track__vote--up
+      & .track__rating
+        color colorTrackVoteUp
+    &.voted--down
+      & .track__vote--down
+      & .track__rating
+        color colorTrackVoteDown
+@media screen and (max-width: 960px)
+  .track__votes-block
+    &.voted--up
+      & .track__vote--down
+      & .track__rating
+        color colorTrackVoteUp
+    &.voted--down
+      & .track__vote--up
+      & .track__rating
+        color colorTrackVoteDown
+.track__upload-info
+  color colorTrackUploadinfo
+.track__base
+.track__additional
+  background colorTrackBG
