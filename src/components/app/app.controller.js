@@ -38,15 +38,15 @@ angular.module('trigger')
         event.preventDefault();
       }
     })
-//    .add({
-//      combo: 'shift+space',
-//      description: 'Mute current track',
-//      allowIn: ['INPUT', 'SELECT', 'TEXTAREA'],
-//      callback: function() {
-//        $scope.togglePlay();
-//        event.preventDefault();
-//      }
-//    })
+    .add({
+      combo: 'shift+space',
+      description: 'Mute current track',
+      allowIn: ['INPUT', 'SELECT', 'TEXTAREA'],
+      callback: function() {
+        $scope.togglePlay();
+        event.preventDefault();
+      }
+    })
     ;
 
     /* Add track to chat */
