@@ -7,7 +7,12 @@
   height 64px /* depend with .history__content */
   width 100%
   background colorHistoryGrpBG
-  & .history__checkbox--gold
+  display flex
+  align-items center
+  flex-flow row wrap
+  & .history__checkbox
+    margin 0 0 0 10px
+  & .history__select
     margin 0 0 0 10px
   & .history--input
     flex 1
@@ -16,15 +21,22 @@
   & .history--search-btn
     background-color transparent !important
     box-shadow none !important
-.history__search-row
-  display flex
-  flex-flow row nowrap
-  align-items center
-  justify-content flex-start
-.history__search-row--filters
-  height 20px
-.history__search-row--input
-  height 44px
+@media screen and (max-width: 599px)
+  .history__search-grp
+    height 80px
+    align-items flex-start
+    & .history__checkbox
+    & .history__select
+      height 30px
+    & .history--search-btn
+      height 30px
+      width 30px
+      flex 1
+      border-radius 0 !important
+    & .history--input
+      padding 0
+      margin 0
+      flex 1 0 50%
 
 .history__content
   height -webkit-calc(100% - 64px) /* depend with .history__search-grp */

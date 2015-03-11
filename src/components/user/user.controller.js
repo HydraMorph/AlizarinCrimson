@@ -71,6 +71,10 @@ angular.module('trigger')
             break;
           }
         }
+        console.log(data);
+        if (!data.pic) {
+          data.pic = '/assets/images/ear.png';
+        }
         $scope.user = data;
         $scope.$digest();
       });

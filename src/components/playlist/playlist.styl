@@ -2,6 +2,7 @@
   height 100%
   flex-flow column wrap
   position relative
+  width 100%
 .playlist
   color #000
   height 100%
@@ -162,8 +163,6 @@
   .track__tag
     display none !important
 @media screen and (min-width: 600px)
-  .playlist__toolbar-tools
-    justify-content flex-end
   .playlist__leftbar-swither
     display none !important
     opacity 0
@@ -203,8 +202,9 @@
     bottom 0
     left 0
     right 0
-  .playlist__list
-    flex-flow column-reverse nowrap
+  .playlist
+    & .playlist__list
+      flex-flow column-reverse nowrap
   .track__votes-block
     flex-flow row-reverse nowrap
     justify-content flex-start

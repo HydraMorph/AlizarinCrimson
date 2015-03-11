@@ -20,13 +20,15 @@
 
     <div class="user__main">
 <!--      <img class="user__img" ng-src="assets/images/ear.png" alt="">-->
-      <img class="user__img" ng-src="{{user.pic}}" alt="">
+      <div class="user__img-cont">
+        <img class="user__img" ng-src="{{user.pic}}" alt="">
+      </div>
       <div class="user__additional">
         <p class="user__descripton" ng-bind-html="user.i"></p>
         <p class="user__origin">
           {{ 'userRegDate' | translate }}
           <span class="user__regdate">{{user.reg | date:'d.MM.y'}}</span>
-          <span ng-show="user.invites.p.name">
+          <span class="user__invitedby" ng-show="user.invites.p.name">
             {{ 'userInvitedBy' | translate }}
             <button class="user__father" ng-click="openProfile(user.invites.p.id)" aria-label="user-origin">{{user.invites.p.name}}</button>
           </span>

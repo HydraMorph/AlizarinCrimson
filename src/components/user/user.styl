@@ -48,11 +48,12 @@
 .user__main
   display flex
   flex-flow row nowrap
+.user__img-cont
+  display flex
+  flex 1
 .user__img
-  width 200px
-  min-width 200px
-  max-width 200px
-  height 200px
+  width 100%
+  height auto
   max-height 200px
   min-height 200px
 .user__additional
@@ -63,6 +64,8 @@
   @extend .user__descripton;
 .user__regdate
   @extend .user__descripton;
+.user__invitedby
+  display inline-block
 .user__father
   text-transform none
   background transparent
@@ -88,5 +91,5 @@
   .user__main
     flex-flow column wrap
   .user__additional
-  .user__img
+  .user__img-cont
     width 100%
