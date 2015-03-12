@@ -2,7 +2,7 @@
 ===============
 1. Install node and npm
 2. sudo npm install -g gulp bower
-3. git clone https://github.com/DonSinDRom/AlizarinCrimson
+3. git clone https://github.com/HydraMorph/AlizarinCrimson
 4. cd AlizarinCrimson
 5. sudo bower install
 6. sudo npm install
