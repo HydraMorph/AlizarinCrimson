@@ -10,4 +10,5 @@
 8. Open http://localhost:3000
 
 [Project activity - last 7 days](https://wakatime.com/@DonSinDRom/projects/xkxgdcdsrn)
+
 [Project  tasks](https://trello.com/b/buC0wysE/alizarincrimson)
