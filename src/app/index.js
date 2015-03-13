@@ -582,6 +582,6 @@ app.config(['$translateProvider', function ($translateProvider) {
 // Determining preferred language automatically
 //  $translateProvider.determinePreferredLanguage();
 
-  $translateProvider.preferredLanguage('he');
+  $translateProvider.preferredLanguage('en');
   $translateProvider.fallbackLanguage('en');
 }]);
