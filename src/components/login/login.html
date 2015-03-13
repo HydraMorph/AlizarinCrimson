@@ -9,7 +9,15 @@
       <label>{{ 'loginPassword' | translate }}</label>
       <input inputmode="latin" ng-model="user.password" ng-enter="login()" type="password">
     </md-input-container>
+    <div class="login__settings">
+      <md-checkbox ng-model="user.remember" class="settings__remember">
+        Remember me
+      </md-checkbox>
+    </div>
     <md-button aria-label="login--btn" class="login__btn" ng-click="login()">{{ 'loginSubmit' | translate }}</md-button>
+<!--    <a ng-click="recoverPassword()">Amnesia</a>-->
   </md-card>
+
+
 
 </md-dialog>
