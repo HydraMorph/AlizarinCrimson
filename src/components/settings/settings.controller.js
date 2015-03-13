@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('trigger')
-  .controller('SettingsCtrl', function ($scope, Client, md5, $mdToast, $animate) {
+  .controller('SettingsCtrl', function ($scope, Client, md5, $mdToast, $animate, $http) {
 
     $scope.gender = !Client.user.g;
     $scope.changeGender = function() {
@@ -58,6 +58,18 @@ angular.module('trigger')
             .hideDelay(3000)
         );
       }
+    }
+
+    $scope.initLast = function() {
+      $http.get('http://www.last.fm/api/auth/?api_key=66101f9355c9c707b5608bc42c62d860&cb=http://example.com').
+        success(function(data, status, headers, config) {
+        // this callback will be called asynchronously
+        // when the response is available
+        }).
+        error(function(data, status, headers, config) {
+        // called asynchronously if an error occurs
+        // or server returns response with an error status.
+        });
     }
 
   });
