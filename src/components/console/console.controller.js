@@ -21,6 +21,9 @@ angular.module('trigger')
         'Let\'s do lunch sometime, username',
         'I\'ve been there., username',
         'Do you hear me, username?'
+      ],
+      'he': [
+        'Lol, username'
       ]
     }
 
@@ -148,6 +151,11 @@ angular.module('trigger')
 
     /* Just for debug. u can delete it */
     $scope.data = function() {
+      if (document.body.style.webkitTransform == "rotateY(180deg)") {
+        document.body.style.webkitTransform = "rotateY(0deg)";
+      } else {
+        document.body.style.webkitTransform = "rotateY(180deg)";
+      }
       console.log('data', Client);
     };
 

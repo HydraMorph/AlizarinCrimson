@@ -508,6 +508,71 @@ app.config(['$translateProvider', function ($translateProvider) {
     'settingsNewPasswordSumbit': 'Я понимаю что делаю!'
   });
 
+  $translateProvider.translations('he', {
+    /* Login */
+    'loginUsername': 'שם משתמש',
+    'loginPassword': 'סיסמא',
+    'loginSubmit': 'שלח!',
+    /* Console */
+    'consoleLogIn': 'התחבר',
+    'consoleListeners': 'מאזינים',
+    'consoleActiveUsers': 'משתמשים פעילים',
+    'consoleYouCanUpload': 'אתה כרגע יכול להעלות ',
+    'consoleDonateMe': 'לתרום לפיתוח',
+    'consoleChangeTheme': 'שנה ',
+    'consoleRTFM': 'RTFM',
+    'consoleLogOut': 'צא',
+    /* Info */
+    'infoTabChat': 'צ\'אט',
+    'infoTabHistory': 'היסטוריה',
+    'infoTabDemocracy': 'דמוקרטיה',
+    'infoTabProfile': 'פרופיל',
+    /* Democracy */
+    'democracyElections': 'בחירות',
+    'democracyCandidate': 'ID המועמד',
+    'democracyVoted': 'בחרתם ב',
+    'democracyVote': 'בחר',
+    'democracyTabModer': 'מנהל',
+    'democracyTabBlog': 'בלוג',
+    /* Chat */
+    'startTyping': 'תרשום פה...',
+    'chatBold': 'bold',
+    'chatIrony': 'irony',
+    'chatTink': 'צליל התראה',
+    'chatImg': 'תמונות',
+    /* Online */
+    'onlineHere':'פה כרגע',
+    /* History */
+    'historyGold': 'זהב',
+    'historyArtist': 'שם האומן',
+    'historyTitle': 'שם הטראק',
+    'historyNoResults': 'אין תוצאות ):',
+    /* Playlist */
+    'trackUploadedBy': 'הועלה ע"י" ',
+    'trackToChat': 'שלח לצ\'אט',
+    /* Profile */
+    'profileUser': 'שם משתמש',
+    'profileUploads': 'העלאות',
+    'profilePluses': 'חיוביים',
+    'profileMinuses': 'שליליים',
+    'profileSettings': 'הגדרות',
+    /* User */
+    'userBan': 'חסום',
+    'userIgnore' :'התעלם',
+    'userInvitedBy' :'הוזמן ע"י"',
+    'userInvite': 'הוזמן',
+    'userRegDate' :'רשום',
+    /* Settings */
+    'settingsLogOut': 'צא',
+    'settingsTink': 'צליל התראה',
+    'settingsImg': 'תראה תמונות',
+    'settingsFemale': 'יששש! אני בחורה',
+    'settingsOldPassword': 'סיסמא ישנה',
+    'settingsNewPassword': 'סיסמא חדשה',
+    'settingsNewPasswordAgain': 'עוד הפעם , סיסמא חדשה',
+    'settingsNewPasswordSumbit': 'שנה סיסמא!'
+  });
+
   $translateProvider.registerAvailableLanguageKeys(['en', 'ru'], {
     'en_US': 'en',
     'en_UK': 'en',
@@ -517,6 +582,6 @@ app.config(['$translateProvider', function ($translateProvider) {
 // Determining preferred language automatically
 //  $translateProvider.determinePreferredLanguage();
 
-  $translateProvider.preferredLanguage('en');
+  $translateProvider.preferredLanguage('he');
   $translateProvider.fallbackLanguage('en');
 }]);
