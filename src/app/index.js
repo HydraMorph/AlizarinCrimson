@@ -79,9 +79,11 @@ app.run(function ($rootScope, Client, socket) {
   $rootScope.load = {
     'signed': false,
     'welcome': false,
-    'playlist': false
+    'playlist': false,
+    'channel': false
   };
 
+  $rootScope.channel = {};
   /* login callback */
   function processLogin (data) {
     if (data.error) {
@@ -90,6 +92,12 @@ app.run(function ($rootScope, Client, socket) {
       Client.user = data.user;
       $rootScope.userId = data.user.id;
       $rootScope.load.signed = true;
+      Client.goChannel(1, console.log('Q' ,data));
+      Client.getChannels(function(data){
+        $rootScope.channel = data;
+        console.log(data);
+        $rootScope.load.channel = true;
+      });
     }
   }
   var u = localStorage.getItem('username');
@@ -108,7 +116,6 @@ app.run(function ($rootScope, Client, socket) {
         Client.login(u, p, processLogin);
       }
     });
-    Client.goChannel(1, console.log('Q' ,data));
     $rootScope.load.welcome = true;
   });
 
@@ -141,6 +148,7 @@ app.service('Client', function ($log) {
     });
 
     socket.on('channelsdata', function(data) {
+      console.log(data);
       cl.channels = data.channels;
       cl.callbacks.channelsdata(data);
     });

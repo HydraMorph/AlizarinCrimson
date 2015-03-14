@@ -2,78 +2,30 @@
 'use strict';
 
 angular.module('trigger')
-  .controller('DemocracyCtrl', function ($scope) {
+  .controller('DemocracyCtrl', function ($scope, $rootScope, Client) {
     $scope.data = {
       selectedIndex : 1
     };
+
+    $scope.moderators = [];
+    $scope.banned = [];
     $scope.president = {
-      'name': 'Suok',
-      'description': 'упоротый напрочь'
+      'name': '',
+      'id': ''
     };
-    $scope.moderators = [
-      {
-        'name': 'bird',
-        'id': '1',
-        'description': 'упарывается'
-      },
-      {
-        'name': 'Ucsus',
-        'id': '1912',
-        'description': 'Rudolph'
-      },
-      {
-        'name': 'Fab',
-        'id': '234',
-        'description': 'Dasher'
-      },
-      {
-        'name': 'Ololo',
-        'id': '1234',
-        'description': 'редактор'
-      },
-      {
-        'name': 'Lulz',
-        'id': '624',
-        'description': 'упрт'
-      },
-      {
-        'name': 'Suok',
-        'id': '2453',
-        'description': 'начальник'
+
+    $scope.$watch(function() {
+      return $rootScope.load.channel;
+    }, function() {
+      if ($rootScope.load.channel === true) {
+        $scope.president.name = $rootScope.channel.prname;
+        $scope.president.id = $rootScope.channel.prid;
+        $scope.moderators = $rootScope.channel.editors;
+        $scope.banned = $rootScope.channel.banned;
+        console.log($scope.president, $scope.moderators, $scope.banned);
+//        console.log('Client.user', Client.user);
       }
-    ];
-    $scope.banned = [
-      {
-        'name': 'bird',
-        'id': '1',
-        'reason': 'упарывается'
-      },
-      {
-        'name': 'Ucsus',
-        'id': '1912',
-        'reason': 'Rudolph'
-      },
-      {
-        'name': 'Fab',
-        'id': '234',
-        'reason': 'Dasher'
-      },
-      {
-        'name': 'Ololo',
-        'id': '1234',
-        'reason': 'редактор'
-      },
-      {
-        'name': 'Lulz',
-        'id': '624',
-        'reason': 'упрт'
-      },
-      {
-        'name': 'Suok',
-        'id': '2453',
-        'reason': 'начальник'
-      }
-    ];
+    }, true);
 
     $scope.next = function() {
       $scope.data.selectedIndex = Math.min($scope.data.selectedIndex + 1, 2) ;

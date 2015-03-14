@@ -6,6 +6,7 @@
     <ng-switch on="data.selectedIndex" class="democracy__tabpanel-container">
       <div role="tabpanel" id="tabModerList-content" aria-labelledby="tabModerList" ng-switch-when="0" md-swipe-left="next()" md-swipe-right="previous()" >
 
+<!--
         <md-card class="democracy__elections">
           <h4 class="t-a-semicolon democracy__header">{{ 'democracyElections' | translate }}</h4>
           <md-input-container class="democracy__elections-input">
@@ -20,20 +21,20 @@
             <md-button aria-label="vote" class="md-raised democracy__elections-btn">{{ 'democracyVote' | translate }}</md-button>
           </div>
         </md-card>
+-->
 
-<!--
+
         <md-card class="democracy__admin">
 
           <div class="president">
             <div class="header">Президент:</div>
             <div class="content">
               <md-button aria-label="view-president" class="md-raised democracy__president-btn">
-       -->
+
 <!--                <img src="assets/images/crown.svg" alt="" class="democracy__icon">-->
-<!--
                 {{president.name}}
               </md-button>
-              <span class="t-b-space-hyphen-space">{{president.description}}</span>
+              <span class="t-b-space-hyphen-space">{{president.id}}</span>
             </div>
           </div>
 
@@ -57,9 +58,7 @@
             <div class="content" ng-repeat="mod in moderators">
               <span class="democracy__moderator">
                 <md-button aria-label="view-moderator" class="md-raised democracy__moderator">
--->
 <!--                  <img src="assets/images/death1.svg" alt="" class="democracy__icon">-->
-<!--
                   {{mod.name}}
                 </md-button>
                 <span class="t-b-space-hyphen-space">{{mod.description}}</span>
@@ -72,9 +71,7 @@
             <div class="content" ng-repeat="toll in banned">
               <span class="democracy__moderator">
                 <md-button aria-label="view-banned" class="md-raised democracy__moderator">
--->
 <!--                  <img src="assets/images/skull.svg" alt="" class="democracy__icon">-->
-<!--
                   {{toll.name}}
                 </md-button>
                 <span class="t-b-space-hyphen-space">{{toll.reason}}</span>
@@ -83,7 +80,6 @@
           </div>
 
         </md-card>
--->
 
 <!--
         <md-card class="democracy__list">
