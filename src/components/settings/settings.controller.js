@@ -60,16 +60,23 @@ angular.module('trigger')
       }
     }
 
+    /* Under development */
     $scope.initLast = function() {
-      $http.get('http://www.last.fm/api/auth/?api_key=66101f9355c9c707b5608bc42c62d860&cb=http://example.com').
-        success(function(data, status, headers, config) {
-        // this callback will be called asynchronously
-        // when the response is available
-        }).
-        error(function(data, status, headers, config) {
-        // called asynchronously if an error occurs
-        // or server returns response with an error status.
-        });
+      $http({method: 'GET', url: 'http://www.last.fm/api/auth/?api_key=66101f9355c9c707b5608bc42c62d860',
+        headers:{
+          'Access-Control-Allow-Origin': '*',
+          'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
+          'Access-Control-Allow-Headers': 'Content-Type, X-Requested-With'
+        }})
+      .success(function(d){ console.log( "yay" ); })
+      .error(function(d){ console.log( "nope" ); });
+//      $http({method: 'GET', url: 'http://www.last.fm/api/auth/?api_key=66101f9355c9c707b5608bc42c62d860&cb=http://www.last.fm',
+//        headers:{
+//          'Access-Control-Allow-Origin': '*',
+//          'Access-Control-Allow-Headers': 'Content-Type, X-Requested-With'
+//        }})
+//      .success(function(d){ console.log( "yay" ); })
+//      .error(function(d){ console.log( "nope" ); });
     }
 
   });

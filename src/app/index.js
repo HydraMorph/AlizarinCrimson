@@ -19,6 +19,15 @@ app.run(function(amMoment) {
   amMoment.changeLocale('ru');
 });
 
+app.config(['$httpProvider', function ($httpProvider) {
+  //Reset headers to avoid OPTIONS request (aka preflight)
+  $httpProvider.defaults.useXDomain = true;
+  $httpProvider.defaults.withCredentials = true;
+  delete $httpProvider.defaults.headers.common["X-Requested-With"];
+  $httpProvider.defaults.headers.common["Accept"] = "application/json";
+  $httpProvider.defaults.headers.common["Content-Type"] = "application/json";
+}]);
+
 //app.constant('angularMomentConfig', {
 //  preprocess: 'unix', // optional
 //  timezone: 'Europe/London' // optional
