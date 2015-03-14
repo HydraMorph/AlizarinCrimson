@@ -19,7 +19,7 @@
               </span>
             </div>
             <div class="track__time">
-              <span>+{{track.tt | readableTime}}</span>
+              <span am-time-ago="track.tt"></span>
             </div>
           </div>
           <div class="track__additional">
@@ -31,7 +31,7 @@
               </div>
               <div class="track__upload-info">
                 {{ 'trackUploadedBy' | translate }}&nbsp;
-                <a href="#" {{track.sid}}>{{ track.s }}</a>&nbsp;
+                <a>{{ track.s }}</a>&nbsp;
                 <span am-time-ago="track.ut"></span>
               </div>
             </div>
@@ -41,9 +41,14 @@
               </span>
             </div>
             <div class="track__time">
-              <span>+{{track.tt | readableTime}}</span>
+              <span am-time-ago="track.tt"></span>
             </div>
           </div>
+        </div>
+        <div class="track__votes-block" ng-class="{ 'voted--up': track.vote > 0, 'voted--down': track.vote < 0 }" ng-show="load.signed">
+          <span class="track__rating">{{track.r}}</span>
+          /
+          <span class="track__voters-diff">{{track.p.length - track.n.length}}</span>
         </div>
       </md-item>
     </md-list>
