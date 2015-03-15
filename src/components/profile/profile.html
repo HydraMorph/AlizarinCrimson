@@ -3,7 +3,7 @@
 
   <ng-switch on="profileTab" class="profile__tabpanel-container">
     <div role="tabpanel" id="tabUser-content" aria-labelledby="tabUser" ng-switch-when="0" md-swipe-left="next()" md-swipe-right="previous()" >
-      <div class="user__include" ng-include="'components/user/user.html'"></div>
+      <div class="user__include h" ng-include="'components/user/user.html'"></div>
     </div>
     <div role="tabpanel" id="tabUploads-content" aria-labelledby="tabUploads" ng-switch-when="1" md-swipe-left="next()" md-swipe-right="previous()" >
       <div class="uploads__include" ng-include="'components/uploads/uploads.html'"></div>

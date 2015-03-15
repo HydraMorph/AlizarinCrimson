@@ -1,3 +1,5 @@
+divider = 12px;
+
 .user__include
   font-size 13px
 
@@ -48,6 +50,55 @@
 .user__main
   display flex
   flex-flow row nowrap
+  overflow hidden
+  margin 0
+  position relative
+  &.swiped
+    .user__swipe-cont
+      &--first
+        left "calc(-100% + %s)" % (divider)
+      &--second
+        left divider
+    .user__swiper
+      background-color #009688
+      left 0
+      transition left 1s ease, right 1s ease, background-color 1s ease
+      &:hover
+        background-color #555
+.user__swipe-cont
+  width "calc(100% - %s)" % (divider)
+  height 100%
+  padding 0
+  margin 0
+  position absolute
+  transition left 1s ease, right 1s ease
+  &--first
+    left 0
+  &--second
+    left 100%
+    display flex
+    flex-flow row nowrap
+
+.user__relation
+  flex 1
+.user__relations-header
+  font-size 2rem
+  margin 0
+.user__lovers
+.user__haters
+  color #000
+.user__voter
+  color #000
+
+.user__swiper
+  position absolute
+  left "calc(100% - %s)" % (divider)
+  width divider
+  height 100%
+  background-color #555
+  transition left 1s ease, right 1s ease, background-color 1s ease
+  &:hover
+    background-color #009688
 .user__img-cont
   display flex
   flex 1

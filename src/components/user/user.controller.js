@@ -112,4 +112,13 @@ angular.module('trigger')
       }
     }
 
+    $scope.swiped = false;
+    $scope.swipe = function () {
+      if($scope.swiped === true) {
+        $scope.swiped = false;
+      } else {
+        $scope.swiped = true;
+      }
+    }
+
   });

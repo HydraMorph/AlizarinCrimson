@@ -1,53 +1,74 @@
-<div class="user__ctrl" ng-controller="UserCtrl">
+<div class="user__ctrl h" ng-controller="UserCtrl">
 
-  <md-card class="profile__main">
+  <md-card class="user__main h" ng-class="{ 'swiped': swiped === true }">
 
-    <div class="user__nav">
-      <div class="user_names-block">
-        <span class="user__name">{{user.name}}</span>
-        <span class="user__id">#{{user.id}}</span>
+    <div class="user__swipe-cont user__swipe-cont--first">
+      <div class="user__nav">
+        <div class="user_names-block">
+          <span class="user__name">{{user.name}}</span>
+          <span class="user__id">#{{user.id}}</span>
+        </div>
+        <div class="user__votes-block" ng-class="{ 'voted--up': user.vote == 'plus', 'voted--down': user.vote == 'minus' }" >
+          <md-button ng-click="userVoteDown(user.id)" class="md-fab user__vote--down" aria-label="user-minus" ng-show="!isMe" ng-click="voteDown(track.id)">
+            <ng-md-icon icon="expand_more" size="24"></ng-md-icon>
+          </md-button>
+          <span class="user__karma">{{user.karma}}</span>
+          <md-button ng-click="userVoteUp(user.id)" class="md-fab user__vote--up" aria-label="user-plus" ng-show="!isMe" ng-click="voteUp(track.id)">
+            <ng-md-icon icon="expand_less" size="24"></ng-md-icon>
+          </md-button>
+        </div>
       </div>
-      <div class="user__votes-block" ng-class="{ 'voted--up': user.vote == 'plus', 'voted--down': user.vote == 'minus' }" >
-        <md-button ng-click="userVoteDown(user.id)" class="md-fab user__vote--down" aria-label="user-minus" ng-show="!isMe" ng-click="voteDown(track.id)">
-          <ng-md-icon icon="expand_more" size="24"></ng-md-icon>
-        </md-button>
-        <span class="user__karma">{{user.karma}}</span>
-        <md-button ng-click="userVoteUp(user.id)" class="md-fab user__vote--up" aria-label="user-plus" ng-show="!isMe" ng-click="voteUp(track.id)">
-          <ng-md-icon icon="expand_less" size="24"></ng-md-icon>
-        </md-button>
+
+      <div class="user__main">
+  <!--      <img class="user__img" ng-src="assets/images/ear.png" alt="">-->
+        <div class="user__img-cont">
+          <img class="user__img" ng-src="{{user.pic}}" alt="">
+        </div>
+        <div class="user__additional">
+          <p class="user__descripton" ng-bind-html="user.i"></p>
+          <p class="user__origin">
+            {{ 'userRegDate' | translate }}
+            <span class="user__regdate">{{user.reg | date:'d.MM.y'}}</span>
+            <span class="user__invitedby" ng-show="user.invites.p.name">
+              {{ 'userInvitedBy' | translate }}
+              <button class="user__father" ng-click="openProfile(user.invites.p.id)" aria-label="user-origin">{{user.invites.p.name}}</button>
+            </span>
+          </p>
+          <p class="user__invited" ng-show="user.invites.u.length">
+  <!--         {{user.g ? 'Понаприглашал' : 'Понаприглашала'}}:-->
+            {{ 'userInvite' | translate }}
+            <span class="user__children" ng-repeat="child in user.invites.u">
+              <button class="user__child" ng-click="openProfile(child.id)" aria-label="user-child">{{child.n}}</button>
+            </span>
+          </p>
+        </div>
       </div>
+
+      <div class="user__control">
+        <md-checkbox ng-model="data.img" aria-label="ОМММ" class="user__ignore">
+          {{ 'userIgnore' | translate }}
+        </md-checkbox>
+        <md-button class="user__ban" aria-label="user-ban">{{ 'userBan' | translate }}</md-button>
+      </div>
+
     </div>
 
-    <div class="user__main">
-<!--      <img class="user__img" ng-src="assets/images/ear.png" alt="">-->
-      <div class="user__img-cont">
-        <img class="user__img" ng-src="{{user.pic}}" alt="">
-      </div>
-      <div class="user__additional">
-        <p class="user__descripton" ng-bind-html="user.i"></p>
-        <p class="user__origin">
-          {{ 'userRegDate' | translate }}
-          <span class="user__regdate">{{user.reg | date:'d.MM.y'}}</span>
-          <span class="user__invitedby" ng-show="user.invites.p.name">
-            {{ 'userInvitedBy' | translate }}
-            <button class="user__father" ng-click="openProfile(user.invites.p.id)" aria-label="user-origin">{{user.invites.p.name}}</button>
-          </span>
-        </p>
-        <p class="user__invited" ng-show="user.invites.u.length">
-<!--         {{user.g ? 'Понаприглашал' : 'Понаприглашала'}}:-->
-          {{ 'userInvite' | translate }}
-          <span class="user__children" ng-repeat="child in user.invites.u">
-            <button class="user__child" ng-click="openProfile(child.id)" aria-label="user-child">{{child.n}}</button>
-          </span>
-        </p>
-      </div>
-    </div>
+    <div class="user__swiper" ng-click="swipe()"></div>
 
-    <div class="user__control">
-      <md-checkbox ng-model="data.img" aria-label="ОМММ" class="user__ignore">
-        {{ 'userIgnore' | translate }}
-      </md-checkbox>
-      <md-button class="user__ban" aria-label="user-ban">{{ 'userBan' | translate }}</md-button>
+    <div class="user__swipe-cont user__swipe-cont--second">
+      <div class="user__relation">
+        <h4 class="user__relations-header">Lovers:</h4>
+        <div class="user__lovers">
+          <a class="user__voter" ng-repeat="n in user.n" ng-click="openProfile(n.id)">{{ n.n }}</a>
+        </div>
+      </div>
+
+      <div class="user__relation">
+        <h4 class="user__relations-header">Haters:</h4>
+        <div class="user__haters">
+          <a class="user__voter" ng-repeat="p in user.p" ng-click="openProfile(p.id)">{{ p.n }}</a>
+        </div>
+      </div>
     </div>
 
   </md-card>
