@@ -93,11 +93,11 @@ app.run(function ($rootScope, Client, socket) {
       $rootScope.userId = data.user.id;
       $rootScope.load.signed = true;
       Client.goChannel(1, console.log('Q' ,data));
-      Client.getChannels(function(data){
-        $rootScope.channel = data;
-        console.log(data);
-        $rootScope.load.channel = true;
-      });
+//      Client.getChannels(function(data){
+//        $rootScope.channel = data;
+//        console.log(data);
+//        $rootScope.load.channel = true;
+//      });
     }
   }
   var u = localStorage.getItem('username');
