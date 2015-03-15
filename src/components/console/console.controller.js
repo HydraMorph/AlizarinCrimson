@@ -145,6 +145,9 @@ angular.module('trigger')
         socket.on('uplim', function(data) {
           $scope.user.uplim = data.t;
         });
+        if (localStorage.getItem('theme').length > 0) {
+          document.body.setAttribute("theme", localStorage.getItem('theme'));
+        }
       }
       $scope.load.signed = $rootScope.load.signed;
     }, true);
@@ -163,8 +166,14 @@ angular.module('trigger')
       var theme = document.body.getAttribute("theme");
       if (theme === 'dark') {
         document.body.setAttribute("theme", "light");
+        if ($scope.load.signed === true) {
+          localStorage.setItem('theme', 'light');
+        }
       } else {
         document.body.setAttribute("theme", "dark");
+        if ($scope.load.signed === true) {
+          localStorage.setItem('theme', 'dark');
+        }
       }
     }
 
