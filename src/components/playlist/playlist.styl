@@ -1,10 +1,9 @@
 .playlist__ctrl
-  height 100%
-  flex-flow column wrap
   position relative
+  height 100%
   width 100%
+  flex-flow column wrap
 .playlist
-  color #000
   height 100%
   display flex
   flex 1
@@ -15,24 +14,35 @@
   .playlist
     width 100%
 .playlist__content
-  height -webkit-calc(100% - 97px) /* (current) 58 + 3 (progressbar) + 36 (navbar) */
-  height calc(100% - 97px) /* (current) 58 + 3 (progressbar) + 36 (navbar) */
+  height -webkit-calc(100% - 96px) /* (current) 58 + 2 (progressbar) + 36 (navbar) */
+  height calc(100% - 96px) /* (current) 58 + 2 (progressbar) + 36 (navbar) */
 .playlist__content--current
   height 60px /* (current) 58 + 2 (progressbar) */
   & .playlist__track
     border 1px solid colorCurrentBorder
     background-color colorCurrentBG
     position relative
+    body[theme='dark'] &
+      border 1px solid darkCurrentBorder
+      background-color darkCurrentBG
   & .track__artist
   & .track__title
     color colorCurrentTitle
+    body[theme='dark'] &
+      color darkCurrentTitle
   & .track__rating
     color colorCurrentRating
+    body[theme='dark'] &
+      color darkCurrentRating
   & .track__base
   & .track__additional
     background-color colorCurrentBG
+    body[theme='dark'] &
+      background-color darkCurrentBG
   & .track__upload-info
     color colorCurrentUploadinfo
+    body[theme='dark'] &
+      color darkCurrentUploadinfo
 
 
 .playlist__list
@@ -42,22 +52,25 @@
   height 100%
   overflow-y auto
 .playlist__track
-  border 1px solid colorTrackBorder
   display flex
   flex-flow row nowrap
   align-items center
   margin-top -1px
-  background-color colorTrackBG
   height 60px !important
   min-height 60px !important
   max-height 60px !important
   width 100%
-  &:first-child
-    margin-top 0
+  border 1px solid colorTrackBorder
+  background-color colorTrackBG
+  body[theme='dark'] &
+    border 1px solid darkTrackBorder
+    background-color darkTrackBG
   &.track--gold
     & .track__img-cont
-      outline 4px solid colorTrackGold
       outline-offset -4px
+      outline 4px solid colorTrackGold
+      body[theme='dark'] &
+        outline 4px solid darkTrackGold
 .track__img-cont
   display flex
   margin 5px
@@ -74,12 +87,14 @@
 .track__artist
 .track__title
   font-weight 600
-  color colorTrackTitle
   font-size 12px
   margin 0
   white-space nowrap
   overflow hidden
   text-overflow ellipsis
+  color colorTrackTitle
+  body[theme='dark'] &
+    color darkTrackTitle
 .track__tags
   display flex
   flex 1
@@ -87,15 +102,20 @@
 .track__tag
   display flex
   font-size 9px
-  color colorTrackTag
   border-radius 4px
-  background-color colorTrackTagBG
   padding 2px 4px
   margin 0 2px
+  color colorTrackTag
+  background-color colorTrackTagBG
+  body[theme='dark'] &
+    color darkTrackTag
+    background-color darkTrackTagBG
 .track__time
   display flex
-  color colorTrackTime
   font-size 12px
+  color colorTrackTime
+  body[theme='dark'] &
+    color darkTrackTime
 
 .track__votes-block
   display flex
@@ -120,9 +140,10 @@
 .track__rating
   font-weight 100
   font-size 23px
-  color colorTrackRating
   padding 0 2px
-
+  color colorTrackRating
+  body[theme='dark'] &
+    color darkTrackRating
 
 .playlist__toolbar
 .playlist__toolbar-tools
@@ -130,6 +151,8 @@
   min-height 36px
   max-height 36px
   background-color colorPlaylistToolbarBG !important
+  body[theme='dark'] &
+    background-color darkPlaylistToolbarBG !important
 
 .playlist__leftbar-swither
 .playlist__rightbar-swither
@@ -148,9 +171,13 @@
   display block
   height 3px
   background colorProgressBG
+  body[theme='dark'] &
+    background darkProgressBG
 .track__progress-active
   height 3px
   background colorProgressActiveBG
+  body[theme='dark'] &
+    background ProgressActiveBG
 
 /* Caution! Buggy thing
 * Please, just ignore this
@@ -183,10 +210,14 @@
       & .track__vote--up
       & .track__rating
         color colorTrackVoteUp
+        body[theme='dark'] &
+          color darkTrackVoteUp
     &.voted--down
       & .track__vote--down
       & .track__rating
         color colorTrackVoteDown
+        body[theme='dark'] &
+          color darkTrackVoteDown
   .track__progress
     bottom -1px
   .track__tags
@@ -213,10 +244,14 @@
       & .track__vote--down
       & .track__rating
         color colorTrackVoteUp
+        body[theme='dark'] &
+          color darkTrackVoteUp
     &.voted--down
       & .track__vote--up
       & .track__rating
         color colorTrackVoteDown
+        body[theme='dark'] &
+          color darkTrackVoteDown
   .track__progress
     top -1px
 //  .track__tags
@@ -231,10 +266,12 @@
   font-size 12px
 .track__upload-info
   font-size 10px
-  color colorTrackUploadinfo
   white-space nowrap
   overflow hidden
   text-overflow ellipsis
+  color colorTrackUploadinfo
+  body[theme='dark'] &
+    color darkTrackUploadinfo
 
 @media screen and (max-width: 600px)
   .track__artist
@@ -255,12 +292,14 @@
   height 58px !important
   min-height 58px !important
   max-height 58px !important
-  background colorTrackBG
   display flex
   align-items center
   justify-content center
   flex 1
   flex-flow row nowrap
+  background colorTrackBG
+  body[theme='dark'] &
+    background darkTrackBG
 .track__additional
   align-items flex-start
   flex-flow row nowrap

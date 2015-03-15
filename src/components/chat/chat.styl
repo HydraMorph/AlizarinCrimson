@@ -1,8 +1,9 @@
 .chat
   font-size 13px
   height 100%
-
   color colorChat
+  body[theme='dark'] &
+    color darkChat
   & .chat__module
     height 100%
     overflow hidden
@@ -14,14 +15,17 @@
     padding 0
 .chat__input-grp
   width 100%
-  border-top 3px solid colorChatInputBorder
-  background-color colorChatInputBG
   height 90px /* depend with .chat__md-content */
   margin 0
   padding 0
   display flex
   flex 1 100%
   flex-flow row wrap
+  border-top 3px solid colorChatInputBorder
+  background-color colorChatInputBG
+  body[theme='dark'] &
+    border-top 3px solid darkChatInputBorder
+    background-color darkChatInputBG
   & md-input-container
     padding 0 6px !important
     position relative
@@ -37,10 +41,14 @@
       overflow auto
     &.md-input-focused
       & .md-input
-        border-color colorChatInputFocus !important
         height 46px
+        border-color colorChatInputFocus !important
+        body[theme='dark'] &
+          border-color darkChatInputFocus !important
       & label
         color colorChatInputFocus !important
+        body[theme='dark'] &
+          color darkChatInputFocus !important
   & .chat__input-nav
     position absolute
     bottom 0
@@ -80,6 +88,8 @@
     & .chat__button--irony
       font-style italic
       color colorChatInputIrony
+      body[theme='dark'] &
+        color darkChatInputIrony
 .chat__md-content
   height -webkit-calc(100% - 90px) /* depend with .chat__input-grp */
   height calc(100% - 90px) /* depend with .chat__input-grp */
@@ -88,12 +98,17 @@
 .chat__item
   border-bottom 1px solid colorChatItemBorder
   background-color colorChatItemBG
+  body[theme='dark'] &
+    border-bottom 1px solid darkChatItemBorder
+    background-color darkChatItemBG
   & .md-tile-content
     padding 6px
     display flex
     flex-flow row nowrap
     &.private
       background colorChatItemPrivateBG
+      body[theme='dark'] &
+        background darkChatItemPrivateBG
     &.personal
       font-weight bold
 .msg__author
@@ -101,6 +116,8 @@
   display flex
   padding-right 6px
   color colorChatItemAuthor
+  body[theme='dark'] &
+    color darkChatItemAuthor
 .msg__message
   display flex
   flex 1
@@ -114,12 +131,16 @@
   & .irony
     font-style italic
     color colorChatInputIrony
+    body[theme='dark'] &
+      color darkChatInputIrony
 .msg__time
-  color colorChatItemTime
   font-size 10px
   justify-content flex-end
   display flex
   min-width 48px
+  color colorChatItemTime
+  body[theme='dark'] &
+    color darkChatItemTime
 
 /* Hide time in messages */
 @media screen and (max-width: 599px)

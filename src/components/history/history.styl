@@ -6,10 +6,12 @@
 .history__search-grp
   height 64px /* depend with .history__content */
   width 100%
-  background colorHistoryGrpBG
   display flex
   align-items center
   flex-flow row wrap
+  background colorHistoryGrpBG
+  body[theme='dark'] &
+    background darkHistoryGrpBG
   & .history__checkbox
     margin 0 0 0 10px
   & .history__select

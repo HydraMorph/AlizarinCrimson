@@ -1,0 +1,322 @@
+@import url("http://fonts.googleapis.com/css?family=Open\+Sans:400,700|Roboto:400,700,700italic,400italic")
+
+@charset "UTF-8";
+
+html
+  font-family 'Open Sans', sans-serif !important
+  width 100vw
+  height 100%
+  overflow hidden
+  font-size 16px
+@media screen and (max-width: 599px)
+  html
+    font-size 14px
+@media (min-width: 600px) and (max-width: 959px)
+  html
+    font-size 15px
+*
+  -webkit-user-select initial !important
+/* material angular is broke user-select */
+
+/* Custom scrollbar - doesn't work in Firefox */
+::-webkit-scrollbar
+  height 4px
+  width 4px
+/* Track */
+::-webkit-scrollbar-track
+  box-shadow none
+  border-radius 0
+  background #eee
+/* Handle */
+::-webkit-scrollbar-thumb
+  border-radius 0
+  box-shadow none
+  background #bbb
+
+/*
+.perf
+  transform translate3d(0,0,0)
+*/
+
+
+[layout=row]
+  flex-direction row
+
+
+/* Typography - will delete it later */
+/*
+* t-(a || b)-{type}
+* t == typography
+* b == before
+* a == :after
+* type == space, semicolon or others
+*/
+.t-a-semicolon
+  &:after
+    content ':'
+.t-b-space
+  &:before
+    content ' '
+.t-b-space-hyphen-space
+  &:before
+    content ' - '
+.t-a-space-hyphen-space
+  &:after
+    content ' - '
+
+object
+  color currentColor
+svg
+  color currentColor
+  fill currentColor
+
+.viewport
+  height 100%
+  position fixed
+  top 0
+  right 0
+  bottom 0
+  left 0
+  width 100%
+
+.h
+  height 100%
+
+body
+  background-color colorBodyBG
+  transition transform 1s ease
+  &[theme='dark']
+    background-color darkBodyBG
+
+md-card.md-default-theme
+  background-color colorMdCardBG
+  body[theme='dark'] &
+    background-color darkMdCardBG
+
+.md-sidenav-right.md-locked-open
+  width initial !important
+  min-width initial !important
+  max-width initial !important
+
+/* Link's default color */
+a
+  color colorSecond2
+  body[theme='dark'] &
+    color darkSecond2
+
+md-content.md-default-theme
+  background-color colorMdContentBG
+  body[theme='dark'] &
+    background-color darkMdContentBG
+
+md-input-group
+md-input-container
+  & input
+  &.md-input-focused
+    & input
+      border-color colorThird1 !important
+      body[theme='dark'] &
+        border-color darkThird1 !important
+    & label
+      color colorThird1 !important
+      body[theme='dark'] &
+        color darkThird1 !important
+
+md-slider.md-default-theme .md-track.md-track-fill
+  background colorThird1 !important
+  body[theme='dark'] &
+    background darkThird1 !important
+
+/* Console style */
+.md-sidenav-left
+  width 150px !important
+  min-width 150px !important
+  height 100%
+  background colorGray1
+  body[theme='dark'] &
+    background darkGray1
+  & md-content.md-default-theme
+    background colorGray1
+    body[theme='dark'] &
+      background darkGray1
+.md-sidenav-right
+  height 100%
+
+@media screen and (max-width: 600px)
+  .md-sidenav-right
+    z-index 64
+    width 100% !important
+    min-width 100% !important
+    height -webkit-calc(100% - 36px)
+    height calc(100% - 36px)
+    top 36px
+    overflow hidden
+    position fixed !important
+
+@media (min-width: 600px) and (max-width: 959px)
+  .md-sidenav-right
+    position fixed !important
+    width -webkit-calc(100% - 150px) !important
+    width calc(100% - 150px) !important
+    min-width -webkit-calc(100% - 150px) !important
+    min-width calc(100% - 150px) !important
+    top 36px
+    height -webkit-calc(100% - 36px)
+    height calc(100% - 36px)
+    overflow hidden
+    z-index 64
+  .console__ctrl
+    height -webkit-calc(100% - 72px)
+    height calc(100% - 72px)
+    overflow hidden
+  .md-sidenav-left
+    top 36px
+@media screen and (min-width: 960px)
+  .md-sidenav-right
+    display flex !important
+    flex 3 !important
+    z-index 64
+
+.viewport--H
+  height 100%
+  width 100%
+  display flex
+  flex-flow row nowrap
+
+/* Info panels */
+.tabsdemoStaticTabs .tabpanel-container
+  display block
+  position relative
+  border none
+  height -webkit-calc(100% - 60px)
+  height calc(100% - 60px)
+  overflow hidden
+@media screen and (max-width: 960px)
+  .tabsdemoStaticTabs .tabpanel-container
+    height -webkit-calc(100% - 96px)
+    height calc(100% - 96px)
+
+.tabsdemoStaticTabs [role="tabpanel"]
+  overflow auto
+  width 100%
+  height 100%
+  transition all cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.5s
+  position absolute
+.tabsdemoStaticTabs [role="tabpanel"].ng-leave.ng-leave-active
+.tabsdemoStaticTabs [role="tabpanel"].ng-enter
+  top -300px
+.tabsdemoStaticTabs [role="tabpanel"].ng-leave
+.tabsdemoStaticTabs [role="tabpanel"].ng-enter.ng-enter-active
+  top 0
+.tabsdemoStaticTabs [role="tabpanel"].ng-leave
+  z-index 100
+.tabsdemoStaticTabs .md-header
+  overflow-x hidden
+  background-color colorTabBG !important
+  body[theme='dark'] &
+    background-color darkTabBG !important
+.tabsdemoStaticTabs .md-header-items-container
+  left 0 !important
+  right 0 !important
+.tabsdemoStaticTabs .md-header-items-container .md-header-items
+  -webkit-transform none !important
+  transform none !important
+  width 100% !important
+  border-bottom 3px solid colorTabBorder
+  body[theme='dark'] &
+    border-bottom 3px solid darkTabBorder
+.tabsdemoStaticTabs md-tab
+  text-transform none
+  background-color colorTabBG
+  color colorTab !important
+  border-right 1px solid colorTabBorder
+  body[theme='dark'] &
+    background-color darkTabBG
+    color darkTab !important
+    border-right 1px solid darkTabBorder
+  &:focus
+    border-top none
+    border-bottom none
+    border-right 1px solid colorTabFocusBorder
+    border-left 1px solid colorTabFocusBorder
+    border-color colorTabFocusBorder !important
+    body[theme='dark'] &
+      border-right 1px solid darkTabFocusBorder
+      border-left 1px solid darkTabFocusBorder
+      border-color darkTabFocusBorder !important
+  &:first-child
+    border-left 1px solid colorTabFocusBorder
+    body[theme='dark'] &
+      border-left 1px solid darkTabFocusBorder
+.tabsdemoStaticTabs md-tab
+  box-sizing content-box
+.tabsdemoStaticTabs md-tab.active
+.tabsdemoStaticTabs md-tab:focus
+  border-bottom 3px solid colorTabActiveBorder
+  color colorTabActive !important
+  background-color colorTabActiveBG !important
+  body[theme='dark'] &
+    border-bottom 3px solid darkTabActiveBorder
+    color darkTabActive !important
+    background-color darkTabActiveBG !important
+.tabsdemoStaticTabs md-tab:hover
+  border-bottom 3px solid colorTabHoverBorder
+  body[theme='dark'] &
+    border-bottom 3px solid darkTabHoverBorder
+.tabsdemoStaticTabs md-tab[disabled]
+  opacity 0.5
+.tabsdemoStaticTabs md-tab .md-ripple-container
+  color colorThird1 !important
+  body[theme='dark'] &
+    color darkThird1 !important
+.tabsdemoStaticTabs .md-header .md-ripple
+  border-color colorThird1 !important
+  body[theme='dark'] &
+    border-color darkThird1 !important
+.tabsdemoStaticTabs md-tabs-ink-bar
+  height 3px
+  background-color colorThird1 !important
+  body[theme='dark'] &
+    background-color darkThird1 !important
+
+@media screen and (min-width: 601px)
+  .tabsdemoStaticTabs .md-header
+    height 60px
+  .tabsdemoStaticTabs .md-header-items-container
+    height 60px
+@media screen and (max-width: 600px)
+  .tabsdemoStaticTabs .md-header
+    height 36px
+  .tabsdemoStaticTabs .md-header-items-container
+    height 36px
+
+md-tab
+  min-width initial !important
+  width initial !important
+  max-width initial !important
+  margin initial !important
+  padding 0
+  flex 1
+md-checkbox.md-default-theme.md-checked
+  & .md-icon
+    background-color colorThird1 !important
+    body[theme='dark'] &
+      background-color darkThird1 !important
+md-checkbox.md-default-theme .md-ripple
+  background-color colorThird1 !important
+  body[theme='dark'] &
+    background-color darkThird1 !important
+md-checkbox .md-label
+  border none !important
+
+
+/*!
+ * angular-loading-bar v0.7.1
+ */
+
+#loading-bar .bar
+  background colorThird1 !important
+  body[theme='dark'] &
+    background darkThird1 !important
+.md-paginator.md-next
+  display none !important

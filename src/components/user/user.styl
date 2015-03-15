@@ -24,23 +24,35 @@ divider = 12px;
   &.voted--up
     .user__vote--up
       color colorSecond1
+      body[theme='dark'] &
+        color darkSecond1
     .user__vote--down
       color colorGray4
+      body[theme='dark'] &
+        color darkGray4
     .user__karma
       color colorSecond1
+      body[theme='dark'] &
+        color darkSecond1
   &.voted--down
     .user__vote--up
       color colorGray4
+      body[theme='dark'] &
+        color darkGray4
     .user__vote--down
       color colorNegative
+      body[theme='dark'] &
+        color darkNegative
     .user__karma
       color colorNegative
+      body[theme='dark'] &
+        color darkNegative
 
 .user__vote--up
 .user__vote--down
   color inherit
-  background-color transparent !important
   box-shadow none !important
+  background-color transparent !important
 .user__karma
   font-weight 100
   font-size 23px
@@ -133,8 +145,10 @@ divider = 12px;
   text-transform none
   background transparent
   border none
-  color colorSecond2
   text-decoration underline
+  color colorSecond2
+  body[theme='dark'] &
+    color darkSecond2
 .user__invited
   @extend .user__descripton;
 .user__children
@@ -147,8 +161,10 @@ divider = 12px;
 //.user__ignore
 .user__ban
   text-transform none
-  background-color colorSecond2
   color #fff
+  background-color colorSecond2
+  body[theme='dark'] &
+    background-color darkSecond2
 
 @media screen and (max-width: 500px)
   .user__main

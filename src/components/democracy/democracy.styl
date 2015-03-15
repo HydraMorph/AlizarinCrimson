@@ -22,10 +22,14 @@
     height 36px
   &.md-input-focused
     & input
-      border-color colorSecond2 !important
       height 36px
+      border-color colorSecond2 !important
+      body[theme='dark'] &
+        border-color darkSecond2 !important
     & label
       color colorSecond2 !important
+      body[theme='dark'] &
+        color darkSecond2 !important
 
 .democracy__elections-row
   display flex
@@ -36,9 +40,11 @@
 .democracy__elections-username
   font-size 12px
 .democracy__elections-btn
-  background-color colorSecond2 !important
   text-transform capitalize
   color #fff
+  background-color colorSecond2 !important
+  body[theme='dark'] &
+    background-color darkSecond2 !important
 
 .democracy__icon
   width 20px
@@ -112,11 +118,13 @@
   text-transform none
   font-size 12px
   display flex
-  background-color colorSecond2 !important
   color #fff !important
   justify-content center
   align-items center
   margin 10px 0
+  background-color colorSecond2 !important
+  body[theme='dark'] &
+    background-color darkSecond2 !important
 
 .democracy__moderator
   display flex

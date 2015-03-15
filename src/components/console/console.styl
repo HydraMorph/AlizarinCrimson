@@ -1,23 +1,29 @@
 .md-sidenav-left
   & .console__switcher-cont
-    background-color colorGray1
     min-height 36px /* Depend with .console__ctrl */
     height 36px /* Depend with .console__ctrl */
     max-height 36px /* Depend with .console__ctrl */
+    background-color colorGray1
+    body[theme='dark'] &
+      background-color darkGray1
 .console__ctrl
   height -webkit-calc(100% - 36px) /* Depend with .console__switcher-cont */
   height calc(100% - 36px) /* Depend with .console__switcher-cont */
 .console__include
   background-color colorGray1 !important
+  body[theme='dark'] &
+    background-color darkGray1 !important
 
 @media screen and (min-width: 960px)
   .md-sidenav-left
     & .console__switcher-cont
-      background-color colorGray1
       min-height 60px /* Depend with .console__ctrl */
       height 60px /* Depend with .console__ctrl */
       max-height 60px /* Depend with .console__ctrl */
       padding 5px
+      background-color colorGray1
+      body[theme='dark'] &
+        background-color darkGray1
   .console__ctrl
     height -webkit-calc(100% - 60px) /* Depend with .console__switcher-cont */
     height calc(100% - 60px) /* Depend with .console__switcher-cont */
@@ -45,11 +51,13 @@
       background-color rgba(255,255,255,.2)
       top 2px
 .console__buttton--upload
-  background-color colorSecond2
   width 100%
   color #fff
   border-radius 0 !important
   font-size 32px
+  background-color colorSecond2
+  body[theme='dark'] &
+    background-color darkSecond2
   & svg
     fill #fff
 
@@ -71,6 +79,8 @@
   font-size 10px
 .console__username
   color colorSecond2
+  body[theme='dark'] &
+    color darkSecond2
 .console__listeners
 .console__active-users
   font-size 16px
@@ -79,6 +89,8 @@
 .console__link
   display inline-block
   color colorSecond2
+  body[theme='dark'] &
+    color darkSecond2
 .console__login-btn
   text-transform none
   width 100%
@@ -89,10 +101,14 @@
   &.play
     & .c
       fill colorSecond1
+      body[theme='dark'] &
+        fill darkSecond1
     & .b3
     & .b2
     & .b1
       stroke colorSecond1
+      body[theme='dark'] &
+        stroke darkSecond1
 
 /* this animation is so bad for perf */
 //    & .c
