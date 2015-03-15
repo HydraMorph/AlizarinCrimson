@@ -26,12 +26,16 @@ html
 ::-webkit-scrollbar-track
   box-shadow none
   border-radius 0
-  background #eee
+  background colorScrollbarTrackBG
+  [theme='dark'] &
+    background darkScrollbarTrackBG
 /* Handle */
 ::-webkit-scrollbar-thumb
   border-radius 0
   box-shadow none
-  background #bbb
+  background colorScrollbarThumbBG
+  [theme='dark'] &
+    background darkScrollbarThumbBG
 
 /*
 .perf

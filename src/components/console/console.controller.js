@@ -159,6 +159,15 @@ angular.module('trigger')
       console.log('data', Client);
     };
 
+    $scope.changeTheme = function () {
+      var theme = document.body.getAttribute("theme");
+      if (theme === 'dark') {
+        document.body.setAttribute("theme", "light");
+      } else {
+        document.body.setAttribute("theme", "dark");
+      }
+    }
+
     /* Show login modal */
     $scope.showLoginModal = function(ev) {
       $mdDialog.show({
