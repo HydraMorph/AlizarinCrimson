@@ -56,19 +56,36 @@
     <div class="user__swiper" ng-click="swipe()"></div>
 
     <div class="user__swipe-cont user__swipe-cont--second">
+
       <div class="user__relation">
-        <h4 class="user__relations-header">Lovers:</h4>
-        <div class="user__lovers">
-          <a class="user__voter" ng-repeat="n in user.n" ng-click="openProfile(n.id)">{{ n.n }}</a>
-        </div>
+
+        <h4 class="user__relations-header">Haters(<span class="user__relations-counter">{{user.n.length}}</span>):</h4>
+        <md-content class="user__md-content">
+          <md-list class="user__list">
+            <md-item ng-repeat="n in user.n" class="user__list-item">
+              <md-item-content class="user__item" ng-class="{active: user.a==true}">
+                <md-button ng-click="openProfile(n.id)" aria-label="open-user-profile" class="user__2profile">i</md-button>
+                <md-button ng-click="addNick(n.n)" aria-label="add-user-to-chat" class="user__2chat">{{n.n.length && n.n || 'Deleted'}}</md-button>
+              </md-item-content>
+            </md-item>
+          </md-list>
+        </md-content>
       </div>
 
       <div class="user__relation">
-        <h4 class="user__relations-header">Haters:</h4>
-        <div class="user__haters">
-          <a class="user__voter" ng-repeat="p in user.p" ng-click="openProfile(p.id)">{{ p.n }}</a>
-        </div>
+        <h4 class="user__relations-header">Lovers(<span class="user__relations-counter">{{user.p.length}}</span>):</h4>
+        <md-content class="user__md-content">
+          <md-list class="user__list">
+            <md-item ng-repeat="p in user.p" class="user__list-item">
+              <md-item-content class="user__item" ng-class="{active: user.a==true}">
+                <md-button ng-click="openProfile(p.id)" aria-label="open-user-profile" class="user__2profile">i</md-button>
+                <md-button ng-click="addNick(p.n)" aria-label="add-user-to-chat" class="user__2chat">{{p.n.length && p.n || 'Deleted'}}</md-button>
+              </md-item-content>
+            </md-item>
+          </md-list>
+        </md-content>
       </div>
+
     </div>
 
   </md-card>

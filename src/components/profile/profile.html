@@ -2,19 +2,19 @@
 <div class="profile__ctrl">
 
   <ng-switch on="profileTab" class="profile__tabpanel-container">
-    <div role="tabpanel" id="tabUser-content" aria-labelledby="tabUser" ng-switch-when="0" md-swipe-left="next()" md-swipe-right="previous()" >
+    <div role="tabpanel" id="tabUser-content" aria-labelledby="tabUser" ng-switch-when="0">
       <div class="user__include h" ng-include="'components/user/user.html'"></div>
     </div>
-    <div role="tabpanel" id="tabUploads-content" aria-labelledby="tabUploads" ng-switch-when="1" md-swipe-left="next()" md-swipe-right="previous()" >
+    <div role="tabpanel" id="tabUploads-content" aria-labelledby="tabUploads" ng-switch-when="1">
       <div class="uploads__include" ng-include="'components/uploads/uploads.html'"></div>
     </div>
-    <div role="tabpanel" id="tabPluses-content" aria-labelledby="tabPluses" ng-switch-when="2" md-swipe-left="next()" md-swipe-right="previous()" >
+    <div role="tabpanel" id="tabPluses-content" aria-labelledby="tabPluses" ng-switch-when="2">
       <div class="pluses__include" ng-include="'components/pluses/pluses.html'"></div>
     </div>
-    <div role="tabpanel" id="tabMinuses-content" aria-labelledby="tabMinuses" ng-switch-when="3" md-swipe-left="next()" md-swipe-right="previous()" >
+    <div role="tabpanel" id="tabMinuses-content" aria-labelledby="tabMinuses" ng-switch-when="3">
       <div class="minuses__include" ng-include="'components/minuses/minuses.html'"></div>
     </div>
-    <div role="tabpanel" id="tabSettings-content" aria-labelledby="tabSettings" ng-switch-when="4" md-swipe-left="next()" md-swipe-right="previous()" ng-show="isMe">
+    <div role="tabpanel" id="tabSettings-content" aria-labelledby="tabSettings" ng-switch-when="4" ng-show="isMe">
       <div class="settings__include" ng-include="'components/settings/settings.html'"></div>
     </div>
   </ng-switch>
