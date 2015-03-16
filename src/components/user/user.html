@@ -9,11 +9,11 @@
           <span class="user__id">#{{user.id}}</span>
         </div>
         <div class="user__votes-block" ng-class="{ 'voted--up': user.vote == 'plus', 'voted--down': user.vote == 'minus' }" >
-          <md-button ng-click="userVoteDown(user.id)" class="md-fab user__vote--down" aria-label="user-minus" ng-show="!isMe" ng-click="voteDown(track.id)">
+          <md-button ng-click="userVoteDown(user.id)" class="md-fab user__vote--down" aria-label="user-minus" ng-show="!isMe">
             <ng-md-icon icon="expand_more" size="24"></ng-md-icon>
           </md-button>
           <span class="user__karma">{{user.karma}}</span>
-          <md-button ng-click="userVoteUp(user.id)" class="md-fab user__vote--up" aria-label="user-plus" ng-show="!isMe" ng-click="voteUp(track.id)">
+          <md-button ng-click="userVoteUp(user.id)" class="md-fab user__vote--up" aria-label="user-plus" ng-show="!isMe">
             <ng-md-icon icon="expand_less" size="24"></ng-md-icon>
           </md-button>
         </div>
@@ -21,9 +21,18 @@
 
       <div class="user__main">
   <!--      <img class="user__img" ng-src="assets/images/ear.png" alt="">-->
-        <div class="user__img-cont">
+        <figure class="user__img-cont">
           <img class="user__img" ng-src="{{user.pic}}" alt="">
-        </div>
+          <figcaption class="user__img-tooltip">
+            <md-input-container class="user__img-input-container">
+              <label class="user__img-input-label">URL of avatar:</label>
+              <input type="url" inputmode="latin" aria-label="img-new-avatar" ng-model="avatarUrl" class="user__img-input">
+            </md-input-container>
+            <md-button class="user__img-submit" ng-click="changeAvatar()" class="user__vote--up" aria-label="user-plus" ng-show="isMe">
+              <ng-md-icon icon="file_upload" size="24"></ng-md-icon>
+            </md-button>
+          </figcaption>
+        </figure>
         <div class="user__additional">
           <p class="user__descripton" ng-bind-html="user.i"></p>
           <p class="user__origin">

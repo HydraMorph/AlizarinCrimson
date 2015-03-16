@@ -86,6 +86,7 @@ divider = 12px;
   transition left 1s ease, right 1s ease
   &--first
     left 0
+    padding 1rem
   &--second
     left 100%
     display flex
@@ -126,11 +127,38 @@ divider = 12px;
   display flex
   flex 1
   max-width 200px
+  margin 0
+  position relative
 .user__img
   width 100%
   height auto
   max-height 200px
   min-height 200px
+.user__img-tooltip
+  position absolute
+  bottom 0
+  left 0
+  right 0
+  background rgba(0, 0, 0, 0.43)
+  display flex
+.user__img-input-container
+  padding 0
+  & label.user__img-input-label
+    color #fff !important
+  & input.user__img-input
+    color #fff
+  &.md-input
+  &.md-input-focused
+    & input.user__img-input
+      border-color #fff !important
+      color #fff !important
+.user__img-input
+  display flex
+  flex 1
+.user__img-submit
+  display flex
+  color #fff
+
 .user__additional
   padding 0 10px
 .user__descripton

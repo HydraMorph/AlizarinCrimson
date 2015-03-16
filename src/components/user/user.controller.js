@@ -121,4 +121,11 @@ angular.module('trigger')
       }
     }
 
+    $scope.avatarUrl = '';
+    $scope.previewAvatar = function () {
+      $http.get($scope.avatarUrl).success(function(data){
+        console.log(data);
+      });
+    }
+
   });
