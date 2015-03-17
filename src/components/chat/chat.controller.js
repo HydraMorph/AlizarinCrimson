@@ -5,11 +5,11 @@ angular.module('trigger')
 
     hotkeys.bindTo($scope)
     .add({
-      combo: 'shift+f',
-      description: 'Focus to chat input',
+      combo: 'esc',
+      description: 'Clear chat',
       allowIn: ['INPUT', 'SELECT', 'TEXTAREA'],
       callback: function() {
-        focus();
+        $scope.message = '';
         event.preventDefault();
       }
     })
