@@ -21,7 +21,34 @@ app.directive('lastfmImg', ['$rootScope', '$http', function($rootScope, $http) {
               // Success!
               var data = JSON.parse(request.responseText);
 //              console.log(data.track.album.image[1]['#text']);
-              element.attr('src', data.track.album.image[1]['#text']);
+              if (data.track !== undefined) {
+                if (data.track.album !== undefined) {
+                  if (data.track.album.image[1]['#text'] !== undefined) {
+                    element.attr('src', data.track.album.image[1]['#text']);
+                  }
+                } else {
+                  var fallbackRequest = new XMLHttpRequest();
+                  fallbackRequest.open('GET', 'http://ws.audioscrobbler.com/2.0/?method=artist.getinfo&api_key=4366bdedfe39171be1b5581b52ddee90&artist=' + track[1] + '&autocorrect=1&format=json', true);
+                  fallbackRequest.onload = function() {
+                    if (fallbackRequest.status >= 200 && fallbackRequest.status < 400) {
+                      // Success!
+                      var data = JSON.parse(fallbackRequest.responseText);
+//                      console.log('fallbackRequest', data);
+                      if (data.artist !== undefined) {
+                        if (data.artist.image[1]['#text'] !== undefined) {
+                          element.attr('src', data.artist.image[1]['#text']);
+                        }
+                      }
+                    } else {
+                      // We reached our target server, but it returned an error
+                    }
+                  };
+                  fallbackRequest.onerror = function() {
+                    // There was a connection error of some sort
+                  };
+                  fallbackRequest.send();
+                }
+              }
             } else {
               // We reached our target server, but it returned an error
             }
