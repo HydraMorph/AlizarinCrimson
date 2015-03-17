@@ -27,7 +27,7 @@
       <md-item class="playlist__track">
         <div class="track__img-cont">
 <!--          <img ng-src="{{track.src}}" class="track__img" alt="" ng-click="data(track)">-->
-          <img ng-src="assets\images\nocover.png" class="track__img" alt="" lastfm-img="{{track.t}}, {{track.a}}">
+          <img ng-src="assets\images\nocover.png" class="track__img" alt="" lastfm-img="{{track.t}},{{track.a}}">
         </div>
         <div class="track__row">
           <div class="track__base">
@@ -52,9 +52,7 @@
                 <a href="#" class="track__link" ng-click="trackToChat(track.id)">{{ 'trackToChat' | translate }}</a>
               </div>
               <div class="track__upload-info">
-                {{ 'trackUploadedBy' | translate }}&nbsp;
-                <a ng-click="openProfile(track.sid)">{{ track.s }}</a>&nbsp;
-                <span am-time-ago="track.ut"></span>
+                {{ 'trackUploadedBy' | translate }}&nbsp;<a ng-click="openProfile(track.sid)">{{ track.s }}</a>&nbsp;<span am-time-ago="track.ut"></span>
               </div>
             </div>
             <div class="track__tags">
@@ -91,7 +89,7 @@
 <!--      <md-item ng-repeat="track in playlist track by track.id" class="playlist__track">-->
         <div class="track__img-cont">
 <!--          <img ng-src="{{track.src}}" class="track__img" alt="" ng-click="data(track)">-->
-          <img ng-src="assets\images\nocover.png" class="track__img" alt="" ng-click="data(track)">
+          <img ng-src="assets\images\nocover.png" class="track__img" alt="" lastfm-img="{{track.t}},{{track.a}}" ng-click="data(track)">
         </div>
         <div class="track__row">
           <div class="track__base">
@@ -116,9 +114,7 @@
                 <a href="#" class="track__link" ng-click="trackToChat(track.id)">>{{ 'trackToChat' | translate }}</a>
               </div>
               <div class="track__upload-info">
-                {{ 'trackUploadedBy' | translate }}&nbsp;
-                <a ng-click="openProfile(track.sid)">{{ track.s }}</a>&nbsp;
-                <span am-time-ago="track.ut"></span>
+                {{ 'trackUploadedBy' | translate }}&nbsp;<a ng-click="openProfile(track.sid)">{{ track.s }}</a>&nbsp;<span am-time-ago="track.ut"></span>
               </div>
             </div>
             <div class="track__tags">

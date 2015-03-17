@@ -437,7 +437,7 @@ app.config(['$translateProvider', function ($translateProvider) {
     'historyTitle': 'Title',
     'historyNoResults': 'No results ):',
     /* Playlist */
-    'trackUploadedBy': 'uploaded by ',
+    'trackUploadedBy': 'uploaded by',
     'trackToChat': 'send to chat',
     /* Profile */
     'profileUser': 'User',
