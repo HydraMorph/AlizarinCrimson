@@ -30,15 +30,6 @@ angular.module('trigger')
 
     hotkeys.bindTo($scope)
     .add({
-      combo: 'ctrl+space',
-      description: 'Mute current track',
-      allowIn: ['INPUT', 'SELECT', 'TEXTAREA'],
-      callback: function() {
-        $scope.togglePlay();
-        event.preventDefault();
-      }
-    })
-    .add({
       combo: 'shift+space',
       description: 'Mute current track',
       allowIn: ['INPUT', 'SELECT', 'TEXTAREA'],
@@ -83,6 +74,7 @@ angular.module('trigger')
     $scope.isMe = true;
     /* Under developmant - drafted function for opening user profile */
     $scope.openProfile = function(id) {
+      $mdSidenav('right').open();
       $rootScope.userId = id;
       if (id === Client.user.id) {
         $scope.isMe = true;
