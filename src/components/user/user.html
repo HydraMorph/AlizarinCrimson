@@ -73,7 +73,7 @@
           <md-list class="user__list">
             <md-item ng-repeat="n in user.n" class="user__list-item">
               <md-item-content class="user__item" ng-class="{active: user.a==true}">
-                <md-button ng-click="openProfile(n.id)" aria-label="open-user-profile" class="user__2profile">i</md-button>
+                <md-button ng-click="openProfile(n.vid)" aria-label="open-user-profile" class="user__2profile">i</md-button>
                 <md-button ng-click="addNick(n.n)" aria-label="add-user-to-chat" class="user__2chat">{{n.n.length && n.n || 'Deleted'}}</md-button>
               </md-item-content>
             </md-item>
@@ -87,7 +87,7 @@
           <md-list class="user__list">
             <md-item ng-repeat="p in user.p" class="user__list-item">
               <md-item-content class="user__item" ng-class="{active: user.a==true}">
-                <md-button ng-click="openProfile(p.id)" aria-label="open-user-profile" class="user__2profile">i</md-button>
+                <md-button ng-click="openProfile(p.vid)" aria-label="open-user-profile" class="user__2profile">i</md-button>
                 <md-button ng-click="addNick(p.n)" aria-label="add-user-to-chat" class="user__2chat">{{p.n.length && p.n || 'Deleted'}}</md-button>
               </md-item-content>
             </md-item>

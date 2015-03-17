@@ -74,7 +74,8 @@ angular.module('trigger')
     $scope.isMe = true;
     /* Under developmant - drafted function for opening user profile */
     $scope.openProfile = function(id) {
-      $mdSidenav('right').open();
+      $mdSidenav('right').open(); /* For mobile */
+      $scope.swiped = false;
       $rootScope.userId = id;
       if (id === Client.user.id) {
         $scope.isMe = true;
@@ -116,6 +117,14 @@ angular.module('trigger')
       $scope.infoTab = 2;
     }
 
+    $scope.swiped = false;
+    $scope.swipe = function () {
+      if($scope.swiped === true) {
+        $scope.swiped = false;
+      } else {
+        $scope.swiped = true;
+      }
+    }
     /* Console panel */
     $scope.toggleLeft = function () {
       $mdSidenav('left').toggle();

@@ -112,15 +112,6 @@ angular.module('trigger')
       }
     }
 
-    $scope.swiped = false;
-    $scope.swipe = function () {
-      if($scope.swiped === true) {
-        $scope.swiped = false;
-      } else {
-        $scope.swiped = true;
-      }
-    }
-
     $scope.avatarUrl = '';
     $scope.previewAvatar = function () {
       $http.get($scope.avatarUrl).success(function(data){
