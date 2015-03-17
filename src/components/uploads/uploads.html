@@ -25,9 +25,9 @@
           <div class="track__additional">
             <div class="track__content">
               <div class="track__links">
-                <a href="#" class="track__link">>vk</a>
-                <a href="#" class="track__link">>muzebra</a>
-                <a href="#" class="track__link" ng-click="trackToChat(track.id)">>{{ 'trackToChat' | translate }}</a>
+                <a href="http://vk.com/audio?q={{track.t}}-{{track.a}}" target="_blank" class="track__link">>vk</a>
+                <a href="http://www.lastfm.ru/search?q={{track.t}}+{{track.a}}" target="_blank" class="track__link">>lastfm</a>
+                <a class="track__link" ng-click="trackToChat(track.id)">>{{ 'trackToChat' | translate }}</a>
               </div>
               <div class="track__upload-info">
                 {{ 'trackUploadedBy' | translate }}&nbsp;
