@@ -145,7 +145,7 @@ angular.module('trigger')
         socket.on('uplim', function(data) {
           $scope.user.uplim = data.t;
         });
-        if (localStorage.getItem('theme').length > 0) {
+        if (localStorage.getItem('theme') != undefined && localStorage.getItem('theme').length > 0) {
           document.body.setAttribute("theme", localStorage.getItem('theme'));
         }
       }
