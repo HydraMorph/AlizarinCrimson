@@ -11,10 +11,22 @@
 'use strict';
 
 angular.module('trigger')
-  .controller('UserCtrl', function ($scope, $rootScope, Client) {
+  .controller('UserCtrl', function ($scope, $rootScope, Client, $mdToast, $animate) {
 
     /* init */
     $scope.user = {};
+
+    $scope.toastPosition = {
+      bottom: false,
+      top: true,
+      left: false,
+      right: true
+    };
+    $scope.getToastPosition = function() {
+      return Object.keys($scope.toastPosition)
+        .filter(function(pos) { return $scope.toastPosition[pos]; })
+        .join(' ');
+    };
 
     /* Get data after signing */
     $scope.$watch(function() {
@@ -114,9 +126,41 @@ angular.module('trigger')
 
     $scope.avatarUrl = '';
     $scope.previewAvatar = function () {
-      $http.get($scope.avatarUrl).success(function(data){
-        console.log(data);
-      });
+      var img = new Image();
+      img.src = $scope.avatarUrl;
+      img.onload = function() {
+        $scope.user.pic = $scope.avatarUrl;
+        $scope.save = true;
+      }
+      img.onerror = function() {
+        $mdToast.show(
+          $mdToast.simple()
+            .content('Can\'t find image! URL is incorrect!')
+            .position($scope.getToastPosition())
+            .hideDelay(3000)
+        );
+      }
+    }
+
+    $scope.edit = false;
+    $scope.save = false;
+    $scope.editAvatar = function () {
+      if ($scope.edit === true) {
+        $scope.edit = false;
+      } else {
+        $scope.edit = true;
+      }
+    }
+    $scope.saveAvatar = function () {
+      Client.updateUserData({ pic: $scope.avatarUrl });
+      $scope.edit = false;
+      $scope.save = false;
+      $mdToast.show(
+        $mdToast.simple()
+          .content('Your avatar is changed! ^_^')
+          .position($scope.getToastPosition())
+          .hideDelay(3000)
+      );
     }
 
   });

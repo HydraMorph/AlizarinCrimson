@@ -65,6 +65,7 @@ divider = 12px;
   overflow hidden
   margin 0
   position relative
+  border-radius 0 !important
   &.swiped
     .user__swipe-cont
       &--first
@@ -93,10 +94,13 @@ divider = 12px;
     flex-flow row nowrap
 
 .user__relation
-  flex 1
+  min-width 7rem /* .user__list-item width 7rem - min 1 column */
   height 100%
+  &:first-child
+    & .user__md-content
+      border-right 1px solid #ddd
 .user__relations-header
-  font-size 1.4rem
+  font-size 1.2rem
   height 2rem
   margin 0
   text-align center
@@ -128,23 +132,49 @@ divider = 12px;
 .user__img-cont
   display flex
   flex 1
-  max-width 200px
   margin 0
   position relative
+  overflow hidden
+  &--edit
+    & .user__img-tooltip
+      opacity 1
+      bottom 0
+      top initial
+  &--save
+    & .user__save-avatar
+      top 0
 .user__img
   width 100%
   height auto
   max-height 200px
   min-height 200px
+.user__edit-avatar
+  position absolute
+  left 0
+  color #fff
+  background rgba(0, 0, 0, 0.43)
+  border-radius 0 !important
+.user__save-avatar
+  position absolute
+  right 0
+  top -100%
+  color #fff
+  background rgba(0, 0, 0, 0.43)
+  border-radius 0 !important
+  transition all 1s ease
 .user__img-tooltip
   position absolute
-  bottom 0
+  top 100%
+  bottom initial
   left 0
   right 0
   background rgba(0, 0, 0, 0.43)
   display flex
+  opacity 0
+  transition all 1s ease
 .user__img-input-container
   padding 0
+  flex 1
   & label.user__img-input-label
     color #fff !important
   & input.user__img-input
