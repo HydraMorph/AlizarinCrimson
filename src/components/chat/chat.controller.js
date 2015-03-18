@@ -46,7 +46,7 @@ angular.module('trigger')
     customCodes[4][1] = '&nbsp;<a href="mailto:$1">$1</a>&nbsp;';
 
     customCodes[5] = [];
-    customCodes[5][0] = '!!!!!!!!!!';
+    customCodes[5][0] = '!!!!!!';
     customCodes[5][1] = 'я идиот убейте меня кто нибудь! !!!!';
 
     customCodes[6] = [];
@@ -139,10 +139,15 @@ angular.module('trigger')
       return $rootScope.load.signed;
     }, function () {
       if ($rootScope.load.signed === true) {
+        customCodes[8] = [];
+        customCodes[8][0] = '&gt;&gt;' + Client.user.n;
+        customCodes[8][1] = '&nbsp;<span class="reference">&gt;&gt;'+ Client.user.n + '</span>&nbsp;';
+
         getChat();
         socket.on('message', function(data) {
           var type = checkType(data);
           if (type) {
+            console.log('messages', data);
             data.type = type;
             tink();
             if (data.type === 'private') {
