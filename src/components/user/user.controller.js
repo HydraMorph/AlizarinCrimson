@@ -87,6 +87,11 @@ angular.module('trigger')
         if (!data.pic) {
           data.pic = '/assets/images/ear.png';
         }
+        var img = new Image();
+        img.src = data.pic;
+        img.onerror = function() {
+          data.pic = '/assets/images/ear.png';
+        }
         $scope.user = data;
         $scope.$digest();
       });
