@@ -142,6 +142,9 @@ angular.module('trigger')
         customCodes[8] = [];
         customCodes[8][0] = '&gt;' + Client.user.n;
         customCodes[8][1] = '<span class="reference">&gt;'+ Client.user.n + '</span>&nbsp;';
+        customCodes[9] = [];
+        customCodes[9][0] = '&gt;<span class="reference">&gt;'+ Client.user.n + '</span>&nbsp;';
+        customCodes[9][1] = '<span class="reference">&gt;&gt;'+ Client.user.n + '</span>&nbsp;';
         getChat();
         socket.on('message', function(data) {
           var type = checkType(data);
