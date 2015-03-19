@@ -227,6 +227,8 @@
     min-width 60px
   .playlist__list
     flex-flow column nowrap
+  .playlist--emtpy
+    align-items flex-start
 //  .track__tags
 //    width 0
 //    display none
@@ -257,6 +259,9 @@
           color darkTrackVoteDown
   .track__progress
     top -1px
+  .playlist--emtpy
+    order 999
+    align-items flex-end
 //  .track__tags
 //    min-width 60px
 //  .playlist__content--current .playlist__track
@@ -318,7 +323,6 @@
 .playlist--emtpy
   height 100%
   display flex
-  align-items flex-start
   justify-content center
   background colorPlaylistEmtpyBG
   body[theme='dark'] &
