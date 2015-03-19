@@ -310,3 +310,22 @@
   left 0
   opacity 0
   transition opacity .1s ease
+
+
+.playlist--emtpy
+  height 100%
+  display flex
+  align-items flex-start
+  justify-content center
+  background colorPlaylistEmtpyBG
+  body[theme='dark'] &
+    background darkPlaylistEmtpyBG
+.playlist--empty-text
+  display flex
+  align-items center
+  color colorPlaylistEmtpy
+  body[theme='dark'] &
+    color darkPlaylistEmtpy
+  & svg
+    width 4rem
+    height 4rem
