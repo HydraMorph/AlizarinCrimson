@@ -111,7 +111,7 @@ app.run(function ($rootScope, Client, socket) {
   socket.on('welcome', function (data) {
     Client.channel = data.channels[0];
     Client.getChannels(function(data){
-      Client.goChannel(1, console.log('Q' ,data));
+//      Client.goChannel(1, console.log('Q' ,data));
       Client.channels = data.channels;
       if (u !== undefined && p !== undefined) {
         Client.login(u, p, processLogin);
