@@ -21,8 +21,8 @@
       <label>{{ 'startTyping' | translate }}</label>
       <textarea id="chatInput" class="chat__input" ng-enter="sendMessage()" ng-model="message" columns="1" md-maxlength="240" autofocus></textarea>
       <div class="chat__input-nav">
-        <md-button class="chat__button--bold" aria-label="chat-bold">{{ 'chatBold' | translate }}</md-button>
-        <md-button class="chat__button--irony" aria-label="chat-irony">{{ 'chatIrony' | translate }}</md-button>
+        <md-button class="chat__button--bold" ng-click="setBold()" aria-label="chat-bold">{{ 'chatBold' | translate }}</md-button>
+        <md-button class="chat__button--irony" ng-click="setIrony()" aria-label="chat-irony">{{ 'chatIrony' | translate }}</md-button>
         <md-checkbox ng-model="data.tink" ng-change="setTink()" class="chat__checkbox--tink">
           {{ 'chatTink' | translate }}
         </md-checkbox>

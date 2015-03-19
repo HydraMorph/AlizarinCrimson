@@ -259,4 +259,72 @@ angular.module('trigger')
       focus();
     };
 
+    function separateUsers (message) {
+      var res = message.split(' ');
+      var chatters = [];
+      var msg = [];
+      for (var i = 0; i < res.length; i++) {
+        if (res[i].indexOf('>') > -1) {
+          chatters.push(res[i]);
+        } else {
+          msg.push(res[i]);
+        }
+      }
+      return [chatters, msg];
+    }
+
+    function getSelectionText() {
+      var text = "";
+      if (window.getSelection) {
+        text = window.getSelection().toString();
+      } else if (document.selection && document.selection.type != "Control") {
+        text = document.selection.createRange().text;
+      }
+      return text;
+    }
+
+    $scope.setBold = function () {
+      focus();
+      var s = getSelectionText();
+      var cutted = [];
+      cutted[0] = '';
+      cutted[1]= '';
+      if (s.length < 1) {
+        var ans = separateUsers($scope.message);
+      } else {
+        cutted[0] = $scope.message.substr(0, $scope.message.indexOf(s)); /* Before */
+        cutted[1] = $scope.message.substr($scope.message.indexOf(s) + s.length, $scope.message.length); /* After */
+        var ans = separateUsers(s);
+      }
+      var chatters = ans[0].join(' ');
+      var message = ans[1].join(' ');
+      var chattersInterfix = '';
+      if (chatters.length > 0) {
+        chattersInterfix = ' ';
+      }
+      $scope.message = cutted[0] + chatters + chattersInterfix + '<b>' + message + '</b>' + cutted[1];
+    }
+
+    $scope.setIrony = function () {
+      focus();
+      var s = getSelectionText();
+      var cutted = [];
+      cutted[0] = '';
+      cutted[1]= '';
+      if (s.length < 1) {
+        var ans = separateUsers($scope.message);
+      } else {
+        cutted[0] = $scope.message.substr(0, $scope.message.indexOf(s)); /* Before */
+        cutted[1] = $scope.message.substr($scope.message.indexOf(s) + s.length, $scope.message.length); /* After */
+        var ans = separateUsers(s);
+      }
+      var chatters = ans[0].join(' ');
+      var message = ans[1].join(' ');
+      var chattersInterfix = '';
+      if (chatters.length > 0) {
+        chattersInterfix = ' ';
+      }
+      $scope.message = cutted[0] + chatters + chattersInterfix + '<span class="irony">' + message + '</span>' + cutted[1];
+    }
+
   });
