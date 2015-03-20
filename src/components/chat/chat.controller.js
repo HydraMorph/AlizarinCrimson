@@ -106,6 +106,7 @@ angular.module('trigger')
           var mL = mChat.length;
           var cL = customCodes.length;
           for (var j = 0; j < mL; j++) {
+            mChat[j].m = addTrackLink(mChat[j].m);
             for (var i = 0; i < cL; i++) {
               if (mChat[j].m.replace(customCodes[i][0], '') != mChat[j].m) {
                 if (i < 2) {
@@ -158,6 +159,7 @@ angular.module('trigger')
           } else if (data.m.indexOf('&gt;&gt;') > -1) {
             sessionStorage.setItem('private' + data.t, JSON.stringify(data));
           }
+          data.m = addTrackLink(data.m);
           var cL = customCodes.length;
           for (var i = 0; i < cL; i++) {
             if (data.m.replace(customCodes[i][0], '') != data.m) {
@@ -203,6 +205,16 @@ angular.module('trigger')
         }
       }
       return list;
+    }
+
+    function addTrackLink(message) {
+      if(message.indexOf('/track') > -1) {
+        var meta = /\/track(\w*)/gim;
+        var res = meta.exec(message);
+        return res.input.replace(res[0], "&nbsp;<a track-id='" + res[1] + "' ng-click='focusTrack(" + res[1] + ")'>" + res[0] + "</a>&nbsp;");
+      } else {
+        return message;
+      }
     }
 
     /* Check if message is private or personal - for tink and cusom style(bold) */

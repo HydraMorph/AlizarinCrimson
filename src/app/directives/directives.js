@@ -62,8 +62,40 @@ app.directive('lastfmImg', ['$rootScope', '$http', function($rootScope, $http) {
     }
   };
 }]);
-//        scope.$watch('ngSrc', function(newVal) {
-//          element.removeClass('in');
-//        });
-//
-//http://ws.audioscrobbler.com/2.0/?artist=Culprate&track=In+The+End&autocorrect=1&method=track.getInfo&api_key=4366bdedfe39171be1b5581b52ddee90&callback=jsonp1426614240550&format=json
+
+app.directive('compile', ['$compile', function ($compile) {
+  return function(scope, element, attrs) {
+    scope.$watch(
+      function(scope) {
+        // watch the 'compile' expression for changes
+        return scope.$eval(attrs.compile);
+      },
+      function(value) {
+        // when the 'compile' expression changes
+        // assign it into the current DOM
+        element.html(value);
+
+        // compile the new DOM and link it to the current
+        // scope.
+        // NOTE: we only compile .childNodes so that
+        // we don't get into infinite loop compiling ourselves
+        $compile(element.contents())(scope);
+      }
+    );
+  };
+}]);
+
+
+app.directive('trackId', ['$rootScope', 'socket', 'Client', function($rootScope, socket, Client) {
+  return {
+    restrict: 'AEC',
+    scope: {
+      class: '@'
+    },
+    link: function(scope, element, attrs) {
+      Client.track(attrs.trackId, function(data) {
+        element.html(data.a + ' - ' + data.t);
+      });
+    }
+  };
+}]);
