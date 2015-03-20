@@ -9,7 +9,7 @@
 'use strict';
 
 angular.module('trigger')
-  .controller('HistoryCtrl', function ($scope, Client, socket) {
+  .controller('HistoryCtrl', function ($scope, $rootScope, Client, socket) {
 
     /* Default values */
     $scope.tracks = [];
@@ -22,18 +22,27 @@ angular.module('trigger')
       topType: false
     };
 
+    /* Get data after signing */
+    $scope.$watch(function() {
+      return $rootScope.load.signed;
+    }, function() {
+      $scope.load.signed = $rootScope.load.signed;
+    }, true);
+
     /* Callback function */
     function addHistory(track) {
-      for (var vr in track.p) {
-        if (track.p[vr].vid === Client.user.id) {
-          track.vote = Client.user.w;
-          break;
+      if ($scope.load.signed === true) {
+        for (var vr in track.p) {
+          if (track.p[vr].vid === Client.user.id) {
+            track.vote = Client.user.w;
+            break;
+          }
         }
-      }
-      for (var vr in track.n) {
-        if (track.n[vr].vid === Client.user.id) {
-          track.vote = -1 * Client.user.w;
-          break;
+        for (var vr in track.n) {
+          if (track.n[vr].vid === Client.user.id) {
+            track.vote = -1 * Client.user.w;
+            break;
+          }
         }
       }
       $scope.tracks.push(track);
