@@ -17,10 +17,15 @@ angular.module('trigger')
 
     $scope.message = '';
     $scope.messages = [];
-    $scope.data = {
+    $scope.oldMessages = [];
+    $scope.settings = {
       tink: true,
       img: true
     }; /* default settings */
+    $scope.data = {
+      shift: 0,
+      id: 1
+    }
 
     /* Used in messages: replace value by regexp */
     /* &nbsp; is used for code minificating */
@@ -59,7 +64,7 @@ angular.module('trigger')
 
     /* Incoming message sound */
     function tink() {
-      if ($scope.data.tink === true) {
+      if ($scope.settings.tink === true) {
         var sound = new Audio();
         if (sound.canPlayType('audio/ogg')) {
           sound.src = 'http://trigger.fm/sounds/tink.ogg';
@@ -73,20 +78,20 @@ angular.module('trigger')
 
     /* Change default setting if user had some settings in localStorage */
     if (localStorage.getItem('tink') === 'false') {
-      $scope.data.tink = false;
+      $scope.settings.tink = false;
     }
     if (localStorage.getItem('img') === 'false') {
-      $scope.data.img = false;
+      $scope.settings.img = false;
     }
     $scope.setTink = function() {
-      if($scope.data.tink === true) {
+      if($scope.settings.tink === true) {
         localStorage.setItem('tink', true);
       } else {
         localStorage.setItem('tink', false);
       }
     }
     $scope.setImg = function() {
-      if($scope.data.img === true) {
+      if($scope.settings.img === true) {
         localStorage.setItem('img', true);
       } else {
         localStorage.setItem('img', false);
@@ -94,10 +99,10 @@ angular.module('trigger')
     }
 
     /* Socket */
-    function getChat() {
+    function getChat(data) {
       socket.emit(
         'getchat',
-        { 'shift': 0, 'id': 1 },
+        data,
         function(data) {
           var tnk = false;
           var messages = data.m;
@@ -110,7 +115,7 @@ angular.module('trigger')
             for (var i = 0; i < cL; i++) {
               if (mChat[j].m.replace(customCodes[i][0], '') != mChat[j].m) {
                 if (i < 2) {
-                  if ($scope.data.img !== true) {
+                  if ($scope.settings.img !== true) {
                     mChat[j].m = mChat[j].m.replace(customCodes[i + 2][0], customCodes[i + 2][1]);
                   } else {
                     mChat[j].m = mChat[j].m.replace(customCodes[i][0], customCodes[i][1]);
@@ -135,6 +140,44 @@ angular.module('trigger')
       );
     };
 
+    function getMessages(data) {
+      socket.emit(
+        'getchat',
+        data,
+        function(data) {
+          var mChat = data.m;
+          var mL = mChat.length;
+          var cL = customCodes.length;
+          for (var j = 0; j < mL; j++) {
+            mChat[j].m = addTrackLink(mChat[j].m);
+            for (var i = 0; i < cL; i++) {
+              if (mChat[j].m.replace(customCodes[i][0], '') != mChat[j].m) {
+                if (i < 2) {
+                  if ($scope.settings.img !== true) {
+                    mChat[j].m = mChat[j].m.replace(customCodes[i + 2][0], customCodes[i + 2][1]);
+                  } else {
+                    mChat[j].m = mChat[j].m.replace(customCodes[i][0], customCodes[i][1]);
+                  }
+                  break;
+                } else {
+                  mChat[j].m = mChat[j].m.replace(customCodes[i][0], customCodes[i][1]);
+                }
+              }
+            }
+            var type = checkType(mChat[j]);
+            if (type) {
+              mChat[j].type = type;
+            }
+            addMessage(mChat[j]);
+          }
+        }
+      );
+    }
+
+    function addMessage(msg) {
+      $scope.messages.unshift(msg);
+    }
+
     /* Show chat if user signed */
     $scope.$watch(function () {
       return $rootScope.load.signed;
@@ -146,7 +189,7 @@ angular.module('trigger')
         customCodes[9] = [];
         customCodes[9][0] = '&gt;<span class="reference">&gt;'+ Client.user.n + '</span>&nbsp;';
         customCodes[9][1] = '<span class="reference">&gt;&gt;'+ Client.user.n + '</span>&nbsp;';
-        getChat();
+        getChat($scope.data);
         socket.on('message', function(data) {
           var type = checkType(data);
           if (type) {
@@ -164,7 +207,7 @@ angular.module('trigger')
           for (var i = 0; i < cL; i++) {
             if (data.m.replace(customCodes[i][0], '') != data.m) {
               if (i < 2) {
-                if ($scope.data.img !== true) {
+                if ($scope.settings.img !== true) {
                   data.m = data.m.replace(customCodes[i + 2][0], customCodes[i + 2][1]);
                 } else {
                   data.m = data.m.replace(customCodes[i][0], customCodes[i][1]);
@@ -270,6 +313,12 @@ angular.module('trigger')
       $scope.message = s;
       focus();
     };
+
+
+    $scope.loadMore = function () {
+      $scope.data.shift = $scope.messages[$scope.messages.length-1].t;
+      getMessages($scope.data);
+    }
 
     function separateUsers (message) {
       var res = message.split(' ');

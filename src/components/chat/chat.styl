@@ -98,6 +98,7 @@
   height calc(100% - 90px) /* depend with .chat__input-grp */
   overflow-x hidden
   display flex
+  flex-flow column nowrap
   flex 1 1 calc(100% - 8rem)
 .chat__item
   border-bottom 1px solid colorChatItemBorder
@@ -149,6 +150,11 @@
   color colorChatItemTime
   body[theme='dark'] &
     color darkChatItemTime
+
+.chat__loadmore
+  width 100%
+  background #ddd
+  border-radius 0
 
 /* Hide time in messages */
 @media screen and (max-width: 599px)
