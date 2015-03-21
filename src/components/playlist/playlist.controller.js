@@ -87,14 +87,14 @@ angular.module('trigger')
           break;
         }
       }
-      if ($rootScope.scrobble === true) {
-        var request = new XMLHttpRequest();
-        var sig = md5.createHash(localStorage.getItem('lastfmToken'));
-        request.open('POST', 'http://ws.audioscrobbler.com/2.0/?method=track.updateNowPlaying&api_key=4366bdedfe39171be1b5581b52ddee90&api_sig=' + sig + '&artist=' + data.track.a + '&track=' + data.track.t + '&autocorrect=1', true);
-        request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
-        request.send(data);
-        console.log('scrobble', data);
-      }
+//      if ($rootScope.scrobble === true) {
+//        var request = new XMLHttpRequest();
+//        var sig = md5.createHash(localStorage.getItem('lastfmToken'));
+//        request.open('POST', 'http://ws.audioscrobbler.com/2.0/?method=track.updateNowPlaying&api_key=4366bdedfe39171be1b5581b52ddee90&api_sig=' + sig + '&artist=' + data.track.a + '&track=' + data.track.t + '&autocorrect=1', true);
+//        request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+//        request.send(data);
+//        console.log('scrobble', data);
+//      }
     });
 
     /* Check votes after signing - for color setting if user voted plus or minus */
