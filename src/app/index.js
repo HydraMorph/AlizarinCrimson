@@ -1,6 +1,6 @@
 'use strict';
 
-var app = angular.module('trigger', ['angular-loading-bar', 'ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'ngMaterial', 'btford.socket-io', 'luegg.directives', 'angularMoment', 'ngMdIcons', 'cfp.hotkeys', 'vs-repeat', 'pascalprecht.translate']);
+var app = angular.module('trigger', ['angular-loading-bar', 'ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'ngMaterial', 'btford.socket-io', 'luegg.directives', 'angularMoment', 'ngTimezone', 'ngMdIcons', 'cfp.hotkeys', 'vs-repeat', 'pascalprecht.translate']);
 
 /* Angular material theme */
 app
@@ -15,13 +15,19 @@ app
   }]);
 
 /* angularMoment locale */
-app.run(function(amMoment) {
-  amMoment.changeLocale('ru');
-});
+//app.run(function(amMoment) {
+//  amMoment.changeLocale('ru');
+//  amMoment.changeLocale('ru');
+//});
 
+app.run(function($timezone, angularMomentConfig) {
+  angularMomentConfig.preprocess = 'utc';
+  angularMomentConfig.timezone = $timezone.getName();
+  console.log(angularMomentConfig.timezone);
+});
 //app.constant('angularMomentConfig', {
-//  preprocess: 'unix', // optional
-//  timezone: 'Europe/London' // optional
+//  preprocess: 'utc', // optional
+////  timezone: 'America/New_York' // optional
 //});
 
 //app.config(['$routeProvider', '$locationProvider',

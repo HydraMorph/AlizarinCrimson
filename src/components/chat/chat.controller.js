@@ -17,7 +17,7 @@ angular.module('trigger')
 
     $scope.message = '';
     $scope.messages = [];
-    $scope.oldMessages = [];
+    $scope.temp = [];
     $scope.settings = {
       tink: true,
       img: true
@@ -316,7 +316,7 @@ angular.module('trigger')
 
 
     $scope.loadMore = function () {
-      $scope.data.shift = $scope.messages[$scope.messages.length-1].t;
+      $scope.data.shift = $scope.messages[0].t;
       getMessages($scope.data);
     }
 
