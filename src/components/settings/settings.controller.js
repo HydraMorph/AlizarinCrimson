@@ -60,21 +60,30 @@ angular.module('trigger')
       }
     }
 
+    function ScrobbleOn(){
+      window.open('http://www.lastfm.ru/api/auth?api_key=66101f9355c9c707b5608bc42c62d860&cb=http%3A%2F%2F'+window.location.host+'','Last.fm','width=940,height=580');
+      return false;
+    }
+
     /* Under development */
     $scope.initLast = function() {
-      $http({method: 'GET', url: 'http://www.last.fm/api/auth/?api_key=66101f9355c9c707b5608bc42c62d860',
-        headers:{
-          'Access-Control-Allow-Origin': '*',
-          'Access-Control-Allow-Methods': 'GET, POST, PUT, DELETE, OPTIONS',
-          'Access-Control-Allow-Headers': 'Content-Type, X-Requested-With'
-        }})
-      .success(function(d){ console.log( "yay" ); })
-      .error(function(d){ console.log( "nope" ); });
-//      $http({method: 'GET', url: 'http://www.last.fm/api/auth/?api_key=66101f9355c9c707b5608bc42c62d860&cb=http://www.last.fm',
-//        headers:{
-//          'Access-Control-Allow-Origin': '*',
-//          'Access-Control-Allow-Headers': 'Content-Type, X-Requested-With'
-//        }})
+      ScrobbleOn();
+//      var request = new XMLHttpRequest();
+//      var url = encodeURIComponent('http://www.last.fm/api/auth/?api_key=66101f9355c9c707b5608bc42c62d860');
+//      request.open('GET', url, true);
+//      request.onload = function() {
+//        if (request.status >= 200 && request.status < 400) {
+//          // Success!
+//          var resp = request.responseText;
+//        } else {
+//          // We reached our target server, but it returned an error
+//        }
+//      };
+//      request.onerror = function() {
+//        // There was a connection error of some sort
+//      };
+//      request.send();
+//      $http({method: 'GET', url: '//last.fm/api/auth/?api_key=66101f9355c9c707b5608bc42c62d860&cb=http://example.com'})
 //      .success(function(d){ console.log( "yay" ); })
 //      .error(function(d){ console.log( "nope" ); });
     }

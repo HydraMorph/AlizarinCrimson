@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('trigger')
-  .controller('PlaylistCtrl', function ($scope, $rootScope, $mdSidenav, Client, socket, $interval, hotkeys, $q) {
+  .controller('PlaylistCtrl', function ($scope, $rootScope, $mdSidenav, Client, socket, $interval, hotkeys, $q, md5) {
 
     /* init */
     $scope.load.signed = false;
@@ -86,6 +86,14 @@ angular.module('trigger')
           $scope.playlist.splice(i, 1);
           break;
         }
+      }
+      if ($rootScope.scrobble === true) {
+        var request = new XMLHttpRequest();
+        var sig = md5.createHash(localStorage.getItem('lastfmToken'));
+        request.open('POST', 'http://ws.audioscrobbler.com/2.0/?method=track.updateNowPlaying&api_key=4366bdedfe39171be1b5581b52ddee90&api_sig=' + sig + '&artist=' + data.track.a + '&track=' + data.track.t + '&autocorrect=1', true);
+        request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+        request.send(data);
+        console.log('scrobble', data);
       }
     });
 
@@ -288,6 +296,13 @@ angular.module('trigger')
       Client.channel.ct = data.ct;
       $scope.starTimer(Client.channel.ct, data.current.tt);
       $scope.current = data.current;
+//      if ($rootScope.scrobble === true) {
+//        var request = new XMLHttpRequest();
+//        request.open('POST', 'http://ws.audioscrobbler.com/2.0/?api_key=4366bdedfe39171be1b5581b52ddee90&api_sig=' + apiSig + '&artist=' + data.current.a + '&method=track.updateNowPlaying&track=' + data.current.t, true);
+//        request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+//        request.send(data);
+//        console.log('scrobble', data);
+//      }
       var plsL = data.pls.length;
       for (var i = 0; i < plsL; i++) {
         $scope.playlist[i].vote = 0;

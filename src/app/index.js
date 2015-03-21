@@ -1,6 +1,6 @@
 'use strict';
 
-var app = angular.module('trigger', ['angular-loading-bar', 'ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'ngMaterial', 'btford.socket-io', 'luegg.directives', 'angularMoment', 'ngMdIcons', 'cfp.hotkeys', 'vs-repeat', 'pascalprecht.translate', 'react']);
+var app = angular.module('trigger', ['angular-loading-bar', 'ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'ngMaterial', 'btford.socket-io', 'luegg.directives', 'angularMoment', 'ngMdIcons', 'cfp.hotkeys', 'vs-repeat', 'pascalprecht.translate', 'ngRoute']);
 
 /* Angular material theme */
 app
@@ -19,19 +19,24 @@ app.run(function(amMoment) {
   amMoment.changeLocale('ru');
 });
 
-app.config(['$httpProvider', function ($httpProvider) {
-  //Reset headers to avoid OPTIONS request (aka preflight)
-  $httpProvider.defaults.useXDomain = true;
-  $httpProvider.defaults.withCredentials = true;
-  delete $httpProvider.defaults.headers.common["X-Requested-With"];
-  $httpProvider.defaults.headers.common["Accept"] = "application/json";
-  $httpProvider.defaults.headers.common["Content-Type"] = "application/json";
-}]);
-
 //app.constant('angularMomentConfig', {
 //  preprocess: 'unix', // optional
 //  timezone: 'Europe/London' // optional
 //});
+
+app.config(['$routeProvider', '$locationProvider',
+  function ($routeProvider, $locationProvider) {
+    //commenting out this line (switching to hashbang mode) breaks the app
+    //-- unless # is added to the templates
+    $locationProvider.html5Mode(true);
+    $routeProvider.when(':token', {
+      template: 'this is home. go to <a href="/about"/>about</a>'
+    });
+    $routeProvider.when('/about', {
+      template: 'this is about. go to <a href="/"/>home</a'
+    });
+  }
+]);
 
 /* ng-enter */
 app.directive('ngEnter', function() {
@@ -73,7 +78,8 @@ app.factory('socket', function ($rootScope) {
 });
 
 
-app.run(function ($rootScope, Client, socket) {
+app.run(function ($rootScope, Client, socket, $location, $log, md5) {
+
 
   /* init */
   $rootScope.load = {
@@ -105,6 +111,7 @@ app.run(function ($rootScope, Client, socket) {
 
   $rootScope.title = 'Trigger';
   $rootScope.userId = 0;
+  $rootScope.scrobble = false;
   Client.init(location.host); /* Init Client */
 
   /* Get first data - channel, users, playlist*/
@@ -119,8 +126,13 @@ app.run(function ($rootScope, Client, socket) {
     });
     $rootScope.load.welcome = true;
   });
-
   $rootScope.client = Client;
+  /* LastFM с их адской документацией идут к черту. */
+//  var lastfmToken = $location.search()['token'];
+//  if (lastfmToken && lastfmToken.length > 0) {
+//    localStorage.setItem('lastfmToken', lastfmToken);
+//    $rootScope.scrobble = true;
+//  }
 });
 
 app.service('Client', function ($log) {
