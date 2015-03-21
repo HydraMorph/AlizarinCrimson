@@ -24,19 +24,19 @@ app.run(function(amMoment) {
 //  timezone: 'Europe/London' // optional
 //});
 
-app.config(['$routeProvider', '$locationProvider',
-  function ($routeProvider, $locationProvider) {
-    //commenting out this line (switching to hashbang mode) breaks the app
-    //-- unless # is added to the templates
-    $locationProvider.html5Mode(true);
-    $routeProvider.when(':token', {
-      template: 'this is home. go to <a href="/about"/>about</a>'
-    });
-    $routeProvider.when('/about', {
-      template: 'this is about. go to <a href="/"/>home</a'
-    });
-  }
-]);
+//app.config(['$routeProvider', '$locationProvider',
+//  function ($routeProvider, $locationProvider) {
+//    //commenting out this line (switching to hashbang mode) breaks the app
+//    //-- unless # is added to the templates
+//    $locationProvider.html5Mode(true);
+//    $routeProvider.when(':token', {
+//      template: 'this is home. go to <a href="/about"/>about</a>'
+//    });
+//    $routeProvider.when('/about', {
+//      template: 'this is about. go to <a href="/"/>home</a'
+//    });
+//  }
+//]);
 
 /* ng-enter */
 app.directive('ngEnter', function() {
