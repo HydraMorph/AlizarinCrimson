@@ -50,7 +50,6 @@ angular.module('trigger')
 
     /* Sockets */
     function getHistory(data) {
-      $scope.tracks = [];
       socket.emit('gethistory', {
         chid: 1,
         s: data.shift,
@@ -73,5 +72,11 @@ angular.module('trigger')
     }
     /* init function */
     getHistory($scope.data);
+
+    $scope.loadMore = function() {
+      $scope.data.shift = $scope.tracks[$scope.tracks.length-1].tt;
+      console.log($scope.tracks.length, $scope.data.shift);
+      getHistory($scope.data);
+    }
 
   });
