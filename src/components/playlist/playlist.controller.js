@@ -53,6 +53,7 @@ angular.module('trigger')
       return $rootScope.load.welcome;
     }, function () {
       if ($rootScope.load.welcome === true) {
+        Client.channel.current.ut = setTimezone(Client.channel.current.ut);
         $scope.track = Client.channel.current;
         $rootScope.title = '+D' + Client.channel.current.a + ' - ' + Client.channel.current.t + ' @ Trigger';
       }
@@ -75,6 +76,7 @@ angular.module('trigger')
           }
         }
       }
+      data.track.ut = setTimezone(data.track.ut);
       Client.channel.current = data.track;
       $scope.stopTimer();
       $scope.starTimer(0, data.track.tt);
@@ -195,35 +197,50 @@ angular.module('trigger')
     /* Socket - add track in playlist */
     socket.on('addtrack', function(data) {
 //      console.log('addtrack', data);
-      data.track.src = 'img/nocover.png';
-      var track = data.track;
+      addTrack(data.track);
+    });
+
+    function addTrack(track) {
+      var track = track;
       track.vote = 0;
+      track.src = 'img/nocover.png';
       var plLength = $scope.playlist.length;
       var isClone = false;
       for (var i = 0; i < plLength; i++) {
-        if ($scope.playlist[i].id === data.id) {
+        if ($scope.playlist[i].id === track.id) {
           isClone = true;
           break;
         }
       }
       if (isClone === false) {
         if ($scope.load.signed === true) {
-          for (var vr in data.p) {
-            if (data.p[vr].vid === Client.user.id) {
-              data.vote = Client.user.w;
+          for (var vr in track.p) {
+            if (track.p[vr].vid === Client.user.id) {
+              track.vote = Client.user.w;
               break;
             }
           }
-          for (var vr in data.n) {
-            if (data.n[vr].vid === Client.user.id) {
-              data.vote = -1 * Client.user.w;
+          for (var vr in track.n) {
+            if (track.n[vr].vid === Client.user.id) {
+              track.vote = -1 * Client.user.w;
               break;
             }
           }
         }
+        track.ut = setTimezone(track.ut);
         $scope.playlist.push(track);
       }
-    });
+    }
+
+    function setTimezone(obj) {
+      console.log(obj);
+      var d = new Date(obj);
+      return addMinutes(d, $rootScope.timezoneOffset);
+    }
+
+    function addMinutes(date, minutes) {
+      return new Date(date.getTime() + minutes*60000);
+    }
 
     /* Socket - delete track from playlist */
     socket.on('removetrack', function(data) {
@@ -295,7 +312,6 @@ angular.module('trigger')
       $scope.items = $scope.playlist;
       Client.channel.ct = data.ct;
       $scope.starTimer(Client.channel.ct, data.current.tt);
-      $scope.current = data.current;
 //      if ($rootScope.scrobble === true) {
 //        var request = new XMLHttpRequest();
 //        request.open('POST', 'http://ws.audioscrobbler.com/2.0/?api_key=4366bdedfe39171be1b5581b52ddee90&api_sig=' + apiSig + '&artist=' + data.current.a + '&method=track.updateNowPlaying&track=' + data.current.t, true);
@@ -306,6 +322,7 @@ angular.module('trigger')
       var plsL = data.pls.length;
       for (var i = 0; i < plsL; i++) {
         $scope.playlist[i].vote = 0;
+        $scope.playlist[i].ut = setTimezone($scope.playlist[i].ut);
       }
     });
 
