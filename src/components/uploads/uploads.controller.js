@@ -12,6 +12,7 @@ angular.module('trigger')
 
     /* init */
     $scope.tracks = [];
+    $scope.date = moment();
     $scope.data = {
       id: $rootScope.userId,
       uplshift: 0
@@ -28,6 +29,9 @@ angular.module('trigger')
     }, true);
 
     function addHistory(track) {
+      if (moment.utc($scope.date).format() > moment.utc(track.tt).format()) {
+        $scope.date = track.tt;
+      }
       $scope.tracks.push(track);
     }
 
@@ -41,9 +45,18 @@ angular.module('trigger')
       });
     }
 
+    function addMinutes(date, minutes) {
+      return new Date(date.getTime() + minutes*60000);
+    }
 
     $scope.loadMore = function() {
-      $scope.data.uplshift = $scope.tracks[$scope.tracks.length-1].tt;
+      var date = {
+        utc: $scope.date,
+        offset: -1*$rootScope.timezoneOffset
+      }
+      var d = new Date($scope.date);
+      date.utc = addMinutes(d, date.offset);
+      $scope.data.uplshift = date.utc;
       getHistory($scope.data);
     }
 
