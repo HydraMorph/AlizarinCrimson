@@ -166,6 +166,7 @@ angular.module('trigger')
             }
           }
         }
+        data.t.ut = setTimezone(data.t.ut);
         $scope.track = data.t;
       } else {
         var plLength = $scope.playlist.length;
@@ -173,6 +174,7 @@ angular.module('trigger')
         for (var i = 0; i < plLength; i++) {
           if ($scope.playlist[i].id === data.t.id) {
             id = i;
+            data.t.ut = setTimezone(data.t.ut);
             $scope.playlist[i] = data.t;
             break;
           }
@@ -233,7 +235,6 @@ angular.module('trigger')
     }
 
     function setTimezone(obj) {
-      console.log(obj);
       var d = new Date(obj);
       return addMinutes(d, $rootScope.timezoneOffset);
     }
