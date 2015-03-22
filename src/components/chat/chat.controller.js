@@ -170,12 +170,18 @@ angular.module('trigger')
             }
             addMessage(mChat[j]);
           }
+          fillMessages();
         }
       );
     }
 
+    var temp = [];
     function addMessage(msg) {
-      $scope.messages.unshift(msg);
+      temp.push(msg);
+    }
+    function fillMessages() {
+      $scope.messages = temp.concat($scope.messages);
+      temp = [];
     }
 
     /* Show chat if user signed */
