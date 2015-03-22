@@ -70,6 +70,12 @@ angular.module('trigger')
     $scope.showHistory = function() {
       getHistory($scope.data);
     }
+    /* ng-click */
+    $scope.newHistory = function() {
+      $scope.tracks = [];
+      $scope.data.shift = 0;
+      getHistory($scope.data);
+    }
     /* init function */
 //    getHistory($scope.data);
 

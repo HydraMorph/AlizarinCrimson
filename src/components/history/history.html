@@ -2,18 +2,18 @@
 
   <!--Search inputs-->
   <div class="history__search-grp">
-    <md-checkbox ng-model="data.gold" ng-change="showHistory()" class="history__checkbox">
+    <md-checkbox ng-model="data.gold" ng-change="newHistory()" class="history__checkbox">
       {{ 'historyGold' | translate }}
     </md-checkbox>
-    <md-checkbox ng-model="data.top" ng-change="showHistory()" class="history__checkbox">
+    <md-checkbox ng-model="data.top" ng-change="newHistory()" class="history__checkbox">
 <!--      {{ 'historyGold' | translate }}-->
       Top
     </md-checkbox>
-    <md-select ng-model="data.topType" ng-change="showHistory()" class="history__select">
+    <md-select ng-model="data.topType" ng-change="newHistory()" class="history__select">
       <md-option value="true">Votes</md-option>
       <md-option value="false" ng-selected="selected">Rating</md-option>
     </md-select>
-    <md-button class="md-fab history--search-btn" ng-click="showHistory()" aria-label="Search-button">
+    <md-button class="md-fab history--search-btn" ng-click="newHistory()" aria-label="Search-button">
       <ng-md-icon icon="search" size="24"></ng-md-icon>
     </md-button>
     <md-input-container class="history--input">
@@ -22,7 +22,7 @@
     </md-input-container>
     <md-input-container class="history--input">
       <label>{{ 'historyTitle' | translate }}</label>
-      <input type="text" ng-model="data.title" ng-enter="showHistory()">
+      <input type="text" ng-model="data.title" ng-enter="newHistory()">
     </md-input-container>
   </div>
 
@@ -78,7 +78,7 @@
           <span class="track__voters-diff">{{track.p.length - track.n.length}}</span>
         </div>
       </md-item>
-      <md-button aria-label="history--loadmore" class="history__loadmore" ng-click="loadMore()">Load more</md-button>
+      <md-button aria-label="history--loadmore" class="history__loadmore" ng-click="loadMore()" ng-show="tracks.length > 1">Load more</md-button>
     </md-list>
 
 
