@@ -22,7 +22,6 @@
         </div>
 
         <div class="user__main">
-    <!--      <img class="user__img" ng-src="assets/images/ear.png" alt="">-->
           <figure class="user__img-cont" ng-class="{ 'user__img-cont--edit': edit === true, 'user__img-cont--save': save === true }">
             <img class="user__img" ng-src="{{user.pic}}" alt="">
             <md-button class="user__edit-avatar" ng-click="editAvatar()" aria-label="user-plus" ng-show="isMe">
@@ -61,12 +60,14 @@
           </div>
         </div>
 
+<!--
         <div class="user__control">
           <md-checkbox ng-model="data.img" aria-label="ОМММ" class="user__ignore">
             {{ 'userIgnore' | translate }}
           </md-checkbox>
           <md-button class="user__ban" aria-label="user-ban">{{ 'userBan' | translate }}</md-button>
         </div>
+-->
       </md-content>
 
     </div>

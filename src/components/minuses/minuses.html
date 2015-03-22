@@ -4,7 +4,6 @@
     <md-list layout="column" class="playlist__list">
       <md-item ng-repeat="track in tracks | orderBy:'tt':true" class="playlist__track">
         <div class="track__img-cont">
-<!--          <img ng-src="{{track.src}}" class="track__img" alt="">-->
           <img ng-src="assets\images\nocover.png" class="track__img" alt="" lastfm-img="{{track.t}},{{track.a}}">
         </div>
 <div class="track__row">
