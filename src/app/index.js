@@ -118,6 +118,9 @@ app.run(function ($rootScope, Client, socket, $location, $log, md5) {
   $rootScope.title = 'Trigger';
   $rootScope.userId = 0;
   $rootScope.scrobble = false;
+  var d = new Date()
+  $rootScope.timezoneOffset = d.getTimezoneOffset();
+
   Client.init(location.host); /* Init Client */
 
   /* Get first data - channel, users, playlist*/

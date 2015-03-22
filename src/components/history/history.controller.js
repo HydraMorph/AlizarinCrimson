@@ -71,10 +71,20 @@ angular.module('trigger')
       getHistory($scope.data);
     }
     /* init function */
-    getHistory($scope.data);
+//    getHistory($scope.data);
+
+    function addMinutes(date, minutes) {
+      return new Date(date.getTime() + minutes*60000);
+    }
 
     $scope.loadMore = function() {
-      $scope.data.shift = $scope.tracks[$scope.tracks.length-1].tt;
+      var date = {
+        utc: $scope.tracks[$scope.tracks.length - 1].tt,
+        offset: -1*$rootScope.timezoneOffset
+      }
+      var d = new Date($scope.tracks[$scope.tracks.length - 1].tt);
+      date.utc = addMinutes(d, date.offset);
+      $scope.data.shift = date.utc;
       console.log($scope.tracks.length, $scope.data.shift);
       getHistory($scope.data);
     }
