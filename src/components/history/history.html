@@ -77,10 +77,10 @@
           /
           <span class="track__voters-diff">{{track.p.length - track.n.length}}</span>
         </div>
+       <md-button aria-label="history--loadmore" class="history__loadmore" ng-click="loadMore()">Load more</md-button>
       </md-item>
     </md-list>
 
-   <md-button aria-label="history--loadmore" class="history__loadmore" ng-click="loadMore()">Load more</md-button>
 
     <!--Show if search result is empty -->
     <div class="histroy--emtpy" ng-show="tracks.length < 1">
