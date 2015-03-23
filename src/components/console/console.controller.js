@@ -38,7 +38,7 @@ angular.module('trigger')
     };
     var audio = document.getElementById('audio');
     $scope.volume = 50;
-    if (localStorage.getItem('volume') > -1) {
+    if (localStorage.getItem('volume') && localStorage.getItem('volume').length > -1) {
       $scope.volume = localStorage.getItem('volume');
     } else {
       localStorage.setItem('volume', $scope.volume);

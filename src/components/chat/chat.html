@@ -24,10 +24,10 @@
       <div class="chat__input-nav">
         <md-button class="chat__button--bold" ng-click="setBold()" aria-label="chat-bold">{{ 'chatBold' | translate }}</md-button>
         <md-button class="chat__button--irony" ng-click="setIrony()" aria-label="chat-irony">{{ 'chatIrony' | translate }}</md-button>
-        <md-checkbox ng-model="data.tink" ng-change="setTink()" class="chat__checkbox--tink">
+        <md-checkbox ng-model="settings.tink" ng-change="setTink()" class="chat__checkbox--tink">
           {{ 'chatTink' | translate }}
         </md-checkbox>
-        <md-checkbox ng-model="data.img" ng-change="setImg()" class="chat__checkbox--img">
+        <md-checkbox ng-model="settings.img" ng-change="setImg()" class="chat__checkbox--img">
           {{ 'chatImg' | translate }}
         </md-checkbox>
       </div>
