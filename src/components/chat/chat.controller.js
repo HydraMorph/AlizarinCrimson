@@ -26,6 +26,7 @@ angular.module('trigger')
       shift: 0,
       id: 1
     }
+    $scope.isChatExtended = false;
 
     /* Used in messages: replace value by regexp */
     /* &nbsp; is used for code minificating */
@@ -301,6 +302,7 @@ angular.module('trigger')
     $scope.sendMessage = function () {
       if (this.message) {
         sendMessage($scope.message);
+        $scope.isChatExtended = false;
       }
     };
 
@@ -392,6 +394,14 @@ angular.module('trigger')
         chattersInterfix = ' ';
       }
       $scope.message = cutted[0] + chatters + chattersInterfix + '<span class="irony">' + message + '</span>' + cutted[1];
+    }
+
+    $scope.checkMessage = function () {
+      if ($scope.message.length >= 240) {
+        $scope.isChatExtended = true;
+      } else {
+        $scope.isChatExtended = false;
+      }
     }
 
   });

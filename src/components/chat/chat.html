@@ -1,4 +1,4 @@
-<div ng-controller="ChatCtrl" class="chat__module">
+<div ng-controller="ChatCtrl" class="chat__module" ng-class="{ 'chat__module--extended': isChatExtended === true }">
 
   <md-content class="chat__md-content" scroll-glue>
     <md-button aria-label="chat--loadmore" class="chat__loadmore" ng-click="loadMore()">Load more</md-button>
@@ -20,7 +20,7 @@
   <div class="chat__input-grp">
     <md-input-container flex>
       <label>{{ 'startTyping' | translate }}</label>
-      <textarea id="chatInput" class="chat__input" ng-enter="sendMessage()" ng-model="message" columns="1" md-maxlength="240" autofocus></textarea>
+      <textarea id="chatInput" class="chat__input" ng-enter="sendMessage()" ng-change="checkMessage()" ng-model="message" columns="3" md-maxlength="700" autofocus></textarea>
       <div class="chat__input-nav">
         <md-button class="chat__button--bold" ng-click="setBold()" aria-label="chat-bold">{{ 'chatBold' | translate }}</md-button>
         <md-button class="chat__button--irony" ng-click="setIrony()" aria-label="chat-irony">{{ 'chatIrony' | translate }}</md-button>
