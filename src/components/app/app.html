@@ -4,11 +4,7 @@
 
     <md-sidenav class="md-sidenav-left md-whiteframe-z2" md-component-id="left" md-is-locked-open="$mdMedia('min-width: 600px')">
       <md-toolbar class="console__switcher-cont">
-        <audio id="audio">
-          <source src="http://trigger.fm/stream/mainmp3" type="audio/mpeg" />
-          <source src="http://trigger.fm/stream/main" type="audio/ogg" />
-        </audio>
-        <svg id="audioBtn" class="switcher" ng-click="togglePlay()" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 850.4 595.3" enable-background="new 0 0 850.4 595.3" xml:space="preserve">
+        <svg id="audioBtn" class="switcher" ng-click="togglePlay()" ng-class="{ 'play': play }" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 850.4 595.3" enable-background="new 0 0 850.4 595.3" xml:space="preserve">
           <path class="b3" fill="none" stroke="#B4B4B4" stroke-width="55.3274" stroke-miterlimit="10" d="M154.7,568.2c-149-149-149-392.1,0-541.1"/>
           <path class="b2" fill="none" stroke="#9D9D9D" stroke-width="55.3274" stroke-miterlimit="10" d="M239,483.9C135.1,380,135.1,213.3,239,109.4"/>
           <path class="b1" fill="none" stroke="#7F7F7F" stroke-width="55.3274" stroke-miterlimit="10" d="M323.3,399.6c-56.9-56.9-56.9-149,0-205.8"/>

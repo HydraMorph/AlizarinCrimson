@@ -1,6 +1,6 @@
 'use strict';
 
-var app = angular.module('trigger', ['angular-loading-bar', 'ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'ngMaterial', 'btford.socket-io', 'luegg.directives', 'angularMoment', 'ngTimezone', 'ngMdIcons', 'cfp.hotkeys', 'vs-repeat', 'pascalprecht.translate']);
+var app = angular.module('trigger', ['angular-loading-bar', 'ngAnimate', 'ngCookies', 'ngTouch', 'ngSanitize', 'ngMaterial', 'btford.socket-io', 'luegg.directives', 'angularMoment', 'ngTimezone', 'ngMdIcons', 'cfp.hotkeys', 'vs-repeat', 'pascalprecht.translate', 'ngAudio']);
 
 /* Angular material theme */
 app

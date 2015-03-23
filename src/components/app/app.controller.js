@@ -1,15 +1,16 @@
 'use strict';
 
 angular.module('trigger')
-  .controller('AppCtrl', function ($scope, $rootScope, $timeout, $mdSidenav, hotkeys, Client) {
+  .controller('AppCtrl', function ($scope, $rootScope, $timeout, $mdSidenav, hotkeys, Client, ngAudio) {
 
-    var button = document.getElementById('audioBtn');
-    var audio = document.getElementById('audio');
+    $scope.sound = ngAudio.load("http://trigger.fm/stream/mainmp3");
+
     $scope.play = false;
+    $scope.volume = 50;
+
     $scope.start = function() {
       $scope.play = true;
-      button.classList.add('play');
-      audio.play();
+      $scope.sound.play();
     }
     /* Autoplay if it was defined in localStorage settings */
     if (localStorage.getItem('play') === 'true') {
@@ -17,15 +18,26 @@ angular.module('trigger')
     }
 
     $scope.togglePlay = function() {
-      button.classList.toggle('play');
       $scope.play = !$scope.play;
       if ($scope.play === true) {
         localStorage.setItem('play', true);
-        audio.play();
+        $scope.sound.play();
       } else {
         localStorage.setItem('play', false);
-        audio.pause();
+        $scope.sound.pause();
       }
+    };
+
+    if (localStorage.getItem('volume') && localStorage.getItem('volume').length > -1) {
+      $scope.volume = localStorage.getItem('volume');
+    } else {
+      localStorage.setItem('volume', $scope.volume);
+    }
+
+    /* ng-change on slider */
+    $scope.changeVolume = function(volume) {
+      localStorage.setItem('volume', volume);
+      $scope.sound.volume = volume/100; /* audio volume must be >1 and < 0 */
     };
 
     hotkeys.bindTo($scope)
