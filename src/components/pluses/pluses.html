@@ -50,7 +50,7 @@
           <span class="track__voters-diff">{{track.p.length - track.n.length}}</span>
         </div>
       </md-item>
-      <md-button aria-label="history--loadmore" class="history__loadmore" ng-click="loadMore()">Load more</md-button>
+      <md-button aria-label="history--loadmore" class="history__loadmore" ng-click="loadMore()" ng-show="tracks.length > 0">Load more</md-button>
     </md-list>
   </md-content>
 
