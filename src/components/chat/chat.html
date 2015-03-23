@@ -1,5 +1,6 @@
 <div ng-controller="ChatCtrl" class="chat__module" ng-class="{ 'chat__module--extended': isChatExtended === true }">
 
+
   <md-content class="chat__md-content" scroll-glue>
     <md-button aria-label="chat--loadmore" class="chat__loadmore" ng-click="loadMore()">Load more</md-button>
     <md-list class="chat__list">
@@ -15,7 +16,11 @@
     </md-list>
   </md-content>
 
-  <div class="online__include" ng-include="'components/online/online.html'"></div>
+  <md-button class="chat__show-online" ng-click="setOnline()" aria-label="chat-show-online" ng-class="{ 'chat__show-online--open': showOnline }">
+    <ng-md-icon icon="keyboard_arrow_left" size="24"></ng-md-icon>
+  </md-button>
+
+  <div class="online__include" ng-include="'components/online/online.html'" ng-class="{ 'online__include--open': showOnline }"></div>
 
   <div class="chat__input-grp">
     <md-input-container flex>

@@ -166,6 +166,23 @@
   background #ddd
   border-radius 0
 
+@media screen and (min-width: 600px)
+  .chat__show-online
+    display none
+.chat__show-online
+  position absolute
+  top 0
+  width 24px
+  height 24px
+  border-radius 0% 50% 0% 50% !important
+  right 0
+  z-index 2
+  padding 0
+  background-color #009688
+  transition transform .4s ease
+  &--open
+    transform rotateY(180deg)
+
 /* Hide time in messages */
 @media screen and (max-width: 599px)
   .msg__time

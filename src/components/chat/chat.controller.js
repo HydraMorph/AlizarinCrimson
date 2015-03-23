@@ -27,6 +27,15 @@ angular.module('trigger')
       id: 1
     }
     $scope.isChatExtended = false;
+    $scope.showOnline = false;
+
+    $scope.setOnline = function () {
+      if ($scope.showOnline === true) {
+        $scope.showOnline = false;
+      } else {
+        $scope.showOnline = true;
+      }
+    }
 
     /* Used in messages: replace value by regexp */
     /* &nbsp; is used for code minificating */
