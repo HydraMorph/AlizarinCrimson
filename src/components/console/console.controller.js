@@ -37,6 +37,26 @@ angular.module('trigger')
       'uplim': 0
     };
 
+    $scope.format = 'mp3';
+    $scope.toggleFormat = function () {
+      if ($scope.format === 'mp3') {
+        $scope.format = 'ogg';
+      } else {
+        $scope.format = 'mp3';
+      }
+    }
+
+    function isMp3Supported() {
+      var a = document.createElement('audio');
+      return !!(a.canPlayType && a.canPlayType('audio/mpeg;').replace(/no/, ''));
+    }
+    function isOggSupported() {
+      var a = document.createElement('audio');
+      return !!(a.canPlayType && a.canPlayType('audio/ogg; codecs="vorbis"').replace(/no/, ''));
+    }
+    $scope.multiFormats = isMp3Supported() && isOggSupported();
+
+
     /* Randomize greetings */
     $scope.greeting = greetings[greetingsLang][Math.floor(Math.random() * greetings[greetingsLang].length)].replace('username', $scope.user.name);
     $interval(function(){

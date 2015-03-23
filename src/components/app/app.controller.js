@@ -4,6 +4,7 @@ angular.module('trigger')
   .controller('AppCtrl', function ($scope, $rootScope, $timeout, $mdSidenav, hotkeys, Client, ngAudio) {
 
     $scope.sound = ngAudio.load("http://trigger.fm/stream/mainmp3");
+    $scope.sound = ngAudio.load("http://trigger.fm/stream/main");
 
     $scope.play = false;
     $scope.volume = 50;
