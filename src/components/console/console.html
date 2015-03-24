@@ -1,10 +1,5 @@
 <md-toolbar class="console__include" ng-controller="ConsoleCtrl">
 
-  <p class="console__format" ng-show="multiFormats">
-    <md-button md-no-ink class="md-primary console__switch-btn" aria-label="mp3" ng-click="toggleFormat()">Mp3</md-button>
-    <md-switch md-no-ink class="md-primary console__switch" ng-model="format" ng-change="changeFormat()" aria-label="ogg" ng-true-value="'mp3'" ng-false-value="'ogg'">Ogg</md-switch>
-  </p>
-
   <md-slider ng-model="volume" aria-label="volume-slider" ng-change="changeVolume(volume)" min="0" max="100" step="1"></md-slider>
   <img ng-src="assets/images/logo.png" class="console__logo" ng-click="data()"/>
   <md-button class="console__login-btn" aria-label="console-login" ng-show="!load.signed" ng-click="showLoginModal($event)">{{ 'consoleLogIn' | translate }}</md-button>

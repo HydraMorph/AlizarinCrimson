@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('trigger')
-  .controller('ConsoleCtrl', function ($scope, $rootScope, $interval, $timeout, $mdDialog, $mdBottomSheet, Client, socket, hotkeys, $translate, Format, Channel) {
+  .controller('ConsoleCtrl', function ($scope, $rootScope, $interval, $timeout, $mdDialog, $mdBottomSheet, Client, socket, hotkeys, $translate) {
 
     /* Random greetings */
     /* get the app's lang */
@@ -32,41 +32,10 @@ angular.module('trigger')
       'listeners': 0,
       'active': 0
     };
-    $scope.users.listeners = Channel.data.lst;
-    $scope.users.active = Channel.data.a;
     $scope.user = {
       'name': '%username%',
       'uplim': 0
     };
-
-    $scope.format = 'mp3';
-    $scope.multiFormats = false;
-    $scope.toggleFormat = function () {
-      if ($scope.format === 'mp3') {
-        $scope.format = 'ogg';
-        localStorage.setItem('format', 'ogg');
-        Format.update('stream', 'ogg');
-      } else {
-        $scope.format = 'mp3';
-        localStorage.setItem('format', 'mp3');
-        Format.update('stream', 'mp3');
-      }
-    }
-    $scope.changeFormat = function () {
-      localStorage.setItem('format', $scope.format);
-      Format.update('stream', $scope.format);
-    }
-    function isMp3Supported() {
-      var a = document.createElement('audio');
-      return !!(a.canPlayType && a.canPlayType('audio/mpeg;').replace(/no/, ''));
-    }
-    function isOggSupported() {
-      var a = document.createElement('audio');
-      return !!(a.canPlayType && a.canPlayType('audio/ogg; codecs="vorbis"').replace(/no/, ''));
-    }
-    $scope.multiFormats = isMp3Supported() && isOggSupported();
-    Format.update('mp3', isMp3Supported());
-    Format.update('ogg', isOggSupported());
 
     /* Randomize greetings */
     $scope.greeting = greetings[greetingsLang][Math.floor(Math.random() * greetings[greetingsLang].length)].replace('username', $scope.user.name);
@@ -79,6 +48,12 @@ angular.module('trigger')
       return $rootScope.load.welcome;
     }, function() {
       if ($rootScope.load.welcome === true) {
+        $scope.users.listeners = Client.channel.lst;
+        $scope.users.active = Client.channel.a;
+        socket.on('lst', function(data) {
+          $scope.users.listeners = data.l;
+          $scope.users.active = data.a;
+        });
       }
       $scope.load.welcome = $rootScope.load.welcome;
     }, true);

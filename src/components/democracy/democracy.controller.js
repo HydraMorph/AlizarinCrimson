@@ -2,14 +2,11 @@
 'use strict';
 
 angular.module('trigger')
-  .controller('DemocracyCtrl', function ($scope, $rootScope, Client, Channel, $interval) {
+  .controller('DemocracyCtrl', function ($scope, $rootScope, Client) {
     $scope.data = {
       selectedIndex : 1
     };
 
-    var timer = $interval(function() {
-      console.log(Channel);
-    }, 10000);
 //    $scope.moderators = [];
 //    $scope.banned = [];
 //    $scope.president = {
