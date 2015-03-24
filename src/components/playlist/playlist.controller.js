@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('trigger')
-  .controller('PlaylistCtrl', function ($scope, $rootScope, $mdSidenav, Client, socket, $interval, hotkeys, $q, md5) {
+  .controller('PlaylistCtrl', function ($scope, $rootScope, $mdSidenav, Client, socket, $interval, hotkeys, $q, md5, Channel) {
 
     /* init */
     $scope.load.signed = false;
@@ -305,27 +305,28 @@ angular.module('trigger')
       }
     };
 
+    Channel.init();
     /* Get data - playlist and current track time postion - for meter */
-    socket.on('channeldata', function (data) {
-//      console.log('playlist', data);
-      $scope.channel = data.name;
-      $scope.playlist = data.pls;
-      $scope.items = $scope.playlist;
-      Client.channel.ct = data.ct;
-      $scope.starTimer(Client.channel.ct, data.current.tt);
-//      if ($rootScope.scrobble === true) {
-//        var request = new XMLHttpRequest();
-//        request.open('POST', 'http://ws.audioscrobbler.com/2.0/?api_key=4366bdedfe39171be1b5581b52ddee90&api_sig=' + apiSig + '&artist=' + data.current.a + '&method=track.updateNowPlaying&track=' + data.current.t, true);
-//        request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
-//        request.send(data);
-//        console.log('scrobble', data);
+//    socket.on('channeldata', function (data) {
+////      console.log('playlist', data);
+//      $scope.channel = data.name;
+//      $scope.playlist = data.pls;
+//      $scope.items = $scope.playlist;
+//      Client.channel.ct = data.ct;
+//      $scope.starTimer(Client.channel.ct, data.current.tt);
+////      if ($rootScope.scrobble === true) {
+////        var request = new XMLHttpRequest();
+////        request.open('POST', 'http://ws.audioscrobbler.com/2.0/?api_key=4366bdedfe39171be1b5581b52ddee90&api_sig=' + apiSig + '&artist=' + data.current.a + '&method=track.updateNowPlaying&track=' + data.current.t, true);
+////        request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+////        request.send(data);
+////        console.log('scrobble', data);
+////      }
+//      var plsL = data.pls.length;
+//      for (var i = 0; i < plsL; i++) {
+//        $scope.playlist[i].vote = 0;
+//        $scope.playlist[i].ut = setTimezone($scope.playlist[i].ut);
 //      }
-      var plsL = data.pls.length;
-      for (var i = 0; i < plsL; i++) {
-        $scope.playlist[i].vote = 0;
-        $scope.playlist[i].ut = setTimezone($scope.playlist[i].ut);
-      }
-    });
+//    });
 
     /* Meter for current track with timer */
     var i = 0;

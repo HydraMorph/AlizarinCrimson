@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('trigger')
-  .controller('ConsoleCtrl', function ($scope, $rootScope, $interval, $timeout, $mdDialog, $mdBottomSheet, Client, socket, hotkeys, $translate, Format) {
+  .controller('ConsoleCtrl', function ($scope, $rootScope, $interval, $timeout, $mdDialog, $mdBottomSheet, Client, socket, hotkeys, $translate, Format, Channel) {
 
     /* Random greetings */
     /* get the app's lang */
@@ -32,6 +32,8 @@ angular.module('trigger')
       'listeners': 0,
       'active': 0
     };
+    $scope.users.listeners = Channel.data.lst;
+    $scope.users.active = Channel.data.a;
     $scope.user = {
       'name': '%username%',
       'uplim': 0
@@ -77,12 +79,6 @@ angular.module('trigger')
       return $rootScope.load.welcome;
     }, function() {
       if ($rootScope.load.welcome === true) {
-        $scope.users.listeners = Client.channel.lst;
-        $scope.users.active = Client.channel.a;
-        socket.on('lst', function(data) {
-          $scope.users.listeners = data.l;
-          $scope.users.active = data.a;
-        });
       }
       $scope.load.welcome = $rootScope.load.welcome;
     }, true);
