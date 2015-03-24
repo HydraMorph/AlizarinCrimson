@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('trigger')
-  .controller('ConsoleCtrl', function ($scope, $rootScope, $interval, $timeout, $mdDialog, $mdBottomSheet, Client, socket, hotkeys, $translate) {
+  .controller('ConsoleCtrl', function ($scope, $rootScope, $interval, $timeout, $mdDialog, $mdBottomSheet, Client, socket, hotkeys, $translate, Format) {
 
     /* Random greetings */
     /* get the app's lang */
@@ -38,14 +38,22 @@ angular.module('trigger')
     };
 
     $scope.format = 'mp3';
+    $scope.multiFormats = false;
     $scope.toggleFormat = function () {
       if ($scope.format === 'mp3') {
         $scope.format = 'ogg';
+        localStorage.setItem('format', 'ogg');
+        Format.update('stream', 'ogg');
       } else {
         $scope.format = 'mp3';
+        localStorage.setItem('format', 'mp3');
+        Format.update('stream', 'mp3');
       }
     }
-
+    $scope.changeFormat = function () {
+      localStorage.setItem('format', $scope.format);
+      Format.update('stream', $scope.format);
+    }
     function isMp3Supported() {
       var a = document.createElement('audio');
       return !!(a.canPlayType && a.canPlayType('audio/mpeg;').replace(/no/, ''));
@@ -55,7 +63,8 @@ angular.module('trigger')
       return !!(a.canPlayType && a.canPlayType('audio/ogg; codecs="vorbis"').replace(/no/, ''));
     }
     $scope.multiFormats = isMp3Supported() && isOggSupported();
-
+    Format.update('mp3', isMp3Supported());
+    Format.update('ogg', isOggSupported());
 
     /* Randomize greetings */
     $scope.greeting = greetings[greetingsLang][Math.floor(Math.random() * greetings[greetingsLang].length)].replace('username', $scope.user.name);

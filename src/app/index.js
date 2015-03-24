@@ -20,6 +20,20 @@ app
 //  amMoment.changeLocale('ru');
 //});
 
+app.factory('Format', function(){
+  return {
+    data: {
+      mp3: '',
+      ogg: '',
+      stream: ''
+    },
+    update: function(type, value) {
+      this.data[type] = value;
+    }
+  };
+});
+
+
 app.run(function($timezone, angularMomentConfig) {
   angularMomentConfig.preprocess = 'utc';
   angularMomentConfig.timezone = $timezone.getName();

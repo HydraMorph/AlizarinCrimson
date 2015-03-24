@@ -1,10 +1,56 @@
 'use strict';
 
 angular.module('trigger')
-  .controller('AppCtrl', function ($scope, $rootScope, $timeout, $mdSidenav, hotkeys, Client, ngAudio) {
+  .controller('AppCtrl', function ($scope, $rootScope, $timeout, $mdSidenav, hotkeys, $interval, Client, ngAudio, Format) {
 
-    $scope.sound = ngAudio.load("http://trigger.fm/stream/mainmp3");
-    $scope.sound = ngAudio.load("http://trigger.fm/stream/main");
+    $scope.data = Format.data;
+    $scope.stream;
+    console.log($scope.data);
+
+    function setStream() {
+      if ($scope.data.mp3 === true && $scope.data.ogg === true) {
+        if (localStorage.getItem('format') === 'mp3') {
+          $scope.sound = ngAudio.load("http://trigger.fm/stream/mainmp3");
+          Format.update('stream', 'mp3');
+          $scope.stream = 'mp3';
+        } else if (localStorage.getItem('format') === 'ogg') {
+          $scope.sound = ngAudio.load("http://trigger.fm/stream/main");
+          Format.update('stream', 'ogg');
+          $scope.stream = 'ogg';
+        }
+      } else if ($scope.data.mp3 === true) {
+        $scope.sound = ngAudio.load("http://trigger.fm/stream/mainmp3");
+        localStorage.setItem('format', 'mp3');
+        Format.update('stream', 'mp3');
+        $scope.stream = 'mp3';
+      } else {
+        $scope.sound = ngAudio.load("http://trigger.fm/stream/main");
+        localStorage.setItem('format', 'ogg');
+        Format.update('stream', 'ogg');
+        $scope.stream = 'ogg';
+      }
+    }
+    setStream();
+
+    function changeStream(stream) {
+      if ($scope.data[stream] === true) {
+        if (stream === 'mp3') {
+         $scope.sound = ngAudio.load("http://trigger.fm/stream/mainmp3");
+        } else {
+          $scope.sound = ngAudio.load("http://trigger.fm/stream/main");
+        }
+      }
+      $scope.sound.play();
+    }
+    changeStream($scope.data.stream);
+
+   $scope.$watch(Format.data.stream, function() {
+     changeStream(Format.data.stream);
+   });
+
+//    var timer = $interval(function() {
+//      console.log($scope.data.stream, ngAudio);
+//    }, 1000);
 
     $scope.play = false;
     $scope.volume = 50;
