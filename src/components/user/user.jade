@@ -1,0 +1,67 @@
+div.user__ctrl.h(ng-controller="UserCtrl")
+
+  md-card.user__main.h(ng-class="{ 'swiped': swiped === true }")
+
+    div.user__swipe-cont.user__swipe-cont--first
+      md-content.user__md-main
+        div.user__nav
+          div.user_names-block
+            span.user__name {{ user.name }}
+            span.user__id # {{ user.id }}
+          div.user__votes-block(ng-class="{ 'voted--up': user.vote == 'plus', 'voted--down': user.vote == 'minus' }")
+            md-button.md-fab.user__vote--down(ng-click="userVoteDown(user.id)" ng-show="!isMe" aria-label="user-minus")
+              ng-md-icon(icon="expand_more" size="24")
+            span.user__karma {{ user.karma }}
+            md-button.md-fab.user__vote--up(ng-click="userVoteUp(user.id)" ng-show="!isMe" aria-label="user-plus")
+              ng-md-icon(icon="expand_less" size="24")
+        div.user__main
+          figure.user__img-cont(ng-class="{ 'user__img-cont--edit': edit === true, 'user__img-cont--save': save === true }")
+            img.user__img(ng-src="{{ user.pic }}" alt="")
+            md-button.user__edit-avatar(ng-click="editAvatar()" ng-show="isMe" aria-label="user-plus")
+              ng-md-icon(icon="mode_edit" size="12")
+            md-button.user__save-avatar(ng-click="saveAvatar()" ng-show="isMe" aria-label="user-plus")
+              ng-md-icon(icon="save" size="24")
+            figcaption.user__img-tooltip
+              md-input-container.user__img-input-container
+                label.user__img-input-label URL of avatar:
+                input.user__img-input(ng-model="avatarUrl" type="url" inputmode="latin" aria-label="img-new-avatar")
+              md-button.user__img-submit(ng-click="previewAvatar()" ng-show="isMe" aria-label="user-plus")
+                ng-md-icon(icon="file_upload" size="24")
+          div.user__additional
+            p.user__descripton(ng-bind-html="user.i")
+            p.user__origin
+              | {{ 'userRegDate' | translate }}
+              span.user__regdate {{ user.reg | date:'d.MM.y' }}
+              span.user__invitedby(ng-show="user.invites.p.name")
+                | {{ 'userInvitedBy' | translate }}
+                button.user__father(ng-click="openProfile(user.invites.p.id)" aria-label="user-origin") {{user.invites.p.name}}
+            p.user__invited(ng-show="user.invites.u.length")
+              | {{ 'userInvite' | translate }}
+              span.user__children(ng-repeat="child in user.invites.u")
+                button.user__child(ng-click="openProfile(child.id)" aria-label="user-child") {{ child.n }})
+
+        div.user__control
+          md-checkbox.user__ignore(ng-model="data.img" aria-label="ОМММ") {{ 'userIgnore' | translate }}
+          md-button.user__ban(aria-label="user-ban") {{ 'userBan' | translate }}
+
+    div.user__swiper(ng-click="swipe()")
+
+    div.user__swipe-cont.user__swipe-cont--second
+      div.user__relation(style="flex: {{ user.n.length/(user.p.length+user.n.length) }}")
+        h4.user__relations-header Haters(
+          span.user__relations-counter {{ user.n.length }}):
+        md-content.user__md-content
+          md-list.user__list
+            md-item.user__list-item(ng-repeat="n in user.n")
+              md-item-content.user__item(ng-class="{ active: user.a == true }")
+                md-button.user__2profile(ng-click="openProfile(n.vid)" aria-label="open-user-profile") i
+                md-button.user__2chat(ng-click="addNick(n.n)" aria-label="add-user-to-chat") {{ n.n.length && n.n || 'Deleted' }}
+      div.user__relation(style="flex: {{ user.p.length/(user.p.length+user.n.length) }};")
+        h4.user__relations-header Lovers(
+          span.user__relations-counter {{ user.p.length }}):
+        md-content.user__md-content
+          md-list.user__list
+            md-item.user__list-item(ng-repeat="p in user.p")
+              md-item-content.user__item(ng-class="{ active: user.a == true }")
+                md-button.user__2profile(ng-click="openProfile(p.vid)" aria-label="open-user-profile") i
+                md-button.user__2chat(ng-click="addNick(p.n)" aria-label="add-user-to-chat") {{ p.n.length && p.n || 'Deleted' }}
