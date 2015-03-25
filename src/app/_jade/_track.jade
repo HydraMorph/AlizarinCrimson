@@ -12,9 +12,9 @@ div.track__row
   div.track__additional
     div.track__content
       div.track__links
-        a.track__link(href="http://vk.com/audio?q={{ track.t }}-{{ track.a }}" target="_blank") >vk
-        a.track__link(href="http://www.lastfm.ru/search?q={{ track.t }}+{{ track.a }}" target="_blank") >lastfm
-        a.track__link(ng-click="trackToChat(track.id)") >{{ 'trackToChat' | translate }}
+        a.track__link(href="http://vk.com/audio?q={{ track.t }}-{{ track.a }}" target="_blank") &nbsp;>vk
+        a.track__link(href="http://www.lastfm.ru/search?q={{ track.t }}+{{ track.a }}" target="_blank") &nbsp;>lastfm
+        a.track__link(ng-click="trackToChat(track.id)") &nbsp;>{{ 'trackToChat' | translate }}
       div.track__upload-info {{ 'trackUploadedBy' | translate }}&nbsp;
         a(ng-click="openProfile(track.sid)") {{ track.s }}&nbsp;
         span(am-time-ago="track.ut")
