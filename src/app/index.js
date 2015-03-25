@@ -27,7 +27,6 @@ app.run(function($timezone, angularMomentConfig) {
 
 app.run(function ($rootScope, Client, socket, $location, $log, md5) {
 
-
   /* init */
   $rootScope.load = {
     'signed': false,
