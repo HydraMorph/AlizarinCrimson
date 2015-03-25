@@ -1,0 +1,13 @@
+md-dialog.login__ctrl(ng-controller="LoginCtrl" aria-label="login-modal")
+
+  md-card.login__card
+    md-input-container.login__username
+      label {{ 'loginUsername' | translate }}
+      input(ng-model="user.name" type="text" autofocus inputmode="latin")
+    md-input-container.login__username
+      label {{ 'loginPassword' | translate }}
+      input(ng-model="user.password" ng-enter="login()" type="password" inputmode="latin")
+    div.login__settings
+      md-checkbox.settings__remember(ng-model="user.remember") Remember me
+    md-button.login__btn(ng-click="login()" aria-label="login--btn") {{ 'loginSubmit' | translate }}
+    //a(ng-click="recoverPassword()") Amnesia

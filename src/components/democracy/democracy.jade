@@ -1,0 +1,17 @@
+div.democracy__ctrl(ng-controller="DemocracyCtrl")
+  ng-switch.democracy__tabpanel-container(on="data.selectedIndex")
+    div#tabModerList-content(ng-switch-when="0" md-swipe-left="next()" md-swipe-right="previous()" role="tabpanel" aria-labelledby="tabModerList")
+
+    div#tabModerText-content(ng-switch-when="1" md-swipe-left="next()" md-swipe-right="previous()" role="tabpanel" aria-labelledby="tabModerText")
+      md-card.democracy__list
+        p История работает (история плюсов, минусов и загрузок юзера тоже). Добавлена кнопка loadMore. Позже может быть сделаю автоподгрузку. <br> Если кликнуть на ник в чате - то ему можно отправить личное сообщение. Клики на юзеров в блоке "онлайн" тоже работают. История приватных сообщений не стирается при обновлении страницы. До тех пор, пока вы не закроете вкладку.<br> Можно слушать музыку! Клик на ту штуку в левом верхнем углу! У пользователей хрома могут быть проблемы, чуть позже заменю плеер.<br>В профиле можно менять пароль, смотреть кто отметился в карме, поменять аватарку.<br>Работает смена тем. <br> В чате работают кнопки болда, айрони, тиньки и фильтры картинок тоже. И да, теперь длина одного сообщения ограничена 240 символами. Смиритесь (: <br>ЦУП и все что там лежит не работает. Заливка треков не работает. И да, треки не раскрываются.<br> И да, можно уже попробовать открыть клиент на мобильнике! Ура.
+
+  md-tabs.md-accent(md-selected="data.selectedIndex")
+    md-tab#ModerList(aria-controls="tabModerList-content")
+      span.tabs__full {{ 'democracyTabModer' | translate }}
+      span.tabs__icon
+        ng-md-icon(icon="account_balance" size="24")
+    md-tab#tabModerText(aria-controls="tabModerText-content")
+      span.tabs__full {{ 'democracyTabBlog' | translate }}
+      span.tabs__icon
+        ng-md-icon(icon="question_answer" size="24")

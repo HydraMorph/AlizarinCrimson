@@ -1,0 +1,26 @@
+div.chat__module(ng-controller="ChatCtrl" ng-class="{ 'chat__module--extended': isChatExtended === true }")
+
+  md-content.chat__md-content(scroll-glue)
+    md-button.chat__loadmore(ng-click="loadMore()" aria-label="chat--loadmore") Load more
+    md-list.chat__list
+      md-item.chat__list-item(ng-repeat="msg in messages")
+        md-item-content.chat__item
+          div.md-tile-content(ng-class="{ 'private': msg.pm, 'personal': msg.type }")
+            span.msg__author(ng-click="addNick(msg.uname)") {{msg.uname}}:
+            span.msg__message(compile='msg.m')
+            span.msg__time(am-time-ago="msg.t")
+
+  md-button.chat__show-online(ng-class="{ 'chat__show-online--open': showOnline }" ng-click="setOnline()" aria-label="chat-show-online")
+    ng-md-icon(icon="keyboard_arrow_left" size="24")
+
+  div.online__include(ng-include="'components/online/online.html'" ng-class="{ 'online__include--open': showOnline }")
+
+  div.chat__input-grp
+    md-input-container
+      label {{ 'startTyping' | translate }}
+      textarea#chatInput.chat__input(ng-enter="sendMessage()" ng-change="checkMessage()" ng-model="message" columns="3" md-maxlength="700" autofocus)
+      div.chat__input-nav
+        md-button.chat__button--bold(ng-click="setBold()" aria-label="chat-bold") {{ 'chatBold' | translate }}
+        md-button.chat__button--irony(ng-click="setIrony()" aria-label="chat-irony") {{ 'chatIrony' | translate }}
+        md-checkbox.chat__checkbox--tink(ng-model="settings.tink" ng-change="setTink()") {{ 'chatTink' | translate }}
+        md-checkbox.chat__checkbox--img(ng-model="settings.img" ng-change="setImg()") {{ 'chatImg' | translate }}

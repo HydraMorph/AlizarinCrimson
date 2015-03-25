@@ -1,0 +1,37 @@
+//-div.profile__ctrl(ng-controller="ProfileCtrl")
+div.profile__ctrl
+
+  ng-switch.profile__tabpanel-container(on="profileTab")
+    div#tabUser-content(ng-switch-when="0" role="tabpanel" aria-labelledby="tabUser")
+      div.user__include.h(ng-include="'components/user/user.html'")
+    div#tabUploads-content(ng-switch-when="1" role="tabpanel" aria-labelledby="tabUploads")
+      div.uploads__include(ng-include="'components/uploads/uploads.html'")
+    div#tabPluses-content(ng-switch-when="2" role="tabpanel" aria-labelledby="tabPluses")
+      div.pluses__include(ng-include="'components/pluses/pluses.html'")
+    div#tabMinuses-content(ng-switch-when="3" role="tabpanel" aria-labelledby="tabMinuses")
+      div.minuses__include(ng-include="'components/minuses/minuses.html'")
+    div#tabSettings-content(ng-switch-when="4" ng-show="isMe" role="tabpanel" aria-labelledby="tabSettings")
+      div.settings__include(ng-include="'components/settings/settings.html'")
+
+  md-tabs.md-accent(md-selected="profileTab" md-stretch-tabs="never")
+    md-tab#tabUser(ng-click="setProfileTab(0)" aria-controls="tabUser-content")
+      span.tabs__full {{ 'profileUser' | translate }}
+      span.tabs__icon
+        ng-md-icon(icon="home" size="24")
+    md-tab#tabUploads(ng-click="setProfileTab(1)" aria-controls="tabUploads-content")
+      span.tabs__full {{ 'profileUploads' | translate }}
+      span.tabs__icon
+        ng-md-icon(icon="file_upload" size="24")
+    md-tab#tabPluses(ng-click="setProfileTab(2)" aria-controls="tabPluses-content")
+      span.tabs__full {{ 'profilePluses' | translate }}
+      span.tabs__icon
+        ng-md-icon(icon="thumb_up" size="24")
+    md-tab#tabMinuses(ng-click="setProfileTab(3)" aria-controls="tabMinuses-content")
+      span.tabs__full {{ 'profileMinuses' | translate }}
+      span.tabs__icon
+        ng-md-icon(icon="thumb_down" size="24")
+    md-tab#tabSettings(ng-click="setProfileTab(4)" ng-show="isMe" aria-controls="tabSettings-content")
+      span.tabs__full {{ 'profileSettings' | translate }}
+      span.tabs__icon
+        ng-md-icon(icon="settings" size="24")
+

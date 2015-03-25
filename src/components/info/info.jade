@@ -1,0 +1,31 @@
+div.tabsdemoStaticTabs.h
+
+  md-tabs.h(md-selected="infoTab")
+
+    md-tab#tabChat.h(md-on-select="setInfoTab(0)" ng-show="load.signed" aria-controls="tabChat-content")
+      md-tab-label
+        span.tabs__full {{ 'infoTabChat' | translate }}
+        span.tabs__icon
+          ng-md-icon(icon="chat" size="24")
+      div.chat(ng-include="'components/chat/chat.html'" ng-show="load.signed")
+
+    md-tab#tabHistory.h(md-on-select="setInfoTab(1)" aria-controls="tabHistory-content")
+      md-tab-label
+        span.tabs__full {{ 'infoTabHistory' | translate }}
+        span.tabs__icon
+          ng-md-icon(icon="history" size="24")
+      div.history(ng-include="'components/history/history.html'")
+
+    md-tab#tabDemocracy.h(md-on-select="setInfoTab(2)" aria-controls="tabDemocracy-content")
+      md-tab-label
+        span.tabs__full {{ 'infoTabDemocracy' | translate }}
+        span.tabs__icon
+          ng-md-icon(icon="whatshot" size="24")
+      div.democracy__include(ng-include="'components/democracy/democracy.html'")
+
+    md-tab#tabProfile.h(md-on-select="setInfoTab(3)" ng-show="load.signed" aria-controls="tabProfile-content")
+      md-tab-label
+        span.tabs__full {{ 'infoTabProfile' | translate }}
+        span.tabs__icon
+          ng-md-icon(icon="person" size="24")
+      div.profile__include(ng-include="'components/profile/profile.html'")

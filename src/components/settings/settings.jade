@@ -1,0 +1,30 @@
+div.settings__ctrl(ng-controller="SettingsCtrl")
+
+  md-card.settings__card
+
+    div.settings__logout
+      md-button.settings__logout-btn(aria-label="logout") {{ 'settingsLogOut' | translate }}
+      md-button.settings__logout-btn(ng-click="initLast()" aria-label="logout") lastFM
+
+    div.settings__chat
+      //
+        md-checkbox ng-model="data.tink" ng-change="setImg()" class="settings__tink">
+          {{ 'settingsTink' | translate }}
+        /md-checkbox>
+        md-checkbox ng-model="data.img" ng-change="setImg()" class="settings__img">
+          {{ 'settingsImg' | translate }}
+        /md-checkbox>
+
+      md-checkbox.settings__female(ng-model="gender" ng-change="changeGender()") {{ 'settingsFemale' | translate }}
+
+    div.settings__password
+      md-input-container.settings__password--old
+        label {{ 'settingsOldPassword' | translate }}
+        input(ng-model="oldPassword" aria-label="settings-old-password" inputmode="latin")
+      md-input-container.settings__password--new
+        label {{ 'settingsNewPassword' | translate }}
+        input(ng-model="newPassword" type="password" aria-label="settings-new-password" inputmode="latin")
+      md-input-container.settings__password--new
+        label {{ 'settingsNewPasswordAgain' | translate }}
+        input(ng-model="newPasswordFix" ng-enter="changePassword" type="password" inputmode="latin" aria-label="settings-new-password")
+      md-button.settings__password-btn(ng-click="changePassword()" aria-label="change-password") {{ 'settingsNewPasswordSumbit' | translate }}

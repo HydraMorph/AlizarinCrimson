@@ -1,0 +1,10 @@
+div.online__ctrl(ng-controller="OnlineCtrl")
+
+  p.online__here {{ 'onlineHere' | translate }}:&nbsp;
+    span.online__counter {{ usersCount }}
+  md-content.online__md-content
+    md-list.online__list
+      md-item.online__list-item(ng-repeat="user in users")
+        md-item-content.online__item(ng-class="{ active: user.a == true }")
+          md-button.user__2profile(ng-click="openProfile(user.id)" aria-label="open-user-profile") i
+          md-button.user__2chat(ng-click="addNick(user.n)" aria-label="add-user-to-chat") {{ user.n }}

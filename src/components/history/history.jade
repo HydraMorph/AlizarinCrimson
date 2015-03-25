@@ -1,0 +1,54 @@
+div.history__module(ng-controller="HistoryCtrl")
+
+  div.history__search-grp
+    md-checkbox.history__checkbox(ng-model="data.gold" ng-change="newHistory()") {{ 'historyGold' | translate }}
+    md-checkbox.history__checkbox(ng-model="data.top" ng-change="newHistory()") Top
+    md-select.history__select(ng-model="data.topType" ng-change="newHistory()")
+      md-option(value="true") Votes
+      md-option(value="false" ng-selected="selected") Rating
+    md-button.md-fab.history--search-btn(ng-click="newHistory()" aria-label="Search-button")
+      ng-md-icon(icon="search" size="24")
+    md-input-container.history--input
+      label {{ 'historyArtist' | translate }}
+      input(ng-model="data.artist" type="text")
+    md-input-container.history--input
+      label {{ 'historyTitle' | translate }}
+      input(ng-model="data.title" ng-enter="newHistory()" type="text")
+
+  md-content.history__content
+    md-list.playlist__list
+      md-item.playlist__track(ng-repeat="track in tracks | orderBy:'tt':true" ng-class="{ 'track--gold': gold == true }")
+        div.track__img-cont
+          img.track__img(ng-src="assets\\images\\nocover.png" alt="{{ track.t }} - {{ track.a }}" lastfm-img="{{ track.t }},{{ track.a }}")
+        div.track__row
+          div.track__base
+            div.track__content
+              h3.track__artist {{ track.a }}
+              h4.track__title {{ track.t }}
+            div.track__tags
+              span.track__tag(ng-repeat="tag in track.tg") {{ tag.n }}
+            div.track__time
+              span(am-time-ago="track.tt")
+          div.track__additional
+            div.track__content
+              div.track__links
+                a.track__link(href="http://vk.com/audio?q={{ track.t }}-{{ track.a }}" target="_blank") >vk
+                a.track__link(href="http://www.lastfm.ru/search?q={{ track.t }}+{{ track.a }}" target="_blank") >lastfm
+                a.track__link(ng-click="trackToChat(track.id)") >{{ 'trackToChat' | translate }}
+              div.track__upload-info {{ 'trackUploadedBy' | translate }}&nbsp;
+                a(ng-click="openProfile(track.sid)") {{ track.s }}&nbsp;
+                span(am-time-ago="track.ut")
+            div.track__tags
+              span.track__tag(ng-repeat="tag in track.tg") {{ tag.n }}
+            div.track__time
+              span(am-time-ago="track.tt")
+        div.track__votes-block(ng-class="{ 'voted--up': track.vote > 0, 'voted--down': track.vote < 0 }" ng-show="load.signed")
+          span.track__rating {{ track.r }}/
+          span.track__voters-diff {{ track.p.length - track.n.length }}
+      md-button.history__loadmore(ng-click="loadMore()" ng-show="tracks.length > 1" aria-label="history--loadmore") Load more
+
+    //Show if search result is empty
+    div.histroy--emtpy(ng-show="tracks.length == 0")
+      p.history--empty-text
+        ng-md-icon(icon="adb" size="24")
+        | {{ 'historyNoResults' | translate }}
