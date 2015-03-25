@@ -3,30 +3,6 @@
 angular.module('trigger')
   .controller('ConsoleCtrl', function ($scope, $rootScope, $interval, $timeout, $mdDialog, $mdBottomSheet, Client, socket, hotkeys, $translate) {
 
-    /* Random greetings */
-    /* get the app's lang */
-    var greetingsLang = $translate.preferredLanguage();
-    var greetings = {
-      'ru': [
-        'А ты тоже ждешь 80 порт как и я, username?',
-        'Тыц-тыц, username, унц-унц, username!',
-        'Когда–то инвайт давали за +11, username.',
-        'Не бери треки у наркоманов, username!',
-        'Не всё то чилл, что уныло, username!',
-        'Не весь метал одинаково полезен, username!',
-        'Это не баян, это ротация, username'
-      ],
-      'en': [
-        'Let\'s dance, username?',
-        'Let\'s do lunch sometime, username',
-        'I\'ve been there., username',
-        'Do you hear me, username?'
-      ],
-      'he': [
-        'Lol, username'
-      ]
-    };
-
     /* Default values */
     $scope.users = {
       'listeners': 0,
@@ -37,11 +13,6 @@ angular.module('trigger')
       'uplim': 0
     };
 
-    /* Randomize greetings */
-    $scope.greeting = greetings[greetingsLang][Math.floor(Math.random() * greetings[greetingsLang].length)].replace('username', $scope.user.name);
-    $interval(function(){
-      $scope.greeting = greetings[greetingsLang][Math.floor(Math.random() * greetings[greetingsLang].length)].replace('username', $scope.user.name);
-    },9000);
 
     /* Show listeners and active users count */
     $scope.$watch(function() {
