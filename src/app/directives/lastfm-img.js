@@ -2,7 +2,7 @@
 
 var app = angular.module('trigger');
 
-app.directive('lastfmImg', ['$rootScope', '$http', function($rootScope, $http) {
+app.directive('lastfmImg', ['$rootScope', '$http', function() {
   return {
     restrict: 'A',
     scope: {

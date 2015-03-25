@@ -25,7 +25,7 @@ angular.module('trigger')
       'he': [
         'Lol, username'
       ]
-    }
+    };
 
     /* Default values */
     $scope.users = {
@@ -69,8 +69,8 @@ angular.module('trigger')
         socket.on('uplim', function(data) {
           $scope.user.uplim = data.t;
         });
-        if (localStorage.getItem('theme') != undefined && localStorage.getItem('theme').length > 0) {
-          document.body.setAttribute("theme", localStorage.getItem('theme'));
+        if (localStorage.getItem('theme') !== undefined && localStorage.getItem('theme').length > 0) {
+          document.body.setAttribute('theme', localStorage.getItem('theme'));
         }
       }
       $scope.load.signed = $rootScope.load.signed;
@@ -78,28 +78,28 @@ angular.module('trigger')
 
     /* Just for debug. u can delete it */
     $scope.data = function() {
-      if (document.body.style.webkitTransform == "rotateY(180deg)") {
-        document.body.style.webkitTransform = "rotateY(0deg)";
+      if (document.body.style.webkitTransform === 'rotateY(180deg)') {
+        document.body.style.webkitTransform = 'rotateY(0deg)';
       } else {
-        document.body.style.webkitTransform = "rotateY(180deg)";
+        document.body.style.webkitTransform = 'rotateY(180deg)';
       }
       console.log('data', Client);
     };
 
     $scope.changeTheme = function () {
-      var theme = document.body.getAttribute("theme");
+      var theme = document.body.getAttribute('theme');
       if (theme === 'dark') {
-        document.body.setAttribute("theme", "light");
+        document.body.setAttribute('theme', 'light');
         if ($scope.load.signed === true) {
           localStorage.setItem('theme', 'light');
         }
       } else {
-        document.body.setAttribute("theme", "dark");
+        document.body.setAttribute('theme', 'dark');
         if ($scope.load.signed === true) {
           localStorage.setItem('theme', 'dark');
         }
       }
-    }
+    };
 
     /* Show login modal */
     $scope.showLoginModal = function(ev) {

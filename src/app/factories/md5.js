@@ -60,9 +60,9 @@ app.factory('md5', function() {
       var convertToWordArray = function(str) {
         var lWordCount;
         var lMessageLength = str.length;
-        var lNumberOfWords_temp1 = lMessageLength + 8;
-        var lNumberOfWords_temp2 = (lNumberOfWords_temp1 - (lNumberOfWords_temp1 % 64)) / 64;
-        var lNumberOfWords = (lNumberOfWords_temp2 + 1) * 16;
+        var lNumberOfWordsTemp1 = lMessageLength + 8;
+        var lNumberOfWordsTemp2 = (lNumberOfWordsTemp1 - (lNumberOfWordsTemp1 % 64)) / 64;
+        var lNumberOfWords = (lNumberOfWordsTemp2 + 1) * 16;
         var lWordArray = new Array(lNumberOfWords - 1);
         var lBytePosition = 0;
         var lByteCount = 0;
@@ -81,12 +81,12 @@ app.factory('md5', function() {
       };
       var wordToHex = function(lValue) {
         var wordToHexValue = '',
-          wordToHexValue_temp = '',
+          wordToHexValueTemp = '',
           lByte, lCount;
         for (lCount = 0; lCount <= 3; lCount += 1) {
           lByte = (lValue >>> (lCount * 8)) & 255;
-          wordToHexValue_temp = '0' + lByte.toString(16);
-          wordToHexValue = wordToHexValue + wordToHexValue_temp.substr(wordToHexValue_temp.length - 2, 2);
+          wordToHexValueTemp = '0' + lByte.toString(16);
+          wordToHexValue = wordToHexValue + wordToHexValueTemp.substr(wordToHexValueTemp.length - 2, 2);
         }
         return wordToHexValue;
       };

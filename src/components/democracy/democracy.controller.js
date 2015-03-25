@@ -2,7 +2,7 @@
 'use strict';
 
 angular.module('trigger')
-  .controller('DemocracyCtrl', function ($scope, $rootScope, Client) {
+  .controller('DemocracyCtrl', function ($scope) {
     $scope.data = {
       selectedIndex : 1
     };

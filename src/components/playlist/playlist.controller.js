@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('trigger')
-  .controller('PlaylistCtrl', function ($scope, $rootScope, $mdSidenav, Client, socket, $interval, hotkeys, $q, md5) {
+  .controller('PlaylistCtrl', function ($scope, $rootScope, $mdSidenav, Client, socket, $interval, hotkeys) {
 
     /* init */
     $scope.load.signed = false;
@@ -60,6 +60,7 @@ angular.module('trigger')
     }, true);
 
     /* Socket - new current track - removing it from playlist and and add to current */
+    /* jshint shadow:true */
     socket.on('newcurrent', function(data) {
 //      console.log('newcurrent', data);
       if ($scope.load.signed === true) {
@@ -259,7 +260,7 @@ angular.module('trigger')
     function addVote (data) {
       data.chid = Client.channel.id;
       socket.emit('vote', data);
-    };
+    }
 
     /* VoteUp. Check screen size - on low-res screens buttons are reversed */
     $scope.voteUp = function (id) {

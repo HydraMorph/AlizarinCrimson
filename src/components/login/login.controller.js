@@ -1,7 +1,9 @@
 'use strict';
 
 angular.module('trigger')
-  .controller('LoginCtrl', function ($scope, $rootScope, $mdDialog, md5, Client, $mdToast, $animate) {
+  .controller('LoginCtrl', function ($scope, $rootScope, $mdDialog, md5, Client, $mdToast) {
+
+  /* exported $animate */
 
     /* Default values */
     $scope.user = {
@@ -60,7 +62,7 @@ angular.module('trigger')
     };
 
     $scope.recoverPassword = function() {
-    }
+    };
 
     /* Hide modal */
     $scope.hide = function() {

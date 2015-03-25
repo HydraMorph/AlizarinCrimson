@@ -25,7 +25,7 @@ app.run(function($timezone, angularMomentConfig) {
   angularMomentConfig.timezone = $timezone.getName();
 });
 
-app.run(function ($rootScope, Client, socket, $location, $log, md5) {
+app.run(function ($rootScope, Client, socket) {
 
   /* init */
   $rootScope.load = {
@@ -58,7 +58,7 @@ app.run(function ($rootScope, Client, socket, $location, $log, md5) {
   $rootScope.title = 'Trigger';
   $rootScope.userId = 0;
   $rootScope.scrobble = false;
-  var d = new Date()
+  var d = new Date();
   $rootScope.timezoneOffset = d.getTimezoneOffset();
 
   Client.init(location.host); /* Init Client */

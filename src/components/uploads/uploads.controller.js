@@ -16,7 +16,7 @@ angular.module('trigger')
     $scope.data = {
       id: $rootScope.userId,
       uplshift: 0
-    }
+    };
 
     /* Get tracks after signing */
     $scope.$watch(function() {
@@ -53,11 +53,11 @@ angular.module('trigger')
       var date = {
         utc: $scope.date,
         offset: -1*$rootScope.timezoneOffset
-      }
+      };
       var d = new Date($scope.date);
       date.utc = addMinutes(d, date.offset);
       $scope.data.uplshift = date.utc;
       getHistory($scope.data);
-    }
+    };
 
   });

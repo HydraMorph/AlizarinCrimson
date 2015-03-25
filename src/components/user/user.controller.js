@@ -1,17 +1,8 @@
-/*
-* TODO
-* 1. Caching profile
-* 2. Added vote function
-* 3. User img checking and default picture setting
-* 4. Regdate i18n
-* 5. showProfile(id) function
-*/
-
-
 'use strict';
 
 angular.module('trigger')
-  .controller('UserCtrl', function ($scope, $rootScope, Client, $mdToast, $animate) {
+  .controller('UserCtrl', function ($scope, $rootScope, Client, $mdToast) {
+
 
     /* init */
     $scope.user = {};
@@ -29,6 +20,7 @@ angular.module('trigger')
     };
 
     /* Get data after signing */
+    /* jshint shadow:true */
     $scope.$watch(function() {
       return $rootScope.load.signed;
     }, function() {
@@ -42,13 +34,13 @@ angular.module('trigger')
           data.karma = data.p.length - data.n.length;
           data.vote = undefined;
           for (var vr in data.p) {
-            if (data.p[vr].vid == Client.user.id) {
+            if (data.p[vr].vid === Client.user.id) {
               data.vote = 'plus';
               break;
             }
           }
           for (var vr in data.n) {
-            if (data.n[vr].vid == Client.user.id) {
+            if (data.n[vr].vid === Client.user.id) {
               data.vote = 'minus';
               break;
             }
@@ -72,13 +64,13 @@ angular.module('trigger')
         data.karma = data.p.length - data.n.length;
         data.vote = undefined;
         for (var vr in data.p) {
-          if (data.p[vr].vid == Client.user.id) {
+          if (data.p[vr].vid === Client.user.id) {
             data.vote = 'plus';
             break;
           }
         }
         for (var vr in data.n) {
-          if (data.n[vr].vid == Client.user.id) {
+          if (data.n[vr].vid === Client.user.id) {
             data.vote = 'minus';
             break;
           }
@@ -91,7 +83,7 @@ angular.module('trigger')
         img.src = data.pic;
         img.onerror = function() {
           data.pic = '/assets/images/ear.png';
-        }
+        };
         $scope.user = data;
         $scope.$digest();
       });
@@ -112,7 +104,7 @@ angular.module('trigger')
         $scope.user.vote = 'minus';
         $scope.user.karma--;
       }
-    }
+    };
 
     $scope.userVoteUp = function (id) {
       var vote = 1;
@@ -127,7 +119,7 @@ angular.module('trigger')
         $scope.user.vote = 'plus';
         $scope.user.karma ++;
       }
-    }
+    };
 
     $scope.avatarUrl = '';
     $scope.previewAvatar = function () {
@@ -136,7 +128,7 @@ angular.module('trigger')
       img.onload = function() {
         $scope.user.pic = $scope.avatarUrl;
         $scope.save = true;
-      }
+      };
       img.onerror = function() {
         $mdToast.show(
           $mdToast.simple()
@@ -144,8 +136,8 @@ angular.module('trigger')
             .position($scope.getToastPosition())
             .hideDelay(3000)
         );
-      }
-    }
+      };
+    };
 
     $scope.edit = false;
     $scope.save = false;
@@ -155,7 +147,7 @@ angular.module('trigger')
       } else {
         $scope.edit = true;
       }
-    }
+    };
     $scope.saveAvatar = function () {
       Client.updateUserData({ pic: $scope.avatarUrl });
       $scope.edit = false;
@@ -166,6 +158,6 @@ angular.module('trigger')
           .position($scope.getToastPosition())
           .hideDelay(3000)
       );
-    }
+    };
 
   });

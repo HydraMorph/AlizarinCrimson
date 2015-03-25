@@ -3,6 +3,7 @@
 var app = angular.module('trigger');
 
 app.filter('readableTime', function () {
+  /* jshint ignore:start */
   return function (seconds) {
     var seconds = parseInt(seconds, 10);
     var hrs, mins, secs;
@@ -34,4 +35,5 @@ app.filter('readableTime', function () {
     ret += '' + secs;
     return ret;
   };
+  /* jshint ignore:end */
 });

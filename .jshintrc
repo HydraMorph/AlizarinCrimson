@@ -1,7 +1,7 @@
 {
   "node": true,
   "esnext": true,
-  "bitwise": true,
+  "bitwise": false,
   "camelcase": true,
   "curly": true,
   "eqeqeq": true,
@@ -21,6 +21,18 @@
   "validthis": true,
   "globals": {
     "angular": false,
+    "Image": false,
+    "moment": false,
+    "screen": false,
+    "window": false,
+    "document": false,
+    "event": false,
+    "Audio": false,
+    "localStorage": false,
+    "sessionStorage": false,
+    "location": false,
+    "XMLHttpRequest": false,
+    "io": false,
     // Angular Mocks
     "inject": false,
     // JASMINE

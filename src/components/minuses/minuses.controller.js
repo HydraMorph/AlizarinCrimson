@@ -16,7 +16,7 @@ angular.module('trigger')
       id: $rootScope.userId,
       uplshift: 0,
       p: false
-    }
+    };
 
     /* Get tracks after signing */
     $scope.$watch(function() {
@@ -48,20 +48,15 @@ angular.module('trigger')
       });
     }
 
-
-    function addMinutes(date, minutes) {
-      return new Date(date.getTime() + minutes*60000);
-    }
-
     $scope.loadMore = function() {
       var date = {
         utc: $scope.date,
         offset: 0
-      }
+      };
       var d = new Date($scope.date);
       date.utc = d;
       $scope.data.uplshift = date.utc;
       getHistory($scope.data);
-    }
+    };
 
   });

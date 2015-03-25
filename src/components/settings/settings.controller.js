@@ -1,17 +1,17 @@
 'use strict';
 
 angular.module('trigger')
-  .controller('SettingsCtrl', function ($scope, Client, md5, $mdToast, $animate, $http) {
+  .controller('SettingsCtrl', function ($scope, Client, md5, $mdToast) {
 
     $scope.gender = !Client.user.g;
     $scope.changeGender = function() {
-      if ($scope.gender == true) {
+      if ($scope.gender === true) {
         Client.user.g = false;
       } else {
         Client.user.g = true;
       }
       Client.updateUserData({ g: !$scope.gender });
-    }
+    };
 
     $scope.toastPosition = {
       bottom: false,
@@ -58,16 +58,16 @@ angular.module('trigger')
             .hideDelay(3000)
         );
       }
-    }
+    };
 
-    function ScrobbleOn(){
-      window.open('http://www.lastfm.ru/api/auth?api_key=66101f9355c9c707b5608bc42c62d860&cb=http%3A%2F%2F'+window.location.host+'','Last.fm','width=940,height=580');
-      return false;
-    }
+//    function ScrobbleOn(){
+//      window.open('http://www.lastfm.ru/api/auth?api_key=66101f9355c9c707b5608bc42c62d860&cb=http%3A%2F%2F'+window.location.host+'','Last.fm','width=940,height=580');
+//      return false;
+//    }
 
     /* Under development */
-    $scope.initLast = function() {
-      ScrobbleOn();
+//    $scope.initLast = function() {
+//      ScrobbleOn();
 //      var request = new XMLHttpRequest();
 //      var url = encodeURIComponent('http://www.last.fm/api/auth/?api_key=66101f9355c9c707b5608bc42c62d860');
 //      request.open('GET', url, true);
@@ -86,6 +86,6 @@ angular.module('trigger')
 //      $http({method: 'GET', url: '//last.fm/api/auth/?api_key=66101f9355c9c707b5608bc42c62d860&cb=http://example.com'})
 //      .success(function(d){ console.log( "yay" ); })
 //      .error(function(d){ console.log( "nope" ); });
-    }
+//    }
 
   });

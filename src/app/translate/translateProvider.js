@@ -201,7 +201,7 @@ app.config(['$translateProvider', function ($translateProvider) {
     'en_US': 'en',
     'en_UK': 'en',
     'ru_RU': 'ru'
-  })
+  });
 
 // Determining preferred language automatically
 //  $translateProvider.determinePreferredLanguage();

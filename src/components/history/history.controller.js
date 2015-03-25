@@ -30,6 +30,7 @@ angular.module('trigger')
     }, true);
 
     /* Callback function */
+    /* jshint shadow:true */
     function addHistory(track) {
       if ($scope.load.signed === true) {
         for (var vr in track.p) {
@@ -69,13 +70,13 @@ angular.module('trigger')
     /* ng-click */
     $scope.showHistory = function() {
       getHistory($scope.data);
-    }
+    };
     /* ng-click */
     $scope.newHistory = function() {
       $scope.tracks = [];
       $scope.data.shift = 0;
       getHistory($scope.data);
-    }
+    };
     /* init function */
 //    getHistory($scope.data);
 
@@ -87,12 +88,12 @@ angular.module('trigger')
       var date = {
         utc: $scope.tracks[$scope.tracks.length - 1].tt,
         offset: -1*$rootScope.timezoneOffset
-      }
+      };
       var d = new Date($scope.tracks[$scope.tracks.length - 1].tt);
       date.utc = addMinutes(d, date.offset);
       $scope.data.shift = date.utc;
       console.log($scope.tracks.length, $scope.data.shift);
       getHistory($scope.data);
-    }
+    };
 
   });

@@ -3,7 +3,7 @@
 angular.module('trigger')
   .controller('AppCtrl', function ($scope, $rootScope, $timeout, $mdSidenav, hotkeys, Client, ngAudio) {
 
-    $scope.sound = ngAudio.load("http://trigger.fm/stream/mainmp3");
+    $scope.sound = ngAudio.load('http://trigger.fm/stream/mainmp3');
 
     $scope.play = false;
     $scope.volume = 50;
@@ -11,7 +11,7 @@ angular.module('trigger')
     $scope.start = function() {
       $scope.play = true;
       $scope.sound.play();
-    }
+    };
     /* Autoplay if it was defined in localStorage settings */
     if (localStorage.getItem('play') === 'true') {
       $timeout($scope.start(), 5000);
@@ -75,7 +75,7 @@ angular.module('trigger')
     }, true);
 
     $scope.$watchCollection('infoTab', function(newValue, oldValue){
-      if (oldValue === 3 && newValue != 3) {
+      if (oldValue === 3 && newValue !== 3) {
         $rootScope.userId = Client.user.id;
         $scope.isMe = true;
         $scope.profileTab = 0;
@@ -119,7 +119,7 @@ angular.module('trigger')
     $scope.logout = function() {
       Client.logout(
         function() {
-          if (localStorage.getItem('password') != '') {
+          if (localStorage.getItem('password') !== '') {
             localStorage.removeItem('password');
             localStorage.removeItem('username');
           }
@@ -127,7 +127,7 @@ angular.module('trigger')
       );
       $rootScope.load.signed = false;
       $scope.infoTab = 2;
-    }
+    };
 
     $scope.swiped = false;
     $scope.swipe = function () {
@@ -136,7 +136,7 @@ angular.module('trigger')
       } else {
         $scope.swiped = true;
       }
-    }
+    };
     /* Console panel */
     $scope.toggleLeft = function () {
       $mdSidenav('left').toggle();

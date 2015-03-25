@@ -2,14 +2,14 @@
 
 var app = angular.module('trigger');
 
-app.service('Client', function ($log) {
+app.service('Client', function () {
   this.version = 2205;
   this.user = null;
   this.channel = {};
   this.callbacks = {};
   this.chat = null;
   this.trackscache = [];
-  this.init = function (host) {
+  this.init = function () {
     console.log('init');
     this.socket = io('http://trigger.fm');
     var socket = this.socket;
@@ -20,7 +20,7 @@ app.service('Client', function ($log) {
     });
 
     socket.on('channeldata', function(data) {
-//      console.log('channeldata', data);
+      console.log('channeldata', data);
     });
 
     socket.on('history', function(data) {
@@ -63,7 +63,6 @@ app.service('Client', function ($log) {
 
     socket.on('loginstatus', function(data) {
       if (data.error) {
-        var message = '';
         if (data.error === 'nouser') {
           data.error = 'Нет такого пользователя';
         }
@@ -82,6 +81,7 @@ app.service('Client', function ($log) {
 
     socket.on('disconnect', function(data) {
 //      $(cl).trigger('disconnect');
+      console.log('disconnect', data);
       cl.user = null;
       cl.channel = {};
       cl.callbacks = {};
@@ -129,7 +129,7 @@ app.service('Client', function ($log) {
   };
 
   this.getPlaylist = function(channel, callback) {
-    cl = this;
+    var cl = this;
     cl.callbacks.playlist = callback;
     this.socket.emit('getplaylist', {id: channel});
   };
@@ -183,30 +183,30 @@ app.service('Client', function ($log) {
 //  };
 
   this.getTags = function(str, callback) {
-    cl = this;
+    var cl = this;
     cl.callbacks.tags = callback;
     this.socket.emit('gettags', {s: str});
   };
 
   this.getTrackTags = function(artist, title, callback) {
-    cl = this;
+    var cl = this;
     cl.callbacks.tags = callback;
     this.socket.emit('gettags', {a: artist, t: title});
   };
 
   this.addTag = function(str, callback) {
-    cl = this;
+    var cl = this;
     cl.callbacks.tags = callback;
     this.socket.emit('addtag', {s: str});
   };
 
   this.killtrack = function(track) {
-    cl = this;
+    var cl = this;
     this.socket.emit('deltrack', {tid: track, chid: cl.channel.chid});
   };
 
   this.sendinvite = function(mail, code, callback) {
-    cl = this;
+    var cl = this;
     cl.callbacks.invitestatus = callback;
     this.socket.emit('sendinvite', {m: mail, c: code});
   };
@@ -220,7 +220,7 @@ app.service('Client', function ($log) {
   };
 
   this.recover = function(mail, callback) {
-    cl = this;
+    var cl = this;
     cl.callbacks.recover = callback;
     this.socket.emit('recover', {m: mail});
   };

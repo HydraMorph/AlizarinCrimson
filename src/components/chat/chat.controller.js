@@ -25,7 +25,7 @@ angular.module('trigger')
     $scope.data = {
       shift: 0,
       id: 1
-    }
+    };
     $scope.isChatExtended = false;
     $scope.showOnline = false;
 
@@ -35,7 +35,7 @@ angular.module('trigger')
       } else {
         $scope.showOnline = true;
       }
-    }
+    };
 
     /* Used in messages: replace value by regexp */
     /* &nbsp; is used for code minificating */
@@ -99,14 +99,14 @@ angular.module('trigger')
       } else {
         localStorage.setItem('tink', false);
       }
-    }
+    };
     $scope.setImg = function() {
       if($scope.settings.img === true) {
         localStorage.setItem('img', true);
       } else {
         localStorage.setItem('img', false);
       }
-    }
+    };
 
     /* Socket */
     function getChat(data) {
@@ -123,7 +123,7 @@ angular.module('trigger')
           for (var j = 0; j < mL; j++) {
             mChat[j].m = addTrackLink(mChat[j].m);
             for (var i = 0; i < cL; i++) {
-              if (mChat[j].m.replace(customCodes[i][0], '') != mChat[j].m) {
+              if (mChat[j].m.replace(customCodes[i][0], '') !== mChat[j].m) {
                 if (i < 2) {
                   if ($scope.settings.img !== true) {
                     mChat[j].m = mChat[j].m.replace(customCodes[i + 2][0], customCodes[i + 2][1]);
@@ -148,7 +148,7 @@ angular.module('trigger')
           $scope.messages = mChat;
         }
       );
-    };
+    }
 
     function getMessages(data) {
       socket.emit(
@@ -161,7 +161,7 @@ angular.module('trigger')
           for (var j = 0; j < mL; j++) {
             mChat[j].m = addTrackLink(mChat[j].m);
             for (var i = 0; i < cL; i++) {
-              if (mChat[j].m.replace(customCodes[i][0], '') != mChat[j].m) {
+              if (mChat[j].m.replace(customCodes[i][0], '') !== mChat[j].m) {
                 if (i < 2) {
                   if ($scope.settings.img !== true) {
                     mChat[j].m = mChat[j].m.replace(customCodes[i + 2][0], customCodes[i + 2][1]);
@@ -221,7 +221,7 @@ angular.module('trigger')
           data.m = addTrackLink(data.m);
           var cL = customCodes.length;
           for (var i = 0; i < cL; i++) {
-            if (data.m.replace(customCodes[i][0], '') != data.m) {
+            if (data.m.replace(customCodes[i][0], '') !== data.m) {
               if (i < 2) {
                 if ($scope.settings.img !== true) {
                   data.m = data.m.replace(customCodes[i + 2][0], customCodes[i + 2][1]);
@@ -270,7 +270,7 @@ angular.module('trigger')
       if(message.indexOf('/track') > -1) {
         var meta = /\/track(\w*)/gim;
         var res = meta.exec(message);
-        return res.input.replace(res[0], "&nbsp;<a track-id='" + res[1] + "' ng-click='focusTrack(" + res[1] + ")'>" + res[0] + "</a>&nbsp;");
+        return res.input.replace(res[0], '&nbsp;<a track-id="' + res[1] + '" ng-click="focusTrack(' + res[1] + ')">' + res[0] + '</a>&nbsp;');
       } else {
         return message;
       }
@@ -305,7 +305,7 @@ angular.module('trigger')
         }
         $scope.message = chatters.join(' ') + ' ';
       }
-    };
+    }
 
     /* sendMessage */
     $scope.sendMessage = function () {
@@ -335,7 +335,7 @@ angular.module('trigger')
     $scope.loadMore = function () {
       $scope.data.shift = $scope.messages[0].t;
       getMessages($scope.data);
-    }
+    };
 
     function separateUsers (message) {
       var res = message.split(' ');
@@ -352,10 +352,10 @@ angular.module('trigger')
     }
 
     function getSelectionText() {
-      var text = "";
+      var text = '';
       if (window.getSelection) {
         text = window.getSelection().toString();
-      } else if (document.selection && document.selection.type != "Control") {
+      } else if (document.selection && document.selection.type !== 'Control') {
         text = document.selection.createRange().text;
       }
       return text;
@@ -367,12 +367,13 @@ angular.module('trigger')
       var cutted = [];
       cutted[0] = '';
       cutted[1]= '';
+      var ans = '';
       if (s.length < 1) {
-        var ans = separateUsers($scope.message);
+        ans = separateUsers($scope.message);
       } else {
         cutted[0] = $scope.message.substr(0, $scope.message.indexOf(s)); /* Before */
         cutted[1] = $scope.message.substr($scope.message.indexOf(s) + s.length, $scope.message.length); /* After */
-        var ans = separateUsers(s);
+        ans = separateUsers(s);
       }
       var chatters = ans[0].join(' ');
       var message = ans[1].join(' ');
@@ -381,7 +382,7 @@ angular.module('trigger')
         chattersInterfix = ' ';
       }
       $scope.message = cutted[0] + chatters + chattersInterfix + '<b>' + message + '</b>' + cutted[1];
-    }
+    };
 
     $scope.setIrony = function () {
       focus();
@@ -389,12 +390,13 @@ angular.module('trigger')
       var cutted = [];
       cutted[0] = '';
       cutted[1]= '';
+      var ans = '';
       if (s.length < 1) {
-        var ans = separateUsers($scope.message);
+        ans = separateUsers($scope.message);
       } else {
         cutted[0] = $scope.message.substr(0, $scope.message.indexOf(s)); /* Before */
         cutted[1] = $scope.message.substr($scope.message.indexOf(s) + s.length, $scope.message.length); /* After */
-        var ans = separateUsers(s);
+        ans = separateUsers(s);
       }
       var chatters = ans[0].join(' ');
       var message = ans[1].join(' ');
@@ -403,7 +405,7 @@ angular.module('trigger')
         chattersInterfix = ' ';
       }
       $scope.message = cutted[0] + chatters + chattersInterfix + '<span class="irony">' + message + '</span>' + cutted[1];
-    }
+    };
 
     $scope.checkMessage = function () {
       if ($scope.message.length >= 240) {
@@ -411,6 +413,6 @@ angular.module('trigger')
       } else {
         $scope.isChatExtended = false;
       }
-    }
+    };
 
   });
