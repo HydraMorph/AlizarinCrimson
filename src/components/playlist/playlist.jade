@@ -18,72 +18,14 @@ div.playlist__ctrl(ng-controller="PlaylistCtrl")
   md-content.playlist__content--current
     md-list.playlist__list
       md-item.playlist__track
-        div.track__img-cont
-          img.track__img(ng-src="assets\\images\\nocover.png" lastfm-img="{{ track.t }},{{ track.a }}" alt="{{ track.t }} - {{ track.a }}")
-        div.track__row
-          div.track__base
-            div.track__content
-              h3.track__artist {{ track.a }}
-              h4.track__title {{ track.t }}
-            div.track__tags
-              span.track__tag(ng-repeat="tag in track.tg") {{ tag.n }}
-            div.track__time
-              span +{{ track.tt | readableTime }}
-          div.track__additional
-            div.track__content
-              div.track__links
-                a.track__link(href="http://vk.com/audio?q={{ track.t }}-{{ track.a }}" target="_blank") >vk
-                a.track__link(href="http://www.lastfm.ru/search?q={{ track.t }}+{{ track.a }}" target="_blank") >lastfm
-                a.track__link(ng-click="trackToChat(track.id)") >{{ 'trackToChat' | translate }}
-              div.track__upload-info {{ 'trackUploadedBy' | translate }}&nbsp;
-                a(ng-click="openProfile(track.sid)") {{ track.s }} &nbsp;
-                span(am-time-ago="track.ut")
-            div.track__tags
-              span.track__tag(ng-repeat="tag in track.tg") {{ tag.n }}
-            div.track__time
-              span +{{ track.tt | readableTime }}
-        div.track__votes-block(ng-class="{ 'voted--up': track.vote > 0, 'voted--down': track.vote < 0 }" ng-show="load.signed")
-          md-button.md-fab.track__vote--down(ng-click="voteDown(track.id)" aria-label="track-up")
-            ng-md-icon(icon="expand_more" size="24")
-          span.track__rating {{ track.r }}
-          md-button.md-fab.track__vote--up(ng-click="voteUp(track.id)" aria-label="track-down")
-            ng-md-icon(icon="expand_less" size="24")
+        include ../../app/_jade/_track.jade
         div.track__progress
           div.track__progress-active(style="width:{{ progress }}%;")
 
   md-content.playlist__content(scroll-glue="reverse")
     md-list.playlist__list
       md-item.playlist__track(ng-repeat="track in playlist track by track.id" style="order: {{ reverse*100 - track.r }}")
-        div.track__img-cont
-          img.track__img(ng-src="assets\\images\\nocover.png" lastfm-img="{{ track.t }},{{ track.a }}" alt="{{ track.t }} - {{ track.a }}")
-        div.track__row
-          div.track__base
-            div.track__content
-              h3.track__artist {{ track.a }}
-              h4.track__title {{ track.t }}
-            div.track__tags
-              span.track__tag(ng-repeat="tag in track.tg") {{ tag.n }}
-            div.track__time
-              span +{{ track.tt | readableTime }}
-          div.track__additional
-            div.track__content
-              div.track__links
-                a.track__link(href="http://vk.com/audio?q={{ track.t }}-{{ track.a }}" target="_blank") >vk
-                a.track__link(href="http://www.lastfm.ru/search?q={{ track.t }}+{{ track.a }}" target="_blank") >lastfm
-                a.track__link(ng-click="trackToChat(track.id)") >{{ 'trackToChat' | translate }}
-              div.track__upload-info {{ 'trackUploadedBy' | translate }}&nbsp;
-                a(ng-click="openProfile(track.sid)") {{ track.s }}&nbsp;
-                span(am-time-ago="track.ut")
-            div.track__tags
-              span.track__tag(ng-repeat="tag in track.tg") {{ tag.n }}
-            div.track__time
-              span +{{ track.tt | readableTime }}
-        div.track__votes-block(ng-class="{ 'voted--up': track.vote > 0, 'voted--down': track.vote < 0 }" ng-show="load.signed")
-          md-button.md-fab.track__vote--down(ng-click="voteDown(track.id)" aria-label="track-up")
-            ng-md-icon(icon="expand_more" size="24")
-          span.track__rating {{ track.r }}
-          md-button.md-fab.track__vote--up(ng-click="voteUp(track.id)" aria-label="track-down")
-            ng-md-icon(icon="expand_less" size="24")
+        include ../../app/_jade/_track.jade
 
       div.playlist--emtpy(ng-show="playlist.length < 10")
         p.playlist--empty-text
