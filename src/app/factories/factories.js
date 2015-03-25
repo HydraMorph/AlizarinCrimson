@@ -2,7 +2,6 @@
 
 var app = angular.module('trigger');
 
-
 app.factory('md5', function() {
   var md5 = {
     createHash: function(str) {
