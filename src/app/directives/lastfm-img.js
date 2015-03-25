@@ -2,20 +2,6 @@
 
 var app = angular.module('trigger');
 
-/* ng-enter */
-app.directive('ngEnter', function() {
-  return function(scope, element, attrs) {
-    element.bind('keydown keypress', function(event) {
-      if(event.which === 13) {
-        scope.$apply(function(){
-          scope.$eval(attrs.ngEnter, {'event': event});
-        });
-        event.preventDefault();
-      }
-    });
-  };
-});
-
 app.directive('lastfmImg', ['$rootScope', '$http', function($rootScope, $http) {
   return {
     restrict: 'A',
@@ -77,39 +63,3 @@ app.directive('lastfmImg', ['$rootScope', '$http', function($rootScope, $http) {
   };
 }]);
 
-app.directive('compile', ['$compile', function ($compile) {
-  return function(scope, element, attrs) {
-    scope.$watch(
-      function(scope) {
-        // watch the 'compile' expression for changes
-        return scope.$eval(attrs.compile);
-      },
-      function(value) {
-        // when the 'compile' expression changes
-        // assign it into the current DOM
-        element.html(value);
-
-        // compile the new DOM and link it to the current
-        // scope.
-        // NOTE: we only compile .childNodes so that
-        // we don't get into infinite loop compiling ourselves
-        $compile(element.contents())(scope);
-      }
-    );
-  };
-}]);
-
-
-app.directive('trackId', ['$rootScope', 'socket', 'Client', function($rootScope, socket, Client) {
-  return {
-    restrict: 'AEC',
-    scope: {
-      class: '@'
-    },
-    link: function(scope, element, attrs) {
-      Client.track(attrs.trackId, function(data) {
-        element.html(data.a + ' - ' + data.t);
-      });
-    }
-  };
-}]);

@@ -2,12 +2,6 @@
 
 var app = angular.module('trigger');
 
-app.filter('reverse', function() {
-  return function(items) {
-    return items.slice().reverse();
-  };
-});
-
 app.filter('readableTime', function () {
   return function (seconds) {
     var seconds = parseInt(seconds, 10);

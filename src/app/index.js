@@ -23,7 +23,6 @@ app
 app.run(function($timezone, angularMomentConfig) {
   angularMomentConfig.preprocess = 'utc';
   angularMomentConfig.timezone = $timezone.getName();
-  console.log(angularMomentConfig.timezone);
 });
 
 app.run(function ($rootScope, Client, socket, $location, $log, md5) {
