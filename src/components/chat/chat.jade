@@ -1,6 +1,6 @@
 div.chat__module(ng-controller="ChatCtrl" ng-class="{ 'chat__module--extended': isChatExtended === true }")
 
-  md-content.chat__md-content(scroll-glue)
+  md-content.chat__md-content(scroll-glue="")
     md-button.chat__loadmore(ng-click="loadMore()" aria-label="chat--loadmore") Load more
     md-list.chat__list
       md-item.chat__list-item(ng-repeat="msg in messages")
