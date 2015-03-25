@@ -37,37 +37,6 @@ html
   [theme='dark'] &
     background darkScrollbarThumbBG
 
-/*
-.perf
-  transform translate3d(0,0,0)
-*/
-
-
-[layout=row]
-  flex-direction row
-
-
-/* Typography - will delete it later */
-/*
-* t-(a || b)-{type}
-* t == typography
-* b == before
-* a == :after
-* type == space, semicolon or others
-*/
-.t-a-semicolon
-  &:after
-    content ':'
-.t-b-space
-  &:before
-    content ' '
-.t-b-space-hyphen-space
-  &:before
-    content ' - '
-.t-a-space-hyphen-space
-  &:after
-    content ' - '
-
 object
   color currentColor
 svg
@@ -188,7 +157,9 @@ md-slider.md-default-theme .md-track.md-track-fill
   flex-flow row nowrap
 
 /* Info panels */
-.tabsdemoStaticTabs .tabpanel-container
+.infoTabs
+  height 100%
+.infoTabs .tabpanel-container
   display block
   position relative
   border none
@@ -196,41 +167,44 @@ md-slider.md-default-theme .md-track.md-track-fill
   height calc(100% - 60px)
   overflow hidden
 @media screen and (max-width: 960px)
-  .tabsdemoStaticTabs .tabpanel-container
+  .infoTabs .tabpanel-container
     height -webkit-calc(100% - 96px)
     height calc(100% - 96px)
 
-.tabsdemoStaticTabs [role="tabpanel"]
+.infoTabs [role="tabpanel"]
   overflow-y auto
   overflow-x hidden
   width 100%
   height 100%
   transition all cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.5s
   position absolute
-.tabsdemoStaticTabs [role="tabpanel"].ng-leave.ng-leave-active
-.tabsdemoStaticTabs [role="tabpanel"].ng-enter
+.infoTabs [role="tabpanel"].ng-leave.ng-leave-active
+.infoTabs [role="tabpanel"].ng-enter
   top -300px
-.tabsdemoStaticTabs [role="tabpanel"].ng-leave
-.tabsdemoStaticTabs [role="tabpanel"].ng-enter.ng-enter-active
+.infoTabs [role="tabpanel"].ng-leave
+.infoTabs [role="tabpanel"].ng-enter.ng-enter-active
   top 0
-.tabsdemoStaticTabs [role="tabpanel"].ng-leave
+.infoTabs [role="tabpanel"].ng-leave
   z-index 100
-.tabsdemoStaticTabs .md-header
+.infoTabs .md-header
   overflow-x hidden
   background-color colorTabBG !important
   body[theme='dark'] &
     background-color darkTabBG !important
-.tabsdemoStaticTabs .md-header-items-container
+.infoTabs .md-header-items-container
   left 0 !important
   right 0 !important
-.tabsdemoStaticTabs .md-header-items-container .md-header-items
+.infoTabs .md-header-items-container .md-header-items
   -webkit-transform none !important
   transform none !important
   width 100% !important
   border-bottom 3px solid colorTabBorder
   body[theme='dark'] &
     border-bottom 3px solid darkTabBorder
-.tabsdemoStaticTabs md-tab
+.infoTabs md-tabs
+  height 100%
+.infoTabs md-tab
+  height 100%
   text-transform none
   background-color colorTabBG
   color colorTab !important
@@ -253,10 +227,10 @@ md-slider.md-default-theme .md-track.md-track-fill
     border-left 1px solid colorTabFocusBorder
     body[theme='dark'] &
       border-left 1px solid darkTabFocusBorder
-.tabsdemoStaticTabs md-tab
+.infoTabs md-tab
   box-sizing content-box
-.tabsdemoStaticTabs md-tab.active
-.tabsdemoStaticTabs md-tab:focus
+.infoTabs md-tab.active
+.infoTabs md-tab:focus
   border-bottom 3px solid colorTabActiveBorder
   color colorTabActive !important
   background-color colorTabActiveBG !important
@@ -264,35 +238,35 @@ md-slider.md-default-theme .md-track.md-track-fill
     border-bottom 3px solid darkTabActiveBorder
     color darkTabActive !important
     background darkTabActiveBG !important
-.tabsdemoStaticTabs md-tab:hover
+.infoTabs md-tab:hover
   border-bottom 3px solid colorTabHoverBorder
   body[theme='dark'] &
     border-bottom 3px solid darkTabHoverBorder
-.tabsdemoStaticTabs md-tab[disabled]
+.infoTabs md-tab[disabled]
   opacity 0.5
-.tabsdemoStaticTabs md-tab .md-ripple-container
+.infoTabs md-tab .md-ripple-container
   color colorThird1 !important
   body[theme='dark'] &
     color darkThird1 !important
-.tabsdemoStaticTabs .md-header .md-ripple
+.infoTabs .md-header .md-ripple
   border-color colorThird1 !important
   body[theme='dark'] &
     border-color darkThird1 !important
-.tabsdemoStaticTabs md-tabs-ink-bar
+.infoTabs md-tabs-ink-bar
   height 3px
   background-color colorThird1 !important
   body[theme='dark'] &
     background-color darkThird1 !important
 
 @media screen and (min-width: 601px)
-  .tabsdemoStaticTabs .md-header
+  .infoTabs .md-header
     height 60px
-  .tabsdemoStaticTabs .md-header-items-container
+  .infoTabs .md-header-items-container
     height 60px
 @media screen and (max-width: 600px)
-  .tabsdemoStaticTabs .md-header
+  .infoTabs .md-header
     height 36px
-  .tabsdemoStaticTabs .md-header-items-container
+  .infoTabs .md-header-items-container
     height 36px
 
 md-tab
