@@ -19,6 +19,12 @@ div.playlist__ctrl(ng-controller="PlaylistCtrl")
     md-list.playlist__list
       md-item.playlist__track
         include ../../app/_jade/_track.jade
+        div.track__votes-block(ng-class="{ 'voted--up': track.vote > 0, 'voted--down': track.vote < 0 }" ng-show="load.signed")
+          md-button.md-fab.track__vote--down(ng-click="voteDown(track.id)" aria-label="track-up")
+            ng-md-icon(icon="expand_more" size="24")
+          span.track__rating {{ track.r }}
+          md-button.md-fab.track__vote--up(ng-click="voteUp(track.id)" aria-label="track-down")
+            ng-md-icon(icon="expand_less" size="24")
         div.track__progress
           div.track__progress-active(style="width:{{ progress }}%;")
 
@@ -26,6 +32,12 @@ div.playlist__ctrl(ng-controller="PlaylistCtrl")
     md-list.playlist__list
       md-item.playlist__track(ng-repeat="track in playlist track by track.id" style="order: {{ reverse*100 - track.r }}")
         include ../../app/_jade/_track.jade
+        div.track__votes-block(ng-class="{ 'voted--up': track.vote > 0, 'voted--down': track.vote < 0 }" ng-show="load.signed")
+          md-button.md-fab.track__vote--down(ng-click="voteDown(track.id)" aria-label="track-up")
+            ng-md-icon(icon="expand_more" size="24")
+          span.track__rating {{ track.r }}
+          md-button.md-fab.track__vote--up(ng-click="voteUp(track.id)" aria-label="track-down")
+            ng-md-icon(icon="expand_less" size="24")
 
       div.playlist--emtpy(ng-show="playlist.length < 10")
         p.playlist--empty-text

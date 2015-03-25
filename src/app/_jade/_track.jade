@@ -22,9 +22,3 @@ div.track__row
       span.track__tag(ng-repeat="tag in track.tg") {{ tag.n }}
     div.track__time
       span +{{ track.tt | readableTime }}
-div.track__votes-block(ng-class="{ 'voted--up': track.vote > 0, 'voted--down': track.vote < 0 }" ng-show="load.signed")
-  md-button.md-fab.track__vote--down(ng-click="voteDown(track.id)" aria-label="track-up")
-    ng-md-icon(icon="expand_more" size="24")
-  span.track__rating {{ track.r }}
-  md-button.md-fab.track__vote--up(ng-click="voteUp(track.id)" aria-label="track-down")
-    ng-md-icon(icon="expand_less" size="24")
