@@ -6,6 +6,7 @@ md-toolbar.console__include(ng-controller="ConsoleCtrl")
   p.console__stat
     | {{ 'consoleListeners' | translate }}:&nbsp;
     span.console__listeners {{ users.listeners }}
+    br
     | {{ 'consoleActiveUsers' | translate }}:&nbsp;
     span.console__active-users {{ users.active }}
   md-button.console__buttton--upload(ng-click="openUploadBar($event)" aria-label="uploader-btn")
