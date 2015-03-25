@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('trigger')
-  .controller('ConsoleCtrl', function ($scope, $rootScope, $interval, $timeout, $mdDialog, $mdBottomSheet, Client, socket, hotkeys, $translate) {
+  .controller('ConsoleCtrl', function ($scope, $rootScope, $interval, $timeout, $mdDialog, $mdBottomSheet, Client, socket) {
 
     /* Default values */
     $scope.users = {

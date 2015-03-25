@@ -5,7 +5,7 @@ var app = angular.module('trigger');
 app.directive('greeting', ['$interval', '$translate',  function ($interval, $translate) {
   return {
     restrict: 'AE',
-    link:function($scope, element, attrs) {
+    link:function($scope, element) {
       var greetingsLang = $translate.preferredLanguage();
       var greetings = {
         'ru': [
@@ -34,5 +34,5 @@ app.directive('greeting', ['$interval', '$translate',  function ($interval, $tra
         element.html(greeting);
       }, 9000);
     }
-  }
+  };
 }]);
