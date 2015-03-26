@@ -1,44 +1,41 @@
 'use strict';
 
 angular.module('trigger')
-  .controller('ConsoleCtrl', function ($scope, $rootScope, $interval, $timeout, $mdDialog, $mdBottomSheet, Client, socket, Channel) {
+  .controller('ConsoleCtrl', function ($scope, $rootScope, $interval, $timeout, $mdDialog, $mdBottomSheet, Client, socket, Channel, User) {
 
-    /* Default values */
     $scope.users = {
       'listeners': 0,
       'active': 0
     };
-    $scope.$watch(Channel.getListeners, function(newArticle, oldArticle, scope) {
-      console.log('Listeners: ', newArticle);
-      scope.users.listeners = newArticle;
+    $scope.$watch(Channel.getListeners, function(value) {
+      $scope.users.listeners = value;
     });
-    $scope.$watch(Channel.getActiveUsers, function(newArticle, oldArticle, scope) {
-      console.log('Active Users: ', newArticle);
-      scope.users.active = newArticle;
+    $scope.$watch(Channel.getActiveUsers, function(value) {
+      $scope.users.active = value;
     });
+
 
     $scope.user = {
       'name': '%username%',
       'uplim': 0
     };
+    $scope.$watch(User.isAuth, function(value) {
+      $scope.load.signed = value;
+    });
 
-    /* Show user's upload limit (after signing)*/
-    $scope.$watch(function() {
-      return $rootScope.load.signed;
-    }, function() {
-      if ($rootScope.load.signed === true) {
-//        console.log('Client.user', Client.user);
-        $scope.user.name = Client.user.n;
-        $scope.user.uplim = Client.user.t;
-        socket.on('uplim', function(data) {
-          $scope.user.uplim = data.t;
-        });
-        if (localStorage.getItem('theme') !== undefined && localStorage.getItem('theme').length > 0) {
-          document.body.setAttribute('theme', localStorage.getItem('theme'));
-        }
+    $scope.$watch(User.getLimit, function(value) {
+      $scope.user.uplim = value;
+    });
+
+    $scope.$watch(User.getUsername, function(value) {
+      $scope.user.name = value;
+    });
+
+    if (localStorage.getItem('theme')) {
+      if (localStorage.getItem('theme') !== undefined && localStorage.getItem('theme').length > 0) {
+        document.body.setAttribute('theme', localStorage.getItem('theme'));
       }
-      $scope.load.signed = $rootScope.load.signed;
-    }, true);
+    }
 
     /* Just for debug. u can delete it */
     $scope.data = function() {

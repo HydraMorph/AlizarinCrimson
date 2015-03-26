@@ -1,22 +1,44 @@
 'use strict';
 
 angular.module('trigger')
-  .controller('PlaylistCtrl', function ($scope, $rootScope, $mdSidenav, Client, socket, $interval, hotkeys, Channel) {
+  .controller('PlaylistCtrl', function ($scope, $rootScope, $mdSidenav, Client, socket, $interval, hotkeys, Channel, User) {
 
     /* init */
-    $scope.load.signed = false;
+    $scope.isAuth = false;
     $scope.playlist = [];
     $scope.track = {};
-    $scope.channel = 'Channel';
+    $scope.channel = {};
+    $scope.channel.name = 'Channel';
+    $scope.channel.id = 0;
+    $scope.user = {};
+    $scope.user.name = '';
+    $scope.user.id = 0;
+    $scope.user.w = 0;
 
-    $scope.$watch(Channel.getCurrent, function(newArticle, oldArticle, scope) {
-      console.log('Current: ', newArticle);
-      scope.track = newArticle;
+    $scope.$watch(User.getUsername, function(value) {
+      $scope.user.name = value;
+    });
+    $scope.$watch(User.getUservote, function(value) {
+      $scope.user.w = value;
     });
 
-    $scope.$watch(Channel.getPlaylist, function(newArticle, oldArticle, scope) {
-      console.log('Playlist: ', newArticle);
-      scope.playlist = newArticle;
+    $scope.$watch(Channel.getId, function(value) {
+      $scope.channel.id = value;
+    });
+    $scope.$watch(Channel.getCurrent, function(value) {
+      $scope.track = value;
+      $rootScope.title = '+D' + value.a + ' - ' + value.t + ' @ Trigger';
+    });
+
+    $scope.$watch(Channel.getPlaylist, function(value) {
+      $scope.playlist = value;
+    });
+
+    $scope.$watch(User.isAuth, function(value) {
+      $scope.isAuth = value;
+      if (value === true) {
+        checkVotes();
+      }
     });
 
     hotkeys.bindTo($scope)
@@ -25,7 +47,7 @@ angular.module('trigger')
       description: 'Up current track',
       allowIn: ['INPUT', 'SELECT', 'TEXTAREA'],
       callback: function() {
-        addVote({ 'id': $scope.track.id, 'v': Client.user.w });
+        addVote({ 'id': $scope.track.id, 'v': $scope.user.w });
         event.preventDefault();
         console.log('alt+up');
       }
@@ -35,7 +57,7 @@ angular.module('trigger')
       description: 'Down current track',
       allowIn: ['INPUT', 'SELECT', 'TEXTAREA'],
       callback: function() {
-        addVote({ 'id': $scope.track.id, 'v': -1*Client.user.w });
+        addVote({ 'id': $scope.track.id, 'v': -1*$scope.user.w });
         event.preventDefault();
         console.log('alt+down');
       }
@@ -57,30 +79,20 @@ angular.module('trigger')
       $mdSidenav('right').toggle();
     };
 
-
-    /* Get gisrt data - current track*/
-    $scope.$watch(function () {
-      return $rootScope.load.welcome;
-    }, function () {
-      if ($rootScope.load.welcome === true) {
-        $rootScope.title = '+D' + Client.channel.current.a + ' - ' + Client.channel.current.t + ' @ Trigger';
-      }
-    }, true);
-
     /* Socket - new current track - removing it from playlist and and add to current */
     /* jshint shadow:true */
     socket.on('newcurrent', function(data) {
 //      console.log('newcurrent', data);
-      if ($scope.load.signed === true) {
+      if ($scope.isAuth === true) {
         for (var vr in data.track.p) {
           if (data.track.p[vr].vid === Client.user.id) {
-            data.track.vote = Client.user.w;
+            data.track.vote = $scope.user.w;
             break;
           }
         }
         for (var vr in data.track.n) {
           if (data.track.n[vr].vid === Client.user.id) {
-            data.track.vote = -Client.user.w;
+            data.track.vote = -$scope.user.w;
             break;
           }
         }
@@ -98,14 +110,6 @@ angular.module('trigger')
           break;
         }
       }
-//      if ($rootScope.scrobble === true) {
-//        var request = new XMLHttpRequest();
-//        var sig = md5.createHash(localStorage.getItem('lastfmToken'));
-//        request.open('POST', 'http://ws.audioscrobbler.com/2.0/?method=track.updateNowPlaying&api_key=4366bdedfe39171be1b5581b52ddee90&api_sig=' + sig + '&artist=' + data.track.a + '&track=' + data.track.t + '&autocorrect=1', true);
-//        request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
-//        request.send(data);
-//        console.log('scrobble', data);
-//      }
     });
 
     /* Check votes after signing - for color setting if user voted plus or minus */
@@ -114,54 +118,44 @@ angular.module('trigger')
       for (var i = 0; i < plsL; i++) {
         for (var vr in $scope.playlist[i].p) {
           if ($scope.playlist[i].p[vr].vid === Client.user.id) {
-            $scope.playlist[i].vote = Client.user.w;
+            $scope.playlist[i].vote = $scope.user.w;
             break;
           }
         }
         for (var vr in $scope.playlist[i].n) {
           if ($scope.playlist[i].n[vr].vid === Client.user.id) {
-            $scope.playlist[i].vote = -Client.user.w;
+            $scope.playlist[i].vote = -$scope.user.w;
             break;
           }
         }
       }
       for (var vr in $scope.track.p) {
         if ($scope.track.p[vr].vid === Client.user.id) {
-          $scope.track.vote = Client.user.w;
+          $scope.track.vote = $scope.user.w;
           break;
         }
       }
       for (var vr in $scope.track.n) {
         if ($scope.track.n[vr].vid === Client.user.id) {
-          $scope.track.vote = -Client.user.w;
+          $scope.track.vote = -$scope.user.w;
           break;
         }
       }
     }
 
-    /* Check votes after signing */
-    $scope.$watch(function () {
-      return $rootScope.load.signed;
-    }, function () {
-      if ($rootScope.load.signed === true) {
-        checkVotes();
-      }
-      $scope.load.signed = $rootScope.load.signed;
-    }, true);
-
     /* Socket Update track - vote, title or artist */
     socket.on('uptr', function(data) {
-      if (data.t.id === Client.channel.current.id) {
-        if ($scope.load.signed === true) {
+      if (data.t.id === $scope.track.id) {
+        if ($scope.isAuth === true) {
           for (var vr in data.t.p) {
             if (data.t.p[vr].vid === Client.user.id) {
-              data.t.vote = Client.user.w;
+              data.t.vote = $scope.user.w;
               break;
             }
           }
           for (var vr in data.t.n) {
             if (data.t.n[vr].vid === Client.user.id) {
-              data.t.vote = -1 * Client.user.w;
+              data.t.vote = -1 * $scope.user.w;
               break;
             }
           }
@@ -179,16 +173,16 @@ angular.module('trigger')
             break;
           }
         }
-        if ($scope.load.signed === true) {
+        if ($scope.isAuth === true) {
           for (var vr in data.t.p) {
             if (data.t.p[vr].vid === Client.user.id) {
-              data.t.vote = Client.user.w;
+              data.t.vote = $scope.user.w;
               break;
             }
           }
           for (var vr in data.t.n) {
             if (data.t.n[vr].vid === Client.user.id) {
-              data.t.vote = -1 * Client.user.w;
+              data.t.vote = -1 * $scope.user.w;
               break;
             }
           }
@@ -215,16 +209,16 @@ angular.module('trigger')
         }
       }
       if (isClone === false) {
-        if ($scope.load.signed === true) {
+        if ($scope.isAuth === true) {
           for (var vr in track.p) {
             if (track.p[vr].vid === Client.user.id) {
-              track.vote = Client.user.w;
+              track.vote = $scope.user.w;
               break;
             }
           }
           for (var vr in track.n) {
             if (track.n[vr].vid === Client.user.id) {
-              track.vote = -1 * Client.user.w;
+              track.vote = -1 * $scope.user.w;
               break;
             }
           }
@@ -257,7 +251,7 @@ angular.module('trigger')
 
     /* Vote function */
     function addVote (data) {
-      data.chid = Client.channel.id;
+      data.chid = $scope.channel.id;
       socket.emit('vote', data);
     }
 
@@ -269,16 +263,16 @@ angular.module('trigger')
         reverse = true;
       }
       if (reverse === true) {
-        if (this.track.vote === -Client.user.w) {
+        if (this.track.vote === -$scope.user.w) {
           addVote({ 'id': id, 'v': 0});
         } else {
-          addVote({'id': id, 'v': -Client.user.w });
+          addVote({'id': id, 'v': -$scope.user.w });
         }
       } else {
-        if (this.track.vote === Client.user.w) {
+        if (this.track.vote === $scope.user.w) {
           addVote({ 'id': id, 'v': 0 });
         } else {
-          addVote({ 'id': id, 'v': Client.user.w });
+          addVote({ 'id': id, 'v': $scope.user.w });
         }
       }
     };
@@ -291,41 +285,19 @@ angular.module('trigger')
         reverse = true;
       }
       if (reverse === true) {
-        if (this.track.vote === Client.user.w) {
+        if (this.track.vote === $scope.user.w) {
           addVote({ 'id': id, 'v': 0 });
         } else {
-          addVote({ 'id': id, 'v': Client.user.w });
+          addVote({ 'id': id, 'v': $scope.user.w });
         }
       } else {
-        if (this.track.vote === -Client.user.w) {
+        if (this.track.vote === -$scope.user.w) {
           addVote({ 'id': id, 'v': 0 });
         } else {
-          addVote({ 'id': id, 'v': -Client.user.w });
+          addVote({ 'id': id, 'v': -$scope.user.w });
         }
       }
     };
-
-    /* Get data - playlist and current track time postion - for meter */
-//    socket.on('channeldata', function (data) {
-////      console.log('playlist', data);
-//      $scope.channel = data.name;
-//      $scope.playlist = data.pls;
-//      $scope.items = $scope.playlist;
-//      Client.channel.ct = data.ct;
-//      $scope.starTimer(Client.channel.ct, data.current.tt);
-////      if ($rootScope.scrobble === true) {
-////        var request = new XMLHttpRequest();
-////        request.open('POST', 'http://ws.audioscrobbler.com/2.0/?api_key=4366bdedfe39171be1b5581b52ddee90&api_sig=' + apiSig + '&artist=' + data.current.a + '&method=track.updateNowPlaying&track=' + data.current.t, true);
-////        request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
-////        request.send(data);
-////        console.log('scrobble', data);
-////      }
-//      var plsL = data.pls.length;
-//      for (var i = 0; i < plsL; i++) {
-//        $scope.playlist[i].vote = 0;
-//        $scope.playlist[i].ut = setTimezone($scope.playlist[i].ut);
-//      }
-//    });
 
     /* Meter for current track with timer */
     var i = 0;
@@ -345,31 +317,5 @@ angular.module('trigger')
         $scope.progress = 0;
       }
     };
-
-    /*
-    function okToGreet(name) {
-      return name;
-    }
-
-    function asyncGreet(name) {
-      // perform some asynchronous operation, resolve or reject the promise when appropriate.
-      return $q(function(resolve, reject) {
-        setTimeout(function() {
-          if (okToGreet(name)) {
-            resolve('Hello, ' + name + '!');
-          } else {
-            reject('Greeting ' + name + ' is not allowed.');
-          }
-        }, 1000);
-      });
-    }
-
-    var promise = asyncGreet('Robin Hood');
-    promise.then(function(greeting) {
-      alert('Success: ' + greeting);
-    }, function(reason) {
-      alert('Failed: ' + reason);
-    });
-    */
 
   });

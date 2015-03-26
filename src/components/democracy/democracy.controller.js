@@ -9,9 +9,8 @@ angular.module('trigger')
 
     $scope.description = '';
 
-    $scope.$watch(Channel.getDescription, function(newArticle, oldArticle, scope) {
-      console.log('Description: ', newArticle);
-      scope.description = newArticle;
+    $scope.$watch(Channel.getDescription, function(value) {
+      $scope.description = value;
     });
 
     $scope.next = function() {

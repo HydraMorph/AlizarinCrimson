@@ -26,6 +26,10 @@ app.factory('Channel', function (socket, Client) {
     service.setData(data);
   });
 
+  service.getId = function() {
+    return service.chid;
+  };
+
   service.getDescription = function() {
     return description;
   };
