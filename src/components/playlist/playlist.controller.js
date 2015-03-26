@@ -15,6 +15,9 @@ angular.module('trigger')
     $scope.user.id = 0;
     $scope.user.w = 0;
 
+    $scope.$watch(User.getId, function(value) {
+      $scope.user.id = value;
+    });
     $scope.$watch(User.getUsername, function(value) {
       $scope.user.name = value;
     });
@@ -27,7 +30,7 @@ angular.module('trigger')
     });
     $scope.$watch(Channel.getCurrent, function(value) {
       $scope.track = value;
-      $rootScope.title = '+D' + value.a + ' - ' + value.t + ' @ Trigger';
+      //$rootScope.title = '+D' + value.a + ' - ' + value.t + ' @ Trigger';
     });
 
     $scope.$watch(Channel.getPlaylist, function(value) {
@@ -71,7 +74,6 @@ angular.module('trigger')
       $scope.reverse = 1;
     }
 
-    /* Don't know what is it */
     $scope.toggleLeft = function () {
       $mdSidenav('left').toggle();
     };
@@ -82,23 +84,21 @@ angular.module('trigger')
     /* Socket - new current track - removing it from playlist and and add to current */
     /* jshint shadow:true */
     socket.on('newcurrent', function(data) {
-//      console.log('newcurrent', data);
       if ($scope.isAuth === true) {
         for (var vr in data.track.p) {
-          if (data.track.p[vr].vid === Client.user.id) {
+          if (data.track.p[vr].vid === $scope.user.id) {
             data.track.vote = $scope.user.w;
             break;
           }
         }
         for (var vr in data.track.n) {
-          if (data.track.n[vr].vid === Client.user.id) {
+          if (data.track.n[vr].vid === $scope.user.id) {
             data.track.vote = -$scope.user.w;
             break;
           }
         }
       }
       data.track.ut = setTimezone(data.track.ut);
-      Client.channel.current = data.track;
       $scope.stopTimer();
       $scope.starTimer(0, data.track.tt);
       $scope.track = data.track;
@@ -117,26 +117,26 @@ angular.module('trigger')
       var plsL = $scope.playlist.length;
       for (var i = 0; i < plsL; i++) {
         for (var vr in $scope.playlist[i].p) {
-          if ($scope.playlist[i].p[vr].vid === Client.user.id) {
+          if ($scope.playlist[i].p[vr].vid === $scope.user.id) {
             $scope.playlist[i].vote = $scope.user.w;
             break;
           }
         }
         for (var vr in $scope.playlist[i].n) {
-          if ($scope.playlist[i].n[vr].vid === Client.user.id) {
+          if ($scope.playlist[i].n[vr].vid === $scope.user.id) {
             $scope.playlist[i].vote = -$scope.user.w;
             break;
           }
         }
       }
       for (var vr in $scope.track.p) {
-        if ($scope.track.p[vr].vid === Client.user.id) {
+        if ($scope.track.p[vr].vid === $scope.user.id) {
           $scope.track.vote = $scope.user.w;
           break;
         }
       }
       for (var vr in $scope.track.n) {
-        if ($scope.track.n[vr].vid === Client.user.id) {
+        if ($scope.track.n[vr].vid === $scope.user.id) {
           $scope.track.vote = -$scope.user.w;
           break;
         }
@@ -148,13 +148,13 @@ angular.module('trigger')
       if (data.t.id === $scope.track.id) {
         if ($scope.isAuth === true) {
           for (var vr in data.t.p) {
-            if (data.t.p[vr].vid === Client.user.id) {
+            if (data.t.p[vr].vid === $scope.user.id) {
               data.t.vote = $scope.user.w;
               break;
             }
           }
           for (var vr in data.t.n) {
-            if (data.t.n[vr].vid === Client.user.id) {
+            if (data.t.n[vr].vid === $scope.user.id) {
               data.t.vote = -1 * $scope.user.w;
               break;
             }
@@ -175,13 +175,13 @@ angular.module('trigger')
         }
         if ($scope.isAuth === true) {
           for (var vr in data.t.p) {
-            if (data.t.p[vr].vid === Client.user.id) {
+            if (data.t.p[vr].vid === $scope.user.id) {
               data.t.vote = $scope.user.w;
               break;
             }
           }
           for (var vr in data.t.n) {
-            if (data.t.n[vr].vid === Client.user.id) {
+            if (data.t.n[vr].vid === $scope.user.id) {
               data.t.vote = -1 * $scope.user.w;
               break;
             }
@@ -192,7 +192,6 @@ angular.module('trigger')
 
     /* Socket - add track in playlist */
     socket.on('addtrack', function(data) {
-//      console.log('addtrack', data);
       addTrack(data.track);
     });
 
@@ -211,13 +210,13 @@ angular.module('trigger')
       if (isClone === false) {
         if ($scope.isAuth === true) {
           for (var vr in track.p) {
-            if (track.p[vr].vid === Client.user.id) {
+            if (track.p[vr].vid === $scope.user.id) {
               track.vote = $scope.user.w;
               break;
             }
           }
           for (var vr in track.n) {
-            if (track.n[vr].vid === Client.user.id) {
+            if (track.n[vr].vid === $scope.user.id) {
               track.vote = -1 * $scope.user.w;
               break;
             }
@@ -239,7 +238,6 @@ angular.module('trigger')
 
     /* Socket - delete track from playlist */
     socket.on('removetrack', function(data) {
-//      console.log('removetrack', data);
       var plLength = $scope.playlist.length;
       for (var i = 0; i < plLength; i++) {
         if ($scope.playlist[i].id === data.tid) {

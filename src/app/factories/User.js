@@ -8,6 +8,7 @@ app.factory('User', function (socket, Client) {
   var auth = false;
   var limit;
   var username = '%username%';
+  var id = 0;
   var uservote = 0;
 
   /* login callback */
@@ -18,6 +19,7 @@ app.factory('User', function (socket, Client) {
     } else {
       service.data = data;
       limit = data.user.t;
+      id = data.user.id;
       username = data.user.n;
       uservote = data.user.w;
       auth = true;
@@ -38,6 +40,10 @@ app.factory('User', function (socket, Client) {
 
   service.getLimit = function() {
     return limit;
+  };
+
+  service.getId = function() {
+    return id;
   };
 
   service.getUsername = function() {
