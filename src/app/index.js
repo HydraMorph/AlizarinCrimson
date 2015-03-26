@@ -35,51 +35,13 @@ app.run(function ($rootScope, Client) {
     'channel': false
   };
 
-  $rootScope.channel = {};
-  /* login callback */
-  function processLogin (data) {
-    if (data.error) {
-      console.log(data.error);
-    } else {
-      Client.user = data.user;
-      $rootScope.userId = data.user.id;
-      $rootScope.load.signed = true;
-//      Client.goChannel(1, console.log('Q' ,data));
-//      Client.getChannels(function(data){
-//        $rootScope.channel = data;
-//        console.log(data);
-//        $rootScope.load.channel = true;
-//      });
-    }
-  }
-
   $rootScope.title = 'Trigger';
   $rootScope.userId = 0;
-  $rootScope.scrobble = false;
+
   var d = new Date();
   $rootScope.timezoneOffset = d.getTimezoneOffset();
 
   Client.init(location.host); /* Init Client */
 
-  var u = localStorage.getItem('username');
-  var p = localStorage.getItem('password');
-  if (u !== undefined && p !== undefined) {
-    Client.login(u, p, processLogin);
-  }
 
-//  /* Get first data - channel, users, playlist*/
-//  socket.on('welcome', function (data) {
-//    console.log('welcome', data);
-//    Client.channel = data.channels[0];
-//    Client.getChannels(function(data){
-//      Client.channels = data.channels;
-//      if (u !== undefined && p !== undefined) {
-//        Client.login(u, p, processLogin);
-//      }
-//      Client.goChannel(1, console.log('Q' ,data));
-//    });
-//    $rootScope.load.welcome = true;
-//  });
-
-  $rootScope.client = Client;
 });

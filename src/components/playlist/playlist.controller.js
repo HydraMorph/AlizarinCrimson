@@ -10,6 +10,7 @@ angular.module('trigger')
     $scope.channel = {};
     $scope.channel.name = 'Channel';
     $scope.channel.id = 0;
+    $scope.channel.ct = 0;
     $scope.user = {};
     $scope.user.name = '';
     $scope.user.id = 0;
@@ -31,6 +32,12 @@ angular.module('trigger')
     $scope.$watch(Channel.getCurrent, function(value) {
       $scope.track = value;
       //$rootScope.title = '+D' + value.a + ' - ' + value.t + ' @ Trigger';
+    });
+    $scope.$watch(Channel.getProgress, function(value) {
+      $scope.channel.ct = value;
+      if ($scope.track !== undefined) {
+        $scope.starTimer($scope.channel.ct, $scope.track.tt);
+      }
     });
 
     $scope.$watch(Channel.getPlaylist, function(value) {

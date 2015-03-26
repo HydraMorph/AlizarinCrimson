@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('trigger')
-  .controller('AppCtrl', function ($scope, $rootScope, $timeout, $mdSidenav, hotkeys, Client, ngAudio) {
+  .controller('AppCtrl', function ($scope, $rootScope, $timeout, $mdSidenav, hotkeys, Client, ngAudio, User) {
 
     $scope.sound = ngAudio.load('http://trigger.fm/stream/mainmp3');
 
@@ -12,9 +12,20 @@ angular.module('trigger')
       $scope.play = true;
       $scope.sound.play();
     };
+
     /* Autoplay if it was defined in localStorage settings */
     if (localStorage.getItem('play') === 'true') {
-      $timeout($scope.start(), 5000);
+      $timeout(function() {
+        $scope.start();
+      }, 5000);
+    }
+
+    var u = localStorage.getItem('username');
+    var p = localStorage.getItem('password');
+    if (localStorage.getItem('password') !== '') {
+      $timeout(function() {
+        User.login(u, p);
+      }, 5000);
     }
 
     $scope.togglePlay = function() {

@@ -30,6 +30,10 @@ app.factory('Channel', function (socket, Client) {
     return service.chid;
   };
 
+  service.getProgress = function() {
+    return service.ct;
+  };
+
   service.getDescription = function() {
     return description;
   };
