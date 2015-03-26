@@ -1,10 +1,14 @@
 'use strict';
 
 angular.module('trigger')
-  .controller('OnlineCtrl', function ($scope, $rootScope, socket, Client) {
+  .controller('OnlineCtrl', function ($scope, $rootScope, socket, Client, Channel) {
 
     /* Init */
     $scope.users = [];
+    $scope.$watch(Channel.getUsers, function(newArticle, oldArticle, scope) {
+      console.log('Online: ', newArticle);
+      scope.users = newArticle;
+    });
 
     /* Socket - delete user */
     socket.on('offuser', function(data) {
@@ -35,16 +39,5 @@ angular.module('trigger')
         }
       }
     });
-
-    /* Get users list*/
-    $scope.$watch(function() {
-      return $rootScope.load.welcome;
-    }, function() {
-      if ($rootScope.load.welcome === true) {
-        $scope.users = Client.channel.users;
-        $scope.usersCount = $scope.users.length;
-      }
-      $scope.load.welcome = $rootScope.load.welcome;
-    }, true);
 
   });

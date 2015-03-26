@@ -20,7 +20,7 @@ md-toolbar.console__include(ng-controller="ConsoleCtrl")
   md-button.console__login-btn(ng-show="load.signed" ng-click="logout()" aria-label="console-logout") {{ 'consoleLogOut' | translate }}
 
   blockquote.muzoblob__blockquote
-    p.console__greating(greeting)
+    p.console__greating(greeting="")
 
   svg.muzoblob(version="1.0" xmlns="http://www.w3.org/2000/svg" width="200pt" height="200pt" viewBox="0 0 200 200" preserveAspectRatio="xMidYMid meet")
     g(transform="translate(-130,200) scale(0.1,-0.1)" fill="#000" stroke="none")

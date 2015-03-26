@@ -1,33 +1,26 @@
 'use strict';
 
 angular.module('trigger')
-  .controller('ConsoleCtrl', function ($scope, $rootScope, $interval, $timeout, $mdDialog, $mdBottomSheet, Client, socket) {
+  .controller('ConsoleCtrl', function ($scope, $rootScope, $interval, $timeout, $mdDialog, $mdBottomSheet, Client, socket, Channel) {
 
     /* Default values */
     $scope.users = {
       'listeners': 0,
       'active': 0
     };
+    $scope.$watch(Channel.getListeners, function(newArticle, oldArticle, scope) {
+      console.log('Listeners: ', newArticle);
+      scope.users.listeners = newArticle;
+    });
+    $scope.$watch(Channel.getActiveUsers, function(newArticle, oldArticle, scope) {
+      console.log('Active Users: ', newArticle);
+      scope.users.active = newArticle;
+    });
+
     $scope.user = {
       'name': '%username%',
       'uplim': 0
     };
-
-
-    /* Show listeners and active users count */
-    $scope.$watch(function() {
-      return $rootScope.load.welcome;
-    }, function() {
-      if ($rootScope.load.welcome === true) {
-        $scope.users.listeners = Client.channel.lst;
-        $scope.users.active = Client.channel.a;
-        socket.on('lst', function(data) {
-          $scope.users.listeners = data.l;
-          $scope.users.active = data.a;
-        });
-      }
-      $scope.load.welcome = $rootScope.load.welcome;
-    }, true);
 
     /* Show user's upload limit (after signing)*/
     $scope.$watch(function() {

@@ -1,13 +1,23 @@
 'use strict';
 
 angular.module('trigger')
-  .controller('PlaylistCtrl', function ($scope, $rootScope, $mdSidenav, Client, socket, $interval, hotkeys) {
+  .controller('PlaylistCtrl', function ($scope, $rootScope, $mdSidenav, Client, socket, $interval, hotkeys, Channel) {
 
     /* init */
     $scope.load.signed = false;
     $scope.playlist = [];
     $scope.track = {};
     $scope.channel = 'Channel';
+
+    $scope.$watch(Channel.getCurrent, function(newArticle, oldArticle, scope) {
+      console.log('Current: ', newArticle);
+      scope.track = newArticle;
+    });
+
+    $scope.$watch(Channel.getPlaylist, function(newArticle, oldArticle, scope) {
+      console.log('Playlist: ', newArticle);
+      scope.playlist = newArticle;
+    });
 
     hotkeys.bindTo($scope)
     .add({
@@ -53,8 +63,6 @@ angular.module('trigger')
       return $rootScope.load.welcome;
     }, function () {
       if ($rootScope.load.welcome === true) {
-        Client.channel.current.ut = setTimezone(Client.channel.current.ut);
-        $scope.track = Client.channel.current;
         $rootScope.title = '+D' + Client.channel.current.a + ' - ' + Client.channel.current.t + ' @ Trigger';
       }
     }, true);
@@ -139,15 +147,6 @@ angular.module('trigger')
         checkVotes();
       }
       $scope.load.signed = $rootScope.load.signed;
-    }, true);
-
-    /* wtf? i don't know */
-    $scope.$watch(function () {
-      return $rootScope.load.welcome;
-    }, function () {
-      if ($rootScope.load.welcome === true) {
-        $scope.track = Client.channel.current;
-      }
     }, true);
 
     /* Socket Update track - vote, title or artist */
@@ -307,26 +306,26 @@ angular.module('trigger')
     };
 
     /* Get data - playlist and current track time postion - for meter */
-    socket.on('channeldata', function (data) {
-//      console.log('playlist', data);
-      $scope.channel = data.name;
-      $scope.playlist = data.pls;
-      $scope.items = $scope.playlist;
-      Client.channel.ct = data.ct;
-      $scope.starTimer(Client.channel.ct, data.current.tt);
-//      if ($rootScope.scrobble === true) {
-//        var request = new XMLHttpRequest();
-//        request.open('POST', 'http://ws.audioscrobbler.com/2.0/?api_key=4366bdedfe39171be1b5581b52ddee90&api_sig=' + apiSig + '&artist=' + data.current.a + '&method=track.updateNowPlaying&track=' + data.current.t, true);
-//        request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
-//        request.send(data);
-//        console.log('scrobble', data);
+//    socket.on('channeldata', function (data) {
+////      console.log('playlist', data);
+//      $scope.channel = data.name;
+//      $scope.playlist = data.pls;
+//      $scope.items = $scope.playlist;
+//      Client.channel.ct = data.ct;
+//      $scope.starTimer(Client.channel.ct, data.current.tt);
+////      if ($rootScope.scrobble === true) {
+////        var request = new XMLHttpRequest();
+////        request.open('POST', 'http://ws.audioscrobbler.com/2.0/?api_key=4366bdedfe39171be1b5581b52ddee90&api_sig=' + apiSig + '&artist=' + data.current.a + '&method=track.updateNowPlaying&track=' + data.current.t, true);
+////        request.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+////        request.send(data);
+////        console.log('scrobble', data);
+////      }
+//      var plsL = data.pls.length;
+//      for (var i = 0; i < plsL; i++) {
+//        $scope.playlist[i].vote = 0;
+//        $scope.playlist[i].ut = setTimezone($scope.playlist[i].ut);
 //      }
-      var plsL = data.pls.length;
-      for (var i = 0; i < plsL; i++) {
-        $scope.playlist[i].vote = 0;
-        $scope.playlist[i].ut = setTimezone($scope.playlist[i].ut);
-      }
-    });
+//    });
 
     /* Meter for current track with timer */
     var i = 0;

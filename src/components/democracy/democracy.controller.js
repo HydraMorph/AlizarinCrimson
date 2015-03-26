@@ -2,30 +2,17 @@
 'use strict';
 
 angular.module('trigger')
-  .controller('DemocracyCtrl', function ($scope) {
+  .controller('DemocracyCtrl', function ($scope, Channel) {
     $scope.data = {
       selectedIndex : 1
     };
 
-//    $scope.moderators = [];
-//    $scope.banned = [];
-//    $scope.president = {
-//      'name': '',
-//      'id': ''
-//    };
-//
-//    $scope.$watch(function() {
-//      return $rootScope.load.channel;
-//    }, function() {
-//      if ($rootScope.load.channel === true) {
-//        $scope.president.name = $rootScope.channel.prname;
-//        $scope.president.id = $rootScope.channel.prid;
-//        $scope.moderators = $rootScope.channel.editors;
-//        $scope.banned = $rootScope.channel.banned;
-//        console.log($scope.president, $scope.moderators, $scope.banned);
-////        console.log('Client.user', Client.user);
-//      }
-//    }, true);
+    $scope.description = '';
+
+    $scope.$watch(Channel.getDescription, function(newArticle, oldArticle, scope) {
+      console.log('Description: ', newArticle);
+      scope.description = newArticle;
+    });
 
     $scope.next = function() {
       $scope.data.selectedIndex = Math.min($scope.data.selectedIndex + 1, 2) ;

@@ -1,7 +1,7 @@
 div.online__ctrl(ng-controller="OnlineCtrl")
 
   p.online__here {{ 'onlineHere' | translate }}:&nbsp;
-    span.online__counter {{ usersCount }}
+    span.online__counter {{ users.length }}
   md-content.online__md-content
     md-list.online__list
       md-item.online__list-item(ng-repeat="user in users")

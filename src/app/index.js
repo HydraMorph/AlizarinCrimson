@@ -25,7 +25,7 @@ app.run(function($timezone, angularMomentConfig) {
   angularMomentConfig.timezone = $timezone.getName();
 });
 
-app.run(function ($rootScope, Client, socket) {
+app.run(function ($rootScope, Client) {
 
   /* init */
   $rootScope.load = {
@@ -52,8 +52,6 @@ app.run(function ($rootScope, Client, socket) {
 //      });
     }
   }
-  var u = localStorage.getItem('username');
-  var p = localStorage.getItem('password');
 
   $rootScope.title = 'Trigger';
   $rootScope.userId = 0;
@@ -63,17 +61,25 @@ app.run(function ($rootScope, Client, socket) {
 
   Client.init(location.host); /* Init Client */
 
-  /* Get first data - channel, users, playlist*/
-  socket.on('welcome', function (data) {
-    Client.channel = data.channels[0];
-    Client.getChannels(function(data){
-      Client.goChannel(1, console.log('Q' ,data));
-      Client.channels = data.channels;
-      if (u !== undefined && p !== undefined) {
-        Client.login(u, p, processLogin);
-      }
-    });
-    $rootScope.load.welcome = true;
-  });
+  var u = localStorage.getItem('username');
+  var p = localStorage.getItem('password');
+  if (u !== undefined && p !== undefined) {
+    Client.login(u, p, processLogin);
+  }
+
+//  /* Get first data - channel, users, playlist*/
+//  socket.on('welcome', function (data) {
+//    console.log('welcome', data);
+//    Client.channel = data.channels[0];
+//    Client.getChannels(function(data){
+//      Client.channels = data.channels;
+//      if (u !== undefined && p !== undefined) {
+//        Client.login(u, p, processLogin);
+//      }
+//      Client.goChannel(1, console.log('Q' ,data));
+//    });
+//    $rootScope.load.welcome = true;
+//  });
+
   $rootScope.client = Client;
 });

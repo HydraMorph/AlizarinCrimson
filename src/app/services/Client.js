@@ -19,9 +19,9 @@ app.service('Client', function () {
       socket.emit('ver', {'v': cl.version, 'init': true});
     });
 
-    socket.on('channeldata', function(data) {
-      console.log('channeldata', data);
-    });
+//    socket.on('channeldata', function(data) {
+//      console.log('channeldata', data);
+//    });
 
     socket.on('history', function(data) {
       cl.callbacks.history(data);
