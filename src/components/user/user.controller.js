@@ -1,12 +1,7 @@
 'use strict';
 
 angular.module('trigger')
-  .controller('UserCtrl', function ($scope, $rootScope, Client, $mdToast, User) {
-
-
-    var u = localStorage.getItem('username');
-    var p = localStorage.getItem('password');
-    User.login(u, p);
+  .controller('UserCtrl', function ($scope, $rootScope, Client, $mdToast, User, Profile) {
 
     /* init */
     $scope.user = {};

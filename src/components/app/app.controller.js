@@ -76,14 +76,12 @@ angular.module('trigger')
     /* Show Democracy tab on default */
     $scope.infoTab = 2;
 
-    $scope.$watch(function() {
-      return $rootScope.load.signed;
-    }, function() {
-      if ($rootScope.load.signed === true) {
+    $scope.$watch(User.isAuth, function(value) {
+      $scope.isAuth = value;
+      if (value === true) {
         $scope.infoTab = 0;
       }
-      $scope.load.signed = $rootScope.load.signed;
-    }, true);
+    });
 
     $scope.$watchCollection('infoTab', function(newValue, oldValue){
       if (oldValue === 3 && newValue !== 3) {
@@ -128,15 +126,11 @@ angular.module('trigger')
 
     /* Log out, delete 'username' and 'password' from localStorage */
     $scope.logout = function() {
-      Client.logout(
-        function() {
-          if (localStorage.getItem('password') !== '') {
-            localStorage.removeItem('password');
-            localStorage.removeItem('username');
-          }
-        }
-      );
-      $rootScope.load.signed = false;
+      if (localStorage.getItem('password') !== '') {
+        localStorage.removeItem('password');
+        localStorage.removeItem('username');
+      }
+      User.logout();
       $scope.infoTab = 2;
     };
 

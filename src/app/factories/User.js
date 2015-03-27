@@ -6,14 +6,13 @@ app.factory('User', function (socket, Client) {
 
   var service = {};
   var auth = false;
-  var limit;
+  var limit = 0;
   var username = '%username%';
   var id = 0;
   var uservote = 0;
 
   /* login callback */
   function processLogin (data) {
-    console.log('processLogin', data);
     if (data.error) {
       service.data = data;
     } else {
@@ -32,6 +31,15 @@ app.factory('User', function (socket, Client) {
 
   service.login = function(u, p) {
     Client.login(u, p, processLogin);
+  };
+
+  service.logout = function() {
+    service = {};
+    auth = false;
+    limit = 0;
+    username = '%username%';
+    id = 0;
+    uservote = 0;
   };
 
   service.isAuth = function() {

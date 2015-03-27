@@ -23,23 +23,23 @@ angular.module('trigger')
         .join(' ');
     };
 
-    $scope.$watch(User.getData, function(newArticle) {
-      console.log('getData: ', newArticle);
-      if (newArticle && newArticle.error) {
+    $scope.$watch(User.getData, function(value) {
+      console.log('getData: ', value);
+      if (value && value.error) {
         $mdToast.show(
           $mdToast.simple()
-            .content(newArticle.error)
+            .content(value.error)
             .position($scope.getToastPosition())
             .hideDelay(3000)
         );
-      } else if (newArticle && newArticle.user) {
+      } else if (value && value.user) {
         if ($scope.user.remember === true) {
           localStorage.setItem('username', $scope.user.name);
           localStorage.setItem('password', md5.createHash($scope.user.password));
         }
         $mdToast.show(
           $mdToast.simple()
-            .content('Welcome, ' + newArticle.user.n)
+            .content('Welcome, ' + value.user.n)
             .position($scope.getToastPosition())
             .hideDelay(3000)
         );
