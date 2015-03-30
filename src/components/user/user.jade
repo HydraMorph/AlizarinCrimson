@@ -38,7 +38,7 @@ div.user__ctrl.h(ng-controller="UserCtrl")
             p.user__invited(ng-show="user.invites.u.length")
               | {{ 'userInvite' | translate }}
               span.user__children(ng-repeat="child in user.invites.u")
-                button.user__child(ng-click="openProfile(child.id)" aria-label="user-child") {{ child.n }})
+                button.user__child(ng-click="openProfile(child.id)" aria-label="user-child") {{ child.n }}
 
         div.user__control
           md-checkbox.user__ignore(ng-model="data.img" aria-label="ОМММ") {{ 'userIgnore' | translate }}

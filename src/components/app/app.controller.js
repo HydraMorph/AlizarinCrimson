@@ -97,7 +97,7 @@ angular.module('trigger')
     $scope.openProfile = function(id) {
       $mdSidenav('right').open(); /* For mobile */
       $scope.swiped = false;
-      $rootScope.userId = id;
+      User.setProfileId(id);
       if (id === Client.user.id) {
         $scope.isMe = true;
       } else {

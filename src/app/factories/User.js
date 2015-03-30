@@ -9,6 +9,7 @@ app.factory('User', function (socket, Client) {
   var limit = 0;
   var username = '%username%';
   var id = 0;
+  var profileId = 0;
   var uservote = 0;
 
   /* login callback */
@@ -19,6 +20,7 @@ app.factory('User', function (socket, Client) {
       service.data = data;
       limit = data.user.t;
       id = data.user.id;
+      profileId = id;
       username = data.user.n;
       uservote = data.user.w;
       auth = true;
@@ -52,6 +54,13 @@ app.factory('User', function (socket, Client) {
 
   service.getId = function() {
     return id;
+  };
+
+  service.getProfileId = function() {
+    return profileId;
+  };
+  service.setProfileId = function(id) {
+    profileId = id;
   };
 
   service.getUsername = function() {
