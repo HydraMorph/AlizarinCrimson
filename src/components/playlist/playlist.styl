@@ -18,6 +18,8 @@
   height calc(100% - 96px) /* (current) 58 + 2 (progressbar) + 36 (navbar) */
 .playlist__content--current
   height 60px /* (current) 58 + 2 (progressbar) */
+  & .playlist__list
+    overflow hidden
   & .playlist__track
     position relative
     border-right 0
@@ -51,7 +53,7 @@
       color darkCurrentTime
 
 .playlist__list
-  overflow hidden
+  overflow-x hidden
   display flex
   padding 0
   height 100%
