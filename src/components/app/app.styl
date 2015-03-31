@@ -56,8 +56,8 @@ svg
   height 100%
 
 body
-  background-color colorBodyBG
   transition transform 1s ease
+  background-color colorBodyBG
   &[theme='dark']
     background-color darkBodyBG
 
@@ -102,9 +102,9 @@ md-slider.md-default-theme .md-track.md-track-fill
 
 /* Console style */
 .md-sidenav-left
-  width 150px !important
-  min-width 150px !important
   height 100%
+  width consoleWidth !important
+  min-width consoleWidth !important
   background colorGray1
   body[theme='dark'] &
     background darkGray1
@@ -120,30 +120,25 @@ md-slider.md-default-theme .md-track.md-track-fill
     z-index 64
     width 100% !important
     min-width 100% !important
-    height -webkit-calc(100% - 36px)
-    height calc(100% - 36px)
-    top 36px
     overflow hidden
     position fixed !important
+    height "calc(100% - %s)" % toolbarHeight
+    top toolbarHeight
 
 @media (min-width: 600px) and (max-width: 959px)
   .md-sidenav-right
     position fixed !important
-    width -webkit-calc(100% - 150px) !important
-    width calc(100% - 150px) !important
-    min-width -webkit-calc(100% - 150px) !important
-    min-width calc(100% - 150px) !important
-    top 36px
-    height -webkit-calc(100% - 36px)
-    height calc(100% - 36px)
     overflow hidden
     z-index 64
+    width "calc(100% - %s)" % consoleWidth !important
+    min-width "calc(100% - %s)" % consoleWidth !important
+    height "calc(100% - %s)" % toolbarHeight
+    top toolbarHeight
   .console__ctrl
-    height -webkit-calc(100% - 72px)
-    height calc(100% - 72px)
     overflow hidden
+    height calc(100% - 72px)
   .md-sidenav-left
-    top 36px
+    top toolbarHeight
 @media screen and (min-width: 960px)
   .md-sidenav-right
     display flex !important
@@ -163,13 +158,11 @@ md-slider.md-default-theme .md-track.md-track-fill
   display block
   position relative
   border none
-  height -webkit-calc(100% - 60px)
-  height calc(100% - 60px)
   overflow hidden
+  height "calc(100% - %s)" % basicWidth
 @media screen and (max-width: 960px)
   .infoTabs .tabpanel-container
-    height -webkit-calc(100% - 96px)
-    height calc(100% - 96px)
+    height "calc(100% - %s)" % toolbarHeight
 
 .infoTabs [role="tabpanel"]
   overflow-y auto
@@ -260,14 +253,14 @@ md-slider.md-default-theme .md-track.md-track-fill
 
 @media screen and (min-width: 601px)
   .infoTabs .md-header
-    height 59px
+    height (basicTrackHeight - 1)
   .infoTabs .md-header-items-container
-    height 59px
+    height (basicTrackHeight - 1)
 @media screen and (max-width: 600px)
   .infoTabs .md-header
-    height 36px
+    height toolbarHeight
   .infoTabs .md-header-items-container
-    height 36px
+    height toolbarHeight
 
 md-tab
   min-width initial !important

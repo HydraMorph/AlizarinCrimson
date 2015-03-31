@@ -1,11 +1,9 @@
 @media screen and (min-width: 601px)
   .md-tabs-content
-    height -webkit-calc(100% - 60px) /* 60px(tabsdemoStaticTabs .md-header) */
-    height calc(100% - 60px) /* 60px(tabsdemoStaticTabs .md-header) */
+    height "calc(100% - %s)" % (basicTrackHeight - 1px)
 @media screen and (max-width: 600px)
   .md-tabs-content
-    height -webkit-calc(100% - 72px) /* 36px(tabsdemoStaticTabs .md-header) + 36px(.playlist__toolbar, .playlist__toolbar-tools)*/
-    height calc(100% - 36px) /* 36px(tabsdemoStaticTabs .md-header) + 36px(.playlist__toolbar, .playlist__toolbar-tools)*/
+    height "calc(100% - %s)" % (basicTrackHeight + toolbarHeight)
 
 /* Use icon fallback instead of text in md-tabs for small screens */
 @media screen and (min-width: 1024px)

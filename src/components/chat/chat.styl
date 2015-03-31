@@ -17,13 +17,13 @@
 .chat__module--extended
   & .chat__md-content
   & .online__include
-    height calc(100% - 180px)
+    height "calc(100% - %s)" % (chatInputHeight*2)
   & .chat__input-grp
-    height 180px
+    height (chatInputHeight*2)
 
 .chat__input-grp
   width 100%
-  height 90px /* depend with .chat__md-content */
+  height chatInputHeight /* depend with .chat__md-content */
   margin 0
   padding 0
   display flex
@@ -45,7 +45,7 @@
       padding 0 6px !important
       line-height 1 !important
       width 100%
-      margin-bottom 24px /* 24px = chat__input-nav heigth = used for char's limit meter and chat settings */
+      margin-bottom chatInputBottomHeight /* 24px = chat__input-nav heigth = used for char's limit meter and chat settings */
       overflow auto
       font-size 12px
       color colorChatInput
@@ -53,7 +53,7 @@
         color darkChatInput
     &.md-input-focused
       & .md-input
-        height 46px
+        height (chatInputHeight - chatInputBottomHeight)
         border-color colorChatInputFocus !important
         body[theme='dark'] &
           border-color darkChatInputFocus !important
@@ -66,7 +66,7 @@
     bottom 0
     left 0
     right 0
-    height 24px /* depend with .md-input*/
+    height chatInputBottomHeight /* depend with .md-input*/
     display flex
     align-self flex-end
     flex 1 100%
@@ -103,13 +103,12 @@
       body[theme='dark'] &
         color darkChatInputIrony
 .chat__md-content
-  height -webkit-calc(100% - 90px) /* depend with .chat__input-grp */
-  height calc(100% - 90px) /* depend with .chat__input-grp */
   overflow-x hidden
   display flex
   flex-flow column nowrap
-  flex 1 1 calc(100% - 8rem)
   transition height .4s ease
+  flex 1 1 calc(100% - 8rem) /* 8rem - 1 row for online users */
+  height "calc(100% - %s)" % chatInputHeight /* depend with .chat__input-grp */
 .chat__item
   border-bottom 1px solid colorChatItemBorder
   background-color colorChatItemBG

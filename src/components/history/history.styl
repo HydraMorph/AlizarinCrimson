@@ -4,7 +4,7 @@
   color #000
   height 100%
 .history__search-grp
-  height 64px /* depend with .history__content */
+  height historyToolbarHeight /* depend with .history__content */
   width 100%
   display flex
   align-items center
@@ -25,7 +25,7 @@
     box-shadow none !important
 @media screen and (max-width: 599px)
   .history__search-grp
-    height 80px
+    height (1.25 * historyToolbarHeight)
     align-items flex-start
     & .history__checkbox
     & .history__select
@@ -41,8 +41,7 @@
       flex 1 0 50%
 
 .history__content
-  height -webkit-calc(100% - 64px) /* depend with .history__search-grp */
-  height calc(100% - 64px) /* depend with .history__search-grp */
+  height "calc(100% - %s)" % historyToolbarHeight
 
 .history__loadmore
   width 100%

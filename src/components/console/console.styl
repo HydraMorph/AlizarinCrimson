@@ -1,14 +1,13 @@
 .md-sidenav-left
   & .console__switcher-cont
-    min-height 36px /* Depend with .console__ctrl */
-    height 36px /* Depend with .console__ctrl */
-    max-height 36px /* Depend with .console__ctrl */
+    min-height toolbarHeight /* Depend with .console__ctrl */
+    height toolbarHeight /* Depend with .console__ctrl */
+    max-height toolbarHeight /* Depend with .console__ctrl */
     background-color colorGray1
     body[theme='dark'] &
       background-color darkGray1
 .console__ctrl
-  height -webkit-calc(100% - 36px) /* Depend with .console__switcher-cont */
-  height calc(100% - 36px) /* Depend with .console__switcher-cont */
+  height "calc(100% - %s)" % toolbarHeight /* Depend with .console__switcher-cont */
 .console__include
   height 100%
   position relative
@@ -20,16 +19,15 @@
 @media screen and (min-width: 960px)
   .md-sidenav-left
     & .console__switcher-cont
-      min-height 60px /* Depend with .console__ctrl */
-      height 60px /* Depend with .console__ctrl */
-      max-height 60px /* Depend with .console__ctrl */
+      min-height basicTrackHeight /* Depend with .console__ctrl */
+      height basicTrackHeight /* Depend with .console__ctrl */
+      max-height basicTrackHeight /* Depend with .console__ctrl */
       padding 5px
       background-color colorGray1
       body[theme='dark'] &
         background-color darkGray1
   .console__ctrl
-    height -webkit-calc(100% - 60px) /* Depend with .console__switcher-cont */
-    height calc(100% - 60px) /* Depend with .console__switcher-cont */
+    height "calc(100% - %s)" % basicTrackHeight /* Depend with .console__switcher-cont */
 
 
 .console
@@ -119,12 +117,14 @@
   height 4rem
   position absolute
   bottom .5rem
+  left 0
   & g
     fill #009688
 
 .muzoblob__blockquote
   position absolute
   bottom 75px
+  left 0
   width 100%
   margin 0
   background #484848
